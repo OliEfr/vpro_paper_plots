@@ -141,17 +141,22 @@ def print_table(suite_label, labels, values, methods):
         print("  " + f"{axis:<10}" + cells)
 
 
-def build_legends(fig, ax, suite_labels, methods):
-    """Two legends, one per encoding channel.
+def build_legends(fig, suite_labels, methods, left):
+    """Two legends, one per encoding channel, stacked above the axes.
 
     A single combined legend would need suites x methods entries to say what
     two short lists say directly, and it would imply the two factors are one.
+
+    Placement is explicit rather than via constrained_layout: two legends both
+    asking for "outside upper center" are given the same slot and silently
+    drawn on top of each other.
     """
     from matplotlib.lines import Line2D
 
-    common = dict(linestyle="none", markeredgecolor="white", markeredgewidth=0.6)
+    common = dict(linestyle="none", markeredgecolor="white", markeredgewidth=0.6,
+                  markersize=6)
     suite_handles = [
-        Line2D([], [], marker="o", markersize=5,
+        Line2D([], [], marker="o",
                color=style.PALETTE[i % len(style.PALETTE)], label=s, **common)
         for i, s in enumerate(suite_labels)
     ]
@@ -159,19 +164,20 @@ def build_legends(fig, ax, suite_labels, methods):
     # shape only, and coloring them would suggest a suite pairing that is not
     # there.
     method_handles = [
-        Line2D([], [], marker=style.MARKERS[i % len(style.MARKERS)], markersize=5,
+        Line2D([], [], marker=style.MARKERS[i % len(style.MARKERS)],
                color=style.INK_MUTED, label=label_for(m), **common)
         for i, m in enumerate(methods)
     ]
 
-    leg1 = fig.legend(handles=suite_handles, title="Eval suite",
-                      loc="outside upper left", ncol=len(suite_handles),
-                      frameon=False, alignment="left")
-    leg1.get_title().set_fontsize(7)
-    leg2 = fig.legend(handles=method_handles, title=r"LAM input ($V\times\Delta$)",
-                      loc="outside upper right", ncol=len(method_handles),
-                      frameon=False, alignment="left")
-    leg2.get_title().set_fontsize(7)
+    # No title on the suite legend -- the benchmark names say what they are,
+    # and at this text size a title row costs real vertical space. The marker
+    # legend keeps its title because "1x{0,5}" does not explain itself.
+    fig.legend(handles=suite_handles, loc="upper left", bbox_to_anchor=(left, 1.0),
+               ncol=len(suite_handles), frameon=False, borderaxespad=0)
+    fig.legend(handles=method_handles, title=r"LAM input ($V\times\Delta$)",
+               loc="upper left", bbox_to_anchor=(left, 0.87),
+               ncol=len(method_handles), frameon=False, alignment="left",
+               borderaxespad=0)
 
 
 def main():
@@ -224,7 +230,13 @@ def main():
     span = 0.80
     slots = np.linspace(-span / 2, span / 2, n_slots)
 
-    fig, ax = plt.subplots(figsize=(style.TEXT_WIDTH, 2.5), constrained_layout=True)
+    # Explicit margins, not constrained_layout: the two stacked legends are
+    # placed by hand (see build_legends), so the space they need has to be
+    # reserved by hand too. Fractions are of the figure, tuned so the axes ends
+    # up ~1.55in tall regardless of the legend rows above it.
+    left, bottom, top = 0.085, 0.13, 0.665
+    fig, ax = plt.subplots(figsize=(style.TEXT_WIDTH, 2.9))
+    fig.subplots_adjust(left=left, right=0.995, bottom=bottom, top=top)
 
     # Alternating group bands. With twelve marks per group the eye needs the
     # group boundary drawn rather than inferred from spacing alone.
@@ -258,7 +270,7 @@ def main():
     ax.tick_params(axis="x", length=0)
     ax.set_ylabel(r"probe $R^2$")
 
-    build_legends(fig, ax, [s[0] for s in suites], ref_methods)
+    build_legends(fig, [s[0] for s in suites], ref_methods, left)
     style.save(fig, args.name)
     if total_placeholder:
         print(f"\n  note: {total_placeholder} placeholder cell(s) not yet run; "

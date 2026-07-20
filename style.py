@@ -53,14 +53,16 @@ def apply_style():
         "font.serif": ["Nimbus Roman", "Times New Roman", "Liberation Serif", "DejaVu Serif"],
         "mathtext.fontset": "stix",
 
-        # Body text is 10pt. Figure text one to three points smaller reads as
-        # subordinate without becoming illegible at print size.
-        "font.size": 8,
-        "axes.labelsize": 8,
-        "axes.titlesize": 8,
-        "xtick.labelsize": 7,
-        "ytick.labelsize": 7,
-        "legend.fontsize": 7,
+        # Figure text is set at 2x the usual 8pt/7pt so it survives being
+        # scaled down on the page. These are sizes *in the generated PDF*, not
+        # on the printed page -- if a figure is included at full size without
+        # scaling, this reads much larger than the 10pt body text.
+        "font.size": 16,
+        "axes.labelsize": 16,
+        "axes.titlesize": 16,
+        "xtick.labelsize": 14,
+        "ytick.labelsize": 14,
+        "legend.fontsize": 14,
 
         # Recessive axes and grid: the data should be the darkest thing here.
         "axes.edgecolor": INK_MUTED,
