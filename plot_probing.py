@@ -26,10 +26,10 @@ not figure. Needs \usepackage{graphicx}.
       \label{fig:probing}
     \end{figure*}
 
-Do not rescale it. Every label is set at the document's 10pt body size in
-Computer Modern, the same typeface main.tex renders in, so at width=\textwidth
-figure text matches the surrounding prose exactly. Any width= other than
-\textwidth scales that text off body size.
+Do not rescale it. Every label is set at 8pt (IEEEtran \footnotesize, the
+caption size -- a step below the 10pt body) in Computer Modern, the typeface
+main.tex renders in, so at width=\textwidth the labels land on the page at
+exactly that size. Any width= other than \textwidth scales the text off it.
 
 Input schema (see results/README.md). One row per action dimension plus an
 optional aggregate row where ``action_dim == "mean"``:

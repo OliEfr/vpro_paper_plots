@@ -77,9 +77,11 @@ They live in `style.py`; change them there, not in individual scripts.
 1pc, so `\columnwidth` = 252 TeX pt. The conference and compsoc branches of the
 class use different values; these are the journal ones.
 
-**Font sizes match the body text.** Every label is set at the document's 10pt,
-converted from TeX points (1/72.27in) to the PostScript points (1/72in)
-matplotlib measures in — a bare `10` would render 0.37% large. Every piece of
+**Font size is 8pt** (`FIG_PT`) — IEEEtran `\footnotesize`, the caption size, a
+step below the 10pt body, which reads as subordinate the way figure text should.
+Set `FIG_PT_TEX = 10` in `style.py` to match body instead. It is specified in
+TeX points (1/72.27in) and converted to the PostScript points (1/72in)
+matplotlib measures in — a bare `8` would render 0.37% large. Every piece of
 figure text is this one size; if a row *looks* larger, suspect a tall glyph, not
 the font. Computer Modern's math braces `\{ \}` render ~40% taller than digits
 and made the legend read as oversized, which is why the marker labels use

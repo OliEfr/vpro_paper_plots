@@ -25,16 +25,17 @@ import matplotlib.pyplot as plt
 COL_WIDTH = 252 / 72.27   # 3.487in  \columnwidth  (single column)
 TEXT_WIDTH = 516 / 72.27  # 7.140in  \textwidth    (both columns, use figure*)
 
-# Body text size of the document. Figure text is set to match, so a label in a
-# figure reads at the same size as the prose around it.
+# Figure text size, in points. 8pt = IEEEtran's \footnotesize, the size the
+# class already uses for captions -- so figure labels sit a clear step below the
+# 10pt body, which reads as subordinate (the conventional choice for figures).
+# The document body is 10pt; set FIG_PT_TEX = 10 to match it instead.
 #
-# The conversion is not decorative: \documentclass[10pt] means 10 TeX points
-# (1/72.27in), while a matplotlib font size is in PostScript points (1/72in).
-# Passing a bare 10 to matplotlib would render 0.37% large. Invisible in
-# practice, but the point of this file is that the number is exactly right
-# rather than approximately right.
-BODY_PT_TEX = 10
-BODY_PT = BODY_PT_TEX * 72 / 72.27  # 9.963 PostScript pt
+# The conversion is not decorative: a size in TeX points (1/72.27in) is not the
+# same as a matplotlib font size, which is in PostScript points (1/72in). Passing
+# a bare 8 to matplotlib would render 0.37% large. Invisible in practice, but the
+# point of this file is that the number is exactly right, not approximately.
+FIG_PT_TEX = 8
+FIG_PT = FIG_PT_TEX * 72 / 72.27  # 7.970 PostScript pt
 
 FIG_DIR = Path(__file__).resolve().parent / "figures"
 
@@ -78,7 +79,7 @@ GRID = "#d9d9d9"
 
 
 def apply_style():
-    """Set rcParams to match IEEEtran body text."""
+    """Set rcParams: Computer Modern at IEEEtran footnotesize (see FIG_PT)."""
     matplotlib.rcParams.update({
         # main.tex loads no font package (no times/newtx/mathptmx/lmodern), so
         # the document renders in Computer Modern. matplotlib ships CM, so the
@@ -91,15 +92,15 @@ def apply_style():
         "axes.unicode_minus": False,
         "axes.formatter.use_mathtext": True,
 
-        # Every piece of figure text is set at the document's body size, so a
-        # label in a figure reads at exactly the size of the prose around it.
-        # This only holds if the figure is included at 1:1 -- see figsize().
-        "font.size": BODY_PT,
-        "axes.labelsize": BODY_PT,
-        "axes.titlesize": BODY_PT,
-        "xtick.labelsize": BODY_PT,
-        "ytick.labelsize": BODY_PT,
-        "legend.fontsize": BODY_PT,
+        # Every piece of figure text is set at FIG_PT (8pt footnotesize), so a
+        # label lands on the page at that exact size -- but only if the figure is
+        # included at 1:1, see figsize().
+        "font.size": FIG_PT,
+        "axes.labelsize": FIG_PT,
+        "axes.titlesize": FIG_PT,
+        "xtick.labelsize": FIG_PT,
+        "ytick.labelsize": FIG_PT,
+        "legend.fontsize": FIG_PT,
 
         # All text is black. The spines, tick marks and grid stay recessive
         # grey (they are rules, not text), but every label -- axis titles and
