@@ -101,14 +101,21 @@ def apply_style():
         "ytick.labelsize": BODY_PT,
         "legend.fontsize": BODY_PT,
 
-        # Recessive axes and grid: the data should be the darkest thing here.
+        # All text is black. The spines, tick marks and grid stay recessive
+        # grey (they are rules, not text), but every label -- axis titles and
+        # tick labels alike -- is pure black. labelcolor is set separately from
+        # the tick `color` so the tick *marks* can stay grey while their labels
+        # go black.
+        "text.color": "black",
         "axes.edgecolor": INK_MUTED,
-        "axes.labelcolor": INK,
+        "axes.labelcolor": "black",
         "axes.linewidth": 0.6,
         "axes.spines.top": False,
         "axes.spines.right": False,
         "xtick.color": INK_MUTED,
         "ytick.color": INK_MUTED,
+        "xtick.labelcolor": "black",
+        "ytick.labelcolor": "black",
         "xtick.major.width": 0.6,
         "ytick.major.width": 0.6,
         "xtick.major.size": 2.5,

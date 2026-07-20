@@ -7,9 +7,10 @@ paper by hand.
 ```
 results/     raw dumps from experiments — append-only input, see results/README.md
 figures/     generated output, committed so the paper's figures are versioned
-style.py     shared styling: IEEEtran sizing, Computer Modern fonts, palette
-plot_*.py    one script per figure family; its LaTeX \includegraphics
-             snippet lives at the top of the file, in the module docstring
+style.py         shared styling: IEEEtran sizing, Computer Modern fonts, palette
+style_science.py alternative styling: the SciencePlots look (see below)
+plot_*.py        one script per figure family; its LaTeX \includegraphics
+                 snippet lives at the top of the file, in the module docstring
 ```
 
 ## Usage
@@ -18,7 +19,27 @@ plot_*.py    one script per figure family; its LaTeX \includegraphics
 pip install -r requirements.txt
 python plot_probing.py              # rebuilds figures/probing.pdf from every results/probing_*.csv
 python plot_probing.py results/probing_mimicgen.csv --name probing_mimicgen
+python plot_probing.py --style science   # SciencePlots look -> figures/probing_science.pdf
 ```
+
+## Two styles
+
+`--style` picks the look; both build at the same `\textwidth`, so either drops
+into the paper the same way.
+
+- **`paper`** (default, `style.py`) — reproduces the paper's own body text
+  exactly: Computer Modern at 10pt, IEEEtran column widths, recessive grey axes.
+  This is the one to ship.
+- **`science`** (`style_science.py`) — the SciencePlots
+  [garrettj403/SciencePlots](https://github.com/garrettj403/SciencePlots) `science
+  + ieee` aesthetic: STIX serif, thin boxed axes, inward ticks, the SciencePlots
+  palette. Needs `pip install SciencePlots`. On a box without LaTeX it uses the
+  `no-latex` fallback (STIX instead of true Computer Modern); see the note atop
+  `style_science.py`.
+
+Both are drop-in style modules exposing the same names (`PALETTE`, `MARKERS`,
+`apply_style`, `save`, …), so a new plot script written against one gets the
+other for free.
 
 Each script prints a plain-text table of the numbers it plotted alongside
 writing the figure. Read it — it is the fastest way to catch a stale dump, and

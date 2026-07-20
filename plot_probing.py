@@ -230,7 +230,21 @@ def main():
     p.add_argument("csv", nargs="*", type=Path,
                    help="specific result CSVs (default: all results/probing_*.csv)")
     p.add_argument("--name", default="probing", help="output basename in figures/")
+    p.add_argument("--style", choices=["paper", "science"], default="paper",
+                   help="paper: exact IEEEtran/Computer-Modern match (default). "
+                        "science: the SciencePlots aesthetic (garrettj403/SciencePlots).")
     args = p.parse_args()
+
+    # The style is a swappable module exposing the same names (PALETTE, MARKERS,
+    # apply_style, save, ...). Rebinding the module-global `style` here means the
+    # draw functions, which look it up at call time, pick up whichever was asked
+    # for without any per-call plumbing.
+    global style
+    if args.style == "science":
+        import style_science
+        style = style_science
+        if args.name == "probing":  # keep the two styles' outputs side by side
+            args.name = "probing_science"
 
     paths = args.csv or sorted(RESULTS_DIR.glob("probing_*.csv"))
     if not paths:
