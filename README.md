@@ -62,6 +62,12 @@ second, non-color channel also separates the series — and proceedings get
 printed and photocopied in grayscale besides. `MARKERS` and `HATCHES` are that
 channel. If you ever let hue carry identity alone, re-derive the palette first.
 
+**One channel per factor.** `probing.pdf` has two independent factors, so color
+carries the eval suite and marker shape carries the LAM configuration, with a
+separate legend for each. That lets a reader hold one fixed and scan the other.
+Folding both into one channel would need suites × methods legend entries to say
+what two short lists say directly.
+
 **Numbers stay out of the figures.** Figures show shape and ordering; exact
 values live in the text table each script prints, and in the paper's tables.
 

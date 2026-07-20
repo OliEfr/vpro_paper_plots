@@ -1,10 +1,14 @@
-"""Latent-action probing quality: per-dimension R^2 across LAM configurations.
+"""Latent-action probing quality: per-dimension R^2, all suites and all LAM
+configurations in one axes.
 
-Reads every ``results/probing_<suite>.csv`` and emits ``figures/probing.pdf``,
-one stacked panel per eval suite sharing a single legend and x axis. Run with
-no arguments to rebuild:
+Reads every ``results/probing_<suite>.csv`` and emits ``figures/probing.pdf``.
+Run with no arguments to rebuild:
 
     python plot_probing.py
+
+Encoding: x groups by action dimension, **color** identifies the evaluation
+suite, **marker shape** identifies the LAM configuration. Two channels for two
+independent factors, so a reader can hold one fixed and scan the other.
 
 Input schema (see results/README.md). One row per action dimension plus an
 optional aggregate row where ``action_dim == "mean"``:
@@ -40,7 +44,7 @@ PLACEHOLDER = 0.0
 
 # Display names, keyed by CSV column. Unknown columns fall back to the column
 # name with the _r2 suffix stripped. Order here does not matter; the CSV column
-# order is what fixes the plotting order and the palette assignment.
+# order is what fixes the plotting order and the marker assignment.
 METHOD_LABELS = {
     "sv_sf_r2": r"$1\times\{0,5\}$",
     "sv_mf_r2": r"$1\times\{0,1,5,9\}$",
@@ -65,7 +69,9 @@ SUITE_LABELS = {
     "mimicgen": "MimicGen",
 }
 
-# Panels are drawn in this order when present; anything else follows, sorted.
+# Suites are drawn in this order when present; anything else follows, sorted.
+# This also fixes the color assignment, so the order is not cosmetic -- keep it
+# stable across figures or the same suite changes color between them.
 SUITE_ORDER = ["libero", "libero_plus", "mimicgen"]
 
 
@@ -79,7 +85,7 @@ def label_for(method):
 
 
 def load(csv_path):
-    """Return (labels, {method: values}, methods, n_placeholder).
+    """Return (axis labels, {method: values}, methods, n_placeholder).
 
     Values are NaN wherever the dump carried the placeholder, so downstream
     code never has to special-case it -- matplotlib skips NaN, and nanmean
@@ -135,48 +141,37 @@ def print_table(suite_label, labels, values, methods):
         print("  " + f"{axis:<10}" + cells)
 
 
-def draw_panel(ax, suite_label, labels, values, methods, show_xticks):
-    n_groups, n_methods = len(labels), len(methods)
+def build_legends(fig, ax, suite_labels, methods):
+    """Two legends, one per encoding channel.
 
-    # The mean is an aggregate of the groups to its left, not a peer of them,
-    # so it gets a gap and a divider rather than sitting flush in the sequence.
-    has_mean = labels and labels[-1] == "all_dims"
-    x = np.arange(n_groups, dtype=float)
-    if has_mean:
-        x[-1] += 0.6
+    A single combined legend would need suites x methods entries to say what
+    two short lists say directly, and it would imply the two factors are one.
+    """
+    from matplotlib.lines import Line2D
 
-    # Spread the four marks across the group without letting them touch.
-    span = 0.62
-    offsets = np.linspace(-span / 2, span / 2, n_methods) if n_methods > 1 else np.zeros(1)
+    common = dict(linestyle="none", markeredgecolor="white", markeredgewidth=0.6)
+    suite_handles = [
+        Line2D([], [], marker="o", markersize=5,
+               color=style.PALETTE[i % len(style.PALETTE)], label=s, **common)
+        for i, s in enumerate(suite_labels)
+    ]
+    # Neutral gray for the shape legend: these entries are about the marker
+    # shape only, and coloring them would suggest a suite pairing that is not
+    # there.
+    method_handles = [
+        Line2D([], [], marker=style.MARKERS[i % len(style.MARKERS)], markersize=5,
+               color=style.INK_MUTED, label=label_for(m), **common)
+        for i, m in enumerate(methods)
+    ]
 
-    for i, m in enumerate(methods):
-        ax.plot(
-            x + offsets[i], values[m],
-            linestyle="none",
-            marker=style.MARKERS[i % len(style.MARKERS)],
-            markersize=4.2,
-            color=style.PALETTE[i % len(style.PALETTE)],
-            # Surface-colored ring keeps overlapping marks from fusing.
-            markeredgecolor="white", markeredgewidth=0.6,
-            label=label_for(m), zorder=3,
-        )
-
-    if has_mean:
-        ax.axvline(x[-1] - 0.5, color=style.GRID, linewidth=0.6, zorder=0)
-
-    ax.set_ylim(0, 1.0)
-    ax.set_yticks(np.arange(0, 1.01, 0.25))
-    ax.set_xlim(x[0] - 0.6, x[-1] + 0.6)
-    ax.set_xticks(x)
-    ax.set_xticklabels([AXIS_LABELS.get(a, a) for a in labels] if show_xticks else [])
-    ax.set_axisbelow(True)
-    ax.grid(axis="y")
-    ax.tick_params(axis="x", length=0)
-    ax.set_ylabel(r"probe $R^2$")
-    # Suite name inside the panel: with three stacked panels a title per panel
-    # would cost three rows of vertical space for three words.
-    ax.text(0.995, 0.93, suite_label, transform=ax.transAxes,
-            ha="right", va="top", fontsize=7.5, color=style.INK)
+    leg1 = fig.legend(handles=suite_handles, title="Eval suite",
+                      loc="outside upper left", ncol=len(suite_handles),
+                      frameon=False, alignment="left")
+    leg1.get_title().set_fontsize(7)
+    leg2 = fig.legend(handles=method_handles, title=r"LAM input ($V\times\Delta$)",
+                      loc="outside upper right", ncol=len(method_handles),
+                      frameon=False, alignment="left")
+    leg2.get_title().set_fontsize(7)
 
 
 def main():
@@ -195,32 +190,75 @@ def main():
     style.apply_style()
     import matplotlib.pyplot as plt
 
-    panels = []
-    total_placeholder = 0
+    suites, total_placeholder = [], 0
     for path in paths:
         suite_label, _ = suite_from(path)
         labels, values, methods, n_ph = load(path)
         total_placeholder += n_ph
         print_table(suite_label, labels, values, methods)
-        panels.append((suite_label, labels, values, methods))
+        suites.append((suite_label, labels, values, methods))
 
-    # Full text width: four marks across eight groups needs the room, and the
-    # figure carries all three suites, so it belongs in a figure* anyway.
-    n = len(panels)
-    fig, axes = plt.subplots(
-        n, 1, sharex=True,
-        figsize=(style.TEXT_WIDTH, 1.05 * n + 0.55),
-        constrained_layout=True,
-    )
-    axes = np.atleast_1d(axes)
+    # Every suite must agree on the axis rows and the method columns, or the
+    # shared x groups and the shared marker legend would both be lying.
+    ref_labels, ref_methods = suites[0][1], suites[0][3]
+    for suite_label, labels, _, methods in suites[1:]:
+        if labels != ref_labels:
+            raise SystemExit(f"{suite_label}: axis rows differ from {suites[0][0]}")
+        if methods != ref_methods:
+            raise SystemExit(f"{suite_label}: method columns differ from {suites[0][0]}")
 
-    for i, (ax, (suite_label, labels, values, methods)) in enumerate(zip(axes, panels)):
-        draw_panel(ax, suite_label, labels, values, methods, show_xticks=(i == n - 1))
+    n_groups, n_suites, n_methods = len(ref_labels), len(suites), len(ref_methods)
 
-    handles, lbls = axes[0].get_legend_handles_labels()
-    fig.legend(handles, lbls, loc="outside upper center",
-               ncol=len(lbls), frameon=False)
+    # The mean is an aggregate of the groups to its left, not a peer of them,
+    # so it gets a gap and a divider rather than sitting flush in the sequence.
+    has_mean = ref_labels[-1] == "all_dims"
+    x = np.arange(n_groups, dtype=float)
+    if has_mean:
+        x[-1] += 0.65
 
+    # Suite-major ordering: each suite's methods stay contiguous, so a group
+    # reads as n_suites colored clusters rather than n_methods interleaved
+    # ones. Scanning "how does this suite respond to the configurations" is the
+    # comparison the figure is for; scanning across suites is secondary.
+    n_slots = n_suites * n_methods
+    span = 0.80
+    slots = np.linspace(-span / 2, span / 2, n_slots)
+
+    fig, ax = plt.subplots(figsize=(style.TEXT_WIDTH, 2.5), constrained_layout=True)
+
+    # Alternating group bands. With twelve marks per group the eye needs the
+    # group boundary drawn rather than inferred from spacing alone.
+    for i in range(0, n_groups, 2):
+        ax.axvspan(x[i] - 0.5, x[i] + 0.5, color=style.GRID, alpha=0.25,
+                   linewidth=0, zorder=0)
+
+    for si, (_, _, values, methods) in enumerate(suites):
+        for mi, m in enumerate(methods):
+            ax.plot(
+                x + slots[si * n_methods + mi], values[m],
+                linestyle="none",
+                marker=style.MARKERS[mi % len(style.MARKERS)],
+                markersize=3.6,
+                color=style.PALETTE[si % len(style.PALETTE)],
+                # Surface-colored ring keeps overlapping marks separable.
+                markeredgecolor="white", markeredgewidth=0.5,
+                zorder=3,
+            )
+
+    if has_mean:
+        ax.axvline(x[-1] - 0.575, color=style.INK_MUTED, linewidth=0.6, zorder=1)
+
+    ax.set_ylim(0, 1.0)
+    ax.set_yticks(np.arange(0, 1.01, 0.25))
+    ax.set_xlim(x[0] - 0.5, x[-1] + 0.5)
+    ax.set_xticks(x)
+    ax.set_xticklabels([AXIS_LABELS.get(a, a) for a in ref_labels])
+    ax.set_axisbelow(True)
+    ax.grid(axis="y")
+    ax.tick_params(axis="x", length=0)
+    ax.set_ylabel(r"probe $R^2$")
+
+    build_legends(fig, ax, [s[0] for s in suites], ref_methods)
     style.save(fig, args.name)
     if total_placeholder:
         print(f"\n  note: {total_placeholder} placeholder cell(s) not yet run; "
