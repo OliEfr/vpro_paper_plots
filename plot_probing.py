@@ -12,7 +12,7 @@ independent factors, so a reader can hold one fixed and scan the other.
 
 EMBEDDING IN LATEX
 ------------------
-Built at 7.16in = \textwidth, so it spans both columns and needs figure*,
+Built at 7.14in = \textwidth (43pc, per IEEEtran journal mode), so it spans both columns and needs figure*,
 not figure. Needs \usepackage{graphicx}.
 
     \begin{figure*}[t]
@@ -26,12 +26,10 @@ not figure. Needs \usepackage{graphicx}.
       \label{fig:probing}
     \end{figure*}
 
-Do not rescale it. Figure text is set at 2x (16pt/14pt in the PDF) on the
-assumption that it gets scaled down on the page; at width=\textwidth it renders
-at that full size, which is large next to 10pt body text. Either scale it here
-by shrinking the figsize in main(), or scale it there with a smaller width= --
-but pick one place and stay in it, or the text size stops being predictable
-across figures.
+Do not rescale it. Every label is set at the document's 10pt body size in
+Computer Modern, the same typeface main.tex renders in, so at width=\textwidth
+figure text matches the surrounding prose exactly. Any width= other than
+\textwidth scales that text off body size.
 
 Input schema (see results/README.md). One row per action dimension plus an
 optional aggregate row where ``action_dim == "mean"``:
@@ -260,8 +258,8 @@ def main():
     # placed by hand (see build_legends), so the space they need has to be
     # reserved by hand too. Fractions are of the figure, tuned so the axes ends
     # up ~1.55in tall regardless of the legend rows above it.
-    left, bottom, top = 0.085, 0.13, 0.665
-    fig, ax = plt.subplots(figsize=(style.TEXT_WIDTH, 2.9))
+    left, bottom, top = 0.092, 0.115, 0.700
+    fig, ax = plt.subplots(figsize=(style.TEXT_WIDTH, 2.55))
     fig.subplots_adjust(left=left, right=0.995, bottom=bottom, top=top)
 
     # Alternating group bands. With twelve marks per group the eye needs the

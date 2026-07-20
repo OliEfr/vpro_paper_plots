@@ -34,25 +34,38 @@ python plot_probing.py --help     # or just open the file
 ```
 
 Figures are built at an exact target width, so the environment is not a free
-choice: anything sized to `TEXT_WIDTH` (7.16in) needs `figure*` and
-`width=\textwidth`, anything sized to `COL_WIDTH` (3.5in) needs a plain
+choice: anything sized to `TEXT_WIDTH` (7.140in) needs `figure*` and
+`width=\textwidth`, anything sized to `COL_WIDTH` (3.487in) needs a plain
 `figure` and `width=\columnwidth`. `probing.pdf` is the former.
 
-Do not rescale beyond that — a `width=0.9\columnwidth` on a figure built at
-`COL_WIDTH` shrinks the fonts out of spec.
+**Never rescale.** A `width=0.9\columnwidth` scales the text with it, and 10pt
+figure text stops being 10pt on the page. If a figure needs to be smaller,
+shrink its `figsize` and rebuild.
 
 ## Conventions
 
 These exist so figures look like one set rather than four separate documents.
 They live in `style.py`; change them there, not in individual scripts.
 
-**Sizing.** `COL_WIDTH = 3.5in` (`\columnwidth`), `TEXT_WIDTH = 7.16in`
-(`\textwidth`). Building at the exact final width is what keeps 8pt figure text
-actually 8pt on the page.
+**Sizing.** Read out of `IEEEtran.cls` for this paper's actual
+`\documentclass[10pt,journal]` — `\textwidth` 43pc = 516 TeX pt, `\columnsep`
+1pc, so `\columnwidth` = 252 TeX pt. The conference and compsoc branches of the
+class use different values; these are the journal ones.
 
-**Fonts.** Serif, to sit next to IEEEtran's Times without looking imported.
-Body text is 10pt, so figures use 8pt and 7pt. PDFs embed Type 42 fonts —
-IEEE PDF eXpress rejects Type 3, which is matplotlib's default.
+**Font sizes match the body text.** Every label is set at the document's 10pt,
+converted from TeX points (1/72.27in) to the PostScript points (1/72in)
+matplotlib measures in — a bare `10` would render 0.37% large.
+
+**Typeface matches too.** `main.tex` loads no font package, so the document
+renders in Computer Modern; matplotlib ships CM, so figures use `cmr10` and the
+`cm` mathtext set rather than a Times-like approximation. Fonts embed as
+TrueType — IEEE PDF eXpress rejects Type 3, which is matplotlib's default.
+
+**Never `bbox_inches="tight"`.** Tight cropping shrinks the canvas to fit its
+content, so the saved PDF comes out a fraction off `figsize`, `width=\textwidth`
+rescales it, and the point sizes above stop being true. Scripts reserve their
+own margins with `subplots_adjust` instead. The cost is that clipping is now
+possible — which is why step 5 below says to look at the output.
 
 **Color.** `PALETTE` is a fixed-order Okabe-Ito subset, assigned by position and
 never cycled. Checked with a CVD validator over *all* pairs, not just adjacent

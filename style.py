@@ -11,11 +11,30 @@ from pathlib import Path
 import matplotlib
 import matplotlib.pyplot as plt
 
-# IEEEtran text block, in inches. A figure rendered at exactly these widths and
-# included with [width=\columnwidth] / [width=\textwidth] is not rescaled by
-# LaTeX, so the font sizes below survive into the PDF at their stated point size.
-COL_WIDTH = 3.5   # \columnwidth  (single column)
-TEXT_WIDTH = 7.16  # \textwidth    (spans both columns, use with figure*)
+# IEEEtran text block, in inches, read out of IEEEtran.cls for the paper's
+# actual \documentclass[10pt,journal] -- not the conference or compsoc values,
+# which differ. From the journal branch of the class:
+#
+#   \textwidth  43pc = 516 TeX pt      \columnsep 1pc = 12 TeX pt
+#   \columnwidth = (516 - 12) / 2 = 252 TeX pt
+#
+# TeX pt is 1/72.27 in, not the 1/72 in of a PostScript point, hence the odd
+# decimals. A figure rendered at exactly these widths and included with
+# [width=\columnwidth] / [width=\textwidth] is not rescaled by LaTeX, so the
+# font sizes below land on the page at their stated point size.
+COL_WIDTH = 252 / 72.27   # 3.487in  \columnwidth  (single column)
+TEXT_WIDTH = 516 / 72.27  # 7.140in  \textwidth    (both columns, use figure*)
+
+# Body text size of the document. Figure text is set to match, so a label in a
+# figure reads at the same size as the prose around it.
+#
+# The conversion is not decorative: \documentclass[10pt] means 10 TeX points
+# (1/72.27in), while a matplotlib font size is in PostScript points (1/72in).
+# Passing a bare 10 to matplotlib would render 0.37% large. Invisible in
+# practice, but the point of this file is that the number is exactly right
+# rather than approximately right.
+BODY_PT_TEX = 10
+BODY_PT = BODY_PT_TEX * 72 / 72.27  # 9.963 PostScript pt
 
 FIG_DIR = Path(__file__).resolve().parent / "figures"
 
@@ -47,22 +66,26 @@ GRID = "#d9d9d9"
 def apply_style():
     """Set rcParams to match IEEEtran body text."""
     matplotlib.rcParams.update({
-        # IEEEtran sets Times; a serif figure font keeps captions and axis
-        # labels from looking pasted in from another document.
+        # main.tex loads no font package (no times/newtx/mathptmx/lmodern), so
+        # the document renders in Computer Modern. matplotlib ships CM, so the
+        # figure can use the same typeface rather than an approximation.
         "font.family": "serif",
-        "font.serif": ["Nimbus Roman", "Times New Roman", "Liberation Serif", "DejaVu Serif"],
-        "mathtext.fontset": "stix",
+        "font.serif": ["cmr10", "DejaVu Serif"],
+        "mathtext.fontset": "cm",
+        # cmr10 has no glyph for the Unicode minus; route numeric text through
+        # mathtext so a negative tick label cannot render as a missing box.
+        "axes.unicode_minus": False,
+        "axes.formatter.use_mathtext": True,
 
-        # Figure text is set at 2x the usual 8pt/7pt so it survives being
-        # scaled down on the page. These are sizes *in the generated PDF*, not
-        # on the printed page -- if a figure is included at full size without
-        # scaling, this reads much larger than the 10pt body text.
-        "font.size": 16,
-        "axes.labelsize": 16,
-        "axes.titlesize": 16,
-        "xtick.labelsize": 14,
-        "ytick.labelsize": 14,
-        "legend.fontsize": 14,
+        # Every piece of figure text is set at the document's body size, so a
+        # label in a figure reads at exactly the size of the prose around it.
+        # This only holds if the figure is included at 1:1 -- see figsize().
+        "font.size": BODY_PT,
+        "axes.labelsize": BODY_PT,
+        "axes.titlesize": BODY_PT,
+        "xtick.labelsize": BODY_PT,
+        "ytick.labelsize": BODY_PT,
+        "legend.fontsize": BODY_PT,
 
         # Recessive axes and grid: the data should be the darkest thing here.
         "axes.edgecolor": INK_MUTED,
@@ -90,8 +113,13 @@ def apply_style():
         "hatch.linewidth": 0.5,
 
         "figure.dpi": 200,
-        "savefig.bbox": "tight",
-        "savefig.pad_inches": 0.01,
+        # NOT bbox="tight". Tight cropping shrinks the saved canvas to whatever
+        # the content happens to occupy, so the PDF comes out a fraction wider
+        # or narrower than figsize; \includegraphics[width=\textwidth] then
+        # rescales it, and the 10pt text above lands on the page at something
+        # other than 10pt. Scripts reserve their own margins with
+        # subplots_adjust instead, and the saved page is exactly figsize.
+        "savefig.bbox": None,
 
         # Type 42 embeds TrueType outlines rather than Type 3 bitmapped fonts.
         # IEEE PDF eXpress rejects Type 3.
