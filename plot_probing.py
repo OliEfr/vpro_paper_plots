@@ -66,11 +66,21 @@ PLACEHOLDER = 0.0
 # Display names, keyed by CSV column. Unknown columns fall back to the column
 # name with the _r2 suffix stripped. Order here does not matter; the CSV column
 # order is what fixes the plotting order and the marker assignment.
+#
+# Brackets, not the set braces the paper uses for Delta. All figure text is one
+# size (10pt), but Computer Modern's math brace \{ \} is a tall glyph built to
+# wrap fractions: measured, "$1\times\{0,5\}$" renders 13.3pt against 9.5pt for
+# every other label, so the legend reads as a larger font even though it is not.
+# Brackets render at 11.8pt and sit much closer to the tick-label height.
+# (Text-mode braces do not work here: matplotlib's raw cmr10 has no glyph at the
+# ASCII { } slots, so "$1\times${0,5}" renders as garbage.)
+# To match the paper's set notation exactly at the cost of the taller row, swap
+# [ and ] back for \{ and \} inside the math.
 METHOD_LABELS = {
-    "sv_sf_r2": r"$1\times\{0,5\}$",
-    "sv_mf_r2": r"$1\times\{0,1,5,9\}$",
-    "mv_sf_r2": r"$2\times\{0,5\}$",
-    "mv_mf_r2": r"$2\times\{0,1,5,9\}$ (ours)",
+    "sv_sf_r2": r"$1\times[0,5]$",
+    "sv_mf_r2": r"$1\times[0,1,5,9]$",
+    "mv_sf_r2": r"$2\times[0,5]$",
+    "mv_mf_r2": r"$2\times[0,1,5,9]$ (ours)",
 }
 
 AXIS_LABELS = {
@@ -255,10 +265,11 @@ def main():
 
     # Explicit margins, not constrained_layout: the two stacked legends are
     # placed by hand (see build_legends), so the space they need has to be
-    # reserved by hand too. Fractions are of the figure, tuned so the axes ends
-    # up ~1.55in tall regardless of the legend rows above it.
-    left, bottom, top = 0.092, 0.090, 0.840
-    fig, ax = plt.subplots(figsize=(style.TEXT_WIDTH, 2.80))
+    # reserved by hand too. The two legend rows above the axes take a fixed
+    # ~0.45in and the x tick labels below take ~0.25in; the rest is plot area.
+    # Sized so the plot area is ~1.79in tall.
+    left, bottom, top = 0.092, 0.101, 0.820
+    fig, ax = plt.subplots(figsize=(style.TEXT_WIDTH, 2.485))
     fig.subplots_adjust(left=left, right=0.995, bottom=bottom, top=top)
 
     # Alternating group bands. With twelve marks per group the eye needs the

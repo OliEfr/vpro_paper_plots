@@ -7,8 +7,9 @@ paper by hand.
 ```
 results/     raw dumps from experiments — append-only input, see results/README.md
 figures/     generated output, committed so the paper's figures are versioned
-style.py     shared IEEEtran figure sizing, fonts, palette
-plot_*.py    one script per figure family
+style.py     shared styling: IEEEtran sizing, Computer Modern fonts, palette
+plot_*.py    one script per figure family; its LaTeX \includegraphics
+             snippet lives at the top of the file, in the module docstring
 ```
 
 ## Usage
@@ -25,18 +26,21 @@ it is the accessible view of the same data.
 
 ## Including a figure
 
-**Each plot script carries its own LaTeX snippet in its module docstring** —
-the float environment, the width, and a starting caption. Read it there rather
-than guessing:
+**The LaTeX snippet to paste is at the top of each plot file** — the float
+environment, the width, and a starting caption, in the module docstring. That is
+the single source of truth per figure; this README does not copy it, so it
+cannot go stale. Read it with either:
 
 ```sh
-python plot_probing.py --help     # or just open the file
+python plot_probing.py --help     # prints the docstring
+sed -n '1,40p' plot_probing.py    # or just open the file
 ```
 
-Figures are built at an exact target width, so the environment is not a free
-choice: anything sized to `TEXT_WIDTH` (7.140in) needs `figure*` and
-`width=\textwidth`, anything sized to `COL_WIDTH` (3.487in) needs a plain
-`figure` and `width=\columnwidth`. `probing.pdf` is the former.
+The float environment is not a free choice: it follows from the width the script
+built at. Anything sized to `TEXT_WIDTH` (7.140in) needs `figure*` and
+`width=\textwidth`; anything sized to `COL_WIDTH` (3.487in) needs a plain
+`figure` and `width=\columnwidth`. `probing.pdf` is the former, so it goes in a
+`figure*`.
 
 **Never rescale.** A `width=0.9\columnwidth` scales the text with it, and 10pt
 figure text stops being 10pt on the page. If a figure needs to be smaller,
@@ -54,7 +58,11 @@ class use different values; these are the journal ones.
 
 **Font sizes match the body text.** Every label is set at the document's 10pt,
 converted from TeX points (1/72.27in) to the PostScript points (1/72in)
-matplotlib measures in — a bare `10` would render 0.37% large.
+matplotlib measures in — a bare `10` would render 0.37% large. Every piece of
+figure text is this one size; if a row *looks* larger, suspect a tall glyph, not
+the font. Computer Modern's math braces `\{ \}` render ~40% taller than digits
+and made the legend read as oversized, which is why the marker labels use
+brackets `[0,5]` and not the paper's set braces.
 
 **Typeface matches too.** `main.tex` loads no font package, so the document
 renders in Computer Modern; matplotlib ships CM, so figures use `cmr10` and the
