@@ -207,7 +207,7 @@ def build_legends(fig, suite_labels, methods, left):
         Line2D([], [], marker=style.MARKERS[i % len(style.MARKERS)],
                color=style.INK_MUTED,
                markeredgecolor=style.MARKER_EDGE_OURS if is_ours(m) else style.MARKER_EDGE,
-               markeredgewidth=0.9 if is_ours(m) else 0.6,
+               markeredgewidth=0.6,
                label=label_for(m), **common)
         for i, m in enumerate(methods)
     ]
@@ -300,10 +300,11 @@ def main():
                 markersize=5.0,
                 color=style.PALETTE[si % len(style.PALETTE)],
                 # Near-black contour for definition; red on "ours" to flag it in
-                # every suite colour. "ours" marks also sit on top (higher
-                # zorder) so their red edge is never occluded by a neighbour.
+                # every suite colour -- same width, the colour alone is the
+                # highlight. "ours" marks sit on top (higher zorder) so their red
+                # edge is never occluded by a neighbour.
                 markeredgecolor=style.MARKER_EDGE_OURS if ours else style.MARKER_EDGE,
-                markeredgewidth=0.9 if ours else 0.6,
+                markeredgewidth=0.6,
                 zorder=4 if ours else 3,
             )
 
