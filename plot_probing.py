@@ -115,6 +115,12 @@ def label_for(method):
     return METHOD_LABELS.get(method, method[:-3] if method.endswith("_r2") else method)
 
 
+def is_ours(method):
+    """The hero configuration, flagged by "(ours)" in its display label. Kept in
+    one place so the red-edge highlight in the plot and the legend never drift."""
+    return "(ours)" in label_for(method)
+
+
 def load(csv_path):
     """Return (axis labels, {method: values}, methods, n_placeholder).
 
@@ -184,11 +190,14 @@ def build_legends(fig, suite_labels, methods, left):
     """
     from matplotlib.lines import Line2D
 
-    common = dict(linestyle="none", markeredgecolor="white", markeredgewidth=0.6,
-                  markersize=6)
+    # Edge colours mirror the plot exactly (see draw_panel): near-black by
+    # default, red on the "ours" shape. The legend is the key to that highlight,
+    # so it has to carry the red edge too or the reader cannot decode it.
+    common = dict(linestyle="none", markersize=6)
     suite_handles = [
-        Line2D([], [], marker="o",
-               color=style.PALETTE[i % len(style.PALETTE)], label=s, **common)
+        Line2D([], [], marker="o", color=style.PALETTE[i % len(style.PALETTE)],
+               markeredgecolor=style.MARKER_EDGE, markeredgewidth=0.6,
+               label=s, **common)
         for i, s in enumerate(suite_labels)
     ]
     # Neutral gray for the shape legend: these entries are about the marker
@@ -196,7 +205,10 @@ def build_legends(fig, suite_labels, methods, left):
     # there.
     method_handles = [
         Line2D([], [], marker=style.MARKERS[i % len(style.MARKERS)],
-               color=style.INK_MUTED, label=label_for(m), **common)
+               color=style.INK_MUTED,
+               markeredgecolor=style.MARKER_EDGE_OURS if is_ours(m) else style.MARKER_EDGE,
+               markeredgewidth=0.9 if is_ours(m) else 0.6,
+               label=label_for(m), **common)
         for i, m in enumerate(methods)
     ]
 
@@ -280,15 +292,19 @@ def main():
 
     for si, (_, _, values, methods) in enumerate(suites):
         for mi, m in enumerate(methods):
+            ours = is_ours(m)
             ax.plot(
                 x + slots[si * n_methods + mi], values[m],
                 linestyle="none",
                 marker=style.MARKERS[mi % len(style.MARKERS)],
                 markersize=5.0,
                 color=style.PALETTE[si % len(style.PALETTE)],
-                # Surface-colored ring keeps overlapping marks separable.
-                markeredgecolor="white", markeredgewidth=0.5,
-                zorder=3,
+                # Near-black contour for definition; red on "ours" to flag it in
+                # every suite colour. "ours" marks also sit on top (higher
+                # zorder) so their red edge is never occluded by a neighbour.
+                markeredgecolor=style.MARKER_EDGE_OURS if ours else style.MARKER_EDGE,
+                markeredgewidth=0.9 if ours else 0.6,
+                zorder=4 if ours else 3,
             )
 
     if has_mean:

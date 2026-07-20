@@ -84,6 +84,10 @@ ones — in a grouped scatter every series sits next to every other. Worst pair 
 second, non-color channel also separates the series — and proceedings get
 printed and photocopied in grayscale besides. `MARKERS` and `HATCHES` are that
 channel. If you ever let hue carry identity alone, re-derive the palette first.
+The marker set (`o ^ s X`) is one shape per visual family so the four read apart
+at print size; every mark carries a near-black contour for definition, and the
+`(ours)` method's mark a red one (`MARKER_EDGE_OURS`) so the hero config is
+flagged in every suite colour at once.
 
 **One channel per factor.** `probing.pdf` has two independent factors, so color
 carries the eval suite and marker shape carries the LAM configuration, with a

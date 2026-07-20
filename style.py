@@ -64,6 +64,14 @@ PALETTE = ["#0072B2", "#009E73", "#E69F00", "#CC79A7"]
 HATCHES = ["", "///", "...", "xxx"]
 MARKERS = ["o", "^", "s", "X"]
 
+# Marker contours. Every mark gets a near-black edge for definition against the
+# light background (it also rescues the lighter palette fills, which sit under
+# 3:1 contrast on their own). The "ours" method's mark gets a red edge instead,
+# so the hero configuration is flagged in every suite colour at once. Red is a
+# highlight here, never a data series -- it only ever appears as this edge.
+MARKER_EDGE = "#1a1a1a"
+MARKER_EDGE_OURS = "#E31A1C"
+
 INK = "#1a1a1a"       # primary text
 INK_MUTED = "#6b6b6b"  # axis labels, ticks
 GRID = "#d9d9d9"
