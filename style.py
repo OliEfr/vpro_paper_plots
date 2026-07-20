@@ -55,8 +55,14 @@ PALETTE = ["#0072B2", "#009E73", "#E69F00", "#CC79A7"]
 # Secondary encoding, same fixed order. Two jobs: the CVD floor above, and the
 # fact that IEEE proceedings still get printed and photocopied in grayscale.
 # HATCHES for filled marks (bars), MARKERS for point marks.
+#
+# The marker set is chosen for maximum mutual distinctness at small print size:
+# one shape from each visual family -- round (o), pointed (^), blocky (s), spiky
+# (X) -- so no two read as the same blob the way circle/square/diamond did.
+# Thin "+"/"x" were rejected: they thin out and vanish below ~4pt in print.
+# Order also runs plain -> bold, so "ours" (4th) gets the most salient mark.
 HATCHES = ["", "///", "...", "xxx"]
-MARKERS = ["o", "s", "^", "D"]
+MARKERS = ["o", "^", "s", "X"]
 
 INK = "#1a1a1a"       # primary text
 INK_MUTED = "#6b6b6b"  # axis labels, ticks

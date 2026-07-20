@@ -284,7 +284,7 @@ def main():
                 x + slots[si * n_methods + mi], values[m],
                 linestyle="none",
                 marker=style.MARKERS[mi % len(style.MARKERS)],
-                markersize=3.6,
+                markersize=5.0,
                 color=style.PALETTE[si % len(style.PALETTE)],
                 # Surface-colored ring keeps overlapping marks separable.
                 markeredgecolor="white", markeredgewidth=0.5,
