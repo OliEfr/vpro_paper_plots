@@ -20,14 +20,24 @@ TEXT_WIDTH = 7.16  # \textwidth    (spans both columns, use with figure*)
 FIG_DIR = Path(__file__).resolve().parent / "figures"
 
 # Categorical palette, fixed order -- assign by position, never cycle or recolor.
-# Okabe-Ito subset, ordered so that adjacent pairs stay separable under
-# protanopia/deuteranopia (worst adjacent dE 11.4). Verified with the dataviz
-# validator; do not reorder without re-checking.
+# Okabe-Ito subset. Checked over ALL pairs, not just adjacent ones: in a
+# grouped scatter every series sits next to every other, so the weaker
+# adjacent-only check would not have covered it.
+#
+#   normal vision   worst pair dE 18.7  (green/blue)      -- clear
+#   deuteranopia    worst pair dE  7.6  (green/pink)      -- floor band
+#
+# That 7.6 is in the 6-8 band, which is permissible ONLY while a second,
+# non-color channel also distinguishes the series. That channel is HATCHES /
+# MARKERS below. If you ever drop the marker shapes and let hue carry identity
+# alone, this palette stops being accessible -- re-derive it first.
 PALETTE = ["#0072B2", "#009E73", "#E69F00", "#CC79A7"]
 
-# Secondary encoding, same fixed order. IEEE proceedings still get printed and
-# photocopied in grayscale, so hue alone is not enough to carry identity.
+# Secondary encoding, same fixed order. Two jobs: the CVD floor above, and the
+# fact that IEEE proceedings still get printed and photocopied in grayscale.
+# HATCHES for filled marks (bars), MARKERS for point marks.
 HATCHES = ["", "///", "...", "xxx"]
+MARKERS = ["o", "s", "^", "D"]
 
 INK = "#1a1a1a"       # primary text
 INK_MUTED = "#6b6b6b"  # axis labels, ticks

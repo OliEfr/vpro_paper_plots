@@ -15,9 +15,8 @@ plot_*.py    one script per figure family
 
 ```sh
 pip install -r requirements.txt
-python plot_probing.py              # rebuilds every results/probing_*.csv
-python plot_probing.py results/probing_mimicgen.csv
-python plot_probing.py --width text # force \textwidth instead of auto
+python plot_probing.py              # rebuilds figures/probing.pdf from every results/probing_*.csv
+python plot_probing.py results/probing_mimicgen.csv --name probing_mimicgen
 ```
 
 Each script prints a plain-text table of the numbers it plotted alongside
@@ -54,16 +53,17 @@ Body text is 10pt, so figures use 8pt and 7pt. PDFs embed Type 42 fonts —
 IEEE PDF eXpress rejects Type 3, which is matplotlib's default.
 
 **Color.** `PALETTE` is a fixed-order Okabe-Ito subset, assigned by position and
-never cycled. It was checked with a CVD validator: worst adjacent pair is
-ΔE 11.4 under protanopia. Do not reorder it without re-checking — the ordering
-is what makes the adjacent pairs separable.
+never cycled. Checked with a CVD validator over *all* pairs, not just adjacent
+ones — in a grouped scatter every series sits next to every other. Worst pair is
+ΔE 18.7 under normal vision, ΔE 7.6 under deuteranopia.
 
-**Grayscale.** Proceedings get printed and photocopied in black and white, so
-every series also carries a hatch pattern from `HATCHES`. Hue is never the only
-thing distinguishing two bars.
+**Shape and hatch are not decoration.** That 7.6 is only permissible while a
+second, non-color channel also separates the series — and proceedings get
+printed and photocopied in grayscale besides. `MARKERS` and `HATCHES` are that
+channel. If you ever let hue carry identity alone, re-derive the palette first.
 
-**Labels.** Two of the four palette steps fall below 3:1 contrast against white,
-so bars carry direct value labels; the numbers do the work the fill can't.
+**Numbers stay out of the figures.** Figures show shape and ordering; exact
+values live in the text table each script prints, and in the paper's tables.
 
 ## Adding a figure
 
