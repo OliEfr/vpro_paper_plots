@@ -190,15 +190,14 @@ def build_legends(fig, suite_labels, methods, left):
         for i, m in enumerate(methods)
     ]
 
-    # No title on the suite legend -- the benchmark names say what they are,
-    # and at this text size a title row costs real vertical space. The marker
-    # legend keeps its title because "1x{0,5}" does not explain itself.
-    fig.legend(handles=suite_handles, loc="upper left", bbox_to_anchor=(left, 1.0),
-               ncol=len(suite_handles), frameon=False, borderaxespad=0)
-    fig.legend(handles=method_handles, title=r"LAM input ($V\times\Delta$)",
-               loc="upper left", bbox_to_anchor=(left, 0.87),
-               ncol=len(method_handles), frameon=False, alignment="left",
-               borderaxespad=0)
+    # Neither legend carries a title. A title on one and not the other left a
+    # ragged edge -- the untitled row starts with a marker at the margin while
+    # the titled row starts with text and indents its markers past it. Titling
+    # both costs two more rows of height. The caption already states that color
+    # is the suite and shape is the LAM input, so the titles were repeating it.
+    for handles, y in ((suite_handles, 1.0), (method_handles, 0.925)):
+        fig.legend(handles=handles, loc="upper left", bbox_to_anchor=(left, y),
+                   ncol=len(handles), frameon=False, borderaxespad=0)
 
 
 def main():
@@ -258,8 +257,8 @@ def main():
     # placed by hand (see build_legends), so the space they need has to be
     # reserved by hand too. Fractions are of the figure, tuned so the axes ends
     # up ~1.55in tall regardless of the legend rows above it.
-    left, bottom, top = 0.092, 0.115, 0.700
-    fig, ax = plt.subplots(figsize=(style.TEXT_WIDTH, 2.55))
+    left, bottom, top = 0.092, 0.090, 0.840
+    fig, ax = plt.subplots(figsize=(style.TEXT_WIDTH, 2.80))
     fig.subplots_adjust(left=left, right=0.995, bottom=bottom, top=top)
 
     # Alternating group bands. With twelve marks per group the eye needs the
