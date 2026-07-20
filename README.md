@@ -25,19 +25,21 @@ it is the accessible view of the same data.
 
 ## Including a figure
 
-Figures are sized to land in LaTeX at 1:1, so do not rescale them — a
-`width=0.9\columnwidth` would shrink the fonts out of spec.
+**Each plot script carries its own LaTeX snippet in its module docstring** —
+the float environment, the width, and a starting caption. Read it there rather
+than guessing:
 
-```latex
-\begin{figure}[t]
-  \centering
-  \includegraphics[width=\columnwidth]{figures/probing_mimicgen.pdf}
-  \caption{...}
-  \label{fig:probing-mimicgen}
-\end{figure}
+```sh
+python plot_probing.py --help     # or just open the file
 ```
 
-Use `figure*` with `width=\textwidth` for anything built at `--width text`.
+Figures are built at an exact target width, so the environment is not a free
+choice: anything sized to `TEXT_WIDTH` (7.16in) needs `figure*` and
+`width=\textwidth`, anything sized to `COL_WIDTH` (3.5in) needs a plain
+`figure` and `width=\columnwidth`. `probing.pdf` is the former.
+
+Do not rescale beyond that — a `width=0.9\columnwidth` on a figure built at
+`COL_WIDTH` shrinks the fonts out of spec.
 
 ## Conventions
 
@@ -78,6 +80,9 @@ values live in the text table each script prints, and in the paper's tables.
 2. Copy `plot_probing.py` as a starting point — it already handles suite
    globbing, method-column discovery, the text table view, and saving.
 3. Import from `style.py`. Do not set rcParams or figure sizes locally.
-4. Run it, **open the PNG and look at it.** The palette is validated
+4. Put the LaTeX embed snippet in the module docstring — float environment,
+   width, and a starting caption — so whoever pastes it into the paper does not
+   have to work out whether it is a `figure` or a `figure*`.
+5. Run it, **open the PNG and look at it.** The palette is validated
    automatically; layout is not. Label collisions and overflow only show up by
    eye.

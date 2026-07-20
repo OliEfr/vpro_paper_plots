@@ -1,4 +1,4 @@
-"""Latent-action probing quality: per-dimension R^2, all suites and all LAM
+r"""Latent-action probing quality: per-dimension R^2, all suites and all LAM
 configurations in one axes.
 
 Reads every ``results/probing_<suite>.csv`` and emits ``figures/probing.pdf``.
@@ -9,6 +9,29 @@ Run with no arguments to rebuild:
 Encoding: x groups by action dimension, **color** identifies the evaluation
 suite, **marker shape** identifies the LAM configuration. Two channels for two
 independent factors, so a reader can hold one fixed and scan the other.
+
+EMBEDDING IN LATEX
+------------------
+Built at 7.16in = \textwidth, so it spans both columns and needs figure*,
+not figure. Needs \usepackage{graphicx}.
+
+    \begin{figure*}[t]
+      \centering
+      \includegraphics[width=\textwidth]{figures/probing.pdf}
+      \caption{Latent action probing quality. A frozen-latent MLP probe
+      reconstructs ground-truth robot actions; we report per-dimension $R^2$
+      (higher is better). Color identifies the evaluation suite, marker shape
+      the LAM input $V\times\Delta$ (viewpoints $\times$ frame offsets).
+      \textbf{Mean} aggregates over all seven action dimensions.}
+      \label{fig:probing}
+    \end{figure*}
+
+Do not rescale it. Figure text is set at 2x (16pt/14pt in the PDF) on the
+assumption that it gets scaled down on the page; at width=\textwidth it renders
+at that full size, which is large next to 10pt body text. Either scale it here
+by shrinking the figsize in main(), or scale it there with a smaller width= --
+but pick one place and stay in it, or the text size stops being predictable
+across figures.
 
 Input schema (see results/README.md). One row per action dimension plus an
 optional aggregate row where ``action_dim == "mean"``:
@@ -181,7 +204,10 @@ def build_legends(fig, suite_labels, methods, left):
 
 
 def main():
-    p = argparse.ArgumentParser(description=__doc__)
+    # Raw formatter: the default one reflows paragraphs, which would collapse
+    # the LaTeX snippet above into an unusable single block.
+    p = argparse.ArgumentParser(
+        description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     p.add_argument("csv", nargs="*", type=Path,
                    help="specific result CSVs (default: all results/probing_*.csv)")
     p.add_argument("--name", default="probing", help="output basename in figures/")
