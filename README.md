@@ -20,6 +20,8 @@ pip install -r requirements.txt
 python plot_probing.py              # rebuilds figures/probing.pdf from every results/probing_*.csv
 python plot_probing.py results/probing_mimicgen.csv --name probing_mimicgen
 python plot_probing.py --style science   # SciencePlots look -> figures/probing_science.pdf
+python plot_realworld.py            # real-world success rate vs. demo budget, one task
+python plot_realworld_bars.py       # real-world success rate, all tasks at 0 and 5 demos
 ```
 
 ## Two styles
@@ -61,7 +63,7 @@ The float environment is not a free choice: it follows from the width the script
 built at. Anything sized to `TEXT_WIDTH` (7.140in) needs `figure*` and
 `width=\textwidth`; anything sized to `COL_WIDTH` (3.487in) needs a plain
 `figure` and `width=\columnwidth`. `probing.pdf` is the former, so it goes in a
-`figure*`.
+`figure*`; the real-world figures are the latter.
 
 **Never rescale.** A `width=0.9\columnwidth` scales the text with it, and 10pt
 figure text stops being 10pt on the page. If a figure needs to be smaller,
@@ -105,9 +107,9 @@ ones — in a grouped scatter every series sits next to every other. Worst pair 
 
 **Shape and hatch are not decoration.** That 7.6 is only permissible while a
 second, non-color channel also separates the series — and proceedings get
-printed and photocopied in grayscale besides. `MARKERS` and `HATCHES` are that
-channel. If you ever let hue carry identity alone, re-derive the palette first.
-The marker set (`o ^ s X`) is one shape per visual family so the four read apart
+printed and photocopied in grayscale besides. `MARKERS`, `HATCHES` and — where
+marks are joined — `LINE_OURS`/`LINE_OTHER` are that channel. If you ever let
+hue carry identity alone, re-derive the palette first. The marker set (`o ^ s X`) is one shape per visual family so the four read apart
 at print size; every mark carries a near-black contour for definition, and the
 `(ours)` method's mark a red one (`MARKER_EDGE_OURS`) so the hero config is
 flagged in every suite colour at once.

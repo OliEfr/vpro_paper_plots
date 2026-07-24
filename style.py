@@ -65,6 +65,15 @@ PALETTE = ["#0072B2", "#009E73", "#E69F00", "#CC79A7"]
 HATCHES = ["", "///", "...", "xxx"]
 MARKERS = ["o", "^", "s", "X"]
 
+# Line dashes, for figures whose marks are joined (scaling curves and the like).
+# Deliberately NOT a positional list the way MARKERS is: with two series the
+# third and fourth entries of such a list never get used, so the hero method
+# would draw dash-dot and the baseline solid -- backwards. The rule is semantic
+# instead, keyed off the same "(ours)" test the red marker edge uses, so the
+# solid line and the red edge always land on the same series.
+LINE_OURS = "-"
+LINE_OTHER = "--"
+
 # Marker contours. Every mark gets a near-black edge for definition against the
 # light background (it also rescues the lighter palette fills, which sit under
 # 3:1 contrast on their own). The "ours" method's mark gets a red edge instead,

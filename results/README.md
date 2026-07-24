@@ -8,10 +8,15 @@ One file per (metric, eval suite). The suite is parsed out of the filename, so
 the naming matters:
 
     probing_<suite>.csv
+    realworld_scaling.csv     one task, success rate over demo budgets
+    realworld_alltasks.csv    all tasks, at a fixed set of budgets
 
 with `<suite>` one of `libero`, `libero_plus`, `mimicgen`. Add a new suite by
 adding a file and, if you want a prettier display name than the auto-generated
 one, an entry in `SUITE_LABELS` in `plot_probing.py`.
+
+A file's stem names the figure it builds, so `realworld_scaling.csv` becomes
+`figures/realworld_scaling.pdf`. Renaming one means renaming both.
 
 ## `probing_<suite>.csv`
 
@@ -59,3 +64,42 @@ by hand will get 13.8%, so the paper caption has to say which one it is.
 effectively binary, so R² is defined but hard to interpret next to six
 continuous dimensions. Consider reporting it as probe accuracy separately; if
 it stays in the mean, the caption should say the mean mixes both regimes.
+
+## `realworld_*.csv`
+
+Real-robot success rate. Both files share one schema, one row per (task,
+budget):
+
+| column        | meaning                                                       |
+|---------------|---------------------------------------------------------------|
+| `task`        | short id, `task1` … `task4` — display names in `tasks.py`      |
+| `n_demos`     | demo budget                                                   |
+| `<method>_sr` | success rate as a **fraction in [0, 1]** — any column ending `_sr` |
+
+`realworld_scaling.csv` is one task over many budgets (the line figure);
+`realworld_alltasks.csv` is every task at 0 and 5 (the bar figure). Methods are
+read positionally from the `_sr` columns; add display names to `METHOD_LABELS`
+in the plot script.
+
+Store fractions, not percentages — the scripts multiply by 100 for the axis, so
+the percent sign exists in exactly one place.
+
+**0 is a real value here, not a placeholder.** A policy trained on zero demos
+genuinely scores 0% — the opposite of the probing dumps, where 0 means "not run
+yet". Leave a cell **empty** for a run that has not happened.
+
+The two files overlap wherever they cover the same task at the same budget, and
+`plot_realworld_bars.py` warns when they disagree. Two figures reporting one
+experiment must not print two different numbers.
+
+Success rate is a proportion over a finite number of rollouts, so it carries
+binomial noise the schema has no column for: 12/20 and 60/100 are both 0.60 with
+very different error bars. Add an `n_rollouts` column if the dumps record it;
+until then the numbers are point estimates only.
+
+## Dummy data
+
+A file whose first line is `# DUMMY DATA` holds 10-decimal placeholders
+(`0.1234567891`) rather than measurements, so a figure's layout can be reviewed
+before the runs finish. The scripts print a warning banner while that line is
+present — when real numbers land, overwrite the rows **and delete the line**.

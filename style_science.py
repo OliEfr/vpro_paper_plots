@@ -46,6 +46,10 @@ PALETTE = ["#0C5DA5", "#00B945", "#FF9500", "#FF2C00"]
 HATCHES = ["", "///", "...", "xxx"]
 MARKERS = ["o", "^", "s", "X"]
 
+# Dashes for joined marks -- semantic, not positional; see style.py.
+LINE_OURS = "-"
+LINE_OTHER = "--"
+
 # Contours: black by default, SciencePlots red on "ours".
 MARKER_EDGE = "black"
 MARKER_EDGE_OURS = "#FF2C00"
