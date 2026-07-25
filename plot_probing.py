@@ -6,9 +6,32 @@ Run with no arguments to rebuild:
 
     python plot_probing.py
 
-Encoding: x groups by action dimension, **color** identifies the evaluation
-suite, **marker shape** identifies the LAM configuration. Two channels for two
-independent factors, so a reader can hold one fixed and scan the other.
+Encoding: x groups by action dimension, a **tinted background band** identifies
+the evaluation suite, and **marker shape** identifies the LAM configuration. Two
+channels for two independent factors, so a reader can hold one fixed and scan
+the other.
+
+WHY THE SUITE IS A BAND AND NOT A COLOURED MARK. Every x group holds n_suites x
+n_methods marks -- twelve at present -- and twelve marks cannot be given more
+than a twelfth of a group, whatever else is tuned. That pitch is around 4.4pt
+here, so the marks have to be ~3.6pt, and a 3.6pt mark is too small to carry
+hue and shape at once: the reader is being asked to resolve twelve colour-shape
+combinations at a size where the colour is a few pixels of fill.
+
+Moving the suite onto a background band fixes the cause rather than the
+symptom. Colour on an area is legible at a fraction of the saturation a mark
+needs, so the band can be tinted lightly enough to sit under the data, and the
+marks come back as one ink with shape as their only channel -- four shapes to
+tell apart instead of twelve combinations. It also frees the marker edge, which
+is what let the size come down without the shapes turning into blobs.
+
+The palette rule still holds, because hue is not carrying the suite alone: the
+bands sit in the same left-to-right order in every group, and that order reads
+in a grayscale photocopy that flattens three light tints into one.
+
+Not connected: the four configurations within a band are four separate training
+runs, not a series. A line through them would draw a trend between points that
+have no continuum to be on.
 
 EMBEDDING IN LATEX
 ------------------
@@ -20,8 +43,9 @@ not figure. Needs \usepackage{graphicx}.
       \includegraphics[width=\textwidth]{figures/probing.pdf}
       \caption{Latent action probing quality. A frozen-latent MLP probe
       reconstructs ground-truth robot actions; we report per-dimension $R^2$
-      (higher is better). Color identifies the evaluation suite, marker shape
-      the LAM input $V\times\Delta$ (viewpoints $\times$ frame offsets).
+      (higher is better). The shaded band identifies the evaluation suite --
+      the three sit in the same order within every dimension -- and marker
+      shape the LAM input $V\times\Delta$ (viewpoints $\times$ frame offsets).
       \textbf{Mean} aggregates over all seven action dimensions.}
       \label{fig:probing}
     \end{figure*}
@@ -178,6 +202,58 @@ def print_table(suite_label, labels, values, methods):
         print("  " + f"{axis:<10}" + cells)
 
 
+# Suite bands. The tint is the palette hue lightened towards white rather than
+# drawn at low alpha, so the band is an opaque colour with a known value: alpha
+# would let the y grid show through and would composite differently over the
+# white page than over the axes face.
+#
+# 0.16 is as strong as the band goes. Above that it starts competing with the
+# marks sitting on it, which is the failure this whole encoding exists to avoid;
+# below it the three suites stop being separable on a small band. Colour-on-area
+# tolerates far less saturation than colour-on-mark and still reads, which is
+# the reason the suite moved off the marks in the first place.
+BAND_TINT = 0.16
+
+
+def band_colour(i):
+    from matplotlib.colors import to_rgb
+    r, g, b = to_rgb(style.PALETTE[i % len(style.PALETTE)])
+    return tuple(1 - BAND_TINT * (1 - c) for c in (r, g, b))
+
+
+def mark_colour(method):
+    """Marks carry no suite information, so their colour is free to mean one
+    thing only: whether this is the hero configuration."""
+    return style.MARKER_EDGE_OURS if is_ours(method) else style.MARKER_EDGE
+
+
+def layout(n_groups, n_suites, n_methods, has_mean, axes_width_in):
+    """Mark positions, in group units, plus the resulting pitch in points.
+
+    A group is 1.0 wide and holds n_suites bands side by side; each band holds
+    n_methods marks on a regular pitch, padded by half a pitch at both ends so a
+    mark never touches a band edge. GROUP_GAP is white space between groups --
+    with the bands filling the group, that gap is the only thing left drawing
+    the group boundary, so it cannot go to zero.
+    """
+    GROUP_GAP = 0.08
+    band_w = (1.0 - GROUP_GAP) / n_suites
+    pitch = band_w / n_methods
+    first = -(1.0 - GROUP_GAP) / 2
+
+    x = np.arange(n_groups, dtype=float)
+    if has_mean:
+        x[-1] += 0.45
+    span_units = (x[-1] + 0.5) - (x[0] - 0.5)
+    pitch_pt = pitch * (axes_width_in / span_units) * 72
+
+    bands = [(first + si * band_w, first + (si + 1) * band_w)
+             for si in range(n_suites)]
+    slots = [[first + si * band_w + (mi + 0.5) * pitch for mi in range(n_methods)]
+             for si in range(n_suites)]
+    return x, bands, slots, pitch_pt
+
+
 def build_legends(fig, suite_labels, methods, left):
     """Two legends, one per encoding channel, stacked above the axes.
 
@@ -189,26 +265,22 @@ def build_legends(fig, suite_labels, methods, left):
     drawn on top of each other.
     """
     from matplotlib.lines import Line2D
+    from matplotlib.patches import Patch
 
-    # Edge colours mirror the plot exactly (see draw_panel): near-black by
-    # default, red on the "ours" shape. The legend is the key to that highlight,
-    # so it has to carry the red edge too or the reader cannot decode it.
-    common = dict(linestyle="none", markersize=6)
+    # The suite key is a swatch, not a mark, because in the plot the suite is
+    # the tinted band behind the marks. A marker-shaped key would point at the
+    # one thing on the figure that does NOT vary by suite.
     suite_handles = [
-        Line2D([], [], marker="o", color=style.PALETTE[i % len(style.PALETTE)],
-               markeredgecolor=style.MARKER_EDGE, markeredgewidth=0.6,
-               label=s, **common)
+        Patch(facecolor=band_colour(i), edgecolor="none", label=s)
         for i, s in enumerate(suite_labels)
     ]
-    # Neutral gray for the shape legend: these entries are about the marker
-    # shape only, and coloring them would suggest a suite pairing that is not
-    # there.
+    # Marks are ink, not colour -- shape is their only channel, so the key
+    # shows them exactly as drawn: near-black, red on "ours".
     method_handles = [
         Line2D([], [], marker=style.MARKERS[i % len(style.MARKERS)],
-               color=style.INK_MUTED,
-               markeredgecolor=style.MARKER_EDGE_OURS if is_ours(m) else style.MARKER_EDGE,
-               markeredgewidth=0.6,
-               label=label_for(m), **common)
+               color=mark_colour(m), markeredgecolor="none",
+               linestyle="none", markersize=5,
+               label=label_for(m))
         for i, m in enumerate(methods)
     ]
 
@@ -274,59 +346,76 @@ def main():
 
     n_groups, n_suites, n_methods = len(ref_labels), len(suites), len(ref_methods)
 
-    # The mean is an aggregate of the groups to its left, not a peer of them,
-    # so it gets a gap and a divider rather than sitting flush in the sequence.
-    has_mean = ref_labels[-1] == "all_dims"
-    x = np.arange(n_groups, dtype=float)
-    if has_mean:
-        x[-1] += 0.65
-
-    # Suite-major ordering: each suite's methods stay contiguous, so a group
-    # reads as n_suites colored clusters rather than n_methods interleaved
-    # ones. Scanning "how does this suite respond to the configurations" is the
-    # comparison the figure is for; scanning across suites is secondary.
-    n_slots = n_suites * n_methods
-    span = 0.80
-    slots = np.linspace(-span / 2, span / 2, n_slots)
-
     # Explicit margins, not constrained_layout: the two stacked legends are
     # placed by hand (see build_legends), so the space they need has to be
     # reserved by hand too. The two legend rows above the axes take a fixed
     # ~0.45in and the x tick labels below take ~0.25in; the rest is plot area.
     # Sized so the plot area is ~1.79in tall.
-    left, bottom, top = 0.092, 0.101, 0.820
+    #
+    # The left margin is 0.046 rather than the 0.092 a horizontal tick label
+    # needs, because the tick labels are rotated upright below -- that is half
+    # an inch of page that goes straight into the group width, where twelve
+    # marks are competing for it.
+    left, bottom, top = 0.046, 0.101, 0.820
     fig, ax = plt.subplots(figsize=(style.TEXT_WIDTH, 2.485))
     fig.subplots_adjust(left=left, right=0.995, bottom=bottom, top=top)
 
-    # Alternating group bands. With twelve marks per group the eye needs the
-    # group boundary drawn rather than inferred from spacing alone.
-    for i in range(0, n_groups, 2):
-        ax.axvspan(x[i] - 0.5, x[i] + 0.5, color=style.GRID, alpha=0.25,
-                   linewidth=0, zorder=0)
+    # The mean is an aggregate of the groups to its left, not a peer of them, so
+    # layout() gives it a gap and it gets a divider drawn down the middle of it.
+    has_mean = ref_labels[-1] == "all_dims"
+    x, bands, slots, pitch_pt = layout(
+        n_groups, n_suites, n_methods, has_mean,
+        axes_width_in=(0.995 - left) * style.TEXT_WIDTH)
+
+    MARKSIZE = 3.6
+    if pitch_pt < MARKSIZE:
+        print(f"\n  ! marks are {MARKSIZE}pt on a {pitch_pt:.2f}pt pitch -- they "
+              f"overlap. {n_suites} suites x {n_methods} configs no longer fit a "
+              f"group; drop a series or the Mean column.")
+
+    # Suite bands: one tinted stripe per (group, suite), full axes height. This
+    # is the whole point of the encoding -- colour identifies the suite on an
+    # area, where it is easy to see and survives being lightened, so the marks
+    # themselves carry no colour and shape is their only channel.
+    #
+    # Hue is not alone in doing it, which the palette rule requires: the suites
+    # sit in the same left-to-right order in every group, so position identifies
+    # a band as well as its tint does, and the order survives a grayscale
+    # photocopy that flattens three light tints into one.
+    for gi in range(n_groups):
+        for si, (b0, b1) in enumerate(bands):
+            ax.axvspan(x[gi] + b0, x[gi] + b1, color=band_colour(si),
+                       linewidth=0, zorder=0)
 
     for si, (_, _, values, methods) in enumerate(suites):
         for mi, m in enumerate(methods):
             ours = is_ours(m)
             ax.plot(
-                x + slots[si * n_methods + mi], values[m],
+                x + slots[si][mi], values[m],
                 linestyle="none",
                 marker=style.MARKERS[mi % len(style.MARKERS)],
-                markersize=5.0,
-                color=style.PALETTE[si % len(style.PALETTE)],
-                # Near-black contour for definition; red on "ours" to flag it in
-                # every suite colour -- same width, the colour alone is the
-                # highlight. "ours" marks sit on top (higher zorder) so their red
-                # edge is never occluded by a neighbour.
-                markeredgecolor=style.MARKER_EDGE_OURS if ours else style.MARKER_EDGE,
-                markeredgewidth=0.6,
+                # No edge: at this size a 0.5pt contour is a third of the mark's
+                # width, and against a band tinted to 0.16 the fill already has
+                # all the contrast it needs. Dropping it is also what lets the
+                # shapes stay lean without turning into blobs.
+                markersize=MARKSIZE,
+                color=mark_colour(m),
+                markeredgecolor="none",
+                # "ours" on top, so the one mark a reader is looking for is
+                # never the one hidden under a neighbour.
                 zorder=4 if ours else 3,
             )
 
     if has_mean:
-        ax.axvline(x[-1] - 0.575, color=style.INK_MUTED, linewidth=0.6, zorder=1)
+        ax.axvline(x[-1] - 0.5 - (x[-1] - x[-2] - 1) / 2,
+                   color=style.INK_MUTED, linewidth=0.6, zorder=1)
 
     ax.set_ylim(0, 1.0)
     ax.set_yticks(np.arange(0, 1.01, 0.25))
+    # Upright, not lying flat: rotated, a tick label is one cap-height wide
+    # instead of four characters, which is the left margin above.
+    ax.set_yticklabels(["0", "0.25", "0.5", "0.75", "1"], rotation=90,
+                       va="center")
     ax.set_xlim(x[0] - 0.5, x[-1] + 0.5)
     ax.set_xticks(x)
     ax.set_xticklabels([AXIS_LABELS.get(a, a) for a in ref_labels])
