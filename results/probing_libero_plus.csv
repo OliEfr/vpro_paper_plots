@@ -1,9 +1,9 @@
 action_dim,axis,sv_sf_r2,sv_mf_r2,mv_sf_r2,mv_mf_r2
-0,delta_x,0,0,0,0
-1,delta_y,0,0,0,0
-2,delta_z,0,0,0,0
-3,delta_rx,0,0,0,0
-4,delta_ry,0,0,0,0
-5,delta_rz,0,0,0,0
-6,gripper,0,0,0,0
-mean,all_dims,0,0,0,0
+0,delta_x,0.1,0.1,0.1,0.1
+1,delta_y,0.1,0.1,0.1,0.1
+2,delta_z,0.1,0.1,0.1,0.1
+3,delta_rx,0.1,0.1,0.1,0.1
+4,delta_ry,0.1,0.1,0.1,0.1
+5,delta_rz,0.1,0.1,0.1,0.1
+6,gripper,0.1,0.1,0.1,0.1
+mean,all_dims,0.1,0.1,0.1,0.1
