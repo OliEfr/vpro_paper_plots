@@ -114,7 +114,7 @@ AXIS_LABELS = {
     "delta_rx": r"$\Delta r_x$",
     "delta_ry": r"$\Delta r_y$",
     "delta_rz": r"$\Delta r_z$",
-    "gripper": "Grip.",
+    "gripper": "Gripper",
     "all_dims": "Mean",
 }
 
@@ -230,20 +230,22 @@ def mark_colour(method):
 def layout(n_groups, n_suites, n_methods, has_mean, axes_width_in):
     """Mark positions, in group units, plus the resulting pitch in points.
 
-    A group is 1.0 wide and holds n_suites bands side by side; each band holds
-    n_methods marks on a regular pitch, padded by half a pitch at both ends so a
-    mark never touches a band edge. GROUP_GAP is white space between groups --
-    with the bands filling the group, that gap is the only thing left drawing
-    the group boundary, so it cannot go to zero.
+    A group is 1.0 wide and holds n_suites bands side by side, filling it edge
+    to edge; each band holds n_methods marks on a regular pitch, padded by half
+    a pitch at both ends so a mark never touches a band edge.
+
+    No white gap between groups: horizontal room is the scarce resource here, so
+    the bands run the full group width and a dashed rule (drawn in main) marks
+    each group boundary instead. A gap would spend page width on separation that
+    a hairline gives for free.
     """
-    GROUP_GAP = 0.08
-    band_w = (1.0 - GROUP_GAP) / n_suites
+    band_w = 1.0 / n_suites
     pitch = band_w / n_methods
-    first = -(1.0 - GROUP_GAP) / 2
+    first = -0.5
 
     x = np.arange(n_groups, dtype=float)
     if has_mean:
-        x[-1] += 0.45
+        x[-1] += 0.1125
     span_units = (x[-1] + 0.5) - (x[0] - 0.5)
     pitch_pt = pitch * (axes_width_in / span_units) * 72
 
@@ -405,6 +407,17 @@ def main():
                 # never the one hidden under a neighbour.
                 zorder=4 if ours else 3,
             )
+
+    # Group separators. With the bands filling each group there is no white gap
+    # left to show where one action dimension ends and the next begins, so a
+    # dashed rule draws every dimension-to-dimension boundary. The grip|mean
+    # boundary is drawn solid below instead: the mean is an aggregate of the
+    # dimensions to its left, not another dimension, and the heavier, continuous
+    # rule is what says so.
+    n_regular = n_groups - 1 if has_mean else n_groups
+    for gi in range(n_regular - 1):
+        ax.axvline(x[gi] + 0.5, color=style.INK_MUTED, linewidth=0.6,
+                   linestyle=(0, (4, 3)), zorder=1)
 
     if has_mean:
         ax.axvline(x[-1] - 0.5 - (x[-1] - x[-2] - 1) / 2,
