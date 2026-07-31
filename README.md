@@ -24,6 +24,7 @@ pip install -r requirements.txt
 python plot_probing.py         # figures/probing.pdf, from every results/probing_*.csv
 python plot_realworld.py       # figures/realworld_scaling.pdf
 python plot_realworld_bars.py  # figures/realworld_alltasks.pdf
+python plot_libero_radar.py    # figures/libero_radar_{h,nonh}.pdf, one per split
 ```
 
 `--style science` swaps `style.py` for `style_science.py` — the
@@ -46,7 +47,7 @@ The float environment is not a free choice: it follows from the width the script
 built at. Anything sized to `TEXT_WIDTH` (7.140in) needs `figure*` and
 `width=\textwidth`; anything sized to `COL_WIDTH` (3.487in) needs a plain
 `figure` and `width=\columnwidth`. `probing.pdf` is the former, the real-world
-figures are the latter.
+figures and the two LIBERO radars are the latter.
 
 **Never rescale.** A `width=0.9\columnwidth` scales the text with it, and 8pt
 figure text stops being 8pt on the page. If a figure needs to be smaller, shrink
@@ -65,6 +66,12 @@ the body, which reads as subordinate the way figure text should — set in the
 Computer Modern the document itself renders in. Fonts embed as TrueType, because
 IEEE PDF eXpress rejects the Type 3 that matplotlib defaults to.
 
+The two LIBERO radars are set at 10pt instead, to match the body text, via a
+local override in `plot_libero_radar.py` (`RADAR_PT`). That is a deliberate
+exception and the paper carries two figure text sizes because of it. If the
+other figures should follow, delete that override and set `FIG_PT_TEX = 10`
+here — the knob exists for exactly that, and it keeps the set consistent.
+
 **Never `bbox_inches="tight"`.** Tight cropping shrinks the canvas to fit its
 content, so the PDF comes out a fraction off `figsize`, `width=\textwidth`
 rescales it, and the point size above stops being true. Scripts reserve their own
@@ -79,6 +86,16 @@ a second channel — `MARKERS`, `HATCHES`, or `LINE_OURS`/`LINE_OTHER` where mar
 are joined — separates the same series. Proceedings still get photocopied in
 grayscale besides. Let hue carry identity alone and the palette has to be
 re-derived first.
+
+`plot_libero_radar.py` is the one deliberate exception. It keeps the
+red/blue/green the two radars were already drawn in before this repo generated
+them, so the paper does not show two colour schemes for the same three
+policies — red/green is a dichromat collision that `PALETTE`'s derivation does
+not cover. It stays readable only because the second and third channels are
+doing the work there: each polygon has its own dash pattern *and* its own
+marker shape. That figure is the reason the rule is written as "hue never
+carries identity **alone**" rather than "always use `PALETTE`"; drop its dashes
+or its markers and it has to move to `PALETTE` first.
 
 **One channel per factor.** Where a figure crosses two factors, each gets its own
 channel and its own legend, so a reader can hold one fixed and scan the other.

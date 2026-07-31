@@ -7,11 +7,14 @@ the fix belongs in the experiment that wrote the CSV, not in the plot script.
     probing_<suite>.csv       `<suite>`: libero, libero_plus, mimicgen
     realworld_scaling.csv     one task, success rate over demo budgets
     realworld_alltasks.csv    all tasks, at a fixed set of budgets
+    libero_radar_<split>.csv  `<split>`: h (held-out), nonh (non-held-out)
 
 A file's stem names the figure it builds, so `realworld_scaling.csv` becomes
 `figures/realworld_scaling.pdf`. Renaming one means renaming both. The probing
 suite is parsed out of the filename; add a new one by adding a file, plus an
-entry in `SUITE_LABELS` if you want a prettier display name.
+entry in `SUITE_LABELS` if you want a prettier display name. The radar split is
+parsed the same way, and each split builds its own figure rather than being
+merged into one — `libero_radar_h.csv` becomes `figures/libero_radar_h.pdf`.
 
 ## `probing_<suite>.csv`
 
@@ -85,6 +88,41 @@ Success rate is a proportion over a finite number of rollouts, so it carries
 binomial noise the schema has no column for: 12/20 and 60/100 are both 0.60 with
 very different error bars. Add an `n_rollouts` column if the dumps record it;
 until then the numbers are point estimates only.
+
+## `libero_radar_<split>.csv`
+
+Per-suite LIBERO success rate at a fixed action budget, one file per held-out /
+non-held-out split. One row per LIBERO suite, plus an aggregate row:
+
+| column        | meaning                                                        |
+|---------------|----------------------------------------------------------------|
+| `suite`       | `object`, `spatial`, `goal`, `libero_10`, or `all` for the mean |
+| `<method>_sr` | success rate as a **fraction in [0, 1]** — any column ending `_sr` |
+
+Same `_sr` convention as the real-world dumps, and the same rule about storing
+fractions rather than percentages. **0 is a real value here too**: a policy that
+never solves a held-out suite genuinely scores 0%. Leave a cell **empty** for a
+run that has not happened — the plot breaks the polygon at that spoke instead of
+pulling it to the centre, which would read as a measured zero.
+
+Both splits must carry the same `_sr` columns in the same order. The order fixes
+the colour, the dash and the marker, so swapping two columns in one file only
+makes the same policy change appearance between the two figures.
+
+Every suite in `SUITE_ORDER` needs a row — the spokes are fixed so the two
+radars are directly comparable, and a missing one is an error rather than a
+gap. The `all` row is optional; when present the plot script recomputes it from
+the four suite rows and warns if the two disagree by more than 0.005, which
+usually means a stale dump. As with the probing mean, it is a mean of the four
+suites and not a rollout-weighted average over all tasks — if the suites hold
+different numbers of tasks, those are two different numbers and the caption has
+to say which one it is.
+
+Success rate here carries the same binomial noise the real-world dumps do, and
+the schema has no column for it. A radar makes this easier to forget than a bar
+chart does: the polygon is drawn as a hard outline with no visual room for an
+interval, so a 5-point gap between two vertices can look decisive when it is
+inside the noise. Point estimates only until there is an `n_rollouts` column.
 
 ## Dummy data
 
