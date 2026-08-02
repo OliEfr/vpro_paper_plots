@@ -8,9 +8,16 @@ the fix belongs in the experiment that wrote the CSV, not in the plot script.
     realworld_scaling.csv     one task, success rate over demo budgets
     realworld_alltasks.csv    all tasks, at a fixed set of budgets
     libero_radar_<split>.csv  `<split>`: h (held-out), nonh (non-held-out)
+    libero_plus_radar.csv     LIBERO-Plus, one row per disturbance dimension
 
 A file's stem names the figure it builds, so `realworld_scaling.csv` becomes
-`figures/realworld_scaling.pdf`. Renaming one means renaming both. The probing
+`figures/realworld_scaling.pdf`. Renaming one means renaming both.
+
+Two figures break that one-to-one rule by reading several dumps at once:
+`probing.pdf` reads every `probing_*.csv`, and `radar_row.pdf` reads all three
+radar dumps to put them side by side in one two-column float. The three radar
+dumps are therefore each read twice — once for their own single-column figure
+and once for the row — so a change to one shows up in two figures. The probing
 suite is parsed out of the filename; add a new one by adding a file, plus an
 entry in `SUITE_LABELS` if you want a prettier display name. The radar split is
 parsed the same way, and each split builds its own figure rather than being
@@ -123,6 +130,58 @@ the schema has no column for it. A radar makes this easier to forget than a bar
 chart does: the polygon is drawn as a hard outline with no visual room for an
 interval, so a 5-point gap between two vertices can look decisive when it is
 inside the noise. Point estimates only until there is an `n_rollouts` column.
+
+## `libero_plus_radar.csv`
+
+LIBERO-Plus success rate broken out by disturbance dimension, over one sweep
+selection of 1,942 episodes evaluated identically for every arm. One row per
+dimension, plus an aggregate row:
+
+| column        | meaning                                                        |
+|---------------|----------------------------------------------------------------|
+| `dim`         | `add_object`, `camera`, `lighting`, `texture`, `noise`, or `all` |
+| `<method>_sr` | success rate as a **fraction in [0, 1]** — any column ending in `_sr` |
+
+Same `_sr` convention as the other success-rate dumps, and the same rules: store
+fractions rather than percentages, **0 is a real value**, and a run that has not
+happened is left **empty** so the polygon breaks at that spoke.
+
+Every dimension in `DIM_ORDER` needs a row — the spokes are fixed so the shape
+stays comparable across sweeps, and a missing one is an error rather than a gap.
+
+**The `all` row is pooled over episodes, not a mean of the five dimensions.**
+The dimensions do not hold equal numbers of episodes, so the two differ: for the
+current dump the mean of the dimensions is 49.96 / 62.30 / 85.15 against a
+pooled 49.79 / 62.10 / 85.12. `plot_libero_plus_radar.py` still cross-checks
+them against each other at the same 0.005 tolerance the other dumps use, which
+is a stale-dump check and not an identity — it passes here because the
+dimensions happen to be close to balanced. If a future sweep weights them
+differently the check will start warning, and it will be right to: the caption
+has to say which number it is quoting.
+
+**The aggregate is drawn as a sixth spoke**, last, exactly as
+`libero_radar_<split>.csv`'s `all` row is drawn as a fifth, and labelled
+`All (mean)` the same way — the two figures should read the same. Note the
+caveat above: the value plotted under that label is the dumped pooled rate, and
+it is the 0.005 check that keeps "mean" a fair description of it.
+
+Six is an even spoke count, which puts a label at due south where the legend
+sits. `plot_libero_plus_radar.py` handles that by reserving a band for that one
+label and pushing the legend below it, so this figure is ~0.2in taller than the
+LIBERO radars; the circle itself is the same size. Changing the number of
+dimensions changes which side of that branch the layout takes, and also moves
+`RLABEL_DEG` — the radial scale column has to sit in the middle of a wedge, and
+the wedges get narrower as spokes are added.
+
+Column order fixes the colour, the dash and the marker, exactly as in the LIBERO
+radar dumps, and the two files are ordered to agree: weakest arm first, ceiling
+last. Swapping two columns here makes the same policy change appearance between
+this figure and the LIBERO radars.
+
+Success rate here carries the same binomial noise as everywhere else in this
+directory, and the schema has no column for it — see the note under
+`libero_radar_<split>.csv` about how a radar's hard outline hides that. Point
+estimates only until there is an `n_rollouts` column.
 
 ## Dummy data
 

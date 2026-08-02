@@ -1,0 +1,20 @@
+# LIBERO-Plus, per-disturbance-dimension success rate.
+#
+# Sweep selection: 1,942 episodes, the identical episode set for every arm, so
+# the three columns are paired and differences are not a sampling artifact.
+# Checkpoint 60k, no missing shards.
+#
+# The `all` row is the pooled rate over those 1,942 episodes, NOT the mean of
+# the five dimension rows above it -- the dimensions do not hold equal numbers
+# of episodes. The two agree to within a few tenths of a point here (mean of
+# dims: 49.96 / 62.30 / 85.15 vs pooled 49.79 / 62.10 / 85.12), which is inside
+# the plot script's 0.005 stale-dump check, so it passes quietly. If a future
+# sweep weights the dimensions differently that check will start warning, and
+# the warning will be correct: they are two different numbers.
+dim,n2_sr,n2_lam_sr,ceiling_sr
+add_object,0.4701,0.6571,0.8000
+camera,0.3687,0.5328,0.7980
+lighting,0.6090,0.7420,0.8963
+texture,0.6026,0.6857,0.8857
+noise,0.4475,0.4975,0.8775
+all,0.4979,0.6210,0.8512
