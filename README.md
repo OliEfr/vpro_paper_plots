@@ -25,6 +25,8 @@ python plot_probing.py         # figures/probing.pdf, from every results/probing
 python plot_realworld.py       # figures/realworld_scaling.pdf
 python plot_realworld_bars.py  # figures/realworld_alltasks.pdf
 python plot_libero_radar.py    # figures/libero_radar_{h,nonh}.pdf, one per split
+python plot_libero_plus_radar.py  # figures/libero_plus_radar.pdf
+python plot_radar_row.py       # figures/radar_row.pdf, all three radars in one figure*
 ```
 
 `--style science` swaps `style.py` for `style_science.py` — the
@@ -46,8 +48,9 @@ the width so it cannot go stale. `python plot_probing.py --help` prints it.
 The float environment is not a free choice: it follows from the width the script
 built at. Anything sized to `TEXT_WIDTH` (7.140in) needs `figure*` and
 `width=\textwidth`; anything sized to `COL_WIDTH` (3.487in) needs a plain
-`figure` and `width=\columnwidth`. `probing.pdf` is the former, the real-world
-figures and the two LIBERO radars are the latter.
+`figure` and `width=\columnwidth`. `probing.pdf` and `radar_row.pdf` are the
+former, the real-world figures and the three single-column radars are the
+latter.
 
 **Never rescale.** A `width=0.9\columnwidth` scales the text with it, and 8pt
 figure text stops being 8pt on the page. If a figure needs to be smaller, shrink
@@ -66,11 +69,19 @@ the body, which reads as subordinate the way figure text should — set in the
 Computer Modern the document itself renders in. Fonts embed as TrueType, because
 IEEE PDF eXpress rejects the Type 3 that matplotlib defaults to.
 
-The two LIBERO radars are set at 10pt instead, to match the body text, via a
-local override in `plot_libero_radar.py` (`RADAR_PT`). That is a deliberate
-exception and the paper carries two figure text sizes because of it. If the
-other figures should follow, delete that override and set `FIG_PT_TEX = 10`
-here — the knob exists for exactly that, and it keeps the set consistent.
+The three single-column radars are set at 10pt instead, to match the body text,
+via a local `RADAR_PT` override in each of `plot_libero_radar.py` and
+`plot_libero_plus_radar.py`. That is a deliberate exception and the paper
+carries two figure text sizes because of it. If the other figures should follow,
+delete both overrides and set `FIG_PT_TEX = 10` here — the knob exists for
+exactly that, and it keeps the set consistent.
+
+`plot_radar_row.py` does **not** override. It packs the same three radars into a
+`figure*`, where a panel is only ~2.4in wide and 10pt labels would swamp the
+circle they belong to, so it stays at the shared 8pt — matching `probing.pdf`,
+the repo's other two-column figure. So the same radar is 10pt on its own and 8pt
+in the row, which is correct: both land on the page at the size the width they
+were built for implies.
 
 **Never `bbox_inches="tight"`.** Tight cropping shrinks the canvas to fit its
 content, so the PDF comes out a fraction off `figsize`, `width=\textwidth`
@@ -87,15 +98,31 @@ are joined — separates the same series. Proceedings still get photocopied in
 grayscale besides. Let hue carry identity alone and the palette has to be
 re-derived first.
 
-`plot_libero_radar.py` is the one deliberate exception. It keeps the
-red/blue/green the two radars were already drawn in before this repo generated
-them, so the paper does not show two colour schemes for the same three
-policies — red/green is a dichromat collision that `PALETTE`'s derivation does
-not cover. It stays readable only because the second and third channels are
-doing the work there: each polygon has its own dash pattern *and* its own
-marker shape. That figure is the reason the rule is written as "hue never
-carries identity **alone**" rather than "always use `PALETTE`"; drop its dashes
-or its markers and it has to move to `PALETTE` first.
+The radars are the one deliberate exception. They keep the red/blue/green the
+LIBERO radars were already drawn in before this repo generated them, so the
+paper does not show two colour schemes for the same three policies — red/green
+is a dichromat collision that `PALETTE`'s derivation does not cover. They stay
+readable only because the second and third channels are doing the work there:
+each polygon has its own dash pattern *and* its own marker shape. Those figures
+are the reason the rule is written as "hue never carries identity **alone**"
+rather than "always use `PALETTE`"; drop their dashes or their markers and they
+have to move to `PALETTE` first.
+
+`plot_libero_radar.py` and `plot_libero_plus_radar.py` are **independent
+copies**, not a shared module — different experiments, different axes, different
+captions. What they must keep in common is that the palette, the dashes and the
+markers are assigned by column position, so an arm sitting in the same column
+position looks the same in both figures. Reorder one dump's `_sr` columns and
+the same policy changes appearance between two figures in the same paper. A
+layout fix in one script has to be made in the other by hand.
+
+`plot_radar_row.py` is a **consumer** of both, not a third copy. It imports
+their spoke orders, labels, titles and palette so a rename follows into the row
+figure instead of the two versions of a panel disagreeing; only the row layout
+lives in that file. It draws one legend for all three panels, which is only
+valid while the three dumps carry the same arms in the same order — it checks
+that at build time and refuses rather than mislabelling two thirds of the
+figure.
 
 **One channel per factor.** Where a figure crosses two factors, each gets its own
 channel and its own legend, so a reader can hold one fixed and scan the other.
