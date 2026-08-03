@@ -35,6 +35,16 @@ python plot_radar_row.py       # figures/radar_row.pdf, all three radars in one 
 default `paper` style reproduces the document's own body text; that is the one
 to ship.
 
+**Always regenerate both styles.** A script writes `<name>.pdf` under `paper`
+and `<name>_science.pdf` under `science`, so one run updates only half of what
+is committed and the two versions of a figure silently start showing different
+numbers. Whenever a `results/*.csv` or a plot script changes, run the script
+twice and commit both outputs:
+
+```sh
+python plot_probing.py && python plot_probing.py --style science
+```
+
 Each script also prints a plain-text table of the numbers it plotted. Read it —
 it is the fastest way to catch a stale dump, and it is the accessible view of
 the same data.
