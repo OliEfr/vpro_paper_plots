@@ -1,17 +1,9 @@
-# DUMMY DATA -- task1, task2, and task4 still contain placeholder values at
-# 10-decimal precision. Task3 contains measurements from 25 rollouts. Delete
-# this header only when all placeholders have been replaced; the plot script
-# keys its warning banner off it. See results/README.md.
-#
-# The task3 measurements match realworld_scaling.csv at the shared budgets, on
-# purpose -- the two figures report the same experiment and the plot script
-# warns if they ever disagree.
 task,n_demos,action_only_sr,video_sr,n_rollouts
-task1,0,0.0123456789,0.1234567891,
-task1,5,0.1876543219,0.3456789123,
-task2,0,0.0234567891,0.1567891234,
-task2,5,0.2109876543,0.3987654321,
+task1,0,0.00,0.28,25
+task1,5,0.00,0.20,25
+task2,0,0.08,0.40,25
+task2,5,0.24,0.48,25
 task3,0,0.28,0.44,25
 task3,5,0.24,0.48,25
-task4,0,0.0345678912,0.1876543210,
-task4,5,0.2456789123,0.4098765432,
+task4,0,0.08,0.44,25
+task4,5,0.44,0.68,25

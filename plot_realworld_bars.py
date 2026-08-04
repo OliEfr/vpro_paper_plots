@@ -19,11 +19,6 @@ two methods at the *same* budget -- is no longer adjacent, so reading the gap at
 fill `offsets` to get budget-major ordering back, which pairs the methods at
 each budget instead.
 
-DUMMY DATA. ``results/realworld_alltasks.csv`` still contains placeholders at
-10-decimal precision for tasks whose runs have not landed, so the layout can be
-reviewed before those runs finish. The file is flagged with a ``# DUMMY DATA``
-header line and the script prints a banner while any placeholders remain.
-
 EMBEDDING IN LATEX
 ------------------
 Built at 3.487in = \columnwidth (252pt, per IEEEtran journal mode), so it is a
@@ -32,10 +27,9 @@ plain figure, not a figure*. Needs \usepackage{graphicx}.
     \begin{figure}[t]
       \centering
       \includegraphics[width=\columnwidth]{figures/realworld_alltasks.pdf}
-      \caption{Real-world success rate on four manipulation tasks, at two
-      demonstration budgets. Video pretraining helps most where
-      robot data is scarcest: at zero demonstrations the action-only policy is
-      near chance on every task.}
+      \caption{Real-world success rate over 25 rollouts on four manipulation
+      tasks, at two demonstration budgets. Video pretraining improves success
+      on every task at both budgets.}
       \label{fig:realworld_alltasks}
     \end{figure}
 
