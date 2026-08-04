@@ -19,11 +19,10 @@ two methods at the *same* budget -- is no longer adjacent, so reading the gap at
 fill `offsets` to get budget-major ordering back, which pairs the methods at
 each budget instead.
 
-DUMMY DATA. ``results/realworld_alltasks.csv`` currently holds placeholders at
-10-decimal precision, not measurements, so the layout can be reviewed before
-the runs finish. The file is flagged with a ``# DUMMY DATA`` header line and
-the script prints a banner while it is there; drop the line when the real
-numbers land.
+DUMMY DATA. ``results/realworld_alltasks.csv`` still contains placeholders at
+10-decimal precision for tasks whose runs have not landed, so the layout can be
+reviewed before those runs finish. The file is flagged with a ``# DUMMY DATA``
+header line and the script prints a banner while any placeholders remain.
 
 EMBEDDING IN LATEX
 ------------------
@@ -33,8 +32,8 @@ plain figure, not a figure*. Needs \usepackage{graphicx}.
     \begin{figure}[t]
       \centering
       \includegraphics[width=\columnwidth]{figures/realworld_alltasks.pdf}
-      \caption{Real-world success rate over 20 rollouts on four manipulation
-      tasks, at two demonstration budgets. Video pretraining helps most where
+      \caption{Real-world success rate on four manipulation tasks, at two
+      demonstration budgets. Video pretraining helps most where
       robot data is scarcest: at zero demonstrations the action-only policy is
       near chance on every task.}
       \label{fig:realworld_alltasks}
@@ -272,9 +271,11 @@ def main():
     # silently rescales the legend and tick-label margins whenever the height
     # changes -- and the failure mode is the two legend rows sliding into each
     # other, which is easy to miss in a thumbnail.
-    h = 2.0
     legend_in = 0.48   # two legend rows above the axes
-    ticks_in = 0.46    # three-line task names below it (see tasks.wrapped)
+    # STIX, used by the no-LaTeX SciencePlots style, has taller descenders than
+    # Computer Modern. Give that variant more room without shrinking the axes.
+    ticks_in = 0.62 if args.style == "science" else 0.46
+    h = 1.06 + legend_in + ticks_in
     left = 0.135
     fig, ax = plt.subplots(figsize=(style.COL_WIDTH, h))
     fig.subplots_adjust(left=left, right=0.985,
@@ -315,8 +316,8 @@ def main():
         print(f"\n  note: {n_missing} empty cell(s) not yet run; drawn as gaps")
     if is_dummy:
         print("\n  " + "!" * 66)
-        print(f"  ! {args.csv.name} is flagged DUMMY DATA -- these are placeholders,")
-        print("  ! not measurements. Do not ship this figure in the paper.")
+        print(f"  ! {args.csv.name} is flagged DUMMY DATA -- it still contains")
+        print("  ! placeholders. Do not ship this figure in the paper.")
         print("  " + "!" * 66)
 
 

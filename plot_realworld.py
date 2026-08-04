@@ -12,12 +12,6 @@ dash + marker shape** together identify the method. One factor, so all three
 channels are spent on it rather than split -- the opposite of probing.pdf,
 which has two factors and gives each its own channel.
 
-DUMMY DATA. ``results/realworld_scaling.csv`` currently holds placeholders at
-10-decimal precision (0.1234567891 and friends), not measurements, so the
-layout can be reviewed before the runs finish. The file is flagged with a
-``# DUMMY DATA`` header line and the script prints a banner while it is there;
-drop that line when the real numbers land.
-
 EMBEDDING IN LATEX
 ------------------
 Built at 3.487in = \columnwidth (252pc, per IEEEtran journal mode), so it is a
@@ -26,8 +20,8 @@ plain figure, not a figure*. Needs \usepackage{graphicx}.
     \begin{figure}[t]
       \centering
       \includegraphics[width=\columnwidth]{figures/realworld_scaling.pdf}
-      \caption{Real-world data efficiency on \emph{Banana in bowl}. Policy
-      success rate over 20 rollouts as a function of the number of teleoperated
+      \caption{Real-world data efficiency on \emph{Banana in box}. Policy
+      success rate over 25 rollouts as a function of the number of teleoperated
       robot demonstrations. Video pretraining lifts the whole curve, and the gap
       is widest in the low-demo regime.}
       \label{fig:realworld_scaling}
@@ -226,7 +220,14 @@ def main():
     # reader to read a value off the connecting line, which is interpolation,
     # not data.
     ax.set_xticks(n_demos)
-    ax.set_xticklabels([str(int(n)) for n in n_demos])
+    tick_labels = ax.set_xticklabels([str(int(n)) for n in n_demos])
+    # The first two checkpoints (0 and 5) are much closer than the rest on this
+    # quantitative axis. Point their labels away from each other so the wider
+    # SciencePlots numerals do not touch; centered labels remain appropriate
+    # for every subsequent checkpoint.
+    if len(tick_labels) >= 2:
+        tick_labels[0].set_ha("right")
+        tick_labels[1].set_ha("left")
     ax.set_axisbelow(True)
     ax.grid(axis="y")
     # The task is named on the axis rather than left to the caption alone: this

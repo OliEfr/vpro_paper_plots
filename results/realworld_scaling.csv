@@ -1,13 +1,6 @@
-# DUMMY DATA -- placeholder values at 10-decimal precision, NOT measurements.
-# Delete this header line when the real numbers land; the plot script keys its
-# warning banner off it. See results/README.md.
-#
-# The 0- and 5-demo rows are the same placeholders as realworld_alltasks.csv for
-# the same task, on purpose -- the two figures report the same experiment and
-# plot_realworld_bars.py warns if they ever disagree.
-task,n_demos,action_only_sr,video_sr
-task4,0,0.0345678912,0.1876543210
-task4,5,0.2456789123,0.4098765432
-task4,10,0.3210987654,0.5123456789
-task4,20,0.4567891234,0.6234567891
-task4,50,0.6345678912,0.7456789123
+task,n_demos,action_only_sr,video_sr,n_rollouts
+task3,0,0.28,0.44,25
+task3,5,0.24,0.48,25
+task3,10,0.56,0.72,25
+task3,20,0.64,0.76,25
+task3,50,0.84,0.92,25

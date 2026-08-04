@@ -79,6 +79,7 @@ Real-robot success rate. Both files share one schema, one row per (task, budget)
 | `task`        | short id, `task1` … `task4` — display names in `tasks.py`      |
 | `n_demos`     | demo budget                                                   |
 | `<method>_sr` | success rate as a **fraction in [0, 1]** — any column ending `_sr` |
+| `n_rollouts`  | optional number of evaluation rollouts behind each method's rate |
 
 Store fractions, not percentages: the scripts multiply by 100 for the axis, so
 the percent sign exists in exactly one place.
