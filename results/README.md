@@ -190,3 +190,47 @@ A file whose first line is `# DUMMY DATA` holds 10-decimal placeholders
 (`0.1234567891`) rather than measurements, so a figure's layout can be reviewed
 before the runs finish. The scripts print a warning banner while that line is
 present — when real numbers land, overwrite the rows **and delete the line**.
+
+## `libero_budget_sweep.csv`, `libero_playdata_sweep.csv`, `libero_xemb_sweep.csv`
+
+The three LIBERO scaling sweeps behind `tab:budget_sweep`, `tab:playdata_sweep`
+and `tab:xemb_ablation` in the paper. No plot script reads them yet — they are
+the raw dumps for those tables (and for future line plots). Long format, one
+row per (split, sweep position):
+
+| column               | meaning                                                   |
+|----------------------|-----------------------------------------------------------|
+| `split`              | `nonh` (32 non-held-out tasks) or `h` (8 held-out tasks)  |
+| sweep column         | `n_demos` (1/5/10/20 eps per task), `play_fraction_pct` (0/33/66/100), or `n_embodiments` (0/1/2/4) |
+| `<method>_sr`        | success rate as a **fraction in [0, 1]**, mean over the split's tasks at 100 rollouts each |
+
+Same rules as the other dumps: fractions not percentages, empty cell = run has
+not happened (the playdata 66% column is empty for exactly that reason), 0 is a
+real measured zero (the budget sweep's held-out action-only rates genuinely sit
+at 0.02–0.05). Everything is a single seed per cell — point estimates only.
+
+Three cross-file honesty notes, spelled out in each file's header comment:
+`action_only` arms carry **latent supervision from the shared video-trained
+teacher** (they lack video data, not the LAM); the playdata and xemb sweeps
+retrain their teacher per point (`lam1o5` family, single-future `[5]` offsets),
+so their 100%/2-embodiment anchor is a *different teacher draw* than the budget
+sweep's `lam1` (`[1,5,9]`) — the same nominal cell differs by ~3–4 pp between
+files and the two series must not be mixed in one figure; and the xemb sweep's
+`0` row is a reference whose teacher still saw two embodiments' videos, not a
+true video-free chain.
+
+### Current `probing_libero.csv` provenance (2026-08-24)
+
+Linear ridge probe (alpha 1), future-action-mean target at horizon 5,
+episode-level split, seed 42 — the standard protocol. Runs are the
+internally-comparable autoresearch dev-track chain (libero_multicam dev
+benchmark, 20k steps, effective batch 64, 2026-05): `sv_sf` and `mv_sf` are
+latent width 32; `mv_mf` is width 512, so the mf step bundles the width
+increase (a bridge run puts width alone at ~+0.09 of it). `sv_mf` is 0 =
+not filled: the run exists but its per-dim CSV lives on the workstation,
+unreachable at time of writing. **Provisional precision**: values were
+recovered from the archived per-dimension figure's geometry, calibrated
+against six known CSV values (agreement ±0.01) — replace with the exact CSV
+numbers when the workstation is back. These are dev-scale probes, not the
+paper's full-scale teachers; the full-scale recipe is `mv_mf` plus Huber
+reconstruction loss (~+0.026 mean on this benchmark, 0.767 → 0.794).

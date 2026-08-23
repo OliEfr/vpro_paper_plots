@@ -1,0 +1,21 @@
+# LIBERO cross-embodiment-count sweep (paper tab:xemb_ablation), measured
+# 2026-08-04..05. One row per (split, # additional embodiments whose videos
+# enter LAM pretraining AND the policy's latent-only video mix):
+#   1 = IIWA; 2 = IIWA+Kinova3 (the standard setting); 4 = +UR5e+Sawyer.
+#   0 = the frankaonly reference at full play data - CAVEAT: only the policy's
+#       video is removed; its teacher is the 2-embodiment LAM, since no
+#       video-free teacher exists. Report it as a reference, not a curve point.
+# Teachers are retrained per point (lam1o5 family, offsets [5]); LIBERO-90
+# play data at 100%; action budget 5 eps/task (policy5). Splits/protocol as in
+# libero_budget_sweep.csv. MN5 policy jobs: 44161098 (0), 44222480 (1),
+# 44161096 (2), 44222483 (4). Single seed per cell; the held-out dip at 2 is
+# within plausible teacher-draw variance - do not over-read.
+split,n_embodiments,video_sr
+nonh,0,0.6847
+nonh,1,0.6359
+nonh,2,0.6566
+nonh,4,0.6972
+h,0,0.0688
+h,1,0.5825
+h,2,0.4925
+h,4,0.5888

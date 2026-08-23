@@ -1,0 +1,22 @@
+# LIBERO demo-budget sweep (paper tab:budget_sweep), measured 2026-07-20..22,
+# re-aggregated 2026-08-10. One row per (split, per-task action budget).
+# split: nonh = 32 non-held-out tasks, h = 8 held-out tasks; mean over tasks,
+# 100 rollouts/task, success = sum_rewards > 0. Protocol: n_action_steps=10,
+# ckpt 070000, EP100/BS25, async, osmesa, render5. lam1 teacher ([1,5,9]).
+#   action_only = frankaonly arm (no cross-emb video; latent-supervised by the
+#                 shared video-trained teacher). MN5 jobs: 43535449 (1),
+#                 43558446 (5), 43535451 (10), 43535452 (20).
+#   video       = withvideo arm (+ iiwa/kinova3 success video, latent-only).
+#                 MN5 jobs: 43582856 (1), 43582857 (5), 43582858 (10),
+#                 43582859 (20).
+# Values stored at the 1-decimal-percent precision of the source aggregation.
+# Single seed per cell.
+split,n_demos,action_only_sr,video_sr
+nonh,1,0.437,0.525
+nonh,5,0.638,0.698
+nonh,10,0.684,0.717
+nonh,20,0.745,0.712
+h,1,0.029,0.394
+h,5,0.019,0.432
+h,10,0.016,0.551
+h,20,0.051,0.502
