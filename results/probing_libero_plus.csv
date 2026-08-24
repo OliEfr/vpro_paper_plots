@@ -1,9 +1,27 @@
+# LIBERO-Plus probe. MLP / episode split / continuous features / current_action
+# target, 7,228,830 valid rows (5,062,565 train / 722,523 val / 1,443,742 test) --
+# the identical row set for all four arms, so the columns are paired.
+#
+# Provenance, one probe job per column (probe_analysis dir on MN5 scratch,
+# /gpfs/scratch/ehpc637/oliver_hausdorfer/runs_lerobot/probe_analysis/):
+#   clam_r2   run10  teacher 44815478, probe 44815480  ..._n2_clam7d_44815478_ckpt100000
+#   dino_r2   run7   teacher 44422849, probe 44444138  ..._n2_dino_dino_44422849_ckpt100000
+#   sv_sf_r2  run3   teacher 44001862, probe 44064421  ..._n2_single_44001862_ckpt100000
+#   mv_sf_r2  run11  teacher 44809827, probe 44809829  ..._n2_dualnoaug_dualnoaug_44809827_ckpt100000
+#
+# Updated 2026-08-24: clam and mv_sf advanced to their current arms. clam was
+# run6 (44424197, mean 0.6567) -- the 35-d-target/balanced-beta recipe whose
+# policy lost 10.81 points; run10 is the corrected 7-d/beta-balanced-over-10
+# recipe that recovers it. mv_sf was run4 (44056649, mean 0.6406); run11 is the
+# aug-off/seed-1003 dual-view arm that is now the reported one. The superseded
+# columns are in `git show HEAD:results/probing_libero_plus.csv`.
+# See results/README.md for the arm-to-arm confounds this table does not show.
 action_dim,axis,clam_r2,dino_r2,sv_sf_r2,mv_sf_r2
-0,delta_x,0.7023,0.6742,0.6162,0.8084
-1,delta_y,0.9454,0.9405,0.9388,0.9323
-2,delta_z,0.9005,0.8948,0.8782,0.9012
-3,delta_rx,0.5402,0.4890,0.4914,0.4190
-4,delta_ry,0.3112,0.3330,0.2754,0.4182
-5,delta_rz,0.4820,0.3738,0.3694,0.3831
-6,gripper,0.7156,0.6433,0.5892,0.6223
-mean,all_dims,0.6567,0.6212,0.5941,0.6406
+0,delta_x,0.6541,0.6742,0.6162,0.8181
+1,delta_y,0.9424,0.9405,0.9388,0.9422
+2,delta_z,0.8918,0.8948,0.8782,0.9066
+3,delta_rx,0.5309,0.4890,0.4914,0.5150
+4,delta_ry,0.3041,0.3330,0.2754,0.4535
+5,delta_rz,0.4388,0.3738,0.3694,0.4290
+6,gripper,0.6785,0.6433,0.5892,0.6332
+mean,all_dims,0.6344,0.6212,0.5941,0.6711

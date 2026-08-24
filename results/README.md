@@ -55,18 +55,23 @@ position 0, because the reference arm (`sv_sf_r2`) now sits third.
 **The frame-offset sweep is no longer in this dump.** `sv_mf_r2`/`mv_mf_r2` held
 the four-frame Δ = [0,1,5,9] variants; they were dropped so the figure varies
 one thing at a time (viewpoints, and what trains the latent) against a fixed
-window. `git show 811d7e0:results/probing_mimicgen.csv` still has them.
+window. `git show 811d7e0:results/probing_mimicgen.csv` still has them, and
+`git show 9348889:results/probing_libero.csv` has plain LIBERO's pair — that
+suite kept the four-column `sv_sf`/`sv_mf`/`mv_sf`/`mv_mf` shape until
+2026-08-24, which is why the figure could not be built in between.
 
-**Plain LIBERO is entirely dummy data.** No probe has been run on that suite for
-any of these four configurations, so `probing_libero.csv` carries the
-`# DUMMY DATA` marker line and a flat `0.1111111` in every cell. Flat is the
-point: it puts all four marks of a group at one height, a shape no probe
-produces, so the band reads as placeholder at a glance rather than only under
-a decimal-by-decimal check. (It departs from the `0.1234567891` form used by the
-other dumps in this directory, which encode the tell in the decimals instead.)
-The band is there so the three-suite layout can be reviewed; the script prints a
-banner while the marker line is present, and **the figure must not be submitted
-until real numbers replace those rows and the marker line is deleted**.
+**Plain LIBERO carries only our two arms.** The suite has real numbers for
+`sv_sf` and `mv_sf` and has never been run for `clam` or `dino`, so those two
+columns are `0` — this family's not-run placeholder — and the figure draws the
+LIBERO band with two of its four marks missing rather than pulled to the floor.
+That is the honest shape: a gap says "not run", a mark at zero would say "scores
+zero". Its `# DUMMY DATA` marker is gone because the numbers in it are
+measurements; see the provenance note at the end of this file for what kind.
+
+Until 2026-08-24 this file was instead a flat `0.1111111` in every cell behind a
+`# DUMMY DATA` marker, so the three-suite layout could be reviewed before any
+LIBERO probe existed. Flat was the point: four marks of a group at one height is
+a shape no probe produces, so the band read as placeholder at a glance.
 
 ⚠ Earlier filler in this file was *not* flagged, and was drawn as data: a flat
 0.1 in every cell, committed as "0.1 filler for the un-run cells", which
@@ -96,15 +101,25 @@ the absolute bars. If a run ever produces a *negative* R² — the probe doing
 worse than predicting the mean — the ratio is meaningless there too, and that
 row should be reported as an absolute delta only.
 
-**Probe R² does not rank these arms by success rate.** Established on four
-working teachers, so it is a property of the metric and not a one-off: on
-LIBERO-PLUS the CLAM-grounded latent probes highest of the four (0.6567) and its
-policy is the weakest (51.29 SR), and the DINOv3 latent probes above our
-single-view reference (0.6212 vs 0.5941) and scores below it (60.87 vs 62.10).
-Read this figure as a collapse detector — it catches a dead latent — and never
-as a teacher-selection criterion. CLAM's entry is additionally **circular**: that
-teacher is trained to decode actions from the latent, which is what the probe
-measures.
+**Probe R² does not rank these arms by success rate.** The standing counterexample
+in the current LIBERO-Plus dump is DINOv3: it probes **above** our single-view
+reference (0.6212 vs 0.5941) and **scores below** it (60.87 vs 62.10 SR). Read
+this figure as a collapse detector — it catches a dead latent — and never as a
+teacher-selection criterion.
+
+⚠ The misranking is a property of the metric, not of one bad arm, and the
+inversions this dump *used* to show were bigger than the one it shows now.
+Until the 2026-08-24 refresh the `clam` column was run6 (0.6567, probing highest
+of the four while its policy scored **worst** at 51.29 SR) and `mv_sf` was run4
+(0.6406, probing above single-view while scoring 59.23 against its 62.10). Both
+of those arms have since been superseded — run10 and run11 — and the replacements
+happen to rank consistently on both axes. That is a fact about which four
+teachers are in the table today, not evidence that the probe became predictive:
+four working teachers have now misranked, and nothing about the metric changed.
+
+CLAM's entry is additionally **circular**: that teacher is trained to decode
+actions from the latent, which is what the probe measures. It is a floor check
+for that arm, not a comparison.
 
 **The mean row is a relative gain of the means, not a mean of relative gains.**
 For the current MimicGen dump those are 11.2% and 13.8% respectively. 11.2% is
@@ -271,13 +286,46 @@ true video-free chain.
 Linear ridge probe (alpha 1), future-action-mean target at horizon 5,
 episode-level split, seed 42 — the standard protocol. Runs are the
 internally-comparable autoresearch dev-track chain (libero_multicam dev
-benchmark, 20k steps, effective batch 64, 2026-05): `sv_sf` and `mv_sf` are
-latent width 32; `mv_mf` is width 512, so the mf step bundles the width
-increase (a bridge run puts width alone at ~+0.09 of it). `sv_mf` is 0 =
-not filled: the run exists but its per-dim CSV lives on the workstation,
-unreachable at time of writing. **Provisional precision**: values were
+benchmark, 20k steps, effective batch 64, 2026-05): both `sv_sf` and `mv_sf`
+are latent width 32. `clam` and `dino` have not been run on this suite at all,
+and are dumped as the `0` placeholder.
+
+The dump also held two four-frame columns until the 2026-08-24 realignment:
+`mv_mf` (width 512, so that step bundled a width increase — a bridge run puts
+width alone at ~+0.09 of it) and `sv_mf`, which was never filled because its
+per-dim CSV lives on the workstation. Both were dropped to put this suite on
+the shared `clam`/`dino`/`sv_sf`/`mv_sf` column order the other two carry;
+`git show 9348889:results/probing_libero.csv` still has them, `mv_mf` included
+at a 0.767 mean. **Provisional precision**: values were
 recovered from the archived per-dimension figure's geometry, calibrated
 against six known CSV values (agreement ±0.01) — replace with the exact CSV
 numbers when the workstation is back. These are dev-scale probes, not the
-paper's full-scale teachers; the full-scale recipe is `mv_mf` plus Huber
-reconstruction loss (~+0.026 mean on this benchmark, 0.767 → 0.794).
+paper's full-scale teachers; the full-scale recipe is the dropped `mv_mf` plus
+Huber reconstruction loss (~+0.026 mean on this benchmark, 0.767 → 0.794), a
+number this figure therefore no longer shows.
+
+### Current `probing_libero_plus.csv` and `probing_mimicgen.csv` provenance (2026-08-24)
+
+Both dumps are the MLP probe (episode split, continuous features,
+`current_action` target) taken from each arm's own `probe_analysis` directory on
+MN5 scratch — `mean_r2` of the `mlp,episode,continuous,current_action` row for
+the `mean` row, and the per-dimension `r2` column for the seven others. Each
+file's header comment names the probe job per column. Every cell was re-read
+from those directories on 2026-08-24 and reproduces exactly.
+
+LIBERO-Plus scores all four arms over the **identical** 7,228,830 valid rows, so
+its columns are paired. MimicGen likewise shares 3,119,561 exported frames
+across arms, but note its `mv_sf` column is read at **ckpt 50k** while the other
+three are at **70k** — the 2-frame dual teacher was deliberately stopped early
+on the measured finding that probe R² saturates by 30k, and 50k is the
+checkpoint that arm's policy was grafted from.
+
+**The four columns are not seed- or recipe-matched, on either suite.** After the
+2026-08-24 refresh the LIBERO-Plus arms are run10 / run7 / run3 / run11, which
+differ in teacher seed (1003 for `clam` and `mv_sf`, 1000 for `dino` and
+`sv_sf`) and in dual-view augmentation, on top of the encoder or grounding
+change each column is meant to isolate. Seed alone is worth roughly +1 point of
+SR on a single-view teacher and has three times collapsed a teacher outright, so
+a between-column difference here is **not** attributable to the column's nominal
+factor. The figure is a per-arm collapse check and a rough magnitude; it is not
+a controlled ablation and a caption must not read it as one.
