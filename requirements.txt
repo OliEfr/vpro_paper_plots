@@ -1,6 +1,11 @@
+# Loose pins, for a box where conda is not an option. environment.yml is the
+# canonical env and the one the committed figures were built with -- prefer it,
+# because these ranges will rasterize text differently and make every figure
+# look modified. See README.md, "Environment".
 matplotlib>=3.8
 pandas>=2.0
 numpy>=1.24
 
-# optional: only for `plot_probing.py --style science`
+# NOT optional: every figure is committed in both styles, so a run that cannot
+# import this leaves half the artifacts stale. See README.md, "Environment".
 SciencePlots>=2.1

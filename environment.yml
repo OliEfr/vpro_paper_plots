@@ -1,0 +1,29 @@
+# The environment these figures are built in. Pinned to exact builds, because
+# the committed PDFs and PNGs are versioned artifacts: a different matplotlib or
+# freetype re-rasterizes every glyph and every figure shows up as modified in
+# `git status` without a number having changed.
+#
+#   conda env create -f environment.yml
+#   conda activate vpro-plots
+#
+# These pins are the set that produced the figures currently committed
+# (matplotlib 3.10.0 / freetype 2.12.1). Verified 2026-08-18: rebuilding an
+# untouched figure in this env reproduces the committed PNG to within glyph
+# antialiasing -- 0.068% of pixels, max delta 39/255 -- and nothing else.
+#
+# numpy and SciencePlots come from pip rather than conda because that is how the
+# env that built the committed figures had them; mixing the two resolvers for the
+# same package is what usually breaks a rebuild.
+name: vpro-plots
+channels:
+  - defaults
+  - conda-forge
+dependencies:
+  - python=3.11.10=he870216_0
+  - matplotlib-base=3.10.0=py311hbfdbfaf_0
+  - pandas=2.2.3=py311h6a678d5_0
+  - freetype=2.12.1=h4a9f257_0
+  - pip
+  - pip:
+      - numpy==2.2.6
+      - SciencePlots==2.2.2

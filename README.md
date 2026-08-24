@@ -17,10 +17,40 @@ plot_*.py    one script per figure family
 tasks.py     display names for the real-world tasks, shared by both of its figures
 ```
 
+## Environment
+
+**Use the `vpro-plots` conda env. It is the only supported one.**
+
+```sh
+conda env create -f environment.yml
+conda activate vpro-plots
+```
+
+The pins in `environment.yml` are exact builds, not ranges, because the figures
+themselves are committed: matplotlib and freetype decide how every glyph is
+rasterized, so building in a different env rewrites every PDF and PNG and they
+all show up modified in `git status` with no number having changed. The pinned
+set is the one the currently-committed figures came from — verified by rebuilding
+an untouched figure and diffing it against the committed PNG, which agrees to
+0.068% of pixels at a maximum delta of 39/255, i.e. glyph antialiasing and
+nothing else.
+
+`requirements.txt` is the fallback for a box without conda. It will render text
+slightly differently; do not commit figures built from it.
+
 ## Usage
 
 ```sh
-pip install -r requirements.txt
+./build_figures.sh             # every figure, both styles — the normal way to rebuild
+./build_figures.sh probing     # just plot_probing.py, both styles
+```
+
+`build_figures.sh` checks the env is complete before it writes anything and then
+runs each script twice, once per style. Prefer it over calling the scripts by
+hand: a run that only does the default style leaves the `_science` half of the
+repo stale, which is the failure mode described below.
+
+```sh
 python plot_probing.py         # figures/probing.pdf, from every results/probing_*.csv
 python plot_realworld.py       # figures/realworld_scaling.pdf
 python plot_realworld_bars.py  # figures/realworld_alltasks.pdf
@@ -38,12 +68,17 @@ to ship.
 **Always regenerate both styles.** A script writes `<name>.pdf` under `paper`
 and `<name>_science.pdf` under `science`, so one run updates only half of what
 is committed and the two versions of a figure silently start showing different
-numbers. Whenever a `results/*.csv` or a plot script changes, run the script
-twice and commit both outputs:
+numbers. `./build_figures.sh` does both for you and is the reason it exists; by
+hand it is two commands, and both outputs get committed:
 
 ```sh
 python plot_probing.py && python plot_probing.py --style science
 ```
+
+This is not hypothetical. On 2026-08-18 a probing rebuild shipped the `paper`
+figure alone because SciencePlots was not installed in the env being used, and
+`figures/probing_science.*` sat one dataset behind. Hence the pinned env, the
+import check in `build_figures.sh`, and SciencePlots no longer being optional.
 
 Each script also prints a plain-text table of the numbers it plotted. Read it —
 it is the fastest way to catch a stale dump, and it is the accessible view of

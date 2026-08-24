@@ -34,14 +34,51 @@ robot actions, scored per action dimension by R².
 | `axis`        | `delta_x` … `delta_rz`, `gripper`, or `all_dims` on the mean row |
 | `<method>_r2` | R² for one LAM configuration — **any** column ending in `_r2`   |
 
-Methods are read positionally from the `_r2` columns, so extending from the
-current two-method dump to the full 2×2 is a schema change only:
+Methods are read positionally from the `_r2` columns, so adding or dropping a
+configuration is a schema change only. The current dump carries four, all of
+them two-frame (Δ = [0,5]):
 
-    action_dim,axis,sv_sf_r2,sv_mf_r2,mv_sf_r2,mv_mf_r2
+    action_dim,axis,clam_r2,dino_r2,sv_sf_r2,mv_sf_r2
 
-Add matching display names to `METHOD_LABELS`. The first `_r2` column is the
-reference that relative gains are computed against, so keep the weakest
-configuration first.
+`clam` adds CLAM's action-grounding loss to our LAM; `dino` swaps its encoder for
+DINOv3 features; `sv_sf`/`mv_sf` are our own LAM at one and two viewpoints. Add
+matching display names to `METHOD_LABELS`.
+
+**Order is baselines first, ours last**, matching the results table, so the two
+red marks land on the right of every band. This deliberately drops the older
+"keep the weakest configuration first" rule: that rule existed so a relative gain
+would be computed against the reference column, and `plot_probing.py` computes no
+relative gains — it plots absolute R² only. If a script here ever does compute
+them again, it must name its reference column explicitly rather than assume
+position 0, because the reference arm (`sv_sf_r2`) now sits third.
+
+**The frame-offset sweep is no longer in this dump.** `sv_mf_r2`/`mv_mf_r2` held
+the four-frame Δ = [0,1,5,9] variants; they were dropped so the figure varies
+one thing at a time (viewpoints, and what trains the latent) against a fixed
+window. `git show 811d7e0:results/probing_mimicgen.csv` still has them.
+
+**Plain LIBERO is entirely dummy data.** No probe has been run on that suite for
+any of these four configurations, so `probing_libero.csv` carries the
+`# DUMMY DATA` marker line and a flat `0.1111111` in every cell. Flat is the
+point: it puts all four marks of a group at one height, a shape no probe
+produces, so the band reads as placeholder at a glance rather than only under
+a decimal-by-decimal check. (It departs from the `0.1234567891` form used by the
+other dumps in this directory, which encode the tell in the decimals instead.)
+The band is there so the three-suite layout can be reviewed; the script prints a
+banner while the marker line is present, and **the figure must not be submitted
+until real numbers replace those rows and the marker line is deleted**.
+
+⚠ Earlier filler in this file was *not* flagged, and was drawn as data: a flat
+0.1 in every cell, committed as "0.1 filler for the un-run cells", which
+`plot_probing.py` plotted as a measurement because it was the one script here
+reading its CSV without `comment="#"` — so the marker line would have become the
+header and the banner would never have fired. Fixed 2026-08-18. **Never put
+un-flagged filler in a results file**; the marker line is the only thing standing
+between a placeholder and a figure caption.
+
+Note also that every suite needs all four `_r2` columns in the same order, or
+`plot_probing.py` exits rather than draw a figure whose shared marker legend and
+shared x groups would be lying.
 
 Extra columns are ignored. The current dump carries `delta` and `rel_gain_pct`;
 the plot script recomputes both rather than reading them, so a figure can never
@@ -58,6 +95,16 @@ Figures suppress the ratio below R² = 0.30 (`REL_GAIN_MIN_R2`) and show only
 the absolute bars. If a run ever produces a *negative* R² — the probe doing
 worse than predicting the mean — the ratio is meaningless there too, and that
 row should be reported as an absolute delta only.
+
+**Probe R² does not rank these arms by success rate.** Established on four
+working teachers, so it is a property of the metric and not a one-off: on
+LIBERO-PLUS the CLAM-grounded latent probes highest of the four (0.6567) and its
+policy is the weakest (51.29 SR), and the DINOv3 latent probes above our
+single-view reference (0.6212 vs 0.5941) and scores below it (60.87 vs 62.10).
+Read this figure as a collapse detector — it catches a dead latent — and never
+as a teacher-selection criterion. CLAM's entry is additionally **circular**: that
+teacher is trained to decode actions from the latent, which is what the probe
+measures.
 
 **The mean row is a relative gain of the means, not a mean of relative gains.**
 For the current MimicGen dump those are 11.2% and 13.8% respectively. 11.2% is

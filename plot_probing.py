@@ -13,10 +13,12 @@ the other.
 
 WHY THE SUITE IS A BAND AND NOT A COLOURED MARK. Every x group holds n_suites x
 n_methods marks -- twelve at present -- and twelve marks cannot be given more
-than a twelfth of a group, whatever else is tuned. That pitch is around 4.4pt
-here, so the marks have to be ~3.6pt, and a 3.6pt mark is too small to carry
-hue and shape at once: the reader is being asked to resolve twelve colour-shape
-combinations at a size where the colour is a few pixels of fill.
+than a twelfth of a group, whatever else is tuned. That pitch is 5.0pt here, so
+the marks come out at 3.6pt, and a 3.6pt mark is too small to carry hue and
+shape at once: the reader is being asked to resolve twelve colour-shape
+combinations at a size where the colour is a few pixels of fill. (The mark size
+is derived from the pitch rather than fixed, so those two numbers move together
+when a suite is added or dropped -- see MARKSIZE.)
 
 Moving the suite onto a background band fixes the cause rather than the
 symptom. Colour on an area is legible at a fraction of the saturation a mark
@@ -44,9 +46,14 @@ not figure. Needs \usepackage{graphicx}.
       \caption{Latent action probing quality. A frozen-latent MLP probe
       reconstructs ground-truth robot actions; we report per-dimension $R^2$
       (higher is better). The shaded band identifies the evaluation suite --
-      the three sit in the same order within every dimension -- and marker
-      shape the LAM input $V\times\Delta$ (viewpoints $\times$ frame offsets).
-      \textbf{Mean} aggregates over all seven action dimensions.}
+      the three sit in the same order within every dimension -- and marker shape
+      the latent-action model being probed. All four share the same two-frame
+      input $\Delta=[0,5]$, so the only things that vary are the viewpoint count
+      and what trains the latent. \textbf{Mean} aggregates over all seven action
+      dimensions. Note that $R^2$ here does \emph{not} track success rate: on
+      LIBERO-PLUS the grounded (CLAM-style) teacher probes highest of the four
+      and its policy is the weakest of the four.}
+      %% LIBERO's band is PLACEHOLDER DATA -- do not submit with it in.
       \label{fig:probing}
     \end{figure*}
 
@@ -67,6 +74,24 @@ are read as "not run yet" rather than as a measurement -- see PLACEHOLDER.
 Only configurations that *have* a LAM appear here. The action-only policy has
 no latent action model, so there is no latent space to probe; its row belongs
 in the policy-performance table, not in this figure.
+
+A file whose first line is ``# DUMMY DATA`` holds placeholders so the layout can
+be reviewed before the runs finish, and the script prints a banner while that
+line is there -- the same convention the other plot scripts in this repo use.
+``results/probing_libero.csv`` is flagged that way right now: **no probe has been
+run on plain LIBERO for any of these four configurations**, so its whole band is
+made up. Every cell in it is a flat ``0.1111111`` -- four marks at one height in
+every group, which is a shape no probe produces and which reads as placeholder
+from across the room, without anyone having to compare decimals. Overwrite the
+rows and delete the marker line when real numbers land; until then the figure is
+for layout review only.
+
+This script read that file as data until 2026-08-18, because it was the one plot
+script here reading its CSV without ``comment="#"`` -- so the marker line would
+have become the header and the banner never fired. An earlier round of filler
+(a flat 0.1 in every cell, committed as "0.1 filler for the un-run cells") was
+therefore drawn as a measurement. A convention only one script skips is the one
+that bites.
 """
 
 import argparse
@@ -91,20 +116,25 @@ PLACEHOLDER = 0.0
 # name with the _r2 suffix stripped. Order here does not matter; the CSV column
 # order is what fixes the plotting order and the marker assignment.
 #
-# Brackets, not the set braces the paper uses for Delta. All figure text is one
-# size (10pt), but Computer Modern's math brace \{ \} is a tall glyph built to
-# wrap fractions: measured, "$1\times\{0,5\}$" renders 13.3pt against 9.5pt for
-# every other label, so the legend reads as a larger font even though it is not.
-# Brackets render at 11.8pt and sit much closer to the tick-label height.
-# (Text-mode braces do not work here: matplotlib's raw cmr10 has no glyph at the
-# ASCII { } slots, so "$1\times${0,5}" renders as garbage.)
-# To match the paper's set notation exactly at the cost of the taller row, swap
-# [ and ] back for \{ and \} inside the math.
+# All four configurations are two-frame, Delta = [0,5], so the frame offsets are
+# no longer a variable and have come out of the labels: what varies is the
+# viewpoint count and what trains the latent. The two "Ours" rows are the same
+# LAM at one and two viewpoints; CLAM and UniVLA name the paper each borrowed
+# component comes from, matching the policy table's wording so the figure and
+# the table can be read against each other.
+#
+# If a label ever carries math again, use brackets and not the set braces the
+# paper uses for Delta. All figure text is one size (10pt), but Computer
+# Modern's math brace \{ \} is a tall glyph built to wrap fractions: measured,
+# "$1\times\{0,5\}$" renders 13.3pt against 9.5pt for every other label, so the
+# legend reads as a larger font even though it is not. Brackets render at
+# 11.8pt. (Text-mode braces do not work here either: matplotlib's raw cmr10 has
+# no glyph at the ASCII { } slots, so "$1\times${0,5}" renders as garbage.)
 METHOD_LABELS = {
-    "sv_sf_r2": r"$1\times[0,5]$",
-    "sv_mf_r2": r"$1\times[0,1,5,9]$",
-    "mv_sf_r2": r"$2\times[0,5]$",
-    "mv_mf_r2": r"$2\times[0,1,5,9]$ (ours)",
+    "sv_sf_r2": "Ours (single-view)",
+    "mv_sf_r2": "Ours (multi-view)",
+    "clam_r2": "CLAM-style (action grounding)",
+    "dino_r2": "UniVLA-style (DINOv3 features)",
 }
 
 AXIS_LABELS = {
@@ -140,19 +170,29 @@ def label_for(method):
 
 
 def is_ours(method):
-    """The hero configuration, flagged by "(ours)" in its display label. Kept in
-    one place so the red-edge highlight in the plot and the legend never drift."""
-    return "(ours)" in label_for(method)
+    """Our own configurations, flagged by "ours" in the display label. Kept in
+    one place so the red-edge highlight in the plot and the legend never drift.
+
+    Matched case-insensitively on the bare word rather than on "(ours)", so a
+    label can lead with it ("Ours (single-view)") instead of trailing it. Note
+    this is now true of two of the four series, not one: the highlight says
+    "this is ours", and the shape still says which one."""
+    return "ours" in label_for(method).lower()
 
 
 def load(csv_path):
-    """Return (axis labels, {method: values}, methods, n_placeholder).
+    """Return (axis labels, {method: values}, methods, n_placeholder, is_dummy).
 
     Values are NaN wherever the dump carried the placeholder, so downstream
     code never has to special-case it -- matplotlib skips NaN, and nanmean
     ignores it.
     """
-    df = pd.read_csv(csv_path)
+    # The dummy marker is a comment line, not a column, so it survives being
+    # read as a CSV -- but only if the reader is told to skip comments, which
+    # this one was not until 2026-08-18. Without comment="#" the marker becomes
+    # the header row and a file of placeholders reads as a file of data.
+    is_dummy = csv_path.read_text().lstrip().startswith("# DUMMY")
+    df = pd.read_csv(csv_path, comment="#")
     methods = [c for c in df.columns if c.endswith("_r2")]
     if not methods:
         raise ValueError(f"{csv_path.name}: no columns ending in '_r2'")
@@ -179,7 +219,7 @@ def load(csv_path):
 
     n_placeholder = sum(int((v == PLACEHOLDER).sum()) for v in values.values())
     values = {m: np.where(v == PLACEHOLDER, np.nan, v) for m, v in values.items()}
-    return labels, values, methods, n_placeholder
+    return labels, values, methods, n_placeholder, is_dummy
 
 
 def print_table(suite_label, labels, values, methods):
@@ -256,7 +296,7 @@ def layout(n_groups, n_suites, n_methods, has_mean, axes_width_in):
     return x, bands, slots, pitch_pt
 
 
-def build_legends(fig, suite_labels, methods, left):
+def build_legends(fig, suite_labels, suite_cidx, methods, left):
     """Two legends, one per encoding channel, stacked above the axes.
 
     A single combined legend would need suites x methods entries to say what
@@ -273,7 +313,7 @@ def build_legends(fig, suite_labels, methods, left):
     # the tinted band behind the marks. A marker-shaped key would point at the
     # one thing on the figure that does NOT vary by suite.
     suite_handles = [
-        Patch(facecolor=band_colour(i), edgecolor="none", label=s)
+        Patch(facecolor=band_colour(suite_cidx[i]), edgecolor="none", label=s)
         for i, s in enumerate(suite_labels)
     ]
     # Marks are ink, not colour -- shape is their only channel, so the key
@@ -329,18 +369,20 @@ def main():
     style.apply_style()
     import matplotlib.pyplot as plt
 
-    suites, total_placeholder = [], 0
+    suites, total_placeholder, dummy = [], 0, []
     for path in paths:
-        suite_label, _ = suite_from(path)
-        labels, values, methods, n_ph = load(path)
+        suite_label, stem = suite_from(path)
+        labels, values, methods, n_ph, is_dummy = load(path)
         total_placeholder += n_ph
+        if is_dummy:
+            dummy.append(path.name)
         print_table(suite_label, labels, values, methods)
-        suites.append((suite_label, labels, values, methods))
+        suites.append((suite_label, labels, values, methods, stem))
 
     # Every suite must agree on the axis rows and the method columns, or the
     # shared x groups and the shared marker legend would both be lying.
     ref_labels, ref_methods = suites[0][1], suites[0][3]
-    for suite_label, labels, _, methods in suites[1:]:
+    for suite_label, labels, _, methods, _ in suites[1:]:
         if labels != ref_labels:
             raise SystemExit(f"{suite_label}: axis rows differ from {suites[0][0]}")
         if methods != ref_methods:
@@ -369,9 +411,16 @@ def main():
         n_groups, n_suites, n_methods, has_mean,
         axes_width_in=(0.995 - left) * style.TEXT_WIDTH)
 
-    MARKSIZE = 3.6
+    # Derived from the pitch, not fixed: adding or dropping a suite changes how
+    # much room a mark has, and a constant tuned for one suite count is either
+    # cramped or needlessly small at another. 0.72 is what the hand-tuned pair
+    # came to (3.6pt on the 5.0pt pitch of three suites x four methods), so that
+    # case is reproduced exactly and the others scale off it. The ceiling is the
+    # legend's own mark size: a plot mark bigger than its key reads as a
+    # different series. The floor is where the four shapes stop being distinct.
+    MARKSIZE = min(4.8, max(3.0, 0.72 * pitch_pt))
     if pitch_pt < MARKSIZE:
-        print(f"\n  ! marks are {MARKSIZE}pt on a {pitch_pt:.2f}pt pitch -- they "
+        print(f"\n  ! marks are {MARKSIZE:.2f}pt on a {pitch_pt:.2f}pt pitch -- they "
               f"overlap. {n_suites} suites x {n_methods} configs no longer fit a "
               f"group; drop a series or the Mean column.")
 
@@ -384,12 +433,20 @@ def main():
     # sit in the same left-to-right order in every group, so position identifies
     # a band as well as its tint does, and the order survives a grayscale
     # photocopy that flattens three light tints into one.
+    # A suite's colour is its position in SUITE_ORDER, not its position in this
+    # run's file list, so dropping a suite from the figure does not recolour the
+    # ones that stay. SUITE_ORDER only "fixes the color assignment" if it is read
+    # that way -- indexing by file order silently repaints LIBERO-PLUS the moment
+    # LIBERO leaves.
+    cidx = [SUITE_ORDER.index(t[4]) if t[4] in SUITE_ORDER else len(SUITE_ORDER) + k
+            for k, t in enumerate(suites)]
+
     for gi in range(n_groups):
         for si, (b0, b1) in enumerate(bands):
-            ax.axvspan(x[gi] + b0, x[gi] + b1, color=band_colour(si),
+            ax.axvspan(x[gi] + b0, x[gi] + b1, color=band_colour(cidx[si]),
                        linewidth=0, zorder=0)
 
-    for si, (_, _, values, methods) in enumerate(suites):
+    for si, (_, _, values, methods, _) in enumerate(suites):
         for mi, m in enumerate(methods):
             ours = is_ours(m)
             ax.plot(
@@ -437,11 +494,17 @@ def main():
     ax.tick_params(axis="x", length=0)
     ax.set_ylabel(r"probe $R^2$")
 
-    build_legends(fig, [s[0] for s in suites], ref_methods, left)
+    build_legends(fig, [s[0] for s in suites], cidx, ref_methods, left)
     style.save(fig, args.name)
     if total_placeholder:
         print(f"\n  note: {total_placeholder} placeholder cell(s) not yet run; "
               f"drawn as gaps, not as zeros")
+    if dummy:
+        print("\n  " + "!" * 66)
+        for n in dummy:
+            print(f"  ! {n} is flagged DUMMY DATA -- these are")
+        print("  ! placeholders, not measurements. Do not ship this figure.")
+        print("  " + "!" * 66)
 
 
 if __name__ == "__main__":
