@@ -7,6 +7,7 @@ the fix belongs in the experiment that wrote the CSV, not in the plot script.
     probing_<suite>.csv       `<suite>`: libero, libero_plus, mimicgen
     realworld_scaling.csv     one task, success rate over demo budgets
     realworld_alltasks.csv    all tasks, at a fixed set of budgets
+    realworld_multiview_vs_side.csv  multi-view versus side-only at five demos
     libero_radar_<split>.csv  `<split>`: h (held-out), nonh (non-held-out)
     libero_plus_radar.csv     LIBERO-Plus, one row per disturbance dimension
 
@@ -159,6 +160,22 @@ binomial noise the schema has no column for: 12/20 and 60/100 are both 0.60 with
 very different error bars. Add an `n_rollouts` column if the dumps record it;
 until then the numbers are point estimates only.
 
+## `realworld_multiview_vs_side.csv`
+
+Real-robot success rate for frozen video representations at a five-demo budget,
+comparing multi-view against side-only video. One row per task plus a pooled
+aggregate:
+
+| column          | meaning                                                    |
+|-----------------|------------------------------------------------------------|
+| `task`          | `task1` … `task4`, or `overall` for the pooled result       |
+| `multiview_sr`  | multi-view success rate as a fraction in [0, 1]             |
+| `side_only_sr`  | side-only success rate as a fraction in [0, 1]              |
+| `n_rollouts`    | evaluation rollouts for the row                             |
+
+The `overall` row is pooled across task rollouts. The plot script recomputes
+that weighted rate and refuses to draw if it disagrees with the dumped value.
+
 ## `libero_radar_<split>.csv`
 
 Per-suite LIBERO success rate at a fixed action budget, one file per held-out /
@@ -286,46 +303,13 @@ true video-free chain.
 Linear ridge probe (alpha 1), future-action-mean target at horizon 5,
 episode-level split, seed 42 — the standard protocol. Runs are the
 internally-comparable autoresearch dev-track chain (libero_multicam dev
-benchmark, 20k steps, effective batch 64, 2026-05): both `sv_sf` and `mv_sf`
-are latent width 32. `clam` and `dino` have not been run on this suite at all,
-and are dumped as the `0` placeholder.
-
-The dump also held two four-frame columns until the 2026-08-24 realignment:
-`mv_mf` (width 512, so that step bundled a width increase — a bridge run puts
-width alone at ~+0.09 of it) and `sv_mf`, which was never filled because its
-per-dim CSV lives on the workstation. Both were dropped to put this suite on
-the shared `clam`/`dino`/`sv_sf`/`mv_sf` column order the other two carry;
-`git show 9348889:results/probing_libero.csv` still has them, `mv_mf` included
-at a 0.767 mean. **Provisional precision**: values were
+benchmark, 20k steps, effective batch 64, 2026-05): `sv_sf` and `mv_sf` are
+latent width 32; `mv_mf` is width 512, so the mf step bundles the width
+increase (a bridge run puts width alone at ~+0.09 of it). `sv_mf` is 0 =
+not filled: the run exists but its per-dim CSV lives on the workstation,
+unreachable at time of writing. **Provisional precision**: values were
 recovered from the archived per-dimension figure's geometry, calibrated
 against six known CSV values (agreement ±0.01) — replace with the exact CSV
 numbers when the workstation is back. These are dev-scale probes, not the
-paper's full-scale teachers; the full-scale recipe is the dropped `mv_mf` plus
-Huber reconstruction loss (~+0.026 mean on this benchmark, 0.767 → 0.794), a
-number this figure therefore no longer shows.
-
-### Current `probing_libero_plus.csv` and `probing_mimicgen.csv` provenance (2026-08-24)
-
-Both dumps are the MLP probe (episode split, continuous features,
-`current_action` target) taken from each arm's own `probe_analysis` directory on
-MN5 scratch — `mean_r2` of the `mlp,episode,continuous,current_action` row for
-the `mean` row, and the per-dimension `r2` column for the seven others. Each
-file's header comment names the probe job per column. Every cell was re-read
-from those directories on 2026-08-24 and reproduces exactly.
-
-LIBERO-Plus scores all four arms over the **identical** 7,228,830 valid rows, so
-its columns are paired. MimicGen likewise shares 3,119,561 exported frames
-across arms, but note its `mv_sf` column is read at **ckpt 50k** while the other
-three are at **70k** — the 2-frame dual teacher was deliberately stopped early
-on the measured finding that probe R² saturates by 30k, and 50k is the
-checkpoint that arm's policy was grafted from.
-
-**The four columns are not seed- or recipe-matched, on either suite.** After the
-2026-08-24 refresh the LIBERO-Plus arms are run10 / run7 / run3 / run11, which
-differ in teacher seed (1003 for `clam` and `mv_sf`, 1000 for `dino` and
-`sv_sf`) and in dual-view augmentation, on top of the encoder or grounding
-change each column is meant to isolate. Seed alone is worth roughly +1 point of
-SR on a single-view teacher and has three times collapsed a teacher outright, so
-a between-column difference here is **not** attributable to the column's nominal
-factor. The figure is a per-arm collapse check and a rough magnitude; it is not
-a controlled ablation and a caption must not read it as one.
+paper's full-scale teachers; the full-scale recipe is `mv_mf` plus Huber
+reconstruction loss (~+0.026 mean on this benchmark, 0.767 → 0.794).

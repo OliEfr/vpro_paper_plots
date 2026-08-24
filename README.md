@@ -54,6 +54,7 @@ repo stale, which is the failure mode described below.
 python plot_probing.py         # figures/probing.pdf, from every results/probing_*.csv
 python plot_realworld.py       # figures/realworld_scaling.pdf
 python plot_realworld_bars.py  # figures/realworld_alltasks.pdf
+python plot_realworld_multiview_vs_side.py  # figures/realworld_multiview_vs_side.pdf
 python plot_libero_radar.py    # figures/libero_radar_{h,nonh}.pdf, one per split
 python plot_libero_plus_radar.py  # figures/libero_plus_radar.pdf
 python plot_radar_row.py       # figures/radar_row.pdf, all three radars in one figure*

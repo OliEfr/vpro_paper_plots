@@ -9,11 +9,11 @@
 #
 # Provisional precision: see the provenance note in results/README.md.
 action_dim,axis,clam_r2,dino_r2,sv_sf_r2,mv_sf_r2
-0,delta_x,0,0,0.508,0.841
-1,delta_y,0,0,0.921,0.936
-2,delta_z,0,0,0.905,0.926
-3,delta_rx,0,0,0.406,0.451
-4,delta_ry,0,0,0.217,0.404
-5,delta_rz,0,0,0.304,0.442
-6,gripper,0,0,0.558,0.608
-mean,all_dims,0,0,0.546,0.658
+0,delta_x,0,0,0.508,0.8801
+1,delta_y,0,0,0.921,0.9048
+2,delta_z,0,0,0.905,0.9225
+3,delta_rx,0,0,0.406,0.5014
+4,delta_ry,0,0,0.217,0.4370
+5,delta_rz,0,0,0.304,0.4652
+6,gripper,0,0,0.558,0.5988
+mean,all_dims,0,0,0.546,0.6728

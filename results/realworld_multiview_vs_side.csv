@@ -1,0 +1,6 @@
+task,multiview_sr,side_only_sr,n_rollouts
+task3,0.48,0.32,25
+task4,0.68,0.24,25
+task1,0.20,0.08,25
+task2,0.48,0.20,25
+overall,0.46,0.21,100
