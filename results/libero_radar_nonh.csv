@@ -1,17 +1,20 @@
-# DUMMY DATA -- placeholder values at 10-decimal precision, NOT measurements.
-# Delete this header line when the real numbers land; the plot script keys its
-# warning banner off it. See results/README.md.
-#
-# Shaped to resemble the numbers the placeholder radar images showed, so the
-# layout can be reviewed at final width -- but the 10-decimal tails are there
-# to make it obvious at a glance that no run produced these.
+# Real measurements, 2026-08-05 aggregation (session: lam1o5 sweeps).
+# Non-held-out split: mean over each suite's 8 non-held-out tasks, 100
+# rollouts/task, success = sum_rewards > 0. Protocol: n_action_steps=10,
+# ckpt 070000, EP100/BS25, async, osmesa, render5.
+# Methods (all policy5 = 5 action-labelled eps/task, lam1 teacher [1,5,9]):
+#   action_only = frankaonly arm, MN5 job 43558446 (no cross-emb video; still
+#                 latent-supervised by the shared video-trained teacher)
+#   learned     = withvideo arm, job 43582857 (+ iiwa/kinova3 success video)
+#   oracle      = withvideo mix with action-derived oracle latents, job 43605734
+# Single seed per cell.
 #
 # The `all` row is the mean over the four suite rows above it. It is stored
 # rather than derived so a real dump can report the aggregate its own way; the
 # plot script recomputes it and warns if the two disagree by more than 0.005.
 suite,action_only_sr,learned_sr,oracle_sr
-object,0.5712345678,0.7823456789,0.9512345678
-spatial,0.6834567891,0.7234567891,0.8045678912
-goal,0.7156789123,0.7534567891,0.8523456789
-libero_10,0.4787654321,0.4998765432,0.6187654321
-all,0.6122839253,0.6897839501,0.8067283925
+object,0.6750,0.8150,0.7388
+spatial,0.7575,0.7200,0.8063
+goal,0.7375,0.7938,0.8538
+libero_10,0.3813,0.4650,0.4887
+all,0.6378,0.6984,0.7219

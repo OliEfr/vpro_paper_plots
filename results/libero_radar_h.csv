@@ -1,17 +1,23 @@
-# DUMMY DATA -- placeholder values at 10-decimal precision, NOT measurements.
-# Delete this header line when the real numbers land; the plot script keys its
-# warning banner off it. See results/README.md.
-#
-# Shaped to resemble the numbers the placeholder radar images showed, so the
-# layout can be reviewed at final width -- but the 10-decimal tails are there
-# to make it obvious at a glance that no run produced these.
+# Real measurements, 2026-08-05 aggregation (session: lam1o5 sweeps).
+# Held-out split: mean over each suite's 2 held-out tasks (object t5/t8,
+# spatial t2/t3, goal t7/t8, libero_10 t3/t5), 100 rollouts/task, success =
+# sum_rewards > 0. Protocol: n_action_steps=10, ckpt 070000, EP100/BS25,
+# async, osmesa, render5.
+# Methods (all policy5 = 5 action-labelled eps/task, lam1 teacher [1,5,9]):
+#   action_only = frankaonly arm, MN5 job 43558446
+#   learned     = withvideo arm, job 43582857
+#   oracle      = withvideo mix with action-derived oracle latents, job 43605734
+# Held-out tasks never receive Franka action data; the video arms see other
+# robots' success videos of these tasks (transductive). libero_10 contains the
+# task no robot ever solves ("bowl in bottom drawer"), 0% for every method.
+# Single seed per cell.
 #
 # The `all` row is the mean over the four suite rows above it. It is stored
 # rather than derived so a real dump can report the aggregate its own way; the
 # plot script recomputes it and warns if the two disagree by more than 0.005.
 suite,action_only_sr,learned_sr,oracle_sr
-object,0.0512345678,0.3023456789,0.9187654321
-spatial,0.0798765432,0.2234567891,0.8756789123
-goal,0.0623456789,0.1412345678,0.8998765432
-libero_10,0.0387654321,0.1023456789,0.6812345678
-all,0.0580555555,0.1923456787,0.8438888638
+object,0.0000,0.4500,0.8800
+spatial,0.0150,0.6700,0.6000
+goal,0.0000,0.1850,0.7450
+libero_10,0.0600,0.4250,0.4250
+all,0.0187,0.4325,0.6625

@@ -11,19 +11,13 @@ Encoding: x groups by task, **color** identifies the method, **hatch**
 identifies the demo budget. Two channels for two factors, so a reader can hold
 one fixed and scan the other.
 
-Bars are ordered method-major, so within a task each method's budgets stay
-contiguous: the reader sees one Action-Only block and one "ours" block, and the
-0 -> 5 step inside each. The cost is that the like-for-like comparison -- the
-two methods at the *same* budget -- is no longer adjacent, so reading the gap at
-5 demos means skipping over the other method's bars. Swap the two loops that
-fill `offsets` to get budget-major ordering back, which pairs the methods at
-each budget instead.
-
-DUMMY DATA. ``results/realworld_alltasks.csv`` currently holds placeholders at
-10-decimal precision, not measurements, so the layout can be reviewed before
-the runs finish. The file is flagged with a ``# DUMMY DATA`` header line and
-the script prints a banner while it is there; drop the line when the real
-numbers land.
+Bars are ordered budget-major, so within a task each budget's methods stay
+contiguous: the reader sees one 0-demo block and one 5-demo block, and the
+Action-Only -> ours gap inside each. That gap is the figure's claim, so it is
+the one made adjacent. The cost is that a single method's 0 -> 5 step is no
+longer contiguous, so reading how much a method gains from demos means skipping
+over the other method's bar. Swap the two loops that fill `offsets` to get
+method-major ordering, which keeps each method's budgets together instead.
 
 EMBEDDING IN LATEX
 ------------------
@@ -33,10 +27,9 @@ plain figure, not a figure*. Needs \usepackage{graphicx}.
     \begin{figure}[t]
       \centering
       \includegraphics[width=\columnwidth]{figures/realworld_alltasks.pdf}
-      \caption{Real-world success rate over 20 rollouts on four manipulation
-      tasks, at two demonstration budgets. Video pretraining helps most where
-      robot data is scarcest: at zero demonstrations the action-only policy is
-      near chance on every task.}
+      \caption{Real-world success rate over 25 rollouts on four manipulation
+      tasks, at two demonstration budgets. Video pretraining improves success
+      on every task at both budgets.}
       \label{fig:realworld_alltasks}
     \end{figure}
 
@@ -199,7 +192,7 @@ def build_legends(fig, methods, budgets, left):
     budget_handles = [
         Patch(facecolor="white", edgecolor=style.MARKER_EDGE, linewidth=0.6,
               hatch=style.HATCHES[i % len(style.HATCHES)],
-              label=f"{int(b)} demos")
+              label=f"{int(b)} robot eps.")
         for i, b in enumerate(budgets)
     ]
 
@@ -251,17 +244,18 @@ def main():
     n_tasks, n_methods, n_budgets = len(task_ids), len(methods), len(budgets)
     x = np.arange(n_tasks, dtype=float)
 
-    # Bar geometry. Method-major: one cluster of n_budgets bars per method, with
+    # Bar geometry. Budget-major: one cluster of n_methods bars per budget, with
     # a gap between clusters so the eye reads "two blocks" rather than "four
-    # bars". Each method's budgets stay contiguous, so its 0 -> 5 step is read
-    # within a cluster and the two methods compare as whole blocks.
+    # bars". Each budget's methods stay contiguous, so the like-for-like
+    # comparison at one budget is adjacent and the two budgets compare as whole
+    # blocks.
     span, cluster_gap = 0.84, 0.14
-    w = (span - cluster_gap * (n_methods - 1)) / (n_methods * n_budgets)
+    w = (span - cluster_gap * (n_budgets - 1)) / (n_methods * n_budgets)
     offsets = {}
     edge = -span / 2
-    for mi, m in enumerate(methods):
-        for bi, b in enumerate(budgets):
-            offsets[(m, b)] = edge + w / 2 + (mi * n_budgets + bi) * w + mi * cluster_gap
+    for bi, b in enumerate(budgets):
+        for mi, m in enumerate(methods):
+            offsets[(m, b)] = edge + w / 2 + (bi * n_methods + mi) * w + bi * cluster_gap
 
     # Explicit margins, not constrained_layout: the two stacked legends are
     # placed by hand (see build_legends), so the space they need is reserved by
@@ -272,9 +266,11 @@ def main():
     # silently rescales the legend and tick-label margins whenever the height
     # changes -- and the failure mode is the two legend rows sliding into each
     # other, which is easy to miss in a thumbnail.
-    h = 2.0
     legend_in = 0.48   # two legend rows above the axes
-    ticks_in = 0.46    # three-line task names below it (see tasks.wrapped)
+    # STIX, used by the no-LaTeX SciencePlots style, has taller descenders than
+    # Computer Modern. Give that variant more room without shrinking the axes.
+    ticks_in = 0.62 if args.style == "science" else 0.46
+    h = 1.06 + legend_in + ticks_in
     left = 0.135
     fig, ax = plt.subplots(figsize=(style.COL_WIDTH, h))
     fig.subplots_adjust(left=left, right=0.985,
@@ -304,6 +300,17 @@ def main():
     ax.set_xticklabels([tasks.wrapped(t) for t in task_ids])
     ax.set_axisbelow(True)
     ax.grid(axis="y")
+
+    # Task separators, at the midpoints between groups. Budget-major ordering
+    # puts two blocks in each task, so without a rule the eye can read the gap
+    # *between* two tasks as another block boundary. Set in INK_MUTED at the
+    # spine weight rather than the lighter GRID: the y grid is a reading aid
+    # behind the data, this is structure, and at GRID it did not out-rank the
+    # gaps it is meant to separate. Still recessive grey, never black -- it is a
+    # rule, not data -- and it stops at the axes rather than running through the
+    # tick labels below.
+    for xi in x[:-1]:
+        ax.axvline(xi + 0.5, color=style.INK_MUTED, linewidth=0.6, zorder=0)
     ax.tick_params(axis="x", length=0)
     ax.set_ylabel("Success Rate [%]")
 
@@ -315,8 +322,8 @@ def main():
         print(f"\n  note: {n_missing} empty cell(s) not yet run; drawn as gaps")
     if is_dummy:
         print("\n  " + "!" * 66)
-        print(f"  ! {args.csv.name} is flagged DUMMY DATA -- these are placeholders,")
-        print("  ! not measurements. Do not ship this figure in the paper.")
+        print(f"  ! {args.csv.name} is flagged DUMMY DATA -- it still contains")
+        print("  ! placeholders. Do not ship this figure in the paper.")
         print("  " + "!" * 66)
 
 

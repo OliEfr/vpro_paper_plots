@@ -1,0 +1,22 @@
+# LIBERO play-data (LIBERO-90 breadth) sweep (paper tab:playdata_sweep),
+# measured 2026-08-04..05. One row per (split, % of LIBERO-90 play data).
+# play_fraction_pct selects a seeded nested task subset of the filtered
+# LIBERO-90 tail (71 tasks / 3793 eps total): 0 = none, 33 = 24 tasks /
+# 1125 eps, 66 = 47 tasks / 2605 eps (NOT RUN - cells left empty), 100 = all.
+# Play data carries action AND latent supervision (realistic-availability
+# setting), and the teacher is retrained per fraction (lam1o5 family,
+# single-future offsets [5]) - so the 100 row is a different teacher draw
+# than libero_budget_sweep.csv's lam1 teacher and the two must not be mixed.
+# Fixed action budget: 5 eps/task (policy5). Splits/protocol as in
+# libero_budget_sweep.csv. MN5 policy jobs: action_only 44161088 (0),
+# 44161093 (33), 44161098 (100); video 44302385 (0), 44161091 (33),
+# 44161096 (100). Single seed per cell.
+split,play_fraction_pct,action_only_sr,video_sr
+nonh,0,0.6219,0.6656
+nonh,33,0.5962,0.6409
+nonh,66,,
+nonh,100,0.6847,0.6566
+h,0,0.0000,0.2788
+h,33,0.0050,0.4175
+h,66,,
+h,100,0.0688,0.4925
