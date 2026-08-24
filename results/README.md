@@ -7,6 +7,7 @@ the fix belongs in the experiment that wrote the CSV, not in the plot script.
     probing_<suite>.csv       `<suite>`: libero, libero_plus, mimicgen
     realworld_scaling.csv     one task, success rate over demo budgets
     realworld_alltasks.csv    all tasks, at a fixed set of budgets
+    realworld_multiview_vs_side.csv  multi-view versus side-only at five demos
     libero_radar_<split>.csv  `<split>`: h (held-out), nonh (non-held-out)
     libero_plus_radar.csv     LIBERO-Plus, one row per disturbance dimension
 
@@ -96,6 +97,22 @@ Success rate is a proportion over a finite number of rollouts, so it carries
 binomial noise the schema has no column for: 12/20 and 60/100 are both 0.60 with
 very different error bars. Add an `n_rollouts` column if the dumps record it;
 until then the numbers are point estimates only.
+
+## `realworld_multiview_vs_side.csv`
+
+Real-robot success rate for frozen video representations at a five-demo budget,
+comparing multi-view against side-only video. One row per task plus a pooled
+aggregate:
+
+| column          | meaning                                                    |
+|-----------------|------------------------------------------------------------|
+| `task`          | `task1` … `task4`, or `overall` for the pooled result       |
+| `multiview_sr`  | multi-view success rate as a fraction in [0, 1]             |
+| `side_only_sr`  | side-only success rate as a fraction in [0, 1]              |
+| `n_rollouts`    | evaluation rollouts for the row                             |
+
+The `overall` row is pooled across task rollouts. The plot script recomputes
+that weighted rate and refuses to draw if it disagrees with the dumped value.
 
 ## `libero_radar_<split>.csv`
 
