@@ -94,9 +94,9 @@ the width so it cannot go stale. `python plot_probing.py --help` prints it.
 The float environment is not a free choice: it follows from the width the script
 built at. Anything sized to `TEXT_WIDTH` (7.140in) needs `figure*` and
 `width=\textwidth`; anything sized to `COL_WIDTH` (3.487in) needs a plain
-`figure` and `width=\columnwidth`. `probing.pdf` and `radar_row.pdf` are the
-former, the real-world figures and the three single-column radars are the
-latter.
+`figure` and `width=\columnwidth`. `probing.pdf`, `radar_row.pdf` and
+`realworld_alltasks.pdf` are the former, the other real-world figures and the
+three single-column radars are the latter.
 
 **Never rescale.** A `width=0.9\columnwidth` scales the text with it, and 8pt
 figure text stops being 8pt on the page. If a figure needs to be smaller, shrink
@@ -124,8 +124,8 @@ exactly that, and it keeps the set consistent.
 
 `plot_radar_row.py` does **not** override. It packs the same three radars into a
 `figure*`, where a panel is only ~2.4in wide and 10pt labels would swamp the
-circle they belong to, so it stays at the shared 8pt — matching `probing.pdf`,
-the repo's other two-column figure. So the same radar is 10pt on its own and 8pt
+circle they belong to, so it stays at the shared 8pt — matching `probing.pdf`
+and the other two-column figures. So the same radar is 10pt on its own and 8pt
 in the row, which is correct: both land on the page at the size the width they
 were built for implies.
 

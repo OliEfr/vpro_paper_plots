@@ -139,7 +139,7 @@ Real-robot success rate. Both files share one schema, one row per (task, budget)
 
 | column        | meaning                                                       |
 |---------------|---------------------------------------------------------------|
-| `task`        | short id, `task1` … `task4` — display names in `tasks.py`      |
+| `task`        | short id, `task1` … `task6` — display names in `tasks.py`      |
 | `n_demos`     | demo budget                                                   |
 | `<method>_sr` | success rate as a **fraction in [0, 1]** — any column ending `_sr` |
 | `n_rollouts`  | optional number of evaluation rollouts behind each method's rate |

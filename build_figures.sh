@@ -46,6 +46,7 @@ if [[ $# -gt 0 ]]; then
   SCRIPTS=("${SCRIPTS[@]/%.py.py/.py}")
 else
   SCRIPTS=(plot_probing.py plot_realworld.py plot_realworld_bars.py
+           plot_realworld_multiview_vs_side.py
            plot_libero_radar.py plot_libero_plus_radar.py plot_radar_row.py)
 fi
 

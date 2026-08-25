@@ -21,17 +21,24 @@ method-major ordering, which keeps each method's budgets together instead.
 
 EMBEDDING IN LATEX
 ------------------
-Built at 3.487in = \columnwidth (252pt, per IEEEtran journal mode), so it is a
-plain figure, not a figure*. Needs \usepackage{graphicx}.
+Built at 7.140in = \textwidth (516pt, per IEEEtran journal mode), so this is a
+figure*, NOT a plain figure, and it needs \usepackage{graphicx}. On IEEEtran a
+figure* floats to the top of a page; \usepackage{stfloats} lets it sit at the
+bottom instead.
 
-    \begin{figure}[t]
+    \begin{figure*}[t]
       \centering
-      \includegraphics[width=\columnwidth]{figures/realworld_alltasks.pdf}
-      \caption{Real-world success rate over 25 rollouts on four manipulation
+      \includegraphics[width=\textwidth]{figures/realworld_alltasks.pdf}
+      \caption{Real-world success rate over 25 rollouts on six manipulation
       tasks, at two demonstration budgets. Video pretraining improves success
       on every task at both budgets.}
       \label{fig:realworld_alltasks}
-    \end{figure}
+    \end{figure*}
+
+It was a single-column figure through four tasks. Six groups do not fit
+\columnwidth -- at 0.58in per group the three-line tick labels collide -- so it
+moved to \textwidth. If the task list shrinks back, move it back rather than
+leaving a half-empty two-column float.
 
 Do not rescale it -- see README.md.
 
@@ -270,10 +277,19 @@ def main():
     # STIX, used by the no-LaTeX SciencePlots style, has taller descenders than
     # Computer Modern. Give that variant more room without shrinking the axes.
     ticks_in = 0.62 if args.style == "science" else 0.46
-    h = 1.06 + legend_in + ticks_in
-    left = 0.135
-    fig, ax = plt.subplots(figsize=(style.COL_WIDTH, h))
-    fig.subplots_adjust(left=left, right=0.985,
+    # Axes height set from the width rather than left at the single-column 1.06in:
+    # across \textwidth that would draw a 7:1 letterbox, and the 25-point gaps
+    # this figure is about would flatten out of readability.
+    # fig_w, not w -- `w` above is the bar width in data units.
+    fig_w, axes_in = style.TEXT_WIDTH, 1.50
+    h = axes_in + legend_in + ticks_in
+    # Side margins in inches like the vertical ones, not as figure fractions: a
+    # fraction tuned at \columnwidth silently doubles the margin at \textwidth,
+    # and the y label ends up floating half an inch off its own axis.
+    left_in, right_in = 0.47, 0.05
+    left = left_in / fig_w
+    fig, ax = plt.subplots(figsize=(fig_w, h))
+    fig.subplots_adjust(left=left, right=1 - right_in / fig_w,
                         bottom=ticks_in / h, top=1 - legend_in / h)
 
     for bi, b in enumerate(budgets):
