@@ -8,13 +8,19 @@ story occupies one figure in the paper instead of three. Run with no arguments:
 
     python plot_realworld_row.py
 
-SCIENCE STYLE AND PDF ONLY
---------------------------
-Unlike every other script here this one does not take ``--style`` and does not
-write a PNG. It exists to be dropped into the paper, and the paper takes the
-SciencePlots variant; a paper-style twin nobody includes is one more thing to
-keep in sync for nothing. That also means ``build_figures.sh`` runs it once
-rather than twice -- see the SCIENCE_ONLY list there.
+SCIENCE STYLE ONLY
+------------------
+Unlike every other script here this one does not take ``--style``. It exists to
+be dropped into the paper, and the paper takes the SciencePlots variant; a
+paper-style twin nobody includes is one more thing to keep in sync for nothing.
+That also means ``build_figures.sh`` runs it once rather than twice -- see the
+SCIENCE_ONLY list there.
+
+It does write the PNG alongside the PDF, the way every other script here does.
+The PDF is still the only file the paper includes; the PNG is for the last step
+of README.md's checklist, and this is the figure that needs it most -- the panel
+widths are hand-set and MIN_TICK_PITCH_IN only guards the pitch, so a tick-label
+collision is caught by eye or not at all.
 
 If a paper-style version is ever wanted, add the ``--style`` switch back the way
 plot_radar_row.py has it; the draw code below is already style-agnostic.
@@ -478,13 +484,7 @@ def main():
     panel_legend(fig, line_handles,
                  lefts["c"], axes_in["c"], h, ncol=1)
 
-    # PDF only, written here rather than through style.save, which also emits a
-    # PNG -- see the note at the top of this file.
-    style.FIG_DIR.mkdir(exist_ok=True)
-    out = style.FIG_DIR / f"{OUT_NAME}.pdf"
-    fig.savefig(out)
-    plt.close(fig)
-    print(f"  wrote {out.relative_to(style.FIG_DIR.parent)}")
+    style.save(fig, OUT_NAME)
 
 
 if __name__ == "__main__":
