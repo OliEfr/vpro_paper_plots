@@ -94,9 +94,17 @@ the width so it cannot go stale. `python plot_probing.py --help` prints it.
 The float environment is not a free choice: it follows from the width the script
 built at. Anything sized to `TEXT_WIDTH` (7.140in) needs `figure*` and
 `width=\textwidth`; anything sized to `COL_WIDTH` (3.487in) needs a plain
-`figure` and `width=\columnwidth`. `probing.pdf`, `radar_row.pdf` and
-`realworld_alltasks.pdf` are the former, the other real-world figures and the
-three single-column radars are the latter.
+`figure` and `width=\columnwidth`. `probing.pdf` and `radar_row.pdf` are the
+former, the other real-world figures and the three single-column radars are the
+latter.
+
+`realworld_alltasks.pdf` is the one exception, and it is worth knowing about
+before you copy a snippet from a neighbouring script. Its six task groups do not
+fit a column, but `\textwidth` leaves the bars swimming, so it is built at
+4.64in — a width set by its own tick labels. It still needs a `figure*`, since
+it overflows a column, but it must be included with **no `width=` key at all**,
+so LaTeX places it at its natural size. `width=\textwidth` there would scale it
+by 1.54× and put the 8pt text on the page at 12.3pt.
 
 **Never rescale.** A `width=0.9\columnwidth` scales the text with it, and 8pt
 figure text stops being 8pt on the page. If a figure needs to be smaller, shrink

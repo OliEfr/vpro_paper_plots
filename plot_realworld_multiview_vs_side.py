@@ -7,8 +7,13 @@ Reads ``results/realworld_multiview_vs_side.csv`` and emits
 
 Encoding: y identifies the task, x is success rate in percent, and color plus
 hatch identify the view configuration. The horizontal layout leaves room for
-the full task names within one IEEE column. The pooled Overall row is separated
-from the four task rows by a rule.
+the full task names within one IEEE column.
+
+The figure carried a pooled Overall row until 2026-08-25 and no longer does --
+it is per-task only. Pooling four tasks of 25 rollouts each hid that the gap is
+not uniform across them, and the row read as a fifth task however it was ruled
+off. If a summary number is wanted, put it in the caption where it cannot be
+mistaken for a measurement of its own.
 
 EMBEDDING IN LATEX
 ------------------
@@ -19,19 +24,20 @@ plain figure, not a figure*. Needs \usepackage{graphicx}.
       \centering
       \includegraphics[width=\columnwidth]{figures/realworld_multiview_vs_side.pdf}
       \caption{Real-world success rate at a five-robot-demo budget for frozen
-      video representations using multi-view or side-only video. Overall pools
-      100 rollouts across four tasks.}
+      video representations, using multi-view or single-view video. 25 rollouts
+      per task.}
       \label{fig:realworld_multiview_vs_side}
     \end{figure}
 
 Do not rescale it -- see README.md.
 
-Input schema (see results/README.md). One row per task plus an Overall row:
+Input schema (see results/README.md). One row per task:
 
     task,multiview_sr,side_only_sr,n_rollouts
 
-Success rates are stored as fractions in [0, 1]. ``n_rollouts`` is used to
-cross-check that Overall is the rollout-weighted pooled result.
+Success rates are stored as fractions in [0, 1]. ``n_rollouts`` is carried per
+task; it is the denominator behind each rate rather than something this figure
+draws.
 """
 
 import argparse
@@ -46,21 +52,29 @@ RESULTS_DIR = Path(__file__).resolve().parent / "results"
 DEFAULT_CSV = RESULTS_DIR / "realworld_multiview_vs_side.csv"
 
 METHODS = ["multiview_sr", "side_only_sr"]
+# The column stays `side_only_sr` while the label reads "Single-view" -- the CSV
+# keys on the measurement, the figure shows the name the paper uses, and this
+# mapping is where the two are allowed to differ.
 METHOD_LABELS = {
     "multiview_sr": "Multi-View",
-    "side_only_sr": "Side-Only",
+    "side_only_sr": "Single-view",
 }
 TASK_LABELS = {
     "task3": "Banana in\ncardboard box",
     "task4": "Banana in\nblack bowl",
     "task1": "Milk on\npink plate",
     "task2": "Salt on\npink plate",
-    "overall": r"$\mathbf{Overall}$",
 }
 
 
 def load(csv_path):
-    """Load values and verify the pooled Overall row."""
+    """Load and validate the per-task rows.
+
+    An `overall` row used to be required here and cross-checked against the
+    rollout-weighted pooling of the task rows. The figure no longer draws one,
+    so the row is now rejected rather than ignored: silently dropping it would
+    let a dump carry a pooled number that nothing checks any more.
+    """
     df = pd.read_csv(csv_path)
     required = {"task", "n_rollouts", *METHODS}
     missing = required.difference(df.columns)
@@ -71,34 +85,18 @@ def load(csv_path):
         duplicated = ", ".join(df.loc[df["task"].duplicated(), "task"].astype(str))
         raise SystemExit(f"{csv_path.name}: duplicate task row(s): {duplicated}")
 
-    overall_rows = df[df["task"] == "overall"]
-    task_rows = df[df["task"] != "overall"]
-    if len(overall_rows) != 1:
-        raise SystemExit(f"{csv_path.name}: expected exactly one overall row")
-    if task_rows.empty:
+    if (df["task"] == "overall").any():
+        raise SystemExit(
+            f"{csv_path.name}: holds an 'overall' row, which this figure no "
+            f"longer draws -- delete it, and put the pooled number in the "
+            f"caption if the paper needs one")
+    if df.empty:
         raise SystemExit(f"{csv_path.name}: no task rows")
 
     for method in METHODS:
         values = df[method].to_numpy(dtype=float)
         if np.isnan(values).any() or np.min(values) < 0 or np.max(values) > 1:
             raise SystemExit(f"{csv_path.name}: {method} must contain fractions in [0, 1]")
-
-        weights = task_rows["n_rollouts"].to_numpy(dtype=float)
-        pooled = np.average(task_rows[method].to_numpy(dtype=float), weights=weights)
-        dumped = float(overall_rows.iloc[0][method])
-        if not np.isclose(pooled, dumped, atol=1e-9):
-            raise SystemExit(
-                f"{csv_path.name}: {method} overall is {dumped:.4f}, "
-                f"but pooling the task rows gives {pooled:.4f}"
-            )
-
-    expected_rollouts = int(task_rows["n_rollouts"].sum())
-    dumped_rollouts = int(overall_rows.iloc[0]["n_rollouts"])
-    if dumped_rollouts != expected_rollouts:
-        raise SystemExit(
-            f"{csv_path.name}: overall n_rollouts is {dumped_rollouts}, "
-            f"but task rows sum to {expected_rollouts}"
-        )
 
     return df
 
@@ -110,7 +108,6 @@ def print_table(df):
     print("  " + "-" * len(head))
     for row in df.itertuples(index=False):
         label = TASK_LABELS.get(row.task, str(row.task)).replace("\n", " ")
-        label = label.replace(r"$\mathbf{", "").replace("}$", "")
         cells = "".join(f"{getattr(row, m) * 100:>14.1f}" for m in METHODS)
         print("  " + f"{label:<25}" + cells)
 
@@ -148,10 +145,24 @@ def main():
     bar_h = 0.32
 
     # The horizontal layout spends width on readable task names and height on
-    # five compact groups. Margins are explicit because savefig.bbox is off.
-    h = 2.45
+    # the task rows. Margins are explicit because savefig.bbox is off.
+    #
+    # Height follows the row count at a fixed pitch, rather than the rows being
+    # divided into a constant height: dropping the Overall row would otherwise
+    # have stretched the remaining four to fill the same 2.45in, which changes
+    # the bar density of a figure whose data did not change.
+    # top_in is the legend band: one row of text plus its gap to the axes, and
+    # no more. It was 0.39in when the figure was 2.45in tall and the slack was
+    # not obvious; at four rows the same band reads as a hole above the plot.
+    row_in, top_in, bottom_in = 0.333, 0.27, 0.39
+    h = n_rows * row_in + top_in + bottom_in
+    # right_in holds the half-width of the last x tick label. At the old 0.02
+    # fraction (0.07in) the "100" overran the canvas by 3px and printed shaved,
+    # which is the clipping the no-bbox_inches rule in README.md warns about.
+    right_in = 0.11
     fig, ax = plt.subplots(figsize=(style.COL_WIDTH, h))
-    fig.subplots_adjust(left=0.34, right=0.98, bottom=0.16, top=0.84)
+    fig.subplots_adjust(left=0.34, right=1 - right_in / style.COL_WIDTH,
+                        bottom=bottom_in / h, top=1 - top_in / h)
 
     # Keep the established paper semantics: the stronger/ours arm is green and
     # hatched, the baseline is blue and plain. Hue never carries identity alone.
@@ -183,10 +194,6 @@ def main():
     ax.tick_params(axis="y", length=0)
     ax.set_xlabel("Success Rate [%]")
 
-    # Overall is a pooled summary rather than a fifth task.
-    overall_index = int(df.index[df["task"] == "overall"][0])
-    ax.axhline(overall_index - 0.5, color=style.INK_MUTED, linewidth=0.8, zorder=2)
-
     handles = [
         Patch(
             facecolor=method_style[m][0],
@@ -200,7 +207,7 @@ def main():
     fig.legend(
         handles=handles,
         loc="upper left",
-        bbox_to_anchor=(0.34, 0.99),
+        bbox_to_anchor=(0.34, 1.0),
         ncol=2,
         frameon=False,
         borderaxespad=0,

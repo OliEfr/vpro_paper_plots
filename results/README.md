@@ -163,18 +163,25 @@ until then the numbers are point estimates only.
 ## `realworld_multiview_vs_side.csv`
 
 Real-robot success rate for frozen video representations at a five-demo budget,
-comparing multi-view against side-only video. One row per task plus a pooled
-aggregate:
+comparing multi-view against single-view video. One row per task:
 
 | column          | meaning                                                    |
 |-----------------|------------------------------------------------------------|
-| `task`          | `task1` … `task4`, or `overall` for the pooled result       |
+| `task`          | `task1` … `task4` — display names in the plot script        |
 | `multiview_sr`  | multi-view success rate as a fraction in [0, 1]             |
-| `side_only_sr`  | side-only success rate as a fraction in [0, 1]              |
+| `side_only_sr`  | single-view success rate as a fraction in [0, 1]            |
 | `n_rollouts`    | evaluation rollouts for the row                             |
 
-The `overall` row is pooled across task rollouts. The plot script recomputes
-that weighted rate and refuses to draw if it disagrees with the dumped value.
+`side_only_sr` keeps its name while the figure labels it **Single-view**. The
+column keys on the measurement and the label is what the paper calls it; the
+mapping between them lives in the plot script's `METHOD_LABELS`.
+
+**No `overall` row.** This file carried one until 2026-08-25, pooled across task
+rollouts and cross-checked by the plot script. The figure no longer draws it —
+pooling four 25-rollout tasks hid that the gap is not uniform across them — and
+the script now **rejects** the row rather than ignoring it, so a dump cannot
+carry a pooled number that nothing verifies. A summary figure for the paper
+belongs in the caption.
 
 ## `libero_radar_<split>.csv`
 

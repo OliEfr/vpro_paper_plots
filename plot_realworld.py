@@ -68,7 +68,7 @@ DEFAULT_CSV = RESULTS_DIR / "realworld_scaling.csv"
 # order fixes the plotting order, the color and the marker assignment.
 METHOD_LABELS = {
     "action_only_sr": "Action-Only",
-    "video_sr": "w/ Video (ours)",
+    "video_sr": "w/ Human Videos (ours)",
 }
 
 
@@ -131,13 +131,17 @@ def print_table(task_label, n_demos, values, methods):
     round fraction.
 
     The figure deliberately shows no numbers; this is where they live."""
-    head = f"{'demos':<8}" + "".join(f"{label_for(m):>18}" for m in methods)
+    # Column width follows the longest method label rather than sitting at a
+    # constant: a label longer than the constant widens only the header, and the
+    # numbers below it stop lining up with the name they belong to.
+    cw = max(18, max(len(label_for(m)) for m in methods) + 2)
+    head = f"{'demos':<8}" + "".join(f"{label_for(m):>{cw}}" for m in methods)
     print(f"\n  {task_label}  (success rate, %)")
     print("  " + head)
     print("  " + "-" * len(head))
     for i, n in enumerate(n_demos):
         cells = "".join(
-            f"{values[m][i]:>18.4f}" if not np.isnan(values[m][i]) else f"{'--':>18}"
+            f"{values[m][i]:>{cw}.4f}" if not np.isnan(values[m][i]) else f"{'--':>{cw}}"
             for m in methods)
         print("  " + f"{int(n):<8}" + cells)
 

@@ -47,10 +47,27 @@ if [[ $# -gt 0 ]]; then
 else
   SCRIPTS=(plot_probing.py plot_realworld.py plot_realworld_bars.py
            plot_realworld_multiview_vs_side.py
-           plot_libero_radar.py plot_libero_plus_radar.py plot_radar_row.py)
+           plot_libero_radar.py plot_libero_plus_radar.py plot_radar_row.py
+           plot_realworld_row.py)
 fi
 
+# Scripts that produce only the science variant and take no --style switch. The
+# combined row figure is built to be pasted into the paper, which uses that
+# style; a paper-style twin nobody includes is one more thing to keep in sync.
+SCIENCE_ONLY=(plot_realworld_row.py)
+
 for s in "${SCRIPTS[@]}"; do
+  science_only=false
+  for so in "${SCIENCE_ONLY[@]}"; do
+    [[ "$s" == "$so" ]] && science_only=true
+  done
+
+  if $science_only; then
+    echo "=== $s (science only)"
+    "$PY" "$s"
+    continue
+  fi
+
   for style in paper science; do
     echo "=== $s --style $style"
     "$PY" "$s" --style "$style"

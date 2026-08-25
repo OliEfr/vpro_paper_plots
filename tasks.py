@@ -43,6 +43,20 @@ TASK_CATEGORIES = {
     "task6": "[novel bkg]",
 }
 
+# The same categories with "novel" dropped, for panels too narrow for the full
+# form -- a third of \textwidth gives a six-group axis about 0.41in per tick,
+# and "[novel place]" alone is 0.61in. Every task carries both spellings so the
+# short one cannot drift into naming a different set of categories; the figure
+# that uses it has to expand them in its caption.
+TASK_CATEGORIES_SHORT = {
+    "task1": "[obj]",
+    "task2": "[obj]",
+    "task3": "[place]",
+    "task4": "[place]",
+    "task5": "[move]",
+    "task6": "[bkg]",
+}
+
 _EMPH = re.compile(r"\*([^*]+)\*")
 
 
@@ -67,11 +81,12 @@ def label(task):
     return _plain(TASK_LABELS.get(str(task), str(task)))
 
 
-def category(task):
-    return TASK_CATEGORIES.get(str(task), "")
+def category(task, short=False):
+    table = TASK_CATEGORIES_SHORT if short else TASK_CATEGORIES
+    return table.get(str(task), "")
 
 
-def wrapped(task):
+def wrapped(task, short=False):
     """Category, then the name broken after its first word, for x tick labels.
 
     Three lines, not two: at column width four groups leave about 0.75in per
@@ -83,9 +98,13 @@ def wrapped(task):
     known, so the tick row is one height for all of them and the baselines stay
     level. The alternative, rotating the labels, costs more vertical space than
     the extra line does and reads worse.
+
+    ``short=True`` swaps in the abbreviated category (see
+    TASK_CATEGORIES_SHORT). The layout is otherwise identical, so a narrow panel
+    and a full-width one still stack their labels the same way.
     """
     raw = TASK_LABELS.get(str(task), str(task))
     head, _, tail = raw.partition(" ")
     name = f"{head}\n{tail}" if tail else head
-    cat = category(task)
+    cat = category(task, short=short)
     return _bold(f"{cat}\n{name}" if cat else name)

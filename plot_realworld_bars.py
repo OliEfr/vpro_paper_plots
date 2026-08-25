@@ -21,24 +21,29 @@ method-major ordering, which keeps each method's budgets together instead.
 
 EMBEDDING IN LATEX
 ------------------
-Built at 7.140in = \textwidth (516pt, per IEEEtran journal mode), so this is a
-figure*, NOT a plain figure, and it needs \usepackage{graphicx}. On IEEEtran a
-figure* floats to the top of a page; \usepackage{stfloats} lets it sit at the
-bottom instead.
+Built at 4.64in, which is neither \columnwidth (3.487in) nor \textwidth
+(7.140in) -- the one figure here that is sized to its own content instead of to
+a LaTeX width. Six task groups do not fit a column, and \textwidth would leave
+the bars swimming, so the width is set by the tick labels (see main()).
+
+That makes the include different from every other script here: it still needs a
+figure*, because 4.64in overflows a column, but it must be included at its
+NATURAL size with **no** width= key. Adding width=\textwidth would scale the
+whole figure by 1.54x and the 8pt text would land on the page at 12.3pt.
+\usepackage{graphicx}; \usepackage{stfloats} if it should sit at the bottom.
 
     \begin{figure*}[t]
       \centering
-      \includegraphics[width=\textwidth]{figures/realworld_alltasks.pdf}
+      \includegraphics{figures/realworld_alltasks.pdf}
       \caption{Real-world success rate over 25 rollouts on six manipulation
       tasks, at two demonstration budgets. Video pretraining improves success
       on every task at both budgets.}
       \label{fig:realworld_alltasks}
     \end{figure*}
 
-It was a single-column figure through four tasks. Six groups do not fit
-\columnwidth -- at 0.58in per group the three-line tick labels collide -- so it
-moved to \textwidth. If the task list shrinks back, move it back rather than
-leaving a half-empty two-column float.
+It was a plain single-column figure through four tasks. If the task list shrinks
+back to four, put it back to style.COL_WIDTH and a plain figure rather than
+leaving an odd-width two-column float behind.
 
 Do not rescale it -- see README.md.
 
@@ -74,7 +79,7 @@ SCALING_CSV = RESULTS_DIR / "realworld_scaling.csv"
 # order fixes the plotting order and the color assignment.
 METHOD_LABELS = {
     "action_only_sr": "Action-Only",
-    "video_sr": "w/ Video (ours)",
+    "video_sr": "w/ Human Videos (ours)",
 }
 
 
@@ -162,30 +167,44 @@ def print_table(task_ids, budgets, values, methods):
     also the fastest way to spot a stale dump.
 
     The figure deliberately shows no numbers; this is where they live."""
-    head = f"{'task':<16}{'demos':>7}" + "".join(f"{label_for(m):>18}" for m in methods)
+    # Column width follows the longest method label rather than sitting at a
+    # constant: a label longer than the constant widens only the header, and the
+    # numbers below it stop lining up with the name they belong to.
+    cw = max(18, max(len(label_for(m)) for m in methods) + 2)
+    head = f"{'task':<16}{'demos':>7}" + "".join(f"{label_for(m):>{cw}}" for m in methods)
     print(f"\n  Real-world success rate, %")
     print("  " + head)
     print("  " + "-" * len(head))
     for ti, task in enumerate(task_ids):
         for b in budgets:
             cells = "".join(
-                f"{values[(m, b)][ti]:>18.4f}"
-                if not np.isnan(values[(m, b)][ti]) else f"{'--':>18}"
+                f"{values[(m, b)][ti]:>{cw}.4f}"
+                if not np.isnan(values[(m, b)][ti]) else f"{'--':>{cw}}"
                 for m in methods)
             # tasks.label, not tasks.wrapped -- the wrapped form carries a
             # newline that would tear the table row in half.
             print("  " + f"{tasks.label(task):<16}{int(b):>7}" + cells)
 
 
-def build_legends(fig, methods, budgets, left):
-    """Two legends, one per encoding channel, stacked above the axes.
+def build_legends(fig, methods, budgets, center):
+    """One centred row above the axes: methods first, then budgets.
 
-    A single combined legend would need methods x budgets entries to say what
-    two short lists say directly, and it would imply the two factors are one.
+    Still one entry per level of each factor, never methods x budgets: four
+    combination entries would say what two short lists say directly, and would
+    imply the two factors are one. The two lists simply sit on one row now,
+    methods then budgets, rather than stacked -- at this width the row is 4.33in
+    of content in 4.12in of axes, so it fits with room to spare and buys back
+    the quarter inch of height the second row cost.
 
-    Placement is explicit rather than via constrained_layout: two legends both
-    asking for "outside upper center" are given the same slot and silently
-    drawn on top of each other.
+    Centred on the FIGURE (pass 0.5), which at this width is the only placement
+    that fits: the row measures 4.42in inside a 4.64in figure, so there is 0.11in
+    of slack per side, and centring on the axes instead -- 0.21in to the right,
+    because of the y label -- ran it off the right edge. That overflow prints as
+    a cut-off legend rather than an error, so if the width or the labels change,
+    measure the legend artist and check both edges.
+
+    Placement is explicit rather than via constrained_layout, which reserves no
+    space for a figure-level legend and would let the row overlap the axes.
     """
     from matplotlib.patches import Patch
 
@@ -194,8 +213,10 @@ def build_legends(fig, methods, budgets, left):
               edgecolor=style.MARKER_EDGE, linewidth=0.6, label=label_for(m))
         for i, m in enumerate(methods)
     ]
-    # Neutral fill for the hatch legend: these entries are about the hatch only,
-    # and coloring them would suggest a method pairing that is not there.
+    # Neutral fill for the hatch entries: they are about the hatch only, and
+    # coloring them would suggest a method pairing that is not there. On one row
+    # this also keeps the two channels legible as two pairs -- colored patches,
+    # then white ones -- without a separator between them.
     budget_handles = [
         Patch(facecolor="white", edgecolor=style.MARKER_EDGE, linewidth=0.6,
               hatch=style.HATCHES[i % len(style.HATCHES)],
@@ -203,13 +224,10 @@ def build_legends(fig, methods, budgets, left):
         for i, b in enumerate(budgets)
     ]
 
-    # Row spacing in inches, converted -- see the margin note in main(). At a
-    # fixed fraction the second row creeps into the first as the figure shortens.
-    row = 0.185 / fig.get_figheight()
-    for handles, y in ((method_handles, 1.0), (budget_handles, 1.0 - row)):
-        fig.legend(handles=handles, loc="upper left", bbox_to_anchor=(left, y),
-                   ncol=len(handles), frameon=False, borderaxespad=0,
-                   handlelength=1.4, handleheight=0.9)
+    handles = method_handles + budget_handles
+    fig.legend(handles=handles, loc="upper center", bbox_to_anchor=(center, 1.0),
+               ncol=len(handles), frameon=False, borderaxespad=0,
+               handlelength=1.4, handleheight=0.9)
 
 
 def main():
@@ -264,24 +282,31 @@ def main():
         for mi, m in enumerate(methods):
             offsets[(m, b)] = edge + w / 2 + (bi * n_methods + mi) * w + bi * cluster_gap
 
-    # Explicit margins, not constrained_layout: the two stacked legends are
-    # placed by hand (see build_legends), so the space they need is reserved by
-    # hand too.
+    # Explicit margins, not constrained_layout: the legend is placed by hand
+    # (see build_legends), so the space it needs is reserved by hand too.
     #
     # Reserved in inches and converted, not written as fractions directly:
     # subplots_adjust takes fractions of the figure, so a hardcoded fraction
     # silently rescales the legend and tick-label margins whenever the height
-    # changes -- and the failure mode is the two legend rows sliding into each
-    # other, which is easy to miss in a thumbnail.
-    legend_in = 0.48   # two legend rows above the axes
+    # changes -- and the failure mode is the legend sliding into the axes, which
+    # is easy to miss in a thumbnail.
+    legend_in = 0.26   # one legend row above the axes
     # STIX, used by the no-LaTeX SciencePlots style, has taller descenders than
     # Computer Modern. Give that variant more room without shrinking the axes.
     ticks_in = 0.62 if args.style == "science" else 0.46
-    # Axes height set from the width rather than left at the single-column 1.06in:
-    # across \textwidth that would draw a 7:1 letterbox, and the 25-point gaps
-    # this figure is about would flatten out of readability.
     # fig_w, not w -- `w` above is the bar width in data units.
-    fig_w, axes_in = style.TEXT_WIDTH, 1.50
+    #
+    # Sized to the tick labels rather than to a LaTeX width. Six groups do not
+    # fit \columnwidth, but \textwidth leaves the bars swimming in white space,
+    # so this is the narrowest width that still separates the labels: the widest
+    # single line over all six groups is "[novel move]" at 0.61in in 8pt CM, and
+    # 6 * (0.61 + 0.08 clearance) + margins = 4.64in. The one-row legend needs
+    # 4.33in and so fits inside that; if a method label grows much longer it
+    # becomes the binding constraint instead. Re-derive it if the task list, the
+    # category names or the method labels change -- measure the text, do not
+    # eyeball the figure, because the collision starts as a 2pt kiss that
+    # survives review and then prints.
+    fig_w, axes_in = 4.64, 1.25
     h = axes_in + legend_in + ticks_in
     # Side margins in inches like the vertical ones, not as figure fractions: a
     # fraction tuned at \columnwidth silently doubles the margin at \textwidth,
@@ -330,7 +355,7 @@ def main():
     ax.tick_params(axis="x", length=0)
     ax.set_ylabel("Success Rate [%]")
 
-    build_legends(fig, methods, budgets, left)
+    build_legends(fig, methods, budgets, 0.5)
     style.save(fig, name)
 
     n_missing = sum(int(np.isnan(v).sum()) for v in values.values())
