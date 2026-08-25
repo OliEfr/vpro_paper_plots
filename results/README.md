@@ -154,7 +154,9 @@ yet". Leave a cell **empty** for a run that has not happened.
 
 The two files overlap wherever they cover the same task at the same budget, and
 `plot_realworld_bars.py` warns when they disagree. Two figures reporting one
-experiment must not print two different numbers.
+experiment must not print two different numbers. `realworld_alltasks.csv`
+contains measured results for all six tasks; task5 is push-milk-right under a
+novel movement and task6 is banana-in-black-bowl under a changed background.
 
 Success rate is a proportion over a finite number of rollouts, so it carries
 binomial noise the schema has no column for: 12/20 and 60/100 are both 0.60 with

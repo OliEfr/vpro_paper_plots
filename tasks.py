@@ -9,14 +9,10 @@ The CSVs key on the short ids (`task1`, …); these are the display strings.
 
 Asterisks mark the word that distinguishes a task from its category partner --
 the object for the novel-object pair, the container for the novel-place pair.
-Categories with no partner (task5, task6) mark whichever word the category is
-actually probing instead. Tick labels set that word bold so a reader scanning
-the x axis lands on what actually changed instead of re-reading two
-near-identical phrases. Plain-text consumers (tables, the scaling figure's
-axis label) strip the markers.
-
-task5 and task6 are placeholders -- dummy values, see results/README.md's
-"Dummy data" section -- pending real rollouts.
+Categories with no partner (task5, task6) mark the defining word or phrase.
+Tick labels set that text bold so a reader scanning the x axis lands on what
+actually changed instead of re-reading near-identical phrases. Plain-text
+consumers (tables, the scaling figure's axis label) strip the markers.
 """
 
 import re
@@ -26,8 +22,8 @@ TASK_LABELS = {
     "task2": "*Salt* on plate",
     "task3": "Banana in *box*",
     "task4": "Banana in *bowl*",
-    "task5": "*Push* box",
-    "task6": "Banana in box",
+    "task5": "Push milk *right*",
+    "task6": "Banana in black *bowl*",
 }
 
 # Which axis of generalization each task probes. Two tasks per category, and the
