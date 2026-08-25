@@ -23,7 +23,7 @@ TASK_LABELS = {
     "task3": "Banana in *box*",
     "task4": "Banana in *bowl*",
     "task5": "Push milk *right*",
-    "task6": "Banana in black *bowl*",
+    "task6": "Banana in *bowl*",
 }
 
 # Which axis of generalization each task probes. Two tasks per category, and the
