@@ -118,18 +118,26 @@ VIEW_COLORS = {
 # different orders is a misreading waiting to happen.
 TASK_ORDER = ["task1", "task2", "task3", "task4", "task5", "task6"]
 
-# The scaling panel is sized first; the two bar panels then split what is left
-# at one shared tick pitch, and the middle panel gives MIDDLE_SHRINK of its
-# share to the left one. The left panel holds six groups of four bars against
-# the middle's four groups of two, so it is the one that runs out of room first.
+# The two right-hand panels are sized outright and the left panel takes the
+# rest, rather than everything being derived from one shared pitch: these two
+# are the ones that get adjusted by eye, and stating their widths directly beats
+# expressing each adjustment as a fraction of a fraction.
 SCALING_AXES_IN = 1.37   # 1.52 less 10%
-# Was 0.10 before the middle panel gained its Mean column. A fifth column plus a
-# 10% haircut puts that panel's pitch under the floor below, so the transfer
-# shrank rather than the column being squeezed in.
-MIDDLE_SHRINK = 0.03     # of the middle panel's equal-pitch width, to the left
-# Measured, not guessed: the widest short-form label line is 0.353in ("[obj]" /
-# "on plate"), and 0.05in of clearance keeps it off the group rules.
-MIN_TICK_PITCH_IN = 0.403
+MIDDLE_AXES_IN = 1.925   # 2.138 less 10%
+
+# The Mean column is given a NARROWER slot than a task column, and this is what
+# makes the middle panel fit at that width. Its label is one short bold word
+# (0.283in) against a task's three stacked lines (0.353in), so an equal share
+# would spend the panel's scarcest inches on its least demanding column. At an
+# equal share the four task labels drop to a 0.385in pitch and "on plate" under
+# task1 runs into "on plate" under task2 -- they do not technically overlap, but
+# they read as one phrase, which is worse than a collision because nothing looks
+# broken.
+MEAN_SLOT_UNITS = 0.80   # of one task column
+
+# Measured: the widest short-form label line is 0.353in ("[obj]" / "on plate"),
+# so that is where labels actually touch; the floor keeps ~0.045in of air.
+MIN_TICK_PITCH_IN = 0.395
 
 YLABEL_IN = 0.24    # "Success Rate [%]", rotated, on the left panel only
 YTICKS_IN = 0.20    # "100" and friends -- left panel only, see below
@@ -142,9 +150,16 @@ RIGHT_PAD_IN = 0.09  # half of the last x tick label on the scaling panel
 LEGEND_ROW_IN = 0.17
 LEGEND_ROWS = 2      # every panel reserves two, so the three axes stay level
 LEGEND_GAP_IN = 0.06  # clear air between the legend and the axes top
-BODY_IN = 1.04       # 1.15 less 10%
 XTICKS_IN = 0.52     # three-line task labels (bar panels) and the two-line
                      # "# Robot Episodes / (Task: ...)" under the scaling panel
+
+# The overall height is the knob, and the plot body is what is left after the
+# text bands -- not the other way round. The legend rows and the tick-label band
+# are 8pt type; they do not scale with the figure, so every inch taken off the
+# total comes out of the body. This 10% cut off the whole figure (1.96 -> 1.76)
+# is therefore a 19% cut to the plotting area.
+FIG_HEIGHT_IN = 1.76
+MIN_BODY_IN = 0.70   # below this the 0-100 axis stops being readable
 
 
 def load_alltasks():
@@ -263,7 +278,11 @@ def panel_views(ax, task_ids, values, means, methods):
     import matplotlib as mpl
 
     n = len(task_ids)
-    x = np.arange(n + 1, dtype=float)   # tasks, then the mean slot
+    # Task slots are one data unit each; the Mean slot is MEAN_SLOT_UNITS wide
+    # and its centre sits in the middle of it, so the narrower column is a
+    # narrower slot rather than a full slot with the bars pushed to one side.
+    mean_x = n - 0.5 + MEAN_SLOT_UNITS / 2
+    x = np.append(np.arange(n, dtype=float), mean_x)
     w = 0.38
     for mi, m in enumerate(methods):
         series = np.append(values[m], means[m])
@@ -281,7 +300,9 @@ def panel_views(ax, task_ids, values, means, methods):
         ax.text(x[n] + (mi - 0.5) * w, means[m] - 2.0, f"{means[m]:.0f}",
                 ha="center", va="top", color=style.INK, fontweight="bold",
                 fontsize=mpl.rcParams["font.size"] - 1.0, zorder=5)
-    ax.set_xlim(x[0] - 0.5, x[-1] + 0.5)
+    # Right edge is the end of the Mean slot, not half a task-slot past its
+    # centre -- otherwise the narrower slot buys nothing back.
+    ax.set_xlim(-0.5, n - 0.5 + MEAN_SLOT_UNITS)
     ax.set_xticks(x)
     ax.set_xticklabels([tasks.wrapped(t, short=True) for t in task_ids]
                        + [r"$\mathbf{Mean}$"])
@@ -361,30 +382,39 @@ def main():
     from matplotlib.lines import Line2D
 
     w = style.TEXT_WIDTH
-    h = LEGEND_ROWS * LEGEND_ROW_IN + LEGEND_GAP_IN + BODY_IN + XTICKS_IN
+    h = FIG_HEIGHT_IN
+    body_in = h - (LEGEND_ROWS * LEGEND_ROW_IN + LEGEND_GAP_IN + XTICKS_IN)
+    if body_in < MIN_BODY_IN:
+        raise SystemExit(
+            f"FIG_HEIGHT_IN={h}in leaves {body_in:.2f}in of plotting area, under "
+            f"the {MIN_BODY_IN}in floor -- the legend and tick bands are fixed "
+            f"8pt type and cannot absorb any of the cut")
 
     # Widths, derived rather than tabulated. Only the left panel pays for the y
     # label and the y tick labels -- the middle and right panels are the same
     # 0-100 success-rate axis with the same gridlines, so repeating "0 25 50 75
     # 100" twice more spends 0.4in restating a scale the reader can already
     # read off the left panel across an aligned gridline.
-    # n_b + 1 columns, not n_b: the Mean column takes a full slot like a task.
-    n_a, n_cols_b = len(a_tasks), len(b_tasks) + 1
-    free = (w - (YLABEL_IN + YTICKS_IN) - 2 * GUTTER_IN - RIGHT_PAD_IN
-            - SCALING_AXES_IN)
-    pitch = free / (n_a + n_cols_b)
-    given = n_cols_b * pitch * MIDDLE_SHRINK
-    axes_in = {"a": n_a * pitch + given,
-               "b": n_cols_b * pitch - given,
+    # The two right-hand panels take their stated widths; the left panel takes
+    # whatever is left, which is why it is the one that grows when either of the
+    # others is trimmed.
+    n_a = len(a_tasks)
+    axes_in = {"a": (w - (YLABEL_IN + YTICKS_IN) - 2 * GUTTER_IN - RIGHT_PAD_IN
+                     - MIDDLE_AXES_IN - SCALING_AXES_IN),
+               "b": MIDDLE_AXES_IN,
                "c": SCALING_AXES_IN}
-    # Checked on the middle panel: after the transfer it is the one with the
-    # tighter pitch, so it is where the labels collide first.
-    tightest = axes_in["b"] / n_cols_b
-    if tightest < MIN_TICK_PITCH_IN:
-        raise SystemExit(
-            f"tick pitch would be {tightest:.3f}in, under the "
-            f"{MIN_TICK_PITCH_IN}in the abbreviated task labels need -- narrow "
-            f"SCALING_AXES_IN, lower MIDDLE_SHRINK, or drop a task")
+
+    # Both bar panels are checked, not just one: which of the two is tighter now
+    # depends on the widths above, and the loser is where labels merge first.
+    pitches = {"a": axes_in["a"] / n_a,
+               "b": axes_in["b"] / (len(b_tasks) + MEAN_SLOT_UNITS)}
+    for key, p in pitches.items():
+        if p < MIN_TICK_PITCH_IN:
+            raise SystemExit(
+                f"panel '{key}' tick pitch would be {p:.3f}in, under the "
+                f"{MIN_TICK_PITCH_IN}in the abbreviated task labels need -- "
+                f"widen it by trimming MIDDLE_AXES_IN or SCALING_AXES_IN, or "
+                f"shorten the labels")
 
     # Panel origins walked left to right in inches.
     lefts, x = {}, 0.0
@@ -394,7 +424,7 @@ def main():
 
     fig = plt.figure(figsize=(w, h))
     bottom = XTICKS_IN / h
-    body = BODY_IN / h
+    body = body_in / h
 
     axes = {}
     for key in ("a", "b", "c"):
