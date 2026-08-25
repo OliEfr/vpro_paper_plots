@@ -1,5 +1,5 @@
 task,n_demos,action_only_sr,video_sr,n_rollouts
-task3,0,0.28,0.44,25
+task3,0,0.20,0.44,25
 task3,5,0.24,0.48,25
 task3,10,0.56,0.72,25
 task3,20,0.64,0.76,25
