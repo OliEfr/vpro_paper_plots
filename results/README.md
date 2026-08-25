@@ -8,6 +8,7 @@ the fix belongs in the experiment that wrote the CSV, not in the plot script.
     realworld_scaling.csv     one task, success rate over demo budgets
     realworld_alltasks.csv    all tasks, at a fixed set of budgets
     realworld_multiview_vs_side.csv  multi-view versus side-only at five demos
+    realworld_novel_movement.csv  push-milk-right novel-movement results
     libero_radar_<split>.csv  `<split>`: h (held-out), nonh (non-held-out)
     libero_plus_radar.csv     LIBERO-Plus, one row per disturbance dimension
 
@@ -175,6 +176,20 @@ aggregate:
 
 The `overall` row is pooled across task rollouts. The plot script recomputes
 that weighted rate and refuses to draw if it disagrees with the dumped value.
+
+## `realworld_novel_movement.csv`
+
+Success rate for pushing milk to the right, the novel-movement task, at zero
+and five robot-demo budgets:
+
+| column          | meaning                                                    |
+|-----------------|------------------------------------------------------------|
+| `task`          | `push_milk_right`                                           |
+| `generalization`| `novel_movement`                                            |
+| `n_demos`       | robot-demonstration budget                                  |
+| `with_human_sr` | success rate with human data, stored as a fraction in [0, 1]|
+| `robot_only_sr` | robot-only success rate, stored as a fraction in [0, 1]     |
+| `n_rollouts`    | evaluation rollouts behind each rate                        |
 
 ## `libero_radar_<split>.csv`
 
