@@ -308,9 +308,9 @@ row per (split, sweep position):
 | `<method>_sr`        | success rate as a **fraction in [0, 1]**, mean over the split's tasks at 100 rollouts each |
 
 Same rules as the other dumps: fractions not percentages, empty cell = run has
-not happened (the playdata 66% column is empty for exactly that reason), 0 is a
-real measured zero (the budget sweep's held-out action-only rates genuinely sit
-at 0.02–0.05). Everything is a single seed per cell — point estimates only.
+not happened (the playdata 66% cells sat empty on exactly that rule until the
+runs landed 2026-08-27), 0 is a real measured zero (the budget sweep's held-out
+action-only rates genuinely sit at 0.02–0.05). Everything is a single seed per cell — point estimates only.
 
 Three cross-file honesty notes, spelled out in each file's header comment:
 `action_only` arms carry **latent supervision from the shared video-trained
@@ -322,18 +322,27 @@ files and the two series must not be mixed in one figure; and the xemb sweep's
 `0` row is a reference whose teacher still saw two embodiments' videos, not a
 true video-free chain.
 
-### Current `probing_libero.csv` provenance (2026-08-24)
+### Current `probing_libero.csv` provenance (updated 2026-08-27)
 
-Linear ridge probe (alpha 1), future-action-mean target at horizon 5,
-episode-level split, seed 42 — the standard protocol. Runs are the
-internally-comparable autoresearch dev-track chain (libero_multicam dev
-benchmark, 20k steps, effective batch 64, 2026-05): `sv_sf` and `mv_sf` are
-latent width 32; `mv_mf` is width 512, so the mf step bundles the width
-increase (a bridge run puts width alone at ~+0.09 of it). `sv_mf` is 0 =
-not filled: the run exists but its per-dim CSV lives on the workstation,
-unreachable at time of writing. **Provisional precision**: values were
-recovered from the archived per-dimension figure's geometry, calibrated
-against six known CSV values (agreement ±0.01) — replace with the exact CSV
-numbers when the workstation is back. These are dev-scale probes, not the
-paper's full-scale teachers; the full-scale recipe is `mv_mf` plus Huber
-reconstruction loss (~+0.026 mean on this benchmark, 0.767 → 0.794).
+Two sources, column by column:
+
+**`mv_sf` is exact and protocol-identical to the other two suites**: the
+same `analyze_latent_feature_distribution.py` (md5 `8c97d328…`, MLP+ridge,
+episode split, continuous features, `--future-frames 5`,
+`--probe-max-samples 0`, seed 42) run on MN5 against the paper teacher's own
+whole-pool label export, selector mlp/episode/continuous/`current_action` —
+the selector 811d7e0 verified against the MimicGen gate dirs. Teacher:
+lam1o5_lib90t71 (2×[0,5], LAM job 44161039, ckpt070000, idx0 export; probe
+job 44965977, 4.71 M valid rows, GATE_OK). The 2026-08-24 merge (aa094dd)
+had put the *four-frame* lam1 probe's values (probe 44965976, mean 0.6728)
+in this column; fixed 2026-08-27 — the two teachers probe equal within the
+±0.011 noise floor, so no figure conclusion moved.
+
+**`sv_sf` is a dev-track approximation** (no single-view teacher exists in
+the paper's MN5 LIBERO family, and none is being trained): autoresearch dev
+chain, libero_multicam dev benchmark, 20k steps, latent width 32 (the paper
+teachers are width 512), values recovered from the archived per-dimension
+figure's geometry calibrated against six known CSV values (±0.01). It
+supports the single→multi-view direction only; do not read its absolute
+level against the exact `mv_sf` column or the other suites' exact `sv_sf`
+cells.

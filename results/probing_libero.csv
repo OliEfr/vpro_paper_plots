@@ -5,15 +5,21 @@
 # clam and dino have not been run on this suite -- 0, the not-run placeholder.
 # The dropped sv_mf/mv_mf columns held the four-frame variants, out of step
 # with this family's fixed Delta = [0,5] window since 811d7e0; their numbers
-# (mv_mf mean 0.767) are in `git show 9348889:results/probing_libero.csv`.
+# (mv_mf mean 0.767 reconstructed, 0.6728 exact) are in
+# `git show 36bfd6f:results/probing_libero.csv`.
 #
-# Provisional precision: see the provenance note in results/README.md.
+# mv_sf is the EXACT MN5 probe of the 2x[0,5] teacher lam1o5_lib90t71
+# (LAM 44161039 ckpt070000, idx0 export, probe job 44965977) -- same script,
+# flags, and mlp/episode/continuous/current_action selector as the other two
+# suites. (The 2026-08-24 merge aa094dd briefly put the FOUR-frame lam1
+# probe's numbers, mean 0.6728, in this column; fixed 2026-08-27.)
+# sv_sf provenance: see the provisional-precision note in results/README.md.
 action_dim,axis,clam_r2,dino_r2,sv_sf_r2,mv_sf_r2
-0,delta_x,0,0,0.508,0.8801
-1,delta_y,0,0,0.921,0.9048
-2,delta_z,0,0,0.905,0.9225
-3,delta_rx,0,0,0.406,0.5014
-4,delta_ry,0,0,0.217,0.4370
-5,delta_rz,0,0,0.304,0.4652
-6,gripper,0,0,0.558,0.5988
-mean,all_dims,0,0,0.546,0.6728
+0,delta_x,0,0,0.508,0.8847
+1,delta_y,0,0,0.921,0.9044
+2,delta_z,0,0,0.905,0.9233
+3,delta_rx,0,0,0.406,0.4986
+4,delta_ry,0,0,0.217,0.4287
+5,delta_rz,0,0,0.304,0.4369
+6,gripper,0,0,0.558,0.6305
+mean,all_dims,0,0,0.546,0.6724
