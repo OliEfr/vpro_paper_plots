@@ -48,7 +48,9 @@ else
   SCRIPTS=(plot_probing.py plot_realworld.py plot_realworld_bars.py
            plot_realworld_multiview_vs_side.py
            plot_libero_radar.py plot_libero_plus_radar.py plot_radar_row.py
-           plot_realworld_row.py)
+           plot_realworld_row.py
+           plot_umap_teachers.py plot_umap_teachers_2x2.py plot_umap_hardware.py
+           plot_tsne_teachers.py plot_tsne_teachers_2x2.py plot_tsne_hardware.py)
 fi
 
 # Scripts that produce only the science variant and take no --style switch. The

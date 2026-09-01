@@ -11,6 +11,11 @@ the fix belongs in the experiment that wrote the CSV, not in the plot script.
     realworld_novel_movement.csv  push-milk-right novel-movement results
     libero_radar_<split>.csv  `<split>`: h (held-out), nonh (non-held-out)
     libero_plus_radar.csv     LIBERO-Plus, one row per disturbance dimension
+    umap_teachers.csv         LIBERO latent UMAP, coloured by robot
+    umap_hardware.csv         DK1 latent UMAP, coloured by data source
+    umap_decodability.csv     how decodable robot/source is, per checkpoint
+    tsne_teachers.csv         LIBERO latent t-SNE, coloured by robot
+    tsne_hardware.csv         DK1 latent t-SNE, coloured by data source
 
 A file's stem names the figure it builds, so `realworld_scaling.csv` becomes
 `figures/realworld_scaling.pdf`. Renaming one means renaming both.
@@ -24,6 +29,33 @@ suite is parsed out of the filename; add a new one by adding a file, plus an
 entry in `SUITE_LABELS` if you want a prettier display name. The radar split is
 parsed the same way, and each split builds its own figure rather than being
 merged into one — `libero_radar_h.csv` becomes `figures/libero_radar_h.pdf`.
+
+The two UMAP dumps break it in the other direction, one dump to several figures:
+`umap_teachers.csv` builds `umap_teachers.pdf`, a per-teacher
+`umap_teacher_{2,3,5}emb.pdf`, and the single-column `umap_teachers_2x2.pdf`;
+`umap_hardware.csv` builds `umap_hardware.pdf`
+plus `umap_hardware_sharedlam2.pdf`. They are alternative cuts of one experiment
+for the paper to choose between, not independent results, so they share a dump
+rather than duplicating one per figure. `umap_decodability.csv` builds no figure
+at all — it is the quantitative form of what the scatters show, and belongs in
+the text or a table.
+
+The two t-SNE dumps are the same experiment with a different projector, and
+have the same one-dump-to-several-figures shape: `tsne_teachers.csv` builds
+`tsne_teachers.pdf`, `tsne_teacher_{2,3,5}emb.pdf` and the single-column
+`tsne_teachers_2x2.pdf`; `tsne_hardware.csv`
+builds `tsne_hardware.pdf` plus `tsne_hardware_sharedlam2.pdf`. They exist so
+the claim can be shown not to depend on UMAP. There is deliberately no
+`tsne_decodability.csv`: those numbers are fitted on the raw 8-D latent, never
+on a projection, so `umap_decodability.csv` is the table for both figure sets
+despite its name. Written by `experiments/fit_tsne_dumps.py`.
+
+Unlike every other dump here, the UMAP files are not typed by hand from an
+experiment log: they are written by `experiments/fit_umap_dumps.py` and
+`experiments/fit_tsne_dumps.py`, both in the repo. Those are still experiments,
+not plot scripts — they need the raw latent exports, and the UMAP one needs
+`umap-learn`, which the pinned figure env deliberately lacks.
+See `experiments/README.md`.
 
 ## `probing_<suite>.csv`
 
@@ -346,3 +378,56 @@ figure's geometry calibrated against six known CSV values (±0.01). It
 supports the single→multi-view direction only; do not read its absolute
 level against the exact `mv_sf` column or the other suites' exact `sv_sf`
 cells.
+
+## `umap_teachers.csv`, `umap_hardware.csv`, `tsne_teachers.csv`, `tsne_hardware.csv`
+
+Two-dimensional projection coordinates for one point per sampled frame. One
+projection is fitted per model, jointly over that model's checkpoints, so a
+model's panels are commensurate — but the fits are independent between models,
+and coordinates **must never be compared across them**.
+
+All four files share this schema; the t-SNE pair differs only in naming its
+coordinate columns `tsne_x` / `tsne_y`. Everything upstream of the projector —
+episode subset, frame stride, balanced sampling, scaler, seed — is identical
+between the two, so the row counts match exactly and the pairs are directly
+comparable.
+
+| column | meaning |
+|--------|---------|
+| `teacher` / `model` | which LAM the row's latent came from |
+| `n_emb` | teachers only: how many robots that teacher trained on (2, 3, 5) |
+| `checkpoint` | training step, zero-padded to six digits |
+| `embodiment` / `source` | the colour channel: robot name, or `robot_3cam` / `video_2cam` |
+| `umap_x`, `umap_y` (or `tsne_x`, `tsne_y`) | coordinates, 2 decimals |
+
+Rows are balanced per group within a checkpoint: 2341 frames per robot for the
+teachers, 2661 (3432 for `sharedlam4tl`) per source for the hardware LAMs. That
+is deliberate and load-bearing — an unbalanced sample makes the larger group look
+like it occupies more of the manifold when it merely has more points.
+
+Only the plotted checkpoints are committed. `fit_umap_dumps.py` fits more of them
+(the teachers at 1k/3k/10k/30k/70k, the hardware LAMs at up to eight steps); the
+intermediate coordinates are dropped here and survive as numbers in
+`umap_decodability.csv`. Re-run the experiment to get them back.
+
+## `umap_decodability.csv`
+
+How well the colour channel can be recovered from the raw 8-D latent, per
+checkpoint — the number behind the claim a scatter can only gesture at. Fitted on
+the same balanced sample, 70/30 split.
+
+| column | meaning |
+|--------|---------|
+| `family` | `libero` or `dk1` |
+| `model`, `checkpoint` | as above |
+| `group` | what is being decoded: `embodiment` or `source` |
+| `n_per_group` | frames per class |
+| `chance` | 1 / number of classes — the floor to read every accuracy against |
+| `logreg_acc`, `knn15_acc` | linear and local decodability |
+| `silhouette` | cluster separation in standardised latent space; ≈ 0 means none |
+
+Read `knn15_acc` against `chance`, and read the two families against each other:
+on LIBERO it falls toward chance with training (0.70 → 0.30 for the 5-robot
+teacher), on DK1 it does not move off 1.0. The `logreg`/`kNN` pair is worth
+keeping both of: a latent can be locally clustered by group while remaining
+linearly inseparable, and only the pair distinguishes that from real invariance.
