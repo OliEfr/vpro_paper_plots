@@ -84,7 +84,24 @@ red marks land on the right of every band. This deliberately drops the older
 would be computed against the reference column, and `plot_probing.py` computes no
 relative gains — it plots absolute R² only. If a script here ever does compute
 them again, it must name its reference column explicitly rather than assume
-position 0, because the reference arm (`sv_sf_r2`) now sits third.
+position 0, because the reference arm (`sv_sf_r2`) now sits third — and as of
+2026-08-28 it sits **fourth**, which is exactly why that rule is written down.
+
+**`flow_r2` added 2026-08-28** — the LAOF-style auxiliary optical-flow decoder
+(run10-mg, teacher `45069925`, probe `45101211`). Real numbers on MimicGen only;
+`0` in the other two suites, this family's not-run placeholder. It had to be added
+to **all three** CSVs in the same position: `plot_probing.py` exits rather than
+draw a figure whose suites disagree on their method columns.
+
+⚠ **This column is the strongest argument in the dump for not reading the figure
+as policy quality.** Its MimicGen mean is **0.5577** — second only to the
+multi-view arm's 0.5585, and 0.058 above the single-view arm it ablates — while
+its policy scored **below** single-view at both checkpoints (−0.026 @60k, −0.020
+@80k on PANDA10, 500 rollouts each). Its ridge probe moved the *opposite* way to
+its MLP (−0.0187), and that disagreement is what correctly predicted the SR
+direction. Probe R² has now misranked SR seven times on this project. The figure
+plots **latent decodability**; any sentence pairing it with success rate needs the
+SR table beside it.
 
 **The frame-offset sweep is no longer in this dump.** `sv_mf_r2`/`mv_mf_r2` held
 the four-frame Δ = [0,1,5,9] variants; they were dropped so the figure varies

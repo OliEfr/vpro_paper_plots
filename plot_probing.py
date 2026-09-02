@@ -135,6 +135,7 @@ METHOD_LABELS = {
     "mv_sf_r2": "Ours (multi-view)",
     "clam_r2": "CLAM-style (action grounding)",
     "dino_r2": "UniVLA-style (DINOv3 features)",
+    "flow_r2": "LAOF-style (optical-flow decoder)",
 }
 
 AXIS_LABELS = {

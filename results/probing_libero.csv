@@ -14,12 +14,12 @@
 # suites. (The 2026-08-24 merge aa094dd briefly put the FOUR-frame lam1
 # probe's numbers, mean 0.6728, in this column; fixed 2026-08-27.)
 # sv_sf provenance: see the provisional-precision note in results/README.md.
-action_dim,axis,clam_r2,dino_r2,sv_sf_r2,mv_sf_r2
-0,delta_x,0,0,0.508,0.8847
-1,delta_y,0,0,0.921,0.9044
-2,delta_z,0,0,0.905,0.9233
-3,delta_rx,0,0,0.406,0.4986
-4,delta_ry,0,0,0.217,0.4287
-5,delta_rz,0,0,0.304,0.4369
-6,gripper,0,0,0.558,0.6305
-mean,all_dims,0,0,0.546,0.6724
+action_dim,axis,clam_r2,dino_r2,flow_r2,sv_sf_r2,mv_sf_r2
+0,delta_x,0,0,0,0.508,0.8847
+1,delta_y,0,0,0,0.921,0.9044
+2,delta_z,0,0,0,0.905,0.9233
+3,delta_rx,0,0,0,0.406,0.4986
+4,delta_ry,0,0,0,0.217,0.4287
+5,delta_rz,0,0,0,0.304,0.4369
+6,gripper,0,0,0,0.558,0.6305
+mean,all_dims,0,0,0,0.546,0.6724

@@ -1,9 +1,29 @@
-action_dim,axis,clam_r2,dino_r2,sv_sf_r2,mv_sf_r2
-0,delta_x,0.6601,0.6152,0.6038,0.7816
-1,delta_y,0.8831,0.8771,0.8691,0.8784
-2,delta_z,0.8159,0.8131,0.7991,0.8234
-3,delta_rx,0.2333,0.2130,0.2229,0.2079
-4,delta_ry,0.2871,0.2540,0.2325,0.3387
-5,delta_rz,0.4020,0.3105,0.3120,0.3340
-6,gripper,0.5787,0.5370,0.4602,0.5455
-mean,all_dims,0.5514,0.5171,0.4999,0.5585
+# MimicGen probe. MLP / episode split / continuous features / current_action
+# target, 3,119,561 valid rows -- the identical row set for all five arms, so the
+# columns are paired.
+#
+# Provenance, one probe job per column (probe_analysis dir on MN5 scratch,
+# /gpfs/scratch/ehpc637/oliver_hausdorfer/runs_lerobot/probe_analysis/):
+#   clam_r2   run6-mg   teacher 44697824, probe 44712992  gate_2f_clam
+#   dino_r2   run7-mg   teacher 44595589, probe 44595591  gate_2f_dino
+#   flow_r2   run10-mg  teacher 45069925, probe 45101211  gate_2f_flow
+#   sv_sf_r2  run3-mg   teacher 43611696, probe 43630772  gate_2f_single_ckpt070000
+#   mv_sf_r2  run4-mg   teacher 43820899                  gate_2f_multi
+#
+# Added 2026-08-28: flow_r2, the LAOF-style auxiliary optical-flow decoder
+# (latent_only conditioning, lambda = balanced/10 = 1.508505e-03).
+# ⚠ READ WITH THE SR: this column is the SECOND-HIGHEST mean here (0.5577, within
+# 0.0008 of the multi-view arm) and its policy scored BELOW single-view at both
+# checkpoints (-0.026 @60k, -0.020 @80k on PANDA10). Its ridge probe also moved
+# the opposite way to its MLP (-0.0187), which is the disagreement that predicted
+# the SR direction. This table is latent decodability, NOT policy quality --
+# probe R2 has misranked SR seven times on this project.
+action_dim,axis,clam_r2,dino_r2,flow_r2,sv_sf_r2,mv_sf_r2
+0,delta_x,0.6601,0.6152,0.6876,0.6038,0.7816
+1,delta_y,0.8831,0.8771,0.8882,0.8691,0.8784
+2,delta_z,0.8159,0.8131,0.8284,0.7991,0.8234
+3,delta_rx,0.2333,0.2130,0.2116,0.2229,0.2079
+4,delta_ry,0.2871,0.2540,0.2580,0.2325,0.3387
+5,delta_rz,0.4020,0.3105,0.3825,0.3120,0.3340
+6,gripper,0.5787,0.5370,0.6478,0.4602,0.5455
+mean,all_dims,0.5514,0.5171,0.5577,0.4999,0.5585
