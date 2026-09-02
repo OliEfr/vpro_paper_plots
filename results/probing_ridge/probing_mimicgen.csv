@@ -1,0 +1,33 @@
+# MimicGen probe -- RIDGE. Same probe jobs, same rows, same selector as
+# ../probing_mimicgen.csv except probe_model: ridge (alpha = 1) instead of mlp.
+# Episode split / continuous features / current_action target, 3,119,561 valid
+# rows -- the identical row set for all five arms, so the columns are paired,
+# and paired dim-for-dim with the MLP dump one directory up.
+#
+# Provenance: taken from the SAME probe job as the MLP dump, whose
+# action_probe_r2.csv carries both probe models (--probe-model both). Probe
+# dirs under /gpfs/scratch/ehpc637/oliver_hausdorfer/runs_lerobot/probe_analysis/:
+#   clam_r2   run6-mg   teacher 44697824, probe 44712992  gate_2f_clam_ckpt070000
+#   dino_r2   run7-mg   teacher 44595589, probe 44595591  gate_2f_dino_ckpt070000
+#   flow_r2   run10-mg  teacher 45069925, probe 45101211  gate_2f_flow
+#   sv_sf_r2  run3-mg   teacher 43611696, probe 43630772  gate_2f_single_ckpt070000
+#   mv_sf_r2  run4-mg   teacher 43820899                  gate_2f_multi_ckpt050000
+# Extracted 2026-09-02; every mlp column in those same files reproduces
+# ../probing_mimicgen.csv to 4 dp, which is what fixes the dir-to-arm mapping.
+#
+# ⚠ THE RIDGE ORDER IS NOT THE MLP ORDER, and that is the point of this dump.
+# MLP: mv_sf 0.5585 > flow 0.5577 > clam 0.5514 > dino 0.5171 > sv_sf 0.4999.
+# Ridge: mv_sf 0.3908 > clam 0.3842 > sv_sf 0.3536 > dino 0.3423 > flow 0.3349.
+# flow falls from second to LAST and dino below the single-view reference: both
+# arms whose policies scored below single-view. The linear probe ranks these
+# five closer to their success rates than the MLP probe does -- see
+# results/README.md and the flow note there.
+action_dim,axis,clam_r2,dino_r2,flow_r2,sv_sf_r2,mv_sf_r2
+0,delta_x,0.4957,0.3685,0.4249,0.4189,0.6020
+1,delta_y,0.7622,0.8220,0.7801,0.7996,0.8208
+2,delta_z,0.7339,0.7498,0.7216,0.7430,0.7622
+3,delta_rx,0.1282,0.1333,0.1012,0.1574,0.1156
+4,delta_ry,0.1782,0.1490,0.1555,0.1616,0.2391
+5,delta_rz,0.1674,0.0831,0.0919,0.0955,0.1077
+6,gripper,0.2238,0.0904,0.0692,0.0995,0.0881
+mean,all_dims,0.3842,0.3423,0.3349,0.3536,0.3908

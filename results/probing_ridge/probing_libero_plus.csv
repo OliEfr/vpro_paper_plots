@@ -1,0 +1,31 @@
+# LIBERO-Plus probe -- RIDGE. Same probe jobs, same rows, same selector as
+# ../probing_libero_plus.csv except probe_model: ridge (alpha = 1) instead of
+# mlp. Episode split / continuous features / current_action target, 7,228,830
+# valid rows (5,062,565 train / 722,523 val / 1,443,742 test) -- the identical
+# row set for all four arms, so the columns are paired, and paired dim-for-dim
+# with the MLP dump one directory up.
+#
+# Provenance: taken from the SAME probe job as the MLP dump, whose
+# action_probe_r2.csv carries both probe models (--probe-model both). Probe
+# dirs under /gpfs/scratch/ehpc637/oliver_hausdorfer/runs_lerobot/probe_analysis/:
+#   clam_r2   run10  teacher 44815478, probe 44815480  ..._n2_clam7d_44815478_ckpt100000
+#   dino_r2   run7   teacher 44422849, probe 44444138  ..._n2_dino_dino_44422849_ckpt100000
+#   sv_sf_r2  run3   teacher 44001862, probe 44064421  ..._n2_single_44001862_ckpt100000
+#   mv_sf_r2  run11  teacher 44809827, probe 44809829  ..._n2_dualnoaug_dualnoaug_44809827_ckpt100000
+# Extracted 2026-09-02; every mlp column in those same files reproduces
+# ../probing_libero_plus.csv to 4 dp, which is what fixes the dir-to-arm mapping.
+#
+# flow_r2 is 0, the not-run placeholder: the LAOF-style arm was only ever run on
+# MimicGen, exactly as in the MLP dump.
+#
+# The ridge order here is the MLP order (mv_sf > clam > dino > sv_sf), unlike
+# MimicGen's -- the two probes disagree on the arms, not on the suites.
+action_dim,axis,clam_r2,dino_r2,flow_r2,sv_sf_r2,mv_sf_r2
+0,delta_x,0.3145,0.2834,0,0.2975,0.7178
+1,delta_y,0.8868,0.8877,0,0.8852,0.9000
+2,delta_z,0.7759,0.8075,0,0.7583,0.8199
+3,delta_rx,0.3912,0.2901,0,0.2975,0.2680
+4,delta_ry,0.1081,0.1578,0,0.1347,0.2054
+5,delta_rz,0.0282,0.0311,0,0.0338,0.0637
+6,gripper,0.1836,0.1892,0,0.1863,0.1684
+mean,all_dims,0.3841,0.3781,0,0.3705,0.4490

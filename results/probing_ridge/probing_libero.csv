@@ -1,0 +1,33 @@
+# Plain LIBERO probe -- RIDGE. Same probe job, same rows, same selector as
+# ../probing_libero.csv except probe_model: ridge (alpha = 1) instead of mlp.
+#
+# mv_sf_r2: teacher lam1o5_lib90t71 (2x[0,5], LAM job 44161039, ckpt070000,
+# idx0 export; probe job 44965977). Read from the `all` slice of
+# probe_analysis/libero_playdata_slices_lam1o5_lib90t71_44161039_ckpt070000/
+# slice_probe_r2.csv on MN5 scratch -- 4,707,223 valid rows / 31,658 episodes,
+# episode split, continuous features, current_action. That file's mlp rows for
+# the same slice reproduce ../probing_libero.csv to 4 dp.
+#
+# ⚠ sv_sf_r2 IS 0 HERE, AND NOT BECAUSE THE PROBE IS MISSING A NUMBER WE HAVE.
+# The MLP dump's sv_sf column is not a probe read-out at all: it is a dev-track
+# approximation recovered from an archived per-dimension FIGURE's geometry
+# (autoresearch dev chain, libero_multicam dev benchmark, 20k steps, latent
+# width 32; +-0.01) -- see the provenance note at the end of results/README.md.
+# A figure carries the series it plots and no other, so there is no ridge
+# counterpart to recover, and inventing one would be fabrication. It is the
+# not-run placeholder, drawn as a gap.
+#
+# So this band is ONE real mark. The single-to-multi-view direction that the MLP
+# figure's LIBERO band shows cannot be shown under a linear probe on this suite;
+# LIBERO-Plus carries that contrast with exact numbers on both sides.
+#
+# clam_r2, dino_r2, flow_r2: 0, never run on this suite, as in the MLP dump.
+action_dim,axis,clam_r2,dino_r2,flow_r2,sv_sf_r2,mv_sf_r2
+0,delta_x,0,0,0,0,0.8099
+1,delta_y,0,0,0,0,0.8387
+2,delta_z,0,0,0,0,0.8736
+3,delta_rx,0,0,0,0,0.2608
+4,delta_ry,0,0,0,0,0.2186
+5,delta_rz,0,0,0,0,0.0831
+6,gripper,0,0,0,0,0.2330
+mean,all_dims,0,0,0,0,0.4740

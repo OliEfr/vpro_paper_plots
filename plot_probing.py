@@ -6,6 +6,15 @@ Run with no arguments to rebuild:
 
     python plot_probing.py
 
+TWO PROBES, TWO FIGURES. ``--probe ridge`` draws the linear-probe twin from
+``results/probing_ridge/`` into ``figures/probing_ridge.pdf`` -- same suites,
+same arms, same rows, same figure, one metric changed. It is a separate figure
+and not extra series in this one because a probe and a LAM are not the same kind
+of thing: the marks here mean "which latent-action model", and a ridge column
+drawn beside them would put "which probe" on the same channel. Kept comparable
+on purpose -- identical y range, so the ridge figure visibly sits lower and the
+two can be read against each other rather than each rescaled to fill its box.
+
 Encoding: x groups by action dimension, a **tinted background band** identifies
 the evaluation suite, and **marker shape** identifies the LAM configuration. Two
 channels for two independent factors, so a reader can hold one fixed and scan
@@ -57,6 +66,17 @@ not figure. Needs \usepackage{graphicx}.
       \label{fig:probing}
     \end{figure*}
 
+The ridge twin embeds with the same snippet, swapping the file and the label
+for ``probing_ridge`` and saying *linear* probe in the caption. Its own result
+is worth a sentence: on MimicGen the linear probe **reorders the arms**. Under
+the MLP probe the LAOF-style flow arm is second of five (0.5577, behind
+multi-view's 0.5585); under ridge it is **last** (0.3349, below the single-view
+arm it ablates), and the DINOv3 arm likewise falls below single-view. Those are
+the two arms whose policies scored below single-view -- so on this suite the
+linear probe ranks the arms closer to their success rates than the MLP probe
+does. On LIBERO-PLUS the two probes agree on the order. Do not turn that into a
+law from two suites; it is a reason to report both, not to pick one.
+
 Do not rescale it. Every label is set at 8pt (IEEEtran \footnotesize, the
 caption size -- a step below the 10pt body) in Computer Modern, the typeface
 main.tex renders in, so at width=\textwidth the labels land on the page at
@@ -68,8 +88,15 @@ optional aggregate row where ``action_dim == "mean"``:
     action_dim,axis,<method>_r2,<method>_r2,...
 
 Any column ending in ``_r2`` is treated as a method, in file order, so adding
-or dropping a LAM configuration is a schema change only. Values of exactly 0
-are read as "not run yet" rather than as a measurement -- see PLACEHOLDER.
+a LAM configuration is a schema change only. Values of exactly 0 are read as
+"not run yet" rather than as a measurement -- see PLACEHOLDER.
+
+Dropping one from the *figure* is not a schema change: put its column name in
+SKIP_METHODS and the dump keeps the numbers. Which configurations the paper
+shows is a figure decision and belongs here, not in ``results/``, which is
+append-only input -- and a probe that has been run is worth keeping even when
+it is not in the plot, because the argument for a figure is usually made with
+the arm that was left out of it.
 
 Only configurations that *have* a LAM appear here. The action-only policy has
 no latent action model, so there is no latent space to probe; its row belongs
@@ -112,16 +139,39 @@ RESULTS_DIR = Path(__file__).resolve().parent / "results"
 # "this configuration scores zero" rather than "we have no number yet".
 PLACEHOLDER = 0.0
 
+# One figure per probe: which dumps to read, what to call the output, and what
+# the y axis says. Both probes come out of the same probe job -- the analyzer is
+# run with --probe-model both and its action_probe_r2.csv carries mlp and ridge
+# rows over the identical train/val/test split -- so the two figures are paired
+# cell for cell, not two experiments.
+#
+# WHY THE RIDGE DUMPS ARE A SUBDIRECTORY AND NOT results/probing_ridge_<suite>.csv.
+# The default glob below is results/probing_*.csv, so a file named that way is
+# picked up by a plain `python plot_probing.py` -- and because the ridge dumps
+# carry the same axis rows and the same method columns, both consistency checks
+# in main() would pass and the MLP figure would silently come out with six
+# suite bands. A subdirectory cannot be globbed into the wrong figure.
+#
+# Adding a third probe is a row here plus a dump directory; nothing else in this
+# file knows how many there are.
+PROBES = {
+    "mlp":   {"subdir": ".",             "name": "probing",       "label": "MLP"},
+    "ridge": {"subdir": "probing_ridge", "name": "probing_ridge", "label": "ridge"},
+}
+
 # Display names, keyed by CSV column. Unknown columns fall back to the column
 # name with the _r2 suffix stripped. Order here does not matter; the CSV column
 # order is what fixes the plotting order and the marker assignment.
 #
-# All four configurations are two-frame, Delta = [0,5], so the frame offsets are
+# Every configuration here is two-frame, Delta = [0,5], so the frame offsets are
 # no longer a variable and have come out of the labels: what varies is the
 # viewpoint count and what trains the latent. The two "Ours" rows are the same
-# LAM at one and two viewpoints; CLAM and UniVLA name the paper each borrowed
-# component comes from, matching the policy table's wording so the figure and
-# the table can be read against each other.
+# LAM at one and two viewpoints; CLAM, UniVLA and LAOF name the paper each
+# borrowed component comes from, matching the policy table's wording so the
+# figure and the table can be read against each other.
+#
+# This map covers every _r2 column the dumps carry, including the ones
+# SKIP_METHODS holds back -- their labels are what the skip note prints.
 #
 # If a label ever carries math again, use brackets and not the set braces the
 # paper uses for Delta. All figure text is one size (10pt), but Computer
@@ -137,6 +187,26 @@ METHOD_LABELS = {
     "dino_r2": "UniVLA-style (DINOv3 features)",
     "flow_r2": "LAOF-style (optical-flow decoder)",
 }
+
+# Columns present in the dumps but not drawn. Named by CSV column, so the
+# entries here and the keys in METHOD_LABELS are the same vocabulary.
+#
+# A denylist rather than a list of what to plot, because the plotting order and
+# the marker assignment come from the CSV column order -- an allowlist would
+# quietly become a second place that decides the order, and the two would drift.
+# It also keeps the "adding a configuration is a schema change only" property:
+# a new _r2 column appears in the figure without anyone editing this file.
+#
+# The skipped columns are still read, cross-checked against their mean row, and
+# named on stdout, so a column cannot vanish from the figure silently.
+#
+# dino_r2 (UniVLA-style, DINOv3 features) is out of the paper's probing figure
+# as of 2026-09-02. Its numbers stay in the dumps: LIBERO-Plus mean 0.6212 and
+# MimicGen 0.5171 are the standing evidence that probe R^2 does not rank these
+# arms by success rate -- it probes above our single-view reference and scores
+# below it -- which is why results/README.md still cites the column.
+SKIP_METHODS = {"dino_r2"}
+
 
 AXIS_LABELS = {
     "delta_x": r"$\Delta x$",
@@ -182,7 +252,12 @@ def is_ours(method):
 
 
 def load(csv_path):
-    """Return (axis labels, {method: values}, methods, n_placeholder, is_dummy).
+    """Return (axis labels, {method: values}, methods, skipped, n_placeholder,
+    is_dummy).
+
+    ``methods`` is the drawn subset, in CSV column order; ``skipped`` is what
+    SKIP_METHODS held back, so the caller can say so out loud. Both are keyed on
+    the CSV column name.
 
     Values are NaN wherever the dump carried the placeholder, so downstream
     code never has to special-case it -- matplotlib skips NaN, and nanmean
@@ -201,6 +276,8 @@ def load(csv_path):
     is_mean = df["action_dim"].astype(str).str.lower() == "mean"
     dims, mean_rows = df[~is_mean], df[is_mean]
 
+    skipped = [m for m in methods if m in SKIP_METHODS]
+
     labels = list(dims["axis"])
     values = {m: dims[m].to_numpy(dtype=float) for m in methods}
 
@@ -218,9 +295,17 @@ def load(csv_path):
                       f"mean over dims is {recomputed:.4f}")
             values[m] = np.append(values[m], dumped)
 
+    # Drawn columns only from here on: the placeholder count is reported as
+    # "drawn as gaps", which is only true of a column that is drawn at all.
+    methods = [m for m in methods if m not in SKIP_METHODS]
+    if not methods:
+        raise SystemExit(f"{csv_path.name}: SKIP_METHODS holds back every "
+                         f"_r2 column -- nothing left to plot")
+    values = {m: v for m, v in values.items() if m in methods}
+
     n_placeholder = sum(int((v == PLACEHOLDER).sum()) for v in values.values())
     values = {m: np.where(v == PLACEHOLDER, np.nan, v) for m, v in values.items()}
-    return labels, values, methods, n_placeholder, is_dummy
+    return labels, values, methods, skipped, n_placeholder, is_dummy
 
 
 def print_table(suite_label, labels, values, methods):
@@ -343,8 +428,15 @@ def main():
     p = argparse.ArgumentParser(
         description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     p.add_argument("csv", nargs="*", type=Path,
-                   help="specific result CSVs (default: all results/probing_*.csv)")
-    p.add_argument("--name", default="probing", help="output basename in figures/")
+                   help="specific result CSVs (default: every probing_*.csv in "
+                        "the chosen probe's dump directory)")
+    p.add_argument("--probe", choices=list(PROBES), default="mlp",
+                   help="which probe's R^2 to draw: mlp (default, results/) or "
+                        "ridge (results/probing_ridge/). Same jobs, same rows, "
+                        "same figure -- one metric.")
+    p.add_argument("--name", default=None,
+                   help="output basename in figures/ (default: the chosen "
+                        "probe's, plus _science under --style science)")
     p.add_argument("--style", choices=["paper", "science"], default="paper",
                    help="paper: exact IEEEtran/Computer-Modern match (default). "
                         "science: the SciencePlots aesthetic (garrettj403/SciencePlots).")
@@ -355,26 +447,35 @@ def main():
     # draw functions, which look it up at call time, pick up whichever was asked
     # for without any per-call plumbing.
     global style
+    probe = PROBES[args.probe]
+    # An explicit --name is taken as given, including under --style science: the
+    # caller who named the file is the one who has to keep the two apart.
+    name = args.name or probe["name"]
     if args.style == "science":
         import style_science
         style = style_science
-        if args.name == "probing":  # keep the two styles' outputs side by side
-            args.name = "probing_science"
+        if args.name is None:  # keep the two styles' outputs side by side
+            name += "_science"
 
-    paths = args.csv or sorted(RESULTS_DIR.glob("probing_*.csv"))
+    dumps = (RESULTS_DIR / probe["subdir"]).resolve()
+    paths = args.csv or sorted(dumps.glob("probing_*.csv"))
     if not paths:
-        raise SystemExit(f"no probing CSVs found in {RESULTS_DIR}")
+        raise SystemExit(f"no probing CSVs found in {dumps}")
     order = {s: i for i, s in enumerate(SUITE_ORDER)}
     paths = sorted(paths, key=lambda q: (order.get(suite_from(q)[1], len(order)), q.stem))
 
     style.apply_style()
     import matplotlib.pyplot as plt
 
-    suites, total_placeholder, dummy = [], 0, []
+    print(f"\n  {probe['label']} probe, per-dimension R^2 "
+          f"-- {dumps.relative_to(RESULTS_DIR.parent)}/")
+
+    suites, total_placeholder, dummy, skipped = [], 0, [], []
     for path in paths:
         suite_label, stem = suite_from(path)
-        labels, values, methods, n_ph, is_dummy = load(path)
+        labels, values, methods, skip, n_ph, is_dummy = load(path)
         total_placeholder += n_ph
+        skipped += [m for m in skip if m not in skipped]
         if is_dummy:
             dummy.append(path.name)
         print_table(suite_label, labels, values, methods)
@@ -453,6 +554,16 @@ def main():
             ax.plot(
                 x + slots[si][mi], values[m],
                 linestyle="none",
+                # `% len(MARKERS)` wraps rather than raises, and MARKERS holds
+                # four shapes. Shape is the only channel a mark has here, so a
+                # fifth drawn series silently reuses the first one's: between
+                # 2026-08-28 and 2026-09-02 the dumps carried five columns and
+                # mv_sf drew as CLAM's circle, separated from it only by the red
+                # highlight this figure says is not the identity channel. The
+                # pitch warning above does not catch it (4.01pt pitch against
+                # 3.00pt marks, so nothing overlapped). SKIP_METHODS is what
+                # holds the count at four today -- emptying it is one line, so
+                # add a fifth shape in style.py before drawing a fifth series.
                 marker=style.MARKERS[mi % len(style.MARKERS)],
                 # No edge: at this size a 0.5pt contour is a third of the mark's
                 # width, and against a band tinted to 0.16 the fill already has
@@ -493,10 +604,16 @@ def main():
     ax.set_axisbelow(True)
     ax.grid(axis="y")
     ax.tick_params(axis="x", length=0)
-    ax.set_ylabel(r"probe $R^2$")
+    ax.set_ylabel(rf"{probe['label']} probe $R^2$")
 
     build_legends(fig, [s[0] for s in suites], cidx, ref_methods, left)
-    style.save(fig, args.name)
+    style.save(fig, name)
+    # Said out loud, every run: a column that is in the dump but not in the
+    # figure is exactly the thing a reader of the figure cannot see.
+    if skipped:
+        print("\n  not plotted, held back by SKIP_METHODS -- still in the dumps:")
+        for m in skipped:
+            print(f"      {m}  {label_for(m)}")
     if total_placeholder:
         print(f"\n  note: {total_placeholder} placeholder cell(s) not yet run; "
               f"drawn as gaps, not as zeros")

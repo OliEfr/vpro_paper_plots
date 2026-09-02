@@ -60,7 +60,8 @@ See `experiments/README.md`.
 ## `probing_<suite>.csv`
 
 Latent-action probe quality: a frozen-latent MLP reconstructs ground-truth
-robot actions, scored per action dimension by R².
+robot actions, scored per action dimension by R². The linear-probe twin of these
+same numbers is `probing_ridge/` — see below.
 
 | column        | meaning                                                        |
 |---------------|----------------------------------------------------------------|
@@ -68,15 +69,25 @@ robot actions, scored per action dimension by R².
 | `axis`        | `delta_x` … `delta_rz`, `gripper`, or `all_dims` on the mean row |
 | `<method>_r2` | R² for one LAM configuration — **any** column ending in `_r2`   |
 
-Methods are read positionally from the `_r2` columns, so adding or dropping a
-configuration is a schema change only. The current dump carries four, all of
-them two-frame (Δ = [0,5]):
+Methods are read positionally from the `_r2` columns, so adding a configuration
+is a schema change only. The current dump carries five, all of them two-frame
+(Δ = [0,5]):
 
-    action_dim,axis,clam_r2,dino_r2,sv_sf_r2,mv_sf_r2
+    action_dim,axis,clam_r2,dino_r2,flow_r2,sv_sf_r2,mv_sf_r2
 
 `clam` adds CLAM's action-grounding loss to our LAM; `dino` swaps its encoder for
-DINOv3 features; `sv_sf`/`mv_sf` are our own LAM at one and two viewpoints. Add
-matching display names to `METHOD_LABELS`.
+DINOv3 features; `flow` adds LAOF's auxiliary optical-flow decoder; `sv_sf`/`mv_sf`
+are our own LAM at one and two viewpoints. Add matching display names to
+`METHOD_LABELS`.
+
+**The figure plots four of the five.** Which configurations the paper shows is a
+figure decision, so it lives in `plot_probing.py`'s `SKIP_METHODS`, not here — a
+column comes out of the *plot* without coming out of the *dump*. `dino_r2` is
+held back as of 2026-09-02; it is still read, still cross-checked against its
+mean row, and still named on the script's stdout every run, so a column cannot
+leave the figure silently. Nothing in this directory is edited to drop an arm
+from a figure, which is the append-only rule at the top of this file: a probe
+that has been run stays, and the one held back is doing work in the text below.
 
 **Order is baselines first, ours last**, matching the results table, so the two
 red marks land on the right of every band. This deliberately drops the older
@@ -86,6 +97,8 @@ relative gains — it plots absolute R² only. If a script here ever does comput
 them again, it must name its reference column explicitly rather than assume
 position 0, because the reference arm (`sv_sf_r2`) now sits third — and as of
 2026-08-28 it sits **fourth**, which is exactly why that rule is written down.
+`SKIP_METHODS` makes that sharper: it sits fourth in the *dump* and third in the
+*figure*, so a position is not even one number any more.
 
 **`flow_r2` added 2026-08-28** — the LAOF-style auxiliary optical-flow decoder
 (run10-mg, teacher `45069925`, probe `45101211`). Real numbers on MimicGen only;
@@ -132,7 +145,7 @@ header and the banner would never have fired. Fixed 2026-08-18. **Never put
 un-flagged filler in a results file**; the marker line is the only thing standing
 between a placeholder and a figure caption.
 
-Note also that every suite needs all four `_r2` columns in the same order, or
+Note also that every suite needs all five `_r2` columns in the same order, or
 `plot_probing.py` exits rather than draw a figure whose shared marker legend and
 shared x groups would be lying.
 
@@ -141,6 +154,61 @@ the plot script recomputes both rather than reading them, so a figure can never
 disagree with the raw numbers it was built from. The `mean` row *is* read, and
 the script warns if it disagrees with the mean over the per-dimension rows by
 more than 0.005 — that usually means a stale dump.
+
+### `probing_ridge/probing_<suite>.csv` — the same probes, read linearly
+
+Identical schema, identical suites, identical arms, identical rows: the ridge
+(α = 1) half of the very same probe jobs. The analyzer is run `--probe-model
+both`, so each job's `action_probe_r2.csv` on MN5 carries `mlp` and `ridge` rows
+over one train/val/test split, and these dumps are the second half of files the
+`probing_<suite>.csv` above already quotes the first half of. Nothing was
+re-run to produce them (extracted 2026-09-02).
+
+    python plot_probing.py --probe ridge     # figures/probing_ridge.pdf
+
+Same figure, one metric changed, **same y range on purpose** — the ridge figure
+sits visibly lower, and rescaling it to fill its own box would hide that the two
+probes disagree about how much of the action the latent linearly holds.
+
+The dumps are a *subdirectory* and not `probing_ridge_<suite>.csv` beside their
+MLP twins, because `plot_probing.py`'s default glob is `results/probing_*.csv`:
+files named that way would be picked up by a plain `python plot_probing.py`, and
+since they carry the same axis rows and the same method columns, both of that
+script's consistency checks would pass and the MLP figure would quietly come out
+with six suite bands. A subdirectory cannot be globbed into the wrong figure.
+
+Each column was verified by re-deriving its **MLP** twin from the same file and
+checking it reproduces the committed `probing_<suite>.csv` to 4 dp. That is what
+fixes the probe-directory-to-arm mapping: a wrong directory would give a wrong
+ridge column silently, and there is no way to eyeball a ridge number as wrong.
+
+**`sv_sf` on plain LIBERO is `0` here**, and not because a number is merely
+missing. That column in the MLP dump is not a probe read-out at all — it is
+recovered from an archived per-dimension *figure*'s geometry (see the provenance
+note at the end of this file), and a figure carries the series it plots and no
+other. There is no ridge counterpart to recover, so the cell is the not-run
+placeholder and the LIBERO band draws one mark. LIBERO-Plus carries the
+single-vs-multi-view contrast with exact numbers on both sides.
+
+**What it shows.** On MimicGen the linear probe **reorders the arms**:
+
+| MimicGen mean R² | MLP | ridge |
+|---|---:|---:|
+| Ours (multi-view) | 0.5585 | **0.3908** |
+| CLAM-style | 0.5514 | 0.3842 |
+| Ours (single-view) | 0.4999 | 0.3536 |
+| UniVLA-style (DINOv3) | 0.5171 | 0.3423 |
+| LAOF-style (flow) | **0.5577** | 0.3349 |
+
+The flow arm falls from second of five to **last**, and DINOv3 from third to
+below single-view. Those are exactly the two arms whose *policies* scored below
+single-view — so on this suite the linear probe ranks the arms closer to their
+success rates than the MLP probe does. On LIBERO-Plus the two probes agree on
+the order (mv_sf > clam > dino > sv_sf). Two suites is not a law, and this is a
+reason to report both probes, not to switch to ridge and call it predictive.
+
+`SKIP_METHODS` is shared between the two figures, so `dino_r2` is held back from
+the ridge figure too. Its numbers are in the dump and on stdout either way.
 
 ### Before reading these numbers
 
@@ -156,7 +224,11 @@ row should be reported as an absolute delta only.
 in the current LIBERO-Plus dump is DINOv3: it probes **above** our single-view
 reference (0.6212 vs 0.5941) and **scores below** it (60.87 vs 62.10 SR). Read
 this figure as a collapse detector — it catches a dead latent — and never as a
-teacher-selection criterion.
+teacher-selection criterion. The `probing_ridge/` dumps sharpen this: on MimicGen
+the *linear* probe puts both misranked arms (flow, DINOv3) where their success
+rates put them, while the MLP probe puts flow second of five. Whether an arm
+looks good here depends on which probe you chose, which is the argument against
+choosing on it at all.
 
 ⚠ The misranking is a property of the metric, not of one bad arm, and the
 inversions this dump *used* to show were bigger than the one it shows now.

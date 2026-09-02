@@ -58,6 +58,12 @@ fi
 # style; a paper-style twin nobody includes is one more thing to keep in sync.
 SCIENCE_ONLY=(plot_realworld_row.py)
 
+# Scripts that draw one figure per --probe. Same reason this file exists: the
+# MLP and ridge probing figures come out of the same probe jobs, so a change to
+# either dump set or to the script staleness them both, and "remember to also
+# run --probe ridge" is the same rule that gets missed as --style science.
+declare -A PROBE_VARIANTS=([plot_probing.py]="mlp ridge")
+
 for s in "${SCRIPTS[@]}"; do
   science_only=false
   for so in "${SCIENCE_ONLY[@]}"; do
@@ -71,8 +77,12 @@ for s in "${SCRIPTS[@]}"; do
   fi
 
   for style in paper science; do
-    echo "=== $s --style $style"
-    "$PY" "$s" --style "$style"
+    for probe in ${PROBE_VARIANTS[$s]:-""}; do
+      probe_arg=()
+      [[ -n "$probe" ]] && probe_arg=(--probe "$probe")
+      echo "=== $s --style $style ${probe_arg[*]}"
+      "$PY" "$s" --style "$style" "${probe_arg[@]}"
+    done
   done
 done
 

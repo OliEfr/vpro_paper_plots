@@ -46,12 +46,16 @@ slightly differently; do not commit figures built from it.
 ```
 
 `build_figures.sh` checks the env is complete before it writes anything and then
-runs each script twice, once per style. Prefer it over calling the scripts by
-hand: a run that only does the default style leaves the `_science` half of the
-repo stale, which is the failure mode described below.
+runs each script twice, once per style — four times for `plot_probing.py`, which
+draws one figure per probe (`--probe mlp`, `--probe ridge`). Prefer it over
+calling the scripts by hand: a run that only does the default style leaves the
+`_science` half of the repo stale, which is the failure mode described below,
+and a run that only does the default probe leaves `probing_ridge.*` stale the
+same way — same dumps, same jobs, so they go out of date together.
 
 ```sh
 python plot_probing.py         # figures/probing.pdf, from every results/probing_*.csv
+python plot_probing.py --probe ridge  # figures/probing_ridge.pdf, the linear-probe twin
 python plot_realworld.py       # figures/realworld_scaling.pdf
 python plot_realworld_bars.py  # figures/realworld_alltasks.pdf
 python plot_realworld_multiview_vs_side.py  # figures/realworld_multiview_vs_side.pdf
@@ -96,7 +100,8 @@ built at. Anything sized to `TEXT_WIDTH` (7.140in) needs `figure*` and
 `width=\textwidth`; anything sized to `COL_WIDTH` (3.487in) needs a plain
 `figure` and `width=\columnwidth`. `probing.pdf` and `radar_row.pdf` are the
 former, the other real-world figures and the three single-column radars are the
-latter.
+latter. `probing_ridge.pdf` embeds exactly like `probing.pdf` — same width, same
+float — with the file and label swapped and *linear* probe in the caption.
 
 `realworld_alltasks.pdf` is the one exception, and it is worth knowing about
 before you copy a snippet from a neighbouring script. Its six task groups do not
