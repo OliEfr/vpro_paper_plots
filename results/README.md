@@ -459,14 +459,27 @@ had put the *four-frame* lam1 probe's values (probe 44965976, mean 0.6728)
 in this column; fixed 2026-08-27 — the two teachers probe equal within the
 ±0.011 noise floor, so no figure conclusion moved.
 
-**`sv_sf` is a dev-track approximation** (no single-view teacher exists in
-the paper's MN5 LIBERO family, and none is being trained): autoresearch dev
-chain, libero_multicam dev benchmark, 20k steps, latent width 32 (the paper
-teachers are width 512), values recovered from the archived per-dimension
-figure's geometry calibrated against six known CSV values (±0.01). It
-supports the single→multi-view direction only; do not read its absolute
-level against the exact `mv_sf` column or the other suites' exact `sv_sf`
-cells.
+**`sv_sf` is exact dev-track, not the paper protocol** (no single-view
+teacher exists in the paper's MN5 LIBERO family, and none is being
+trained): autoresearch run `baseline-main-dev-20k` (libero_multicam dev
+benchmark, 20k steps, latent width 32; the paper teachers are width 512),
+**ridge(α=1)/future_action_mean selector** — the thesis figure's selector,
+identified 2026-09-03 by matching the archived figure against the
+workstation's `action_probe_r2.csv` (the earlier ±0.01 geometry
+reconstruction was right to 0.003). So the LIBERO band's sv→mv step crosses
+probe model, target, data pool, AND teacher scale: direction only, never
+the magnitude — which is also why `probing_ridge/probing_libero.csv` keeps
+its `sv_sf` a deliberate gap. The clean same-selector LIBERO
+single-vs-multi numbers are the dev pair `baseline-main-dev-20k` →
+`multiview-reconstruction-dev-20k`: ridge/future 0.5439 → 0.6570 (+0.113),
+mlp/current 0.7242 → 0.7991 (+0.075) — multi-view wins by both selectors,
+carried by Δx and rotations. The dev chain's full 2×2 (ridge/future):
+sv_sf 0.5439, sv_mf 0.7138 (`mfseq-final-q512-dev`), mv_sf 0.6570, mv_mf
+0.7660 (`mfseq-multiview-q512-dev`); both mf cells bundle the q32→q512
+width increase, and by mlp/current the mf step actually *drops*
+(0.7242→0.7084 single, 0.7991→0.7515 multi) — the mfseq latent encodes the
+future sequence, which ridge/future rewards and current-action does not.
+Quote multi-frame probe gains only with the selector named.
 
 ## `umap_teachers.csv`, `umap_hardware.csv`, `tsne_teachers.csv`, `tsne_hardware.csv`
 

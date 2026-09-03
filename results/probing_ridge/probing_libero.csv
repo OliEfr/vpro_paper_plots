@@ -8,14 +8,16 @@
 # episode split, continuous features, current_action. That file's mlp rows for
 # the same slice reproduce ../probing_libero.csv to 4 dp.
 #
-# ⚠ sv_sf_r2 IS 0 HERE, AND NOT BECAUSE THE PROBE IS MISSING A NUMBER WE HAVE.
-# The MLP dump's sv_sf column is not a probe read-out at all: it is a dev-track
-# approximation recovered from an archived per-dimension FIGURE's geometry
-# (autoresearch dev chain, libero_multicam dev benchmark, 20k steps, latent
-# width 32; +-0.01) -- see the provenance note at the end of results/README.md.
-# A figure carries the series it plots and no other, so there is no ridge
-# counterpart to recover, and inventing one would be fabrication. It is the
-# not-run placeholder, drawn as a gap.
+# ⚠ sv_sf_r2 IS 0 HERE, DELIBERATELY. Provenance update 2026-09-03 (workstation
+# back): the MLP dump's sv_sf turned out to BE a real CSV read-out after all --
+# autoresearch run baseline-main-dev-20k, ridge(a=1)/future_action_mean selector
+# (see the provenance note at the end of results/README.md). But it stays out of
+# this file for the reason that survives the correction: this file's selector is
+# ridge/current_action on the 5-robot pooled export, and the dev run probes a
+# different target on a different pool at a different teacher scale (its
+# ridge/current row exists on the workstation and is NOT comparable either).
+# Putting any dev number beside this band's one exact mark would invite a
+# single-vs-multi magnitude comparison the data cannot support.
 #
 # So this band is ONE real mark. The single-to-multi-view direction that the MLP
 # figure's LIBERO band shows cannot be shown under a linear probe on this suite;
