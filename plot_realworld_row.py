@@ -19,8 +19,9 @@ SCIENCE_ONLY list there.
 It does write the PNG alongside the PDF, the way every other script here does.
 The PDF is still the only file the paper includes; the PNG is for the last step
 of README.md's checklist, and this is the figure that needs it most -- the panel
-widths are hand-set and MIN_TICK_PITCH_IN only guards the pitch, so a tick-label
-collision is caught by eye or not at all.
+widths are hand-set. The tick labels and the legends are now measured off the
+rendered text and checked (see required_pitch_in and check_legends_fit), but
+nothing checks a bar against the legend above it.
 
 If a paper-style version is ever wanted, add the ``--style`` switch back the way
 plot_radar_row.py has it; the draw code below is already style-agnostic.
@@ -42,21 +43,31 @@ The caption is left empty on purpose -- it is the author's to write. Three
 things it has to carry, because the figure no longer says them itself: the
 panels are unlettered, so refer to them as left / middle / right; the bracketed
 tick tags are abbreviated, so expand them (obj: novel object, place: novel
-placement, move: novel movement, bkg: novel background); and the middle panel's
-Mean column is pooled over its four tasks, so say so -- an aggregate that reads
-as a fifth task is the misreading the bold rule in front of it is there to
-prevent. The middle and right panels are both at the five-robot-episode budget,
-and the right panel sweeps task3.
+placement, move: novel movement, bkg: novel background); and both bar panels
+end in a Mean column pooled over the tasks to its left -- six on the left, four
+in the middle -- so say so, because an aggregate that reads as one more task is
+the misreading the bold rule in front of it is there to prevent. The middle and
+right panels are both at the five-robot-episode budget, and the right panel
+sweeps task3.
 
 Include it at \textwidth and nothing is rescaled; any other width scales the
 8pt text off the page. See README.md.
 
-PANEL WIDTHS are not equal. The left panel carries six task groups and the
-middle one five (four tasks plus Mean), and a group needs about 0.40in for the
-abbreviated labels, so the widths come from the column counts rather than a
-three-way split -- the scaling panel is sized first and the two bar panels
-split what is left at one shared pitch. Splitting evenly instead collides the
+PANEL WIDTHS are not equal, and neither are their pitches. The left panel
+carries seven columns (six tasks plus Mean) and the middle one five (four tasks
+plus Mean), but the left panel also carries the widest label on either axis --
+task5's "milk right" line, 0.474in against 0.353in for the widest the middle
+panel draws -- so it needs the wider pitch as well as the greater number of
+columns. Both are sized to leave TICK_LABEL_AIR_IN between neighbouring labels
+and the scaling panel takes what is left, which is what makes it the panel that
+shrinks when either bar panel needs more. Splitting evenly instead collides the
 left panel's labels while leaving the scaling panel half empty.
+
+THE RIGHT END of the row is set by the scaling panel's LEGEND, not by its axes.
+That legend stacks one entry per row (see panel_legend) and its longest label is
+"w/ Human Videos (ours)", so at 1.378in it is wider than the 1.07in axes it
+heads and overhangs them on both sides. RIGHT_PAD_IN covers that overhang, which
+is why it is bigger than the half tick label it would otherwise need to be.
 
 NO PANEL TITLES. Each panel's legend sits directly above it and names its arms,
 which is what identifies the panel; a title row on top of that was a second
@@ -128,27 +139,56 @@ TASK_ORDER = ["task1", "task2", "task3", "task4", "task5", "task6"]
 # rest, rather than everything being derived from one shared pitch: these two
 # are the ones that get adjusted by eye, and stating their widths directly beats
 # expressing each adjustment as a fraction of a fraction.
-SCALING_AXES_IN = 1.37   # 1.52 less 10%
-MIDDLE_AXES_IN = 1.925   # 2.138 less 10%
+#
+# Both moved when the left panel took on a Mean column: that column costs it
+# 0.80 of a task slot, which at the old widths dropped its pitch from 0.486in
+# to 0.429in and overlapped "milk right" into "in bowl" on either side of it.
+# The two bar panels are now sized to clear required_pitch_in() by about the
+# same margin -- 0.459in of pitch on the left against the 0.455in its widest
+# neighbouring pair needs, 0.404in on the middle against the 0.399in its Mean
+# label needs -- and the scaling panel paid for both. It is the panel that can:
+# it plots five points on a monotone pair of lines, where the bar panels are
+# carrying eleven three-line tick labels between them.
+SCALING_AXES_IN = 1.07   # 1.37 less the 0.30 the left panel's Mean column cost
+MIDDLE_AXES_IN = 1.94    # 1.925, rounded up to keep clear of its own floor
 
-# The Mean column is given a NARROWER slot than a task column, and this is what
-# makes the middle panel fit at that width. Its label is one short bold word
-# (0.283in) against a task's three stacked lines (0.353in), so an equal share
-# would spend the panel's scarcest inches on its least demanding column. At an
-# equal share the four task labels drop to a 0.385in pitch and "on plate" under
-# task1 runs into "on plate" under task2 -- they do not technically overlap, but
-# they read as one phrase, which is worse than a collision because nothing looks
-# broken.
-MEAN_SLOT_UNITS = 0.80   # of one task column
+# Both bar panels end in a Mean column, and it gets a NARROWER slot than a task
+# column -- which is what makes the middle panel fit at its width. Its label is
+# one short bold word (0.283in) against a task's three stacked lines (0.353in),
+# so an equal share would spend the panel's scarcest inches on its least
+# demanding column. At an equal share the four task labels drop to a 0.385in
+# pitch and "on plate" under task1 runs into "on plate" under task2 -- they do
+# not technically overlap, but they read as one phrase, which is worse than a
+# collision because nothing looks broken.
+#
+# The slot scales the BARS INSIDE IT by the same factor rather than dropping
+# full-width bars into a short slot. A task column spends 84% (left panel) or
+# 76% (middle) of its width on bars and the rest on the air that separates one
+# column from the next; at full width in a 0.80 slot the middle panel's pair
+# came within 0.008 data units of the fence rule on one side and the right spine
+# on the other, so the Mean column read as wedged in rather than set apart.
+# Scaled, it keeps a task column's proportions at 80% of its size.
+MEAN_SLOT_UNITS = 0.80   # of one task column, bars and surrounding air alike
+MEAN_TICK_LABEL = r"$\mathbf{Mean}$"
 
-# Measured: the widest short-form label line is 0.353in ("[obj]" / "on plate"),
-# so that is where labels actually touch; the floor keeps ~0.045in of air.
-MIN_TICK_PITCH_IN = 0.395
+# Clear air between one x tick label and its neighbour. The pitch each bar panel
+# needs is measured from this and the rendered labels rather than stated -- see
+# required_pitch_in. 0.042in is not a new judgement: it is what the middle panel
+# already shipped at, and the 0.395in floor it replaces implied the same thing
+# against the label it was measured from. Roughly two thirds of an 8pt
+# inter-word space, and that is the point -- go under it and two labels stop
+# looking like two labels and start reading as one phrase, which is worse than
+# an outright collision because nothing looks broken.
+TICK_LABEL_AIR_IN = 0.042
 
 YLABEL_IN = 0.24    # "Success Rate [%]", rotated, on the left panel only
 YTICKS_IN = 0.20    # "100" and friends -- left panel only, see below
 GUTTER_IN = 0.20
-RIGHT_PAD_IN = 0.09  # half of the last x tick label on the scaling panel
+# Half of the scaling panel's last x tick label is only 0.045in; this is set by
+# that panel's legend instead, which at 1.378in overhangs the 1.07in axes it is
+# centred on by 0.154in a side and would print off the page edge without it.
+# check_legends_fit() is the guard.
+RIGHT_PAD_IN = 0.17
 # Measured off the rendered legend artist, not guessed: at 0.15 the two-row
 # legends reached 0.055in past the axes top. Nothing showed, because no bar in
 # this dump reaches 100% -- a taller bar later would have printed through the
@@ -169,16 +209,25 @@ MIN_BODY_IN = 0.70   # below this the 0-100 axis stops being readable
 
 
 def load_alltasks():
+    """Per-task values plus the pooled mean the panel's last column shows.
+
+    One mean per (method, budget) -- the panel's Mean column carries the same
+    four bars every task column does, so the aggregate is taken along tasks
+    only. Rollout-weighted and derived here rather than dumped, for the reason
+    load_multiview() gives: a dumped aggregate is a number nothing re-checks.
+    """
     df = pd.read_csv(ALLTASKS_CSV, comment="#")
     methods = [c for c in df.columns if c.endswith("_sr")]
     task_ids = [t for t in TASK_ORDER if t in set(df["task"])]
     budgets = sorted(df["n_demos"].unique())
-    values = {}
+    values, means = {}, {}
     for m in methods:
         for b in budgets:
             rows = df[df["n_demos"] == b].set_index("task")
             values[(m, b)] = rows.loc[task_ids, m].to_numpy(dtype=float) * 100.0
-    return task_ids, budgets, values, methods
+            weights = rows.loc[task_ids, "n_rollouts"].to_numpy(dtype=float)
+            means[(m, b)] = float(np.average(values[(m, b)], weights=weights))
+    return task_ids, budgets, values, means, methods
 
 
 def load_multiview():
@@ -249,24 +298,159 @@ def budget_hatch(bi, n_budgets):
     return style.HATCHES[(n_budgets - 1 - bi) % len(style.HATCHES)]
 
 
-def panel_bars(ax, task_ids, budgets, values, methods):
-    """Left panel: grouped bars, colour is the method, hatch is the demo budget."""
-    x = np.arange(len(task_ids), dtype=float)
+def _line_widths_in(fig, text):
+    """Width of each line of `text` in inches, as the active style renders it.
+
+    Measured rather than tabulated because every number it feeds is a property
+    of the font: a constant here would be right for the style and the freetype
+    build it was measured on and quietly wrong on the next one.
+    """
+    renderer = fig.canvas.get_renderer()
+    widths = []
+    for line in text.split("\n"):
+        artist = fig.text(0.5, 0.5, line)
+        widths.append(artist.get_window_extent(renderer=renderer).width / fig.dpi)
+        artist.remove()
+    return widths
+
+
+def required_pitch_in(fig, task_ids):
+    """Column pitch this panel's x tick labels need, from the labels themselves.
+
+    The 0.395in constant this replaces was wrong twice over. It was one number
+    for two panels that do not draw the same labels, and it was measured off
+    "[obj]" / "on plate" at 0.353in, missing "milk right" -- the widest line on
+    the left panel's axis at 0.474in. Adding the Mean column dropped that panel
+    to a 0.429in pitch, where "milk right" overlapped "in bowl" on both sides of
+    it by 0.045in, and the guard passed.
+
+    What binds is the widest ADJACENT PAIR, not the widest label: the labels are
+    centred on their columns, so what has to fit between two centres is half of
+    each neighbour plus TICK_LABEL_AIR_IN.
+    """
+    lines = [_line_widths_in(fig, tasks.wrapped(t, short=True)) for t in task_ids]
+    # tasks.wrapped() gives every label the same number of lines and they are
+    # set from a common top, so line i only ever meets line i of its neighbour.
+    need = max(((a + b) / 2 + TICK_LABEL_AIR_IN)
+               for left, right in zip(lines, lines[1:])
+               for a, b in zip(left, right))
+    # The Mean label against the last task's, at the closer spacing the narrower
+    # slot puts them at. Checked against that neighbour's widest line rather
+    # than line by line: it is one mathtext line, and mathtext sets its own
+    # height, so which of the three rows it lands level with is not ours to say.
+    mean_w = max(_line_widths_in(fig, MEAN_TICK_LABEL))
+    mean_gap_units = (1.0 + MEAN_SLOT_UNITS) / 2
+    return max(need, ((mean_w + max(lines[-1])) / 2 + TICK_LABEL_AIR_IN)
+               / mean_gap_units)
+
+
+def check_legends_fit(fig, legends):
+    """Fail if a panel legend prints off the page.
+
+    With no panel titles the legend is each panel's header, and it is centred on
+    its panel rather than fitted to it -- the scaling panel's is wider than its
+    axes. That makes the row's outer edges a function of the legend text, so a
+    renamed arm can push one off the canvas. Nothing else here would notice:
+    a fig.legend is not clipped to anything, it just goes missing at the crop.
+    """
+    fig.canvas.draw()
+    renderer = fig.canvas.get_renderer()
+    limit = fig.get_figwidth() * fig.dpi
+    for key, legend in legends.items():
+        box = legend.get_window_extent(renderer=renderer)
+        over = max(-box.x0, box.x1 - limit) / fig.dpi
+        if over > 0:
+            raise SystemExit(
+                f"panel '{key}' legend runs {over:.3f}in off the figure -- it is "
+                f"{box.width / fig.dpi:.3f}in wide and centred on a "
+                f"{key} panel that cannot hold it; widen RIGHT_PAD_IN, shorten "
+                f"the labels, or give the panel a different ncol")
+
+
+def mean_slot_x(n):
+    """Centre of the Mean slot in a bar panel with `n` task columns.
+
+    Task slots are one data unit each and so end at ``n - 0.5``; the Mean slot
+    starts there and is MEAN_SLOT_UNITS wide, with its centre in the middle of
+    it -- the narrower column is a narrower slot, not a full slot with the bars
+    pushed to one side.
+    """
+    return n - 0.5 + MEAN_SLOT_UNITS / 2
+
+
+def finish_bar_panel(ax, task_ids):
+    """Column dividers, the Mean fence, x limits and tick labels.
+
+    Shared by both bar panels. They differ in what goes inside a column, not in
+    how the columns are fenced, and the Mean fence in particular has to be drawn
+    identically in both -- it is the mark that says "aggregate, not a task", so
+    a reader who learns it in one panel should be able to read it in the other.
+    """
+    n = len(task_ids)
+    x = np.arange(n, dtype=float)
+    for xi in x[:n - 1]:
+        ax.axvline(xi + 0.5, color=style.INK_MUTED, linewidth=0.5, zorder=0)
+    # The Mean column aggregates the columns to its left instead of adding one
+    # more measurement to them, so it is fenced off by a rule at the axis's full
+    # weight rather than by the hairline that divides one task from the next,
+    # and its label is set bold for the same reason. Getting this wrong is how a
+    # summary gets read as a measurement.
+    ax.axvline(n - 0.5, color=style.INK, linewidth=1.1, zorder=4)
+    # Right edge is the end of the Mean slot, not half a task-slot past its
+    # centre -- otherwise the narrower slot buys nothing back.
+    ax.set_xlim(-0.5, n - 0.5 + MEAN_SLOT_UNITS)
+    ax.set_xticks(np.append(x, mean_slot_x(n)))
+    ax.set_xticklabels([tasks.wrapped(t, short=True) for t in task_ids]
+                       + [MEAN_TICK_LABEL])
+
+
+def panel_bars(ax, task_ids, budgets, values, means, methods):
+    """Left panel: grouped bars, colour is the method, hatch is the demo budget.
+
+    Ends in the same pooled Mean column the middle panel carries, fenced the
+    same way -- see finish_bar_panel.
+
+    Its four Mean values are printed like the middle panel's two, but ROTATED
+    and set above the bar rather than horizontally inside it. Four bars to a
+    cluster puts one at 0.064in wide here, against 0.093in for a horizontal
+    two-digit number at the middle panel's 7pt -- it would be wider than the bar
+    it labels. Turned on its side the number's CAP HEIGHT is what has to fit the
+    bar instead of its length, and digits carry neither ascender nor descender,
+    so 6pt bold clears the bar by 0.006in where 7pt overruns it by 0.004in.
+
+    The length is then charged to headroom instead, which this column has: the
+    tallest Mean bar is 42%, and 0.079in of number above it reaches 52%. Note
+    that is a fact about this dump, not about the layout -- a Mean above roughly
+    88% would run the number into the legend, and nothing here checks that.
+    """
+    import matplotlib as mpl
+
+    n = len(task_ids)
+    x = np.arange(n, dtype=float)
     span, cluster_gap = 0.84, 0.14
     w = (span - cluster_gap * (len(budgets) - 1)) / (len(methods) * len(budgets))
     edge = -span / 2
+    mean_x = mean_slot_x(n)
+    widths = np.append(np.full(n, w), w * MEAN_SLOT_UNITS)
     for bi, b in enumerate(budgets):
         for mi, m in enumerate(methods):
+            # The offset within the cluster is scaled along with the bar width,
+            # so the four Mean bars stay a centred, uncut copy of a task
+            # cluster rather than a full-width one overflowing the short slot.
             off = edge + w / 2 + (bi * len(methods) + mi) * w + bi * cluster_gap
-            ax.bar(x + off, values[(m, b)], width=w,
+            ax.bar(np.append(x + off, mean_x + off * MEAN_SLOT_UNITS),
+                   np.append(values[(m, b)], means[(m, b)]), width=widths,
                    facecolor=style_for(mi),
                    hatch=budget_hatch(bi, len(budgets)),
                    edgecolor=style.MARKER_EDGE, linewidth=0.5, zorder=3)
-    ax.set_xlim(x[0] - 0.5, x[-1] + 0.5)
-    ax.set_xticks(x)
-    ax.set_xticklabels([tasks.wrapped(t, short=True) for t in task_ids])
-    for xi in x[:-1]:
-        ax.axvline(xi + 0.5, color=style.INK_MUTED, linewidth=0.5, zorder=0)
+            # Black on white here rather than the middle panel's black on fill,
+            # so there is no contrast argument to make -- but it is the same
+            # bold, because it is the same kind of number.
+            ax.text(mean_x + off * MEAN_SLOT_UNITS, means[(m, b)] + 2.0,
+                    f"{means[(m, b)]:.0f}", rotation=90,
+                    ha="center", va="bottom", color=style.INK, fontweight="bold",
+                    fontsize=mpl.rcParams["font.size"] - 2.0, zorder=5)
+    finish_bar_panel(ax, task_ids)
 
 
 def panel_views(ax, task_ids, values, means, methods):
@@ -276,25 +460,25 @@ def panel_views(ax, task_ids, values, means, methods):
     one column. Here the names are already on the left panel's x axis in the
     same order, so matching its orientation lets a reader compare the two.
 
-    The Mean column is an aggregate of the four to its left, not a fifth task,
-    so it is fenced off by a rule at the axis's full weight rather than by the
-    hairline that divides one task from the next. Its label is set bold for the
-    same reason. Getting this wrong is how a summary gets read as a measurement.
+    The Mean column is fenced off and labelled by finish_bar_panel, the same way
+    the left panel's is.
     """
     import matplotlib as mpl
 
     n = len(task_ids)
-    # Task slots are one data unit each; the Mean slot is MEAN_SLOT_UNITS wide
-    # and its centre sits in the middle of it, so the narrower column is a
-    # narrower slot rather than a full slot with the bars pushed to one side.
-    mean_x = n - 0.5 + MEAN_SLOT_UNITS / 2
-    x = np.append(np.arange(n, dtype=float), mean_x)
+    x = np.arange(n, dtype=float)
+    mean_x = mean_slot_x(n)
     w = 0.38
+    widths = np.append(np.full(n, w), w * MEAN_SLOT_UNITS)
     for mi, m in enumerate(methods):
-        series = np.append(values[m], means[m])
+        # The offset from the slot centre scales with the slot, like the width,
+        # so the pair keeps a task column's air on both sides of it instead of
+        # touching the fence rule on one side and the right spine on the other.
+        off = (mi - 0.5) * w
         # No hatch on either bar: these two are told apart by colour alone, which
         # is why VIEW_COLORS picks the orange it does -- see the note there.
-        ax.bar(x + (mi - 0.5) * w, series, width=w,
+        ax.bar(np.append(x + off, mean_x + off * MEAN_SLOT_UNITS),
+               np.append(values[m], means[m]), width=widths,
                facecolor=VIEW_COLORS[m],
                edgecolor=style.MARKER_EDGE, linewidth=0.5, zorder=3)
         # Printed on the Mean bars only. Every other bar is read off the shared
@@ -303,18 +487,10 @@ def panel_views(ax, task_ids, values, means, methods):
         #
         # Black, not white: on this green and this orange black runs about
         # 8-10:1 against the fill where white is under 3:1.
-        ax.text(x[n] + (mi - 0.5) * w, means[m] - 2.0, f"{means[m]:.0f}",
+        ax.text(mean_x + off * MEAN_SLOT_UNITS, means[m] - 2.0, f"{means[m]:.0f}",
                 ha="center", va="top", color=style.INK, fontweight="bold",
                 fontsize=mpl.rcParams["font.size"] - 1.0, zorder=5)
-    # Right edge is the end of the Mean slot, not half a task-slot past its
-    # centre -- otherwise the narrower slot buys nothing back.
-    ax.set_xlim(-0.5, n - 0.5 + MEAN_SLOT_UNITS)
-    ax.set_xticks(x)
-    ax.set_xticklabels([tasks.wrapped(t, short=True) for t in task_ids]
-                       + [r"$\mathbf{Mean}$"])
-    for xi in x[:n - 1]:
-        ax.axvline(xi + 0.5, color=style.INK_MUTED, linewidth=0.5, zorder=0)
-    ax.axvline(n - 0.5, color=style.INK, linewidth=1.1, zorder=4)
+    finish_bar_panel(ax, task_ids)
 
 
 def panel_scaling(ax, n_demos, values, methods, task):
@@ -350,12 +526,12 @@ def panel_legend(fig, handles, x0, w, h, ncol):
     level -- with no panel titles, the legend IS each panel's header.
     """
     y = 1.0
-    fig.legend(handles=handles, loc="upper center",
-               bbox_to_anchor=((x0 + w / 2) / fig.get_figwidth(), y),
-               ncol=ncol, frameon=False, borderaxespad=0,
-               handlelength=1.3, handleheight=0.9,
-               handletextpad=0.4, columnspacing=1.0,
-               labelspacing=0.25)
+    return fig.legend(handles=handles, loc="upper center",
+                      bbox_to_anchor=((x0 + w / 2) / fig.get_figwidth(), y),
+                      ncol=ncol, frameon=False, borderaxespad=0,
+                      handlelength=1.3, handleheight=0.9,
+                      handletextpad=0.4, columnspacing=1.0,
+                      labelspacing=0.25)
 
 
 def main():
@@ -365,7 +541,7 @@ def main():
 
     check_labels_match_owners()
 
-    a_tasks, budgets, a_values, a_methods = load_alltasks()
+    a_tasks, budgets, a_values, a_means, a_methods = load_alltasks()
     b_tasks, b_values, b_means, b_methods = load_multiview()
     c_task, n_demos, c_values, c_methods = load_scaling()
 
@@ -375,10 +551,15 @@ def main():
     print(f"    middle {len(b_tasks)} tasks x {len(b_methods)} view configs")
     print(f"    right  {tasks.label(c_task)}, budgets "
           f"{', '.join(str(int(n)) for n in n_demos)}")
-    # The Mean column is the one number in this figure that is computed here
-    # rather than redrawn from a dump the standalone scripts already table, so
-    # it is the one that has to be printed to be checkable at all.
-    print("    middle Mean column (pooled over the four tasks):")
+    # The Mean columns are the numbers in this figure computed here rather than
+    # redrawn from a dump the standalone scripts already table, so they are the
+    # ones that have to be printed to be checkable at all.
+    print(f"    left Mean column (pooled over the {len(a_tasks)} tasks):")
+    for m in a_methods:
+        for b in budgets:
+            print(f"      {METHOD_LABELS.get(m, m):<24}"
+                  f"{int(b)} robot eps.{a_means[(m, b)]:8.4f}")
+    print(f"    middle Mean column (pooled over the {len(b_tasks)} tasks):")
     for m in b_methods:
         print(f"      {VIEW_LABELS.get(m, m):<14}{b_means[m]:8.4f}")
 
@@ -410,18 +591,6 @@ def main():
                "b": MIDDLE_AXES_IN,
                "c": SCALING_AXES_IN}
 
-    # Both bar panels are checked, not just one: which of the two is tighter now
-    # depends on the widths above, and the loser is where labels merge first.
-    pitches = {"a": axes_in["a"] / n_a,
-               "b": axes_in["b"] / (len(b_tasks) + MEAN_SLOT_UNITS)}
-    for key, p in pitches.items():
-        if p < MIN_TICK_PITCH_IN:
-            raise SystemExit(
-                f"panel '{key}' tick pitch would be {p:.3f}in, under the "
-                f"{MIN_TICK_PITCH_IN}in the abbreviated task labels need -- "
-                f"widen it by trimming MIDDLE_AXES_IN or SCALING_AXES_IN, or "
-                f"shorten the labels")
-
     # Panel origins walked left to right in inches.
     lefts, x = {}, 0.0
     for key in ("a", "b", "c"):
@@ -429,6 +598,22 @@ def main():
         x = lefts[key] + axes_in[key] + GUTTER_IN
 
     fig = plt.figure(figsize=(w, h))
+
+    # Both bar panels are checked, not just one: which of the two is tighter
+    # depends on the widths above and on which task set it draws, and the loser
+    # is where labels merge first. Checked here rather than beside the width
+    # arithmetic because it needs a figure to measure the labels against.
+    pitches = {"a": axes_in["a"] / (n_a + MEAN_SLOT_UNITS),
+               "b": axes_in["b"] / (len(b_tasks) + MEAN_SLOT_UNITS)}
+    for key, task_ids in (("a", a_tasks), ("b", b_tasks)):
+        need = required_pitch_in(fig, task_ids)
+        if pitches[key] < need:
+            raise SystemExit(
+                f"panel '{key}' tick pitch would be {pitches[key]:.3f}in against "
+                f"the {need:.3f}in its labels need at {TICK_LABEL_AIR_IN}in of "
+                f"air -- widen it by trimming MIDDLE_AXES_IN or SCALING_AXES_IN, "
+                f"or shorten the labels")
+
     bottom = XTICKS_IN / h
     body = body_in / h
 
@@ -446,7 +631,7 @@ def main():
         ax.tick_params(axis="x", length=0)
         axes[key] = ax
 
-    panel_bars(axes["a"], a_tasks, budgets, a_values, a_methods)
+    panel_bars(axes["a"], a_tasks, budgets, a_values, a_means, a_methods)
     panel_views(axes["b"], b_tasks, b_values, b_means, b_methods)
     panel_scaling(axes["c"], n_demos, c_values, c_methods, c_task)
     axes["c"].tick_params(axis="x", length=2)
@@ -477,12 +662,15 @@ def main():
         for i, m in enumerate(c_methods)
     ]
 
-    panel_legend(fig, method_handles + budget_handles,
-                 lefts["a"], axes_in["a"], h, ncol=2)
-    panel_legend(fig, view_handles,
-                 lefts["b"], axes_in["b"], h, ncol=2)
-    panel_legend(fig, line_handles,
-                 lefts["c"], axes_in["c"], h, ncol=1)
+    legends = {
+        "a": panel_legend(fig, method_handles + budget_handles,
+                          lefts["a"], axes_in["a"], h, ncol=2),
+        "b": panel_legend(fig, view_handles,
+                          lefts["b"], axes_in["b"], h, ncol=2),
+        "c": panel_legend(fig, line_handles,
+                          lefts["c"], axes_in["c"], h, ncol=1),
+    }
+    check_legends_fit(fig, legends)
 
     style.save(fig, OUT_NAME)
 
