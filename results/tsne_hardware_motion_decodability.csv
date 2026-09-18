@@ -1,0 +1,7 @@
+model,model_label,view,dims,n_per_source,knn15
+sharedlam2,front+side,raw latent (8-D),8,3000,0.998
+sharedlam2,front+side,motion (xyz) subspace (3-D),3,3000,0.782
+sharedlam2,front+side,minus top-3 pose directions (5-D),8,3000,0.814
+sharedlam3side,side only,raw latent (8-D),8,3000,0.985
+sharedlam3side,side only,motion (xyz) subspace (3-D),3,3000,0.958
+sharedlam3side,side only,minus top-3 pose directions (5-D),8,3000,0.946

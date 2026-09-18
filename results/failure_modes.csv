@@ -1,0 +1,44 @@
+domain,arm,outcome,pct_of_rollouts,source
+# Rollout outcomes as a percentage of ALL rollouts, so both domains share one scale.
+# LIBERO (Table IV, non-holdout tasks, 40-task protocol): the paper prints failure stages
+# as a share of FAILURES; they are converted here as share x (100 - success).
+# Real world (Table III, 5 robot / 50 human demos, novel-object + novel-placement pooled,
+# 50 rollouts per category): the paper already prints shares of all rollouts.
+libero,w/ video (ours),success,69.8,Table IV
+libero,w/ video (ours),made no contact,4.5,Table IV: 14.9% of 30.2% failures
+libero,w/ video (ours),grasping,15.4,Table IV: 50.9% of 30.2% failures
+libero,w/ video (ours),lift,3.9,Table IV: 13.0% of 30.2% failures
+libero,w/ video (ours),transport,4.1,Table IV: 13.7% of 30.2% failures
+libero,w/ video (ours),place,2.3,Table IV: 7.5% of 30.2% failures
+libero,oracle latent,success,72.2,Table IV
+libero,oracle latent,made no contact,4.0,Table IV: 14.3% of 27.8% failures
+libero,oracle latent,grasping,14.3,Table IV: 51.6% of 27.8% failures
+libero,oracle latent,lift,2.6,Table IV: 9.5% of 27.8% failures
+libero,oracle latent,transport,3.1,Table IV: 11.1% of 27.8% failures
+libero,oracle latent,place,3.8,Table IV: 13.5% of 27.8% failures
+libero,full action,success,75.0,Table IV
+libero,full action,made no contact,2.7,Table IV: 10.6% of 25.0% failures
+libero,full action,grasping,10.6,Table IV: 42.5% of 25.0% failures
+libero,full action,lift,1.8,Table IV: 7.1% of 25.0% failures
+libero,full action,transport,2.7,Table IV: 10.6% of 25.0% failures
+libero,full action,place,7.3,Table IV: 29.2% of 25.0% failures
+real_novel_obj,action-only,success,12.0,Table III
+real_novel_obj,action-only,wrong plan,64.0,Table III
+real_novel_obj,action-only,missed grip,22.0,Table III
+real_novel_obj,action-only,dropped after grip,0.0,Table III
+real_novel_obj,action-only,target location error,2.0,Table III
+real_novel_obj,w/ video (ours),success,34.0,Table III
+real_novel_obj,w/ video (ours),wrong plan,20.0,Table III
+real_novel_obj,w/ video (ours),missed grip,44.0,Table III
+real_novel_obj,w/ video (ours),dropped after grip,2.0,Table III
+real_novel_obj,w/ video (ours),target location error,0.0,Table III
+real_novel_place,action-only,success,34.0,Table III
+real_novel_place,action-only,wrong plan,40.0,Table III
+real_novel_place,action-only,missed grip,18.0,Table III
+real_novel_place,action-only,dropped after grip,0.0,Table III
+real_novel_place,action-only,target location error,8.0,Table III
+real_novel_place,w/ video (ours),success,58.0,Table III
+real_novel_place,w/ video (ours),wrong plan,26.0,Table III
+real_novel_place,w/ video (ours),missed grip,14.0,Table III
+real_novel_place,w/ video (ours),dropped after grip,0.0,Table III
+real_novel_place,w/ video (ours),target location error,2.0,Table III

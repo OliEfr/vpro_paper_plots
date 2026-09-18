@@ -1,0 +1,7 @@
+model,checkpoint,view,dims,n_per_source,knn15
+sharedlam2,030000,raw,8,2661,0.997
+sharedlam2,030000,motion,3,2661,0.822
+sharedlam2,030000,pose_removed,8,2661,0.9
+sharedlam2,001000,raw,8,2661,0.989
+sharedlam2,001000,motion,3,2661,0.745
+sharedlam2,001000,pose_removed,8,2661,0.972
