@@ -38,6 +38,10 @@ TRACES = HERE / "results" / "decoded_motion_realworld_selected.csv"
 EPISODES = [(596, "Robot"), (1638, "Human")]  # milk on pink plate, rank 2 by proxy
 KEYS = (0.0, 0.5, 0.97)
 KEY_TITLES = ["start", "50 %", "end"]
+# crop of the 4:3 front frame (fractions of width / height): the left quarter is the aluminium frame
+# and the top bare wall; a milder crop keeps the gripper at the right edge fully visible in start/end frames
+CROP = (0.17, 1.0, 0.10, 1.0)  # x0, x1, y0, y1
+CROP_ASPECT = ((CROP[1] - CROP[0]) * 4) / ((CROP[3] - CROP[2]) * 3)  # width / height of the cropped tile
 BAR_W, GAP_MEAN = 0.36, 0.35
 LEGEND = [("ours_single", "Ours (single-view)"), ("ours_multi", "Ours (multi-view)")]  # short, as in plot_probe_tsne_combo.py
 
@@ -64,8 +68,7 @@ def probe_panel(ax, r2):
     ax.tick_params(axis="x", length=0)
     ax.set_xlim(-0.6, x0 - 1 + 0.6)
     ax.set_ylim(0, 1.0)
-    ax.set_ylabel("MLP $R^2$")
-    ax.set_xlabel("Action Dimension", labelpad=1)
+    ax.set_ylabel("MLP $R^2$ per action dim.")
     ax.grid(axis="y", color=style.GRID, linewidth=0.5, zorder=0)
 
 
@@ -90,27 +93,31 @@ def main():
     colors = {k: combo.COLORS[k] for k, _ in LAMS}
 
     w = style.TEXT_WIDTH
-    h = w * 0.26
+    h = w * 0.245
     fig = plt.figure(figsize=(w, h))
     # Explicit geometry (figure fractions) so that (i) every image box has the video's 4:3
     # aspect, (ii) the trace axes of a row have exactly the image height, and (iii) the two
     # rows together span the probe axes' vertical extent (top of row 0 = top of the bars,
     # bottom of row 1 = bottom of the bars).
-    L, R, B, T = 0.06, 0.995, 0.17, 0.80
-    PROBE_W, SEP_GAP = 0.265, 0.025         # probe axes width; gap either side of the vertical rule
-    ROW_GAP, FRAME_GAP, TRACE_GAP, BLOCK_GAP = 0.10, 0.008, 0.03, 0.04
-    ax_probe = fig.add_axes([L, B, PROBE_W, T - B])
-    probe_panel(ax_probe, r2)
-    x_sep = L + PROBE_W + SEP_GAP
-    # separator over the plotting region plus the tick-label band, not the full figure height
-    fig.add_artist(Line2D([x_sep, x_sep], [B - 0.07, T], transform=fig.transFigure,
-                          color=style.INK_MUTED, linewidth=0.6))
-    x_right = x_sep + SEP_GAP
+    L, R, B, T = 0.06, 0.995, 0.135, 0.80
+    SEP_GAP, TAG_W = 0.02, 0.018            # gap either side of the vertical rule; vertical Robot/Human tags
+    ROW_GAP, FRAME_GAP, TRACE_GAP, BLOCK_GAP = 0.025, 0.006, 0.026, 0.032
     row_h = (T - B - ROW_GAP) / len(EPISODES)
-    img_w = row_h * h * (4 / 3) / w            # 4:3 video frame, in figure-width fractions
+    img_w = row_h * h * CROP_ASPECT / w        # cropped frame tile, in figure-width fractions
+    trace_w = row_h * h / w                    # SQUARE trace panels: width = row height
     frames_w = len(KEYS) * img_w + (len(KEYS) - 1) * FRAME_GAP
+    traces_w = 3 * trace_w + 2 * TRACE_GAP
+    # the probe axes take whatever width is left once the right block is laid out
+    probe_w = R - L - 2 * SEP_GAP - TAG_W - frames_w - BLOCK_GAP - traces_w
+    assert probe_w > 0.2, f"probe panel too narrow ({probe_w:.3f}); reduce gaps or figure height ratio"
+    ax_probe = fig.add_axes([L, B, probe_w, T - B])
+    probe_panel(ax_probe, r2)
+    x_sep = L + probe_w + SEP_GAP
+    # separator over the plotting region plus the tick-label band, not the full figure height
+    fig.add_artist(Line2D([x_sep, x_sep], [B - 0.065, T], transform=fig.transFigure,
+                          color=style.INK_MUTED, linewidth=0.6))
+    x_right = x_sep + SEP_GAP + TAG_W
     x_traces = x_right + frames_w + BLOCK_GAP
-    trace_w = (R - x_traces - 2 * TRACE_GAP) / 3
 
     for r, (ep, klabel) in enumerate(EPISODES):
         sub = df[df.episode_index == ep].sort_values("frame_index")
@@ -121,16 +128,19 @@ def main():
         for c, key in enumerate(KEYS):
             fi = int(round(key * (n - 1)))
             ax = fig.add_axes([x_right + c * (img_w + FRAME_GAP), y0, img_w, row_h])
-            ax.imshow(imread(FRAMES / f"ep{ep}_front_f{fi}.jpg"), aspect="auto")
+            img = imread(FRAMES / f"ep{ep}_front_f{fi}.jpg")
+            H, W = img.shape[:2]
+            ax.imshow(img[int(CROP[2] * H):int(CROP[3] * H), int(CROP[0] * W):int(CROP[1] * W)], aspect="auto")
             ax.set_xticks([])
             ax.set_yticks([])
             for sp in ax.spines.values():
                 sp.set_linewidth(0.4)
             if r == len(EPISODES) - 1:
                 ax.set_xlabel(KEY_TITLES[c], labelpad=1.5)
-        # row label above the frame sequence (centred over the frames), not on a vertical y label
-        fig.text(x_right + frames_w / 2, y0 + row_h + 0.012, f"{klabel}: Milk on plate",
-                 ha="center", va="bottom")
+            if c == 0:
+                ax.set_ylabel(klabel, labelpad=2)   # short vertical tag; the task is named once above
+        if r == 0:
+            fig.text(x_right + frames_w / 2, y0 + row_h + 0.02, "Milk on plate", ha="center", va="bottom")
         t = sub.frame_index.to_numpy() / 30.0
         for c, (dk, dlabel) in enumerate(DIMS["delta"]):
             ax = fig.add_axes([x_traces + c * (trace_w + TRACE_GAP), y0, trace_w, row_h])
@@ -151,7 +161,12 @@ def main():
                 # body size, not axes.titlesize (larger in the science style; plot_probe_tsne_combo.py does the same)
                 ax.set_title(dlabel.replace(" [m / 5 frames]", " [cm]"), pad=3, fontsize=plt.rcParams["font.size"])
             if r == len(EPISODES) - 1:
-                ax.set_xlabel("time [s]", labelpad=1)
+                if c == 0:  # unit once, right after the last tick label of the first panel
+                    ticks = [tk for tk in ax.get_xticks() if t[0] <= tk <= t[-1]]
+                    rc = plt.rcParams
+                    ax.annotate("t [s]", xy=(ticks[-1], 0), xycoords=("data", "axes fraction"),
+                                xytext=(4.5, -(rc["xtick.major.size"] + 1.5)), textcoords="offset points",
+                                ha="left", va="top", annotation_clip=False)
             else:
                 ax.set_xticklabels([])
 
