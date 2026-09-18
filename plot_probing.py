@@ -186,6 +186,12 @@ METHOD_LABELS = {
     "clam_r2": "CLAM-style (action grounding)",
     "dino_r2": "UniVLA-style (DINOv3 features)",
     "flow_r2": "LAOF-style (optical-flow decoder)",
+    # run10b, added 2026-09-04. Same head and same flow target as flow_r2; the ONLY difference is
+    # the objective's SHAPE -- bounded MSE on a magnitude-clipped target instead of smooth_l1 on
+    # an unbounded one. Kept as a SEPARATE column rather than replacing flow_r2, because the two
+    # disagree with the SR in opposite directions: run10-mg probed 2nd-highest here and scored
+    # BELOW our single-view reference, run10b probes highest and scores ABOVE it.
+    "flow_bmse_r2": "LAOF-style (bounded-MSE flow loss)",
 }
 
 # Columns present in the dumps but not drawn. Named by CSV column, so the
@@ -205,7 +211,17 @@ METHOD_LABELS = {
 # MimicGen 0.5171 are the standing evidence that probe R^2 does not rank these
 # arms by success rate -- it probes above our single-view reference and scores
 # below it -- which is why results/README.md still cites the column.
-SKIP_METHODS = {"dino_r2"}
+#
+# flow_bmse_r2 (run10b, LAOF-style with a bounded-MSE flow loss) is held back as of 2026-09-04 by
+# Oliver's call: its numbers belong in the dumps now, but what the paper's figure plots should not
+# change yet. Its MimicGen means are MLP 0.5758 (the highest of any arm here) and ridge 0.2924
+# (the lowest), against a policy that scored ABOVE our single-view reference (+0.014 @60k /
+# +0.020 @80k) -- the mirror image of flow_r2, which probed 2nd-highest and scored below it.
+# Together the two flow columns are the sharpest evidence in the dumps that this figure measures
+# latent decodability and not policy quality.
+# ⚠ Un-skipping it needs a legend fix, not just a set edit: five drawn methods overflow the single
+# legend row and truncate the last entry ("Ours (si...") at the figure's right edge.
+SKIP_METHODS = {"dino_r2", "flow_bmse_r2"}
 
 
 AXIS_LABELS = {

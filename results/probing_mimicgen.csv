@@ -18,12 +18,24 @@
 # the opposite way to its MLP (-0.0187), which is the disagreement that predicted
 # the SR direction. This table is latent decodability, NOT policy quality --
 # probe R2 has misranked SR seven times on this project.
-action_dim,axis,clam_r2,dino_r2,flow_r2,sv_sf_r2,mv_sf_r2
-0,delta_x,0.6601,0.6152,0.6876,0.6038,0.7816
-1,delta_y,0.8831,0.8771,0.8882,0.8691,0.8784
-2,delta_z,0.8159,0.8131,0.8284,0.7991,0.8234
-3,delta_rx,0.2333,0.2130,0.2116,0.2229,0.2079
-4,delta_ry,0.2871,0.2540,0.2580,0.2325,0.3387
-5,delta_rz,0.4020,0.3105,0.3825,0.3120,0.3340
-6,gripper,0.5787,0.5370,0.6478,0.4602,0.5455
-mean,all_dims,0.5514,0.5171,0.5577,0.4999,0.5585
+#
+# Added 2026-09-04: flow_bmse_r2 = run10b, the CORRECTED-loss LAOF arm (bounded MSE on a
+# magnitude-clipped [3.62 px] direction-preserving target, tanh-bounded head, lambda 7.382417e-02;
+# teacher 45347502, probe 45353708, gate_2f_fbmse). flow_r2 (run10-mg) is UNCHANGED so both LAOF
+# arms can be plotted side by side.
+# ⚠ THE TWO FLOW COLUMNS DISAGREE WITH THE SR IN OPPOSITE DIRECTIONS, so do not read either as
+# policy quality:
+#   run10-mg  MLP 0.5577 (2nd highest here)  ridge 0.3349  ->  SR BELOW single-view (-0.026/-0.020)
+#   run10b    MLP 0.5758 (HIGHEST here)      ridge 0.2924  ->  SR ABOVE single-view (+0.014/+0.020)
+# run10b has simultaneously the best MLP and the WORST ridge of any arm here, and the best SR.
+# The ridge probe -- which had predicted the SR direction twice -- pointed the wrong way here.
+# ***Neither probe is a reliable SR predictor; this table is latent decodability only.***
+action_dim,axis,clam_r2,dino_r2,flow_r2,flow_bmse_r2,sv_sf_r2,mv_sf_r2
+0,delta_x,0.6601,0.6152,0.6876,0.7079,0.6038,0.7816
+1,delta_y,0.8831,0.8771,0.8882,0.8898,0.8691,0.8784
+2,delta_z,0.8159,0.8131,0.8284,0.8350,0.7991,0.8234
+3,delta_rx,0.2333,0.2130,0.2116,0.2040,0.2229,0.2079
+4,delta_ry,0.2871,0.2540,0.2580,0.2808,0.2325,0.3387
+5,delta_rz,0.4020,0.3105,0.3825,0.3916,0.3120,0.3340
+6,gripper,0.5787,0.5370,0.6478,0.7213,0.4602,0.5455
+mean,all_dims,0.5514,0.5171,0.5577,0.5758,0.4999,0.5585

@@ -24,12 +24,12 @@
 # LIBERO-Plus carries that contrast with exact numbers on both sides.
 #
 # clam_r2, dino_r2, flow_r2: 0, never run on this suite, as in the MLP dump.
-action_dim,axis,clam_r2,dino_r2,flow_r2,sv_sf_r2,mv_sf_r2
-0,delta_x,0,0,0,0,0.8099
-1,delta_y,0,0,0,0,0.8387
-2,delta_z,0,0,0,0,0.8736
-3,delta_rx,0,0,0,0,0.2608
-4,delta_ry,0,0,0,0,0.2186
-5,delta_rz,0,0,0,0,0.0831
-6,gripper,0,0,0,0,0.2330
-mean,all_dims,0,0,0,0,0.4740
+action_dim,axis,clam_r2,dino_r2,flow_r2,flow_bmse_r2,sv_sf_r2,mv_sf_r2
+0,delta_x,0,0,0,0,0,0.8099
+1,delta_y,0,0,0,0,0,0.8387
+2,delta_z,0,0,0,0,0,0.8736
+3,delta_rx,0,0,0,0,0,0.2608
+4,delta_ry,0,0,0,0,0,0.2186
+5,delta_rz,0,0,0,0,0,0.0831
+6,gripper,0,0,0,0,0,0.2330
+mean,all_dims,0,0,0,0,0,0.4740
