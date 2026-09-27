@@ -63,15 +63,17 @@ and the scaling panel takes what is left, which is what makes it the panel that
 shrinks when either bar panel needs more. Splitting evenly instead collides the
 left panel's labels while leaving the scaling panel half empty.
 
-THE RIGHT END of the row is set by the scaling panel's LEGEND, not by its axes.
-That legend stacks one entry per row (see panel_legend) and its longest label is
-"w/ Human Videos (ours)", so at 1.378in it is wider than the 1.07in axes it
-heads and overhangs them on both sides. RIGHT_PAD_IN covers that overhang, which
-is why it is bigger than the half tick label it would otherwise need to be.
+LEGEND. One row, centred on the page, in the band above the axes
+(panel_legend): the left panel's four entries followed by the middle panel's
+two. The scaling panel has NO key of its own -- its two lines reuse the left
+panel's colours and labels (Action-Only / w/ Human Videos), so the caption
+carries it. That is what makes the band one row tall and lets the right end of
+the row be set by the axes' last tick label rather than an overhanging legend
+(which is what RIGHT_PAD_IN used to pay for).
 
-NO PANEL TITLES. Each panel's legend sits directly above it and names its arms,
-which is what identifies the panel; a title row on top of that was a second
-header saying much the same thing.
+NO PANEL TITLES. The legend names the arms, which is what identifies the
+panels; a title row on top of that was a second header saying much the same
+thing.
 
 THE SHARED Y AXIS is the reason the row fits at all. All three panels are
 success rate in percent on 0-100 with the same gridlines, so both the axis
@@ -149,7 +151,8 @@ TASK_ORDER = ["task1", "task2", "task3", "task4", "task5", "task6"]
 # label needs -- and the scaling panel paid for both. It is the panel that can:
 # it plots five points on a monotone pair of lines, where the bar panels are
 # carrying eleven three-line tick labels between them.
-SCALING_AXES_IN = 1.07   # 1.37 less the 0.30 the left panel's Mean column cost
+SCALING_AXES_IN = 1.18   # 1.07 + the 0.11 RIGHT_PAD_IN gave back when the line
+                         # key moved inside the axes (2026-09-27)
 MIDDLE_AXES_IN = 1.94    # 1.925, rounded up to keep clear of its own floor
 
 # Both bar panels end in a Mean column, and it gets a NARROWER slot than a task
@@ -184,17 +187,15 @@ TICK_LABEL_AIR_IN = 0.042
 YLABEL_IN = 0.24    # "Success Rate [%]", rotated, on the left panel only
 YTICKS_IN = 0.20    # "100" and friends -- left panel only, see below
 GUTTER_IN = 0.20
-# Half of the scaling panel's last x tick label is only 0.045in; this is set by
-# that panel's legend instead, which at 1.378in overhangs the 1.07in axes it is
-# centred on by 0.154in a side and would print off the page edge without it.
-# check_legends_fit() is the guard.
-RIGHT_PAD_IN = 0.17
+# Half of the scaling panel's last x tick label ("50") plus air; its line key
+# is inside the axes now, so nothing overhangs the right edge any more.
+RIGHT_PAD_IN = 0.06
 # Measured off the rendered legend artist, not guessed (2026-09-27, with
 # borderpad=0 so the box is the glyphs): two stacked rows span 0.25in. Nothing
 # would show a miss, because no bar in this dump reaches 100% -- a taller bar
 # later would print through the legend text.
 LEGEND_ROW_IN = 0.125
-LEGEND_ROWS = 2      # every panel reserves two, so the three axes stay level
+LEGEND_ROWS = 1      # both bar-panel legends fit one row; the line key is inside its axes
 LEGEND_GAP_IN = 0.03  # clear air between the legend and the axes top
 XTICKS_IN = 0.41     # three-line task labels (bar panels) and the two-line
                      # "# Robot Episodes / (Task: ...)" under the scaling panel;
@@ -207,8 +208,9 @@ XTICKS_IN = 0.41     # three-line task labels (bar panels) and the two-line
 # first 10% cut (1.96 -> 1.76) cost the body 19%; the second (1.76 -> 1.58,
 # 2026-09-27) was paid for entirely by re-measuring the bands (legend padding,
 # legend-to-axes gap, empty space under the tick labels), so the body grew;
-# 1.58 -> 1.49 then took 10% off the body itself (0.89 -> 0.80in).
-FIG_HEIGHT_IN = 1.49
+# 1.58 -> 1.49 then took 10% off the body itself (0.89 -> 0.80in), and
+# 1.49 -> 1.365 dropped the second legend row (body unchanged at 0.80in).
+FIG_HEIGHT_IN = 1.365
 MIN_BODY_IN = 0.70   # below this the 0-100 axis stops being readable
 
 
@@ -519,15 +521,11 @@ def panel_scaling(ax, n_demos, values, methods, task):
 
 
 def panel_legend(fig, handles, x0, w, h, ncol):
-    """Legend for one panel, in the band between its title and its axes.
+    """A legend centred on [x0, x0 + w] (inches), in the band above the axes.
 
-    ncol is per-panel and not derived from the entry count, because what fits is
-    a function of the label lengths and the panel width, not of how many entries
-    there are. The scaling panel is the narrow one and carries the longest
-    label, so its two entries stack; at ncol=2 the row was 0.9in wider than the
-    panel and the second label printed cut off at the page edge. Every panel
-    reserves LEGEND_ROWS rows either way, which is what keeps the three axes
-    level -- with no panel titles, the legend IS each panel's header.
+    Called once, for the whole page width: the six entries of the two bar
+    panels in one row (ncol = entry count). With no panel titles, this row IS
+    the header of the figure.
     """
     y = 1.0   # borderpad=0: the glyphs sit on the page edge, no cropped air
     return fig.legend(handles=handles, loc="upper center",
@@ -570,7 +568,6 @@ def main():
     style.apply_style()
     import matplotlib.pyplot as plt
     from matplotlib.patches import Patch
-    from matplotlib.lines import Line2D
 
     w = style.TEXT_WIDTH
     h = FIG_HEIGHT_IN
@@ -657,23 +654,8 @@ def main():
               label=VIEW_LABELS.get(m, m))
         for m in b_methods
     ]
-    line_handles = [
-        Line2D([], [], color=style_for(i),
-               linestyle="-" if "(ours)" in METHOD_LABELS.get(m, m) else "--",
-               marker=style.MARKERS[i % len(style.MARKERS)], markersize=3.0,
-               markeredgecolor=style.MARKER_EDGE, markeredgewidth=0.5,
-               linewidth=1.1, label=METHOD_LABELS.get(m, m))
-        for i, m in enumerate(c_methods)
-    ]
-
-    legends = {
-        "a": panel_legend(fig, method_handles + budget_handles,
-                          lefts["a"], axes_in["a"], h, ncol=2),
-        "b": panel_legend(fig, view_handles,
-                          lefts["b"], axes_in["b"], h, ncol=2),
-        "c": panel_legend(fig, line_handles,
-                          lefts["c"], axes_in["c"], h, ncol=1),
-    }
+    handles = method_handles + budget_handles + view_handles
+    legends = {"row": panel_legend(fig, handles, 0.0, w, h, ncol=len(handles))}
     check_legends_fit(fig, legends)
 
     style.save(fig, OUT_NAME)
