@@ -1,0 +1,11 @@
+arm,label,kind,source_logreg,source_knn15,silhouette,action_r2,latent_std,norm_robot,norm_video,n_sampled,tasks_with_both
+base_balanced,"DINOv3 encoder, 30k",teacher,0.9997,1.0,0.1763,0.3019,0.39023,1.8049,1.0144,10080,36
+base_balanced_srcstd,post-hoc alignment,posthoc,0.4322,0.8441,0.0075,0.3019,0.39023,1.8049,1.0144,10080,36
+base_5k,"DINOv3 encoder, 5k",teacher,0.9754,0.9925,0.1079,0.2753,0.52098,2.1507,1.5633,10080,36
+activeruns,motion-filtered data,teacher,0.999,1.0,0.1935,0.2995,0.33615,1.3924,0.7726,10080,36
+dim4,latent dim 4,teacher,0.8723,0.914,0.1459,0.193,0.4273,0.9487,1.2128,10080,36
+srcoffsets,per-source offsets,teacher,0.9165,0.9415,0.0968,0.1258,0.15735,0.3183,0.4675,10080,36
+coralstd3k,"CORAL, scale-inv.",teacher,0.9895,0.9862,0.4943,0.1467,0.00343,0.6004,0.5871,10080,36
+coral3k,"CORAL, w=1",teacher,0.6387,0.6367,0.0414,0.0409,0.00056,0.1276,0.1281,10080,36
+coralstd_w003,"CORAL, scale-inv., w=0.03",teacher,0.4555,0.5517,0.018,0.0085,0.06781,0.3754,0.4092,10080,36
+learned,Ours (learned tokenizer),ours,0.9084,0.9458,0.0931,0.2076,0.32789,0.9483,1.2062,10080,36
