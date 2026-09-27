@@ -68,8 +68,8 @@ def make_figure(probe, style, name):
     tsne.style = style
 
     w = style.TEXT_WIDTH
-    h = w * 0.315   # 0.42 * 0.75
-    L, R, B, T, OUTER_WS, TS_WS, TS_HS = 0.085, 0.995, 0.15, 0.77, 0.16, 0.08, 0.10
+    h = w * 0.26    # was 0.315; margins tightened with it (2026-09-27)
+    L, R, B, T, OUTER_WS, TS_WS, TS_HS = 0.085, 0.995, 0.19, 0.775, 0.16, 0.08, 0.10
     # t-SNE share of the width such that each square panel exactly fills its
     # cell (so the block's height equals the probe axes' height): panel side =
     # region height / (2 + hspace); block = 2 squares + wspace; the outer
