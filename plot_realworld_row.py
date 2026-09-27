@@ -206,8 +206,9 @@ XTICKS_IN = 0.41     # three-line task labels (bar panels) and the two-line
 # total comes out of the body -- unless the bands themselves had slack. The
 # first 10% cut (1.96 -> 1.76) cost the body 19%; the second (1.76 -> 1.58,
 # 2026-09-27) was paid for entirely by re-measuring the bands (legend padding,
-# legend-to-axes gap, empty space under the tick labels), so the body grew.
-FIG_HEIGHT_IN = 1.58
+# legend-to-axes gap, empty space under the tick labels), so the body grew;
+# 1.58 -> 1.49 then took 10% off the body itself (0.89 -> 0.80in).
+FIG_HEIGHT_IN = 1.49
 MIN_BODY_IN = 0.70   # below this the 0-100 axis stops being readable
 
 
