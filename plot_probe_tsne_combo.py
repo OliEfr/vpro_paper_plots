@@ -57,6 +57,7 @@ def make_figure(probe, style, name):
     from matplotlib.gridspec import GridSpec
     from matplotlib.lines import Line2D
     from matplotlib.patches import Patch
+    from matplotlib.ticker import MultipleLocator
 
     pkey, rcol, plabel = combo.PROBES[probe]
     bars = perdim.averaged(perdim.load("current_action"))
@@ -96,6 +97,7 @@ def make_figure(probe, style, name):
     srm.draw(axs, pts, rcol, style, "absolute", "none", note_loc="none",
              colors=combo.COLORS, edge_ours=style.MARKER_EDGE)
     axs.set_xlabel(rf"{plabel.split()[0]} $R^2$")
+    axs.xaxis.set_major_locator(MultipleLocator(0.1))   # auto-ticks thin to 0.2 once x reaches 0.7
     axs.set_ylabel("Policy SR [%]")
 
     taxes = [[fig.add_subplot(right[i, j]) for j in range(2)] for i in range(2)]
