@@ -56,6 +56,8 @@ ROBOT_SLOTS = {"franka": 0, "iiwa": 2, "kinova3": 1, "ur5e": 3}
 # Scatter-only baselines dropped from this figure (they have no per-dim probe,
 # so they never appear in the bars): one legend then serves both probe panels.
 DROP_METHODS = {"villax_cont", "villax_vq"}
+# Shorter legend labels for this figure only (the encoder detail is in the text).
+LABEL_OVERRIDES = {"dino": "UniVLA-style"}
 HEIGHT_FRAC = 0.24        # page height / textwidth
 ROBOT_KEY_W = 0.30        # inches: two lines of rotated robot names right of the t-SNE
 SEP_IN = 0.34             # inches between the scatter and the t-SNE block (rule + row labels)
@@ -124,7 +126,7 @@ def make_figure(probe, style, name):
 
     w = style.TEXT_WIDTH
     h = w * HEIGHT_FRAC
-    L, R, B, T = 0.085, 0.995, 0.205, 0.765      # T caps the PROBE axes only (method legend above)
+    L, R, B, T = 0.085, 0.995, 0.185, 0.765      # T caps the PROBE axes only (method legend above)
     RT = 0.985                                   # the t-SNE block runs to the top of the page
     TS_WS, TS_HS = 0.08, 0.10
     # t-SNE geometry in inches: square panels fill the full page height, the
@@ -148,15 +150,15 @@ def make_figure(probe, style, name):
     combo.draw_bars(axb, bars, pkey, style)
     # second line kept shorter than the axes are tall (the page is low)
     axb.set_ylabel(rf"{plabel.split()[0]} $R^2$" + "\n(benchmark mean)")
-    axb.set_xlabel("Action Dimension")
+    axb.set_xlabel("Action Dimension", labelpad=1.5)
     srm.OURS = combo.OURS
     # villa-X is a scatter-only baseline; without it the panel is the six bar
     # methods and one legend serves both.
     pts = pts[~pts.method.isin(DROP_METHODS)]
-    methods = [(k, lab) for k, lab in srm.METHODS if k not in DROP_METHODS]
+    methods = [(k, LABEL_OVERRIDES.get(k, lab)) for k, lab in srm.METHODS if k not in DROP_METHODS]
     srm.draw(axs, pts, rcol, style, "absolute", "none", note_loc="none",
              colors=combo.COLORS, edge_ours=style.MARKER_EDGE)
-    axs.set_xlabel(rf"{plabel.split()[0]} $R^2$")
+    axs.set_xlabel(rf"{plabel.split()[0]} $R^2$", labelpad=1.5)
     axs.xaxis.set_major_locator(MultipleLocator(0.1))
     axs.set_ylabel("Policy SR [%]")
 
@@ -170,9 +172,9 @@ def make_figure(probe, style, name):
     for j, (_, col_label) in enumerate(tsne.COLS):
         # below the bottom row, at body text size (a title would pick up
         # axes.titlesize, which the science style sets larger)
-        taxes[1][j].set_xlabel(col_label, labelpad=3)
+        taxes[1][j].set_xlabel(col_label, labelpad=2)
 
-    # legends: methods (2 rows x 3) over the probe pair; benchmarks inside the
+    # legends: methods (2 rows x 3) centred over the probe pair; benchmarks inside the
     # scatter; robots as rotated text beside the t-SNE block (see robot_key)
     method_handles = [Patch(facecolor=combo.COLORS[k], hatch=combo.HATCHES[k],
                             edgecolor=style.MARKER_EDGE, linewidth=0.35, label=lab)
@@ -181,7 +183,9 @@ def make_figure(probe, style, name):
                             markerfacecolor="white", markeredgecolor=style.INK,
                             markeredgewidth=0.6, label=lab)
                      for i, (_, lab) in enumerate(srbase.SUITES)]
-    fig.legend(handles=method_handles, loc="upper left", ncol=3, bbox_to_anchor=(0.005, 1.005),
+    # centred over the probe pair: the key belongs to both panels
+    fig.legend(handles=method_handles, loc="upper center", ncol=3,
+               bbox_to_anchor=((L + probe_x1) / 2, 1.005),
                frameon=False, handletextpad=0.35, columnspacing=0.8, handlelength=1.2)
     # lower right: with villa-X gone the points sit in the upper-left half
     axs.legend(handles=bench_handles, loc="lower right", frameon=False, handletextpad=0.3,
