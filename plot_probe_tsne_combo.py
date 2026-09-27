@@ -138,7 +138,7 @@ def make_figure(probe, style, name):
     global TSNE_FRAC
     TSNE_FRAC = (R - ts_x0) / (R - L)
     fig = plt.figure(figsize=(w, h))
-    left = GridSpec(1, 2, figure=fig, width_ratios=[1.75, 1], wspace=0.30,
+    left = GridSpec(1, 2, figure=fig, width_ratios=[1.4, 1], wspace=0.20,
                     left=L, right=probe_x1, bottom=B, top=T)
     right = GridSpec(2, 2, figure=fig, wspace=TS_WS, hspace=TS_HS,
                      left=ts_x0, right=ts_x1, bottom=B, top=RT)
