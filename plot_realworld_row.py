@@ -189,22 +189,25 @@ GUTTER_IN = 0.20
 # centred on by 0.154in a side and would print off the page edge without it.
 # check_legends_fit() is the guard.
 RIGHT_PAD_IN = 0.17
-# Measured off the rendered legend artist, not guessed: at 0.15 the two-row
-# legends reached 0.055in past the axes top. Nothing showed, because no bar in
-# this dump reaches 100% -- a taller bar later would have printed through the
-# legend text.
-LEGEND_ROW_IN = 0.17
+# Measured off the rendered legend artist, not guessed (2026-09-27, with
+# borderpad=0 so the box is the glyphs): two stacked rows span 0.25in. Nothing
+# would show a miss, because no bar in this dump reaches 100% -- a taller bar
+# later would print through the legend text.
+LEGEND_ROW_IN = 0.125
 LEGEND_ROWS = 2      # every panel reserves two, so the three axes stay level
-LEGEND_GAP_IN = 0.06  # clear air between the legend and the axes top
-XTICKS_IN = 0.52     # three-line task labels (bar panels) and the two-line
-                     # "# Robot Episodes / (Task: ...)" under the scaling panel
+LEGEND_GAP_IN = 0.03  # clear air between the legend and the axes top
+XTICKS_IN = 0.41     # three-line task labels (bar panels) and the two-line
+                     # "# Robot Episodes / (Task: ...)" under the scaling panel;
+                     # measured tight bbox is 0.39in, the rest is bottom clearance
 
 # The overall height is the knob, and the plot body is what is left after the
 # text bands -- not the other way round. The legend rows and the tick-label band
 # are 8pt type; they do not scale with the figure, so every inch taken off the
-# total comes out of the body. This 10% cut off the whole figure (1.96 -> 1.76)
-# is therefore a 19% cut to the plotting area.
-FIG_HEIGHT_IN = 1.76
+# total comes out of the body -- unless the bands themselves had slack. The
+# first 10% cut (1.96 -> 1.76) cost the body 19%; the second (1.76 -> 1.58,
+# 2026-09-27) was paid for entirely by re-measuring the bands (legend padding,
+# legend-to-axes gap, empty space under the tick labels), so the body grew.
+FIG_HEIGHT_IN = 1.58
 MIN_BODY_IN = 0.70   # below this the 0-100 axis stops being readable
 
 
@@ -525,10 +528,10 @@ def panel_legend(fig, handles, x0, w, h, ncol):
     reserves LEGEND_ROWS rows either way, which is what keeps the three axes
     level -- with no panel titles, the legend IS each panel's header.
     """
-    y = 1.0
+    y = 1.0   # borderpad=0: the glyphs sit on the page edge, no cropped air
     return fig.legend(handles=handles, loc="upper center",
                       bbox_to_anchor=((x0 + w / 2) / fig.get_figwidth(), y),
-                      ncol=ncol, frameon=False, borderaxespad=0,
+                      ncol=ncol, frameon=False, borderaxespad=0, borderpad=0,
                       handlelength=1.3, handleheight=0.9,
                       handletextpad=0.4, columnspacing=1.0,
                       labelspacing=0.25)
