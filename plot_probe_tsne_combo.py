@@ -57,9 +57,12 @@ ROBOT_SLOTS = {"franka": 0, "iiwa": 2, "kinova3": 1, "ur5e": 3}
 # so they never appear in the bars): one legend then serves both probe panels.
 DROP_METHODS = {"villax_cont", "villax_vq"}
 # Shorter legend labels for this figure only (the encoder detail is in the text).
-LABEL_OVERRIDES = {"dino": "UniVLA-style"}
+LABEL_OVERRIDES = {"dino": "UniVLA-style", "lapa": "LAPA-pretrained"}
 HEIGHT_FRAC = 0.24        # page height / textwidth
 ROBOT_KEY_W = 0.30        # inches: two lines of rotated robot names right of the t-SNE
+# All three keys are set this much below the axis text so the six-entry method
+# key fits one row left of the separating rule.
+LEGEND_SCALE = 0.9
 SEP_IN = 0.34             # inches between the scatter and the t-SNE block (rule + row labels)
 # robot names split across the two rotated lines, bottom-to-top within a line
 ROBOT_KEY_LINES = [["franka", "iiwa", "kinova3"], ["ur5e", "sawyer"]]
@@ -83,7 +86,7 @@ def robot_key(fig, style, x0, y0, y1, width):
         texts, lens = [], []
         for name in names:
             t = fig.text(x, 0, ROBOT_LABELS.get(name, name), rotation=90, ha="center",
-                         va="bottom", fontsize=plt_rc("legend.fontsize"))
+                         va="bottom", fontsize=legend_pt())
             bb = t.get_window_extent(renderer)
             texts.append(t)
             lens.append(bb.height / fh_px)
@@ -109,6 +112,10 @@ def plt_rc(key):
     return font_manager.FontProperties(size=v).get_size_in_points()
 
 
+def legend_pt():
+    return plt_rc("legend.fontsize") * LEGEND_SCALE
+
+
 def make_figure(probe, style, name):
     import matplotlib.pyplot as plt
     from matplotlib.gridspec import GridSpec
@@ -126,7 +133,7 @@ def make_figure(probe, style, name):
 
     w = style.TEXT_WIDTH
     h = w * HEIGHT_FRAC
-    L, R, B, T = 0.085, 0.995, 0.185, 0.765      # T caps the PROBE axes only (method legend above)
+    L, R, B, T = 0.085, 0.995, 0.185, 0.835      # T caps the PROBE axes only (one-row method legend above)
     RT = 0.985                                   # the t-SNE block runs to the top of the page
     TS_WS, TS_HS = 0.08, 0.10
     # t-SNE geometry in inches: square panels fill the full page height, the
@@ -174,7 +181,7 @@ def make_figure(probe, style, name):
         # axes.titlesize, which the science style sets larger)
         taxes[1][j].set_xlabel(col_label, labelpad=2)
 
-    # legends: methods (2 rows x 3) centred over the probe pair; benchmarks inside the
+    # legends: methods in one row over the probe pair; benchmarks inside the
     # scatter; robots as rotated text beside the t-SNE block (see robot_key)
     method_handles = [Patch(facecolor=combo.COLORS[k], hatch=combo.HATCHES[k],
                             edgecolor=style.MARKER_EDGE, linewidth=0.35, label=lab)
@@ -183,13 +190,9 @@ def make_figure(probe, style, name):
                             markerfacecolor="white", markeredgecolor=style.INK,
                             markeredgewidth=0.6, label=lab)
                      for i, (_, lab) in enumerate(srbase.SUITES)]
-    # centred over the probe pair: the key belongs to both panels
-    fig.legend(handles=method_handles, loc="upper center", ncol=3,
-               bbox_to_anchor=((L + probe_x1) / 2, 1.005),
-               frameon=False, handletextpad=0.35, columnspacing=0.8, handlelength=1.2)
     # lower right: with villa-X gone the points sit in the upper-left half
     axs.legend(handles=bench_handles, loc="lower right", frameon=False, handletextpad=0.3,
-               labelspacing=0.15, borderaxespad=0.2)
+               labelspacing=0.15, borderaxespad=0.2, fontsize=legend_pt())
     fig.canvas.draw()   # box_aspect is applied at draw time; positions are final after this
     robot_key(fig, style, x0=ts_x1 + 0.004, y0=B, y1=RT, width=key_in / w)
     # vertical rule separating the probe pair from the embodiment-mixing block:
@@ -199,6 +202,11 @@ def make_figure(probe, style, name):
     xsep = (axs.get_position().x1 + lab_x0) / 2
     fig.add_artist(Line2D([xsep, xsep], [0.0, 1.0], transform=fig.transFigure,
                           color=style.INK_MUTED, linewidth=0.6))
+    # one row, centred on everything left of the rule: the key belongs to both
+    # probe panels, and the probe pair alone is narrower than six entries
+    fig.legend(handles=method_handles, loc="upper center", ncol=len(method_handles),
+               bbox_to_anchor=(xsep / 2, 1.005), frameon=False, handletextpad=0.3,
+               columnspacing=0.6, handlelength=1.0, fontsize=legend_pt())
     return style.save(fig, name)
 
 
