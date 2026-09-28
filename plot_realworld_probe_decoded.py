@@ -1,7 +1,7 @@
 r"""Real-world probing + decoded human-video motion in ONE double-column figure.
 
 Combines the two real-world figures into a single ``figure*`` (IEEE double column,
-height:width about 1:3):
+height:width about 1:5):
 
   left   the MLP block of plot_probe_perdim_realworld.py: R^2 of the MLP(512,256) probe
          that decodes the 5-frame EE motion state[t+5]-state[t] from the frozen 8-D
@@ -68,6 +68,7 @@ def probe_panel(ax, r2):
     ax.tick_params(axis="x", length=0)
     ax.set_xlim(-0.6, x0 - 1 + 0.6)
     ax.set_ylim(0, 1.0)
+    ax.set_yticks(np.arange(0, 1.01, 0.2))   # fixed, so a shorter axis cannot fall back to 0.25 steps (wider labels)
     ax.set_ylabel("MLP $R^2$ per action dim.")
     ax.grid(axis="y", color=style.GRID, linewidth=0.5, zorder=0)
 
@@ -93,15 +94,21 @@ def main():
     colors = {k: combo.COLORS[k] for k, _ in LAMS}
 
     w = style.TEXT_WIDTH
-    h = w * 0.245
+    # Vertical geometry in inches: the plotting region (two image rows == probe bars) sits
+    # between a bottom band (tick labels, "start / 50 % / end") and a top band that holds
+    # only the legend -- the trace panels are labelled on their y axes, and the task name
+    # is written into the first key frame, so nothing else needs headroom.
+    BOT_IN, ROWS_IN, TOP_IN = 0.236, 1.08, 0.24
+    h = BOT_IN + ROWS_IN + TOP_IN
     fig = plt.figure(figsize=(w, h))
     # Explicit geometry (figure fractions) so that (i) every image box has the video's 4:3
     # aspect, (ii) the trace axes of a row have exactly the image height, and (iii) the two
     # rows together span the probe axes' vertical extent (top of row 0 = top of the bars,
     # bottom of row 1 = bottom of the bars).
-    L, R, B, T = 0.06, 0.995, 0.135, 0.80
-    SEP_GAP, TAG_W = 0.02, 0.018            # gap either side of the vertical rule; vertical Robot/Human tags
-    ROW_GAP, FRAME_GAP, TRACE_GAP, BLOCK_GAP = 0.025, 0.006, 0.026, 0.032
+    L, R, B, T = 0.058, 0.995, BOT_IN / h, (BOT_IN + ROWS_IN) / h
+    SEP_GAP, TAG_W = 0.012, 0.018            # gap either side of the vertical rule; vertical Robot/Human tags
+    ROW_GAP, FRAME_GAP = 0.025, 0.006
+    TRACE_GAP, BLOCK_GAP = 0.046, 0.052      # each holds a trace panel's rotated tick labels plus its y label
     row_h = (T - B - ROW_GAP) / len(EPISODES)
     img_w = row_h * h * CROP_ASPECT / w        # cropped frame tile, in figure-width fractions
     trace_w = row_h * h / w                    # SQUARE trace panels: width = row height
@@ -138,9 +145,12 @@ def main():
             if r == len(EPISODES) - 1:
                 ax.set_xlabel(KEY_TITLES[c], labelpad=1.5)
             if c == 0:
-                ax.set_ylabel(klabel, labelpad=2)   # short vertical tag; the task is named once above
-        if r == 0:
-            fig.text(x_right + frames_w / 2, y0 + row_h + 0.02, "Milk on plate", ha="center", va="bottom")
+                ax.set_ylabel(klabel, labelpad=2)   # short vertical tag; the task is named once, in a frame
+            if r == 0 and c == 1:
+                # task name inside the frame (top centre, small, straight on the bare wall) instead of a
+                # text band above the row, which is what keeps the figure this short
+                ax.text(0.5, 0.95, "Milk on plate", transform=ax.transAxes, ha="center", va="top",
+                        fontsize=plt.rcParams["font.size"] - 1.5, color=style.INK)
         t = sub.frame_index.to_numpy() / 30.0
         for c, (dk, dlabel) in enumerate(DIMS["delta"]):
             ax = fig.add_axes([x_traces + c * (trace_w + TRACE_GAP), y0, trace_w, row_h])
@@ -157,9 +167,8 @@ def main():
             ax.tick_params(axis="x", pad=1.5)
             for lab in ax.get_yticklabels():
                 lab.set_va("center")
-            if r == 0:
-                # body size, not axes.titlesize (larger in the science style; plot_probe_tsne_combo.py does the same)
-                ax.set_title(dlabel.replace(" [m / 5 frames]", " [cm]"), pad=3, fontsize=plt.rcParams["font.size"])
+            # dimension + unit on the y axis of every panel (each has its own scale), no title band
+            ax.set_ylabel(dlabel.replace(" [m / 5 frames]", " [cm]"), labelpad=2)
             if r == len(EPISODES) - 1:
                 if c == 0:  # unit once, right after the last tick label of the first panel
                     ticks = [tk for tk in ax.get_xticks() if t[0] <= tk <= t[-1]]
