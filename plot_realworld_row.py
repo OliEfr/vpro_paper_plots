@@ -449,6 +449,14 @@ def panel_bars(ax, task_ids, budgets, values, means, methods):
                    facecolor=style_for(mi),
                    hatch=budget_hatch(bi, len(budgets)),
                    edgecolor=style.MARKER_EDGE, linewidth=0.5, zorder=3)
+            # A bar at exactly 0% draws nothing, so the slot reads as missing data
+            # rather than as a measured zero. Print a bold "0" where the bar
+            # would start (2026-10-02); the single digit at the Mean numbers'
+            # size is 0.045in wide against the 0.064in bar, so it fits upright.
+            for xi, v in zip(x + off, values[(m, b)]):
+                if v == 0:
+                    ax.text(xi, 1.5, "0", ha="center", va="bottom", color=style.INK,
+                            fontweight="bold", fontsize=mpl.rcParams["font.size"] - 2.0, zorder=5)
             # Black on white here rather than the middle panel's black on fill,
             # so there is no contrast argument to make -- but it is the same
             # bold, because it is the same kind of number.

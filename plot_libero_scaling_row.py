@@ -68,10 +68,11 @@ METHOD_LABELS = {"action_only_sr": "Action-only", "video_sr": "+ LAM dual-view (
                  "sideview_sr": "+ LAM single-view"}
 
 SWEEPS = ["budget", "play", "xemb"]
+# No (a)/(b)/(c) tags: the caption refers to the panels as left / middle / right.
 SWEEP_XLABELS = {
-    "budget": "(a) # Episodes with action labels",
-    "play": "(b) % of LIBERO-90 as play data",
-    "xemb": "(c) # X-embodiments in video pretraining",
+    "budget": "# Episodes with action labels",
+    "play": "% of LIBERO-90 as play data",
+    "xemb": "# X-embodiments in video pretraining",
 }
 SPLIT_COLS = ["budget", "play"]        # the two-row columns
 SPAN_COL = "xemb"                      # spans both rows, mean only
@@ -95,7 +96,7 @@ SPAN_YLIM, SPAN_YTICKS = (50, 70), [50, 55, 60, 65, 70]
 SEPARATOR_GREY = "#9a9a9a"   # lighter than INK_MUTED: a rule, not a series
 
 # Bands in inches, measured off the rendered 8pt text like the real-world row.
-YLABEL_IN = 0.40
+YLABEL_IN = 0.46      # two-line rotated y label ("Mean / SR [%]") plus tick labels
 YTICKS_C_IN = 0.20    # (c)'s own tick labels, taken out of its slot
 GUTTER_IN = 0.22
 RIGHT_PAD_IN = 0.08
@@ -104,7 +105,7 @@ LEGEND_ROWS = 1       # both factors in one row
 LEGEND_GAP_IN = 0.02
 ROW_GAP_IN = 0.08
 XTICKS_IN = 0.34
-BODY_IN = 0.56        # one row's plotting height (0.62 - 10%)
+BODY_IN = 0.50        # one row's plotting height (0.62 - 10% - 10%)
 FIG_HEIGHT_IN = (LEGEND_ROWS * LEGEND_ROW_IN + LEGEND_GAP_IN
                  + 2 * BODY_IN + ROW_GAP_IN + XTICKS_IN)
 
@@ -194,7 +195,7 @@ def main():
             else:
                 ax.tick_params(axis="x", labelbottom=False)
             if ci == 0:
-                ax.set_ylabel("Mean SR [%]" if row == "top" else "Split SR [%]", labelpad=2)
+                ax.set_ylabel("Mean\nSR [%]" if row == "top" else "Split\nSR [%]", labelpad=2)
             else:
                 ax.tick_params(axis="y", labelleft=False)
 
