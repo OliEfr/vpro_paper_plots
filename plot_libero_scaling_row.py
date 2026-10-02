@@ -4,12 +4,18 @@ scaling table (tab:data_scaling_combined).
 Reads ``results/libero_scaling_row.csv`` and draws one row of three panels, one
 per sweep -- (a) action-labeled Panda episodes per task, (b) % of LIBERO-90
 used as play data, (c) number of cross-embodiments in the video pretraining
-mix. Panels (a) and (b) draw three curves per method: the 40-task total (solid,
-filled markers), the in-distribution split (dotted, filled) and the held-out
-split (dashed, hollow). Panel (c) draws the total only, for the dual-view and
-the single-view (sideview-only teacher, ``sideview_sr``) arm. The total is the
-32/8 task-weighted mean of the two splits, derived here rather than stored, the
-way libero_xemb_sweep's Total is. Run with no arguments:
+mix. Panels (a) and (b) draw, per method, the 40-task total as a line and the
+two splits as a thin vertical range bar at each point: its top cap is the
+in-distribution value, its bottom cap the held-out value, the mean marker sits
+on it, and the two methods are dodged sideways so the bars do not overprint.
+All three numbers are on the page with two lines per panel rather than six.
+``--splits band`` draws the splits as a translucent band instead (same edges);
+it is less busy still but the two methods' bands overlap into a blend over
+most of the panel. NOT error bars -- the caption has to say so. Panel (c)
+draws the total only, for the dual-view and the single-view
+(sideview-only teacher, ``sideview_sr``) arm. The total is the 32/8
+task-weighted mean of the two splits, derived here rather than stored, the way
+libero_xemb_sweep's Total is. Run with no arguments:
 
     python plot_libero_scaling_row.py
 
@@ -35,12 +41,11 @@ video pretraining mix at all; panel (c)'s single-view arm is the sideview-only
 teacher at the same recipe; and the cells at 5 episodes, 100% play data and
 2 cross-embodiments (dual-view) are one and the same run.
 
-TWO FACTORS, TWO CHANNELS (README.md). Method is colour plus marker shape, the
-split is line style plus marker fill, and each factor gets its own legend row
-so a reader can hold one fixed and scan the other. Total is the solid style so
-that panel (c), which shows totals alone, reads with the same key. The three
-panels (a) and (b) share one 0-85 y axis, labelled once on the left; (c)
-is zoomed to 50-70 and carries its own tick labels. The x positions are categorical and
+TWO FACTORS, TWO CHANNELS (README.md). Method is colour plus marker shape; the
+split is line versus range bar (the line is the total, the bar spans held-out
+to in-distribution), and each factor gets its own legend row. Panels (a) and (b) share one
+0-85 y axis, labelled once on the left; (c) is zoomed to 50-70 and carries its
+own tick labels. The x positions are categorical and
 evenly spaced -- the sweeps are not linear in their own units (1/5/10/20
 episodes, 1/2/4 embodiments) and the table reads them as steps.
 """
@@ -60,12 +65,16 @@ OUT_NAME = "libero_scaling_row_science"
 METHODS = ["action_only_sr", "video_sr", "sideview_sr"]
 METHOD_LABELS = {"action_only_sr": "Action-only", "video_sr": "+ LAM dual-view (ours)",
                  "sideview_sr": "+ LAM single-view"}
-# Split channel: total solid / filled, in-distribution dotted / filled, held-out
-# dashed / hollow. "total" is derived (see N_TASKS), the other two are stored.
-SPLIT_LINE = {"total": "-", "nonh": (0, (1.2, 1.4)), "h": "--"}
-SPLIT_FILLED = {"total": True, "nonh": True, "h": False}
-SPLIT_LABELS = {"total": "All tasks", "nonh": "In-distribution tasks", "h": "Held-out tasks"}
-PANEL_SPLITS = {"budget": ["total", "nonh", "h"], "play": ["total", "nonh", "h"], "xemb": ["total"]}
+# Split channel: the total is the line (solid, filled markers); the two stored
+# splits are the edges of a band in the same colour -- in-distribution on top,
+# held-out at the bottom. "total" is derived (see N_TASKS).
+PANEL_BAND = {"budget": True, "play": True, "xemb": False}
+BAND_ALPHA = 0.18
+# --splits whisker: instead of a band, a thin vertical range bar per point from
+# the held-out value (bottom cap) to the in-distribution value (top cap), the
+# mean marker sitting on it; the two methods are dodged by +-DODGE so their
+# bars do not overprint.
+DODGE = 0.09
 N_TASKS = {"nonh": 32, "h": 8}
 
 SWEEPS = ["budget", "play", "xemb"]
@@ -121,16 +130,20 @@ def series(sub, m, sp, xs):
 
 
 def main():
-    argparse.ArgumentParser(
+    ap = argparse.ArgumentParser(
         description=__doc__,
-        formatter_class=argparse.RawDescriptionHelpFormatter).parse_args()
+        formatter_class=argparse.RawDescriptionHelpFormatter)
+    ap.add_argument("--splits", choices=["band", "whisker"], default="whisker",
+                    help="how (a)/(b) show the two splits around the mean line")
+    ap.add_argument("--out", default=OUT_NAME, help="output stem (default %(default)s)")
+    args = ap.parse_args()
     df = load()
 
     print("\n  LIBERO scaling sweeps, success rate %  (all 40 tasks | in-distribution / held-out)")
     for sw in SWEEPS:
         sub = df[df["sweep"] == sw]
         xs = sorted(sub["x"].unique())
-        print(f"    {SWEEP_XLABELS[sw]}   (plotted: {', '.join(SPLIT_LABELS[s] for s in PANEL_SPLITS[sw])})")
+        print(f"    {SWEEP_XLABELS[sw]}   (plotted: {'mean line + split band' if PANEL_BAND[sw] else 'mean line only'})")
         for m in METHODS:
             if sub[m].isna().all():
                 continue
@@ -146,11 +159,10 @@ def main():
     panel_in = (w - YLABEL_IN - 2 * GUTTER_IN - RIGHT_PAD_IN) / 3
     fig = plt.figure(figsize=(w, h))
 
-    def line_kw(mi, sp):
-        return dict(color=style_for(mi), linestyle=SPLIT_LINE[sp],
+    def line_kw(mi):
+        return dict(color=style_for(mi), linestyle="-",
                     marker=style.MARKERS[mi], markersize=3.4, markeredgewidth=0.6,
-                    markerfacecolor=style_for(mi) if SPLIT_FILLED[sp] else "white",
-                    markeredgecolor=style_for(mi), linewidth=1.1)
+                    markerfacecolor=style_for(mi), markeredgecolor=style_for(mi), linewidth=1.1)
 
     for ci, sw in enumerate(SWEEPS):
         sub = df[df["sweep"] == sw]
@@ -162,9 +174,18 @@ def main():
         for mi, m in enumerate(METHODS):
             if sub[m].isna().all():
                 continue   # (c) has no action-only arm; (a)/(b) no single-view arm
-            for sp in PANEL_SPLITS[sw]:
-                y = series(sub, m, sp, xs)
-                ax.plot(pos, 100 * np.asarray(y, float), zorder=3, **line_kw(mi, sp))
+            px = pos + ((mi - 0.5) * 2 * DODGE if PANEL_BAND[sw] and args.splits == "whisker" else 0.0)
+            y = 100 * np.asarray(series(sub, m, "total", xs), float)
+            if PANEL_BAND[sw]:
+                lo = 100 * np.asarray(series(sub, m, "h", xs), float)
+                hi = 100 * np.asarray(series(sub, m, "nonh", xs), float)
+                if args.splits == "band":
+                    ax.fill_between(px, lo, hi, color=style_for(mi), alpha=BAND_ALPHA,
+                                    linewidth=0, zorder=2)
+                else:
+                    ax.errorbar(px, y, yerr=[y - lo, hi - y], fmt="none", ecolor=style_for(mi),
+                                elinewidth=0.7, capsize=2.2, capthick=0.7, alpha=0.85, zorder=2)
+            ax.plot(px, y, zorder=3, **line_kw(mi))
         ax.set_xlim(-0.35, len(xs) - 0.65)
         ax.set_xticks(pos)
         ax.set_xticklabels([str(int(x)) for x in xs])
@@ -179,23 +200,30 @@ def main():
         elif sw not in PANEL_YLIM:
             ax.tick_params(axis="y", labelleft=False)   # shares (a)'s scale
 
-    # Two legend rows, one per factor. The method row shows filled markers on a
-    # solid line (the total's look); the split row is drawn in neutral ink so
-    # it reads as a style key, not a fourth method.
-    method_handles = [Line2D([], [], label=METHOD_LABELS[m], **line_kw(mi, "total"))
+    # Two legend rows, one per factor. The method row shows the line; the split
+    # row is drawn in neutral ink so it reads as a style key, not a fourth
+    # method: the line is the 40-task mean, the band spans the two splits.
+    from matplotlib.patches import Patch
+    method_handles = [Line2D([], [], label=METHOD_LABELS[m], **line_kw(mi))
                       for mi, m in enumerate(METHODS)]
-    split_handles = [Line2D([], [], color=style.INK_MUTED, linestyle=SPLIT_LINE[sp],
-                            marker="o", markersize=3.4, markeredgewidth=0.6,
-                            markerfacecolor=style.INK_MUTED if SPLIT_FILLED[sp] else "white",
-                            markeredgecolor=style.INK_MUTED, linewidth=1.1, label=SPLIT_LABELS[sp])
-                     for sp in ("total", "nonh", "h")]
+    split_handles = [
+        Line2D([], [], color=style.INK_MUTED, linestyle="-", marker="o", markersize=3.4,
+               markeredgewidth=0.6, markerfacecolor=style.INK_MUTED, markeredgecolor=style.INK_MUTED,
+               linewidth=1.1, label="Mean over all tasks"),
+        Patch(facecolor=style.INK_MUTED, alpha=0.3, linewidth=0,
+              label="Held-out tasks (bottom edge) to in-distribution tasks (top edge)")
+        if args.splits == "band" else
+        Line2D([], [], color=style.INK_MUTED, linestyle="none", marker="$\\mathsf{I}$",
+               markersize=7, markeredgewidth=0.4,
+               label="Held-out tasks (bottom cap) to in-distribution tasks (top cap)"),
+    ]
     kw = dict(loc="upper center", frameon=False, borderaxespad=0, borderpad=0,
               handlelength=2.2, handletextpad=0.5, columnspacing=1.6)
     fig.legend(handles=method_handles, bbox_to_anchor=(0.5, 1.0), ncol=len(method_handles), **kw)
     fig.legend(handles=split_handles, bbox_to_anchor=(0.5, 1.0 - LEGEND_ROW_IN / h),
                ncol=len(split_handles), **kw)
 
-    style.save(fig, OUT_NAME)
+    style.save(fig, args.out)
 
 
 if __name__ == "__main__":
