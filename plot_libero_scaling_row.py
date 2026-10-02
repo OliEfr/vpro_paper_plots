@@ -7,8 +7,8 @@ success rate over all 40 tasks, their BOTTOM panel the two task splits as
 separate lines (in-distribution solid with filled markers, held-out dashed with
 hollow markers). Column (c), the cross-embodiment sweep, spans both rows: it
 draws the 40-task mean for the dual-view and the single-view (sideview-only
-teacher, ``sideview_sr``) arm, with a thin dashed grey rule between the two
-curves, spanning the data points only, -- halfway between the lowest dual-view and the highest single-view
+teacher, ``sideview_sr``) arm, with a thin dashed light-grey rule across the panel between the two
+curves -- halfway between the lowest dual-view and the highest single-view
 point, so it exists only while one arm is above the other everywhere, which is
 the point of the panel (the script fails if the curves cross). The mean is the 32/8
 task-weighted mean of the two stored splits, derived here rather than stored,
@@ -92,6 +92,7 @@ SPLIT_YLIM, SPLIT_YTICKS = (0, 85), [0, 20, 40, 60, 80]
 # (c) is all in the 50s and 60s; on the split axis the dual-vs-single gap would
 # read as a sliver, and the gap is the panel's point.
 SPAN_YLIM, SPAN_YTICKS = (50, 70), [50, 55, 60, 65, 70]
+SEPARATOR_GREY = "#9a9a9a"   # lighter than INK_MUTED: a rule, not a series
 
 # Bands in inches, measured off the rendered 8pt text like the real-world row.
 YLABEL_IN = 0.40
@@ -216,8 +217,8 @@ def main():
     if lo_dual <= hi_single:
         raise SystemExit(f"(c): dual-view ({lo_dual:.1f}) no longer above single-view "
                          f"({hi_single:.1f}) everywhere -- drop the separator rule")
-    ax.plot([pos[0], pos[-1]], [(lo_dual + hi_single) / 2] * 2, color=style.INK_MUTED,
-            linestyle="--", linewidth=0.6, zorder=2)   # spans the data only, not the axes width
+    ax.axhline((lo_dual + hi_single) / 2, color=SEPARATOR_GREY, linestyle="--",
+               linewidth=0.6, zorder=2)
     print(f"    (c) separator rule at {(lo_dual + hi_single) / 2:.2f}% "
           f"(dual-view min {lo_dual:.1f}, single-view max {hi_single:.1f})")
     for mi, m in enumerate(METHODS):
