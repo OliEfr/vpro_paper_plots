@@ -11,6 +11,7 @@ the fix belongs in the experiment that wrote the CSV, not in the plot script.
     realworld_novel_movement.csv  push-milk-right novel-movement results
     libero_radar_<split>.csv  `<split>`: h (held-out), nonh (non-held-out)
     libero_plus_radar.csv     LIBERO-Plus, one row per disturbance dimension
+    libero_scaling_row.csv    the paper's LIBERO scaling table, all three sweeps
     umap_teachers.csv         LIBERO latent UMAP, coloured by robot
     umap_hardware.csv         DK1 latent UMAP, coloured by data source
     umap_decodability.csv     how decodable robot/source is, per checkpoint
@@ -542,3 +543,21 @@ on LIBERO it falls toward chance with training (0.70 → 0.30 for the 5-robot
 teacher), on DK1 it does not move off 1.0. The `logreg`/`kNN` pair is worth
 keeping both of: a latent can be locally clustered by group while remaining
 linearly inseparable, and only the pair distinguishes that from real invariance.
+
+## `libero_scaling_row.csv`
+
+The paper's LIBERO scaling table (`tab:data_scaling_combined`, version of
+2026-10-02) as one long-format dump, read by `plot_libero_scaling_row.py`
+(-> `figures/libero_scaling_row_science.pdf`, science style only). It is the
+newer counterpart of the three `libero_*_sweep.csv` dumps above, which hold the
+earlier table's numbers and are left as they were. Values are the table's own
+1-decimal percentages, stored as fractions; job provenance per cell is in the
+file header.
+
+| column           | meaning                                                         |
+|------------------|-----------------------------------------------------------------|
+| `sweep`          | `budget` (episodes/task), `play` (% LIBERO-90), `xemb` (# cross-embodiments) |
+| `x`              | the sweep position: 1/5/10/20, 0/33/66/100, or 1/2/4            |
+| `split`          | `nonh` = 32 in-distribution tasks, `h` = 8 held-out tasks       |
+| `action_only_sr` | pure action-only policy; empty for `xemb` (no such arm, the table's N/A) |
+| `video_sr`       | + LAM (ours)                                                    |

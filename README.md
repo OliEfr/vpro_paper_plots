@@ -60,6 +60,7 @@ python plot_realworld.py       # figures/realworld_scaling.pdf
 python plot_realworld_bars.py  # figures/realworld_alltasks.pdf
 python plot_realworld_multiview_vs_side.py  # figures/realworld_multiview_vs_side.pdf
 python plot_libero_xemb_sweep.py  # figures/libero_xemb_sweep.pdf
+python plot_libero_scaling_row.py  # figures/libero_scaling_row_science.pdf, the scaling table as a figure* (science only)
 python plot_libero_radar.py    # figures/libero_radar_{h,nonh}.pdf, one per split
 python plot_libero_plus_radar.py  # figures/libero_plus_radar.pdf
 python plot_radar_row.py       # figures/radar_row.pdf, all three radars in one figure*

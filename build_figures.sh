@@ -49,7 +49,7 @@ else
            plot_realworld_multiview_vs_side.py
            plot_libero_xemb_sweep.py
            plot_libero_radar.py plot_libero_plus_radar.py plot_radar_row.py
-           plot_realworld_row.py
+           plot_realworld_row.py plot_libero_scaling_row.py
            plot_umap_teachers.py plot_umap_teachers_2x2.py plot_umap_hardware.py
            plot_tsne_teachers.py plot_tsne_teachers_2x2.py plot_tsne_hardware.py)
 fi
@@ -57,7 +57,7 @@ fi
 # Scripts that produce only the science variant and take no --style switch. The
 # combined row figure is built to be pasted into the paper, which uses that
 # style; a paper-style twin nobody includes is one more thing to keep in sync.
-SCIENCE_ONLY=(plot_realworld_row.py)
+SCIENCE_ONLY=(plot_realworld_row.py plot_libero_scaling_row.py)
 
 # Scripts that draw one figure per --probe. Same reason this file exists: the
 # MLP and ridge probing figures come out of the same probe jobs, so a change to
