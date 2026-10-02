@@ -10,12 +10,20 @@
 # libero_budget_sweep.csv. MN5 policy jobs: 44161098 (0), 44222480 (1),
 # 44161096 (2), 44222483 (4). Single seed per cell; the held-out dip at 2 is
 # within plausible teacher-draw variance - do not over-read.
-split,n_embodiments,video_sr
-nonh,0,0.6847
-nonh,1,0.6359
-nonh,2,0.6566
-nonh,4,0.6972
-h,0,0.0688
-h,1,0.5825
-h,2,0.4925
-h,4,0.5888
+# sideview_sr (added 2026-09-29): the single-view arm - same recipe, but the
+#   teacher is the sideview-only LAM (lam1o5_side fields: video_keys and
+#   camera keys = sideview; teacher seed 1003) and its labels feed the same
+#   policy5 withvideo mix; policy seed 1000. Point 2 = MN5 LAM 45408556 ->
+#   policy 45408565 (the paper's 'Ours (single-view)', stored at its 4-dp
+#   source precision). Points 1 and 4 = MN5 LAMs 46690705 / 46690706 ->
+#   LEONARDO policies 58841760 / 58841915, stored exactly (mean over tasks).
+#   Point 0 not run (no sideview frankaonly reference): empty cell.
+split,n_embodiments,video_sr,sideview_sr
+nonh,0,0.6847,
+nonh,1,0.6359,0.615625
+nonh,2,0.6566,0.5806
+nonh,4,0.6972,0.634375
+h,0,0.0688,
+h,1,0.5825,0.28625
+h,2,0.4925,0.3538
+h,4,0.5888,0.48625

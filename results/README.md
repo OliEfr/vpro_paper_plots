@@ -418,8 +418,10 @@ present — when real numbers land, overwrite the rows **and delete the line**.
 ## `libero_budget_sweep.csv`, `libero_playdata_sweep.csv`, `libero_xemb_sweep.csv`
 
 The three LIBERO scaling sweeps behind `tab:budget_sweep`, `tab:playdata_sweep`
-and `tab:xemb_ablation` in the paper. No plot script reads them yet — they are
-the raw dumps for those tables (and for future line plots). Long format, one
+and `tab:xemb_ablation` in the paper. `libero_xemb_sweep.csv` is read by
+`plot_libero_xemb_sweep.py` (→ `figures/libero_xemb_sweep.pdf` and the zoomed
+totals-only `figures/libero_xemb_sweep_total.pdf`, 2026-09-29); the
+other two are still table-only dumps (and inputs for future line plots). Long format, one
 row per (split, sweep position):
 
 | column               | meaning                                                   |
@@ -427,6 +429,13 @@ row per (split, sweep position):
 | `split`              | `nonh` (32 non-held-out tasks) or `h` (8 held-out tasks)  |
 | sweep column         | `n_demos` (1/5/10/20 eps per task), `play_fraction_pct` (0/33/66/100), or `n_embodiments` (0/1/2/4) |
 | `<method>_sr`        | success rate as a **fraction in [0, 1]**, mean over the split's tasks at 100 rollouts each |
+
+`libero_xemb_sweep.csv` carries two methods: `video_sr` is the multi-view
+teacher (the original column), `sideview_sr` the single-view (side-camera)
+teacher, added 2026-09-29 with its provenance in the file header. Its `0`
+cell is empty (never run), and the plot skips the `0` row for both arms since
+it is a reference, not a sweep point. The figure's *Total* is derived in the
+script as the 32/8 task-weighted mean of the two splits, not stored.
 
 Same rules as the other dumps: fractions not percentages, empty cell = run has
 not happened (the playdata 66% cells sat empty on exactly that rule until the
