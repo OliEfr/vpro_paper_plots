@@ -16,26 +16,29 @@
 #   4 = +ur5e, sawyer; 5 eps/task): video only (action-only has no cross-emb axis):
 #   MN5 44222480 (1), 46836540 (2), 44222483 (4)
 # Cells shared by construction: budget 5 == play 100 == xemb 2 (same config, same run).
-sweep,x,split,action_only_sr,video_sr
-budget,1,nonh,0.439,0.558
-budget,5,nonh,0.648,0.668
-budget,10,nonh,0.702,0.695
-budget,20,nonh,0.756,0.763
-budget,1,h,0.031,0.293
-budget,5,h,0.040,0.430
-budget,10,h,0.024,0.486
-budget,20,h,0.055,0.471
-play,0,nonh,0.588,0.666
-play,33,nonh,0.585,0.641
-play,66,nonh,0.604,0.657
-play,100,nonh,0.648,0.668
-play,0,h,0.005,0.279
-play,33,h,0.001,0.418
-play,66,h,0.018,0.461
-play,100,h,0.040,0.430
-xemb,1,nonh,,0.636
-xemb,2,nonh,,0.668
-xemb,4,nonh,,0.697
-xemb,1,h,,0.583
-xemb,2,h,,0.430
-xemb,4,h,,0.589
+# sideview_sr (xemb rows only, added 2026-10-02): + LAM with the single-view (sideview-only) teacher,
+#   the numbers of results/libero_xemb_sweep.csv's sideview_sr column at the table's 1-decimal
+#   precision (MN5 45408565 (2), LEONARDO 58841760 (1), 58841915 (4)); empty for the other sweeps.
+sweep,x,split,action_only_sr,video_sr,sideview_sr
+budget,1,nonh,0.439,0.558,
+budget,5,nonh,0.648,0.668,
+budget,10,nonh,0.702,0.695,
+budget,20,nonh,0.756,0.763,
+budget,1,h,0.031,0.293,
+budget,5,h,0.040,0.430,
+budget,10,h,0.024,0.486,
+budget,20,h,0.055,0.471,
+play,0,nonh,0.588,0.666,
+play,33,nonh,0.585,0.641,
+play,66,nonh,0.604,0.657,
+play,100,nonh,0.648,0.668,
+play,0,h,0.005,0.279,
+play,33,h,0.001,0.418,
+play,66,h,0.018,0.461,
+play,100,h,0.040,0.430,
+xemb,1,nonh,,0.636,0.616
+xemb,2,nonh,,0.668,0.581
+xemb,4,nonh,,0.697,0.634
+xemb,1,h,,0.583,0.286
+xemb,2,h,,0.430,0.354
+xemb,4,h,,0.589,0.486

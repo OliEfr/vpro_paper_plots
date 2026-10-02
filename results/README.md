@@ -560,4 +560,5 @@ file header.
 | `x`              | the sweep position: 1/5/10/20, 0/33/66/100, or 1/2/4            |
 | `split`          | `nonh` = 32 in-distribution tasks, `h` = 8 held-out tasks       |
 | `action_only_sr` | pure action-only policy; empty for `xemb` (no such arm, the table's N/A) |
-| `video_sr`       | + LAM (ours)                                                    |
+| `video_sr`       | + LAM (ours), dual-view teacher                                 |
+| `sideview_sr`    | + LAM with the single-view teacher; `xemb` rows only (from `libero_xemb_sweep.csv`) |
