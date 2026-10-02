@@ -637,7 +637,10 @@ def main():
             ax.tick_params(axis="y", labelleft=False)
         ax.set_axisbelow(True)
         ax.grid(axis="y")
-        ax.tick_params(axis="x", length=0)
+        # which="both": the science style turns minor x ticks on, and on the
+        # bar panels they sat at the half-integer slot edges, showing as stray
+        # ticks on the baseline wherever no bar covered them (2026-10-02).
+        ax.tick_params(axis="x", which="both", length=0)
         axes[key] = ax
 
     panel_bars(axes["a"], a_tasks, budgets, a_values, a_means, a_methods)
