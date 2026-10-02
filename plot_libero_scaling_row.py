@@ -39,7 +39,8 @@ TWO FACTORS, TWO CHANNELS (README.md). Method is colour plus marker shape, the
 split is line style plus marker fill, and each factor gets its own legend row
 so a reader can hold one fixed and scan the other. Total is the solid style so
 that panel (c), which shows totals alone, reads with the same key. The three
-panels share one 0-85 y axis, labelled once on the left. The x positions are categorical and
+panels (a) and (b) share one 0-85 y axis, labelled once on the left; (c)
+is zoomed to 50-70 and carries its own tick labels. The x positions are categorical and
 evenly spaced -- the sweeps are not linear in their own units (1/5/10/20
 episodes, 1/2/4 embodiments) and the table reads them as steps.
 """
@@ -76,6 +77,12 @@ SWEEP_XLABELS = {
 SPLITS = ["h", "nonh"]
 YLIM = (0, 85)
 YTICKS = [0, 20, 40, 60, 80]
+# (c) shows totals only, all in the 50s and 60s, so it gets its own zoomed y
+# range -- and therefore its own tick labels, since it no longer shares the
+# scale with (a) and (b). The point of the panel is the gap between the two
+# arms, which 0-85 flattens to a sliver.
+PANEL_YLIM = {"xemb": (50, 70)}
+PANEL_YTICKS = {"xemb": [50, 55, 60, 65, 70]}
 
 # Bands in inches. Measured off the rendered text at 8pt, like the real-world
 # row: two-line y labels plus tick labels on the left, one legend row on top,
@@ -83,6 +90,7 @@ YTICKS = [0, 20, 40, 60, 80]
 YLABEL_IN = 0.40
 GUTTER_IN = 0.22
 RIGHT_PAD_IN = 0.08
+YTICKS_C_IN = 0.20    # (c)'s own tick labels ("50".."70"), taken out of its gutter
 LEGEND_ROW_IN = 0.13
 LEGEND_ROWS = 2       # one row per factor: methods, then splits
 LEGEND_GAP_IN = 0.05
@@ -148,8 +156,9 @@ def main():
         sub = df[df["sweep"] == sw]
         xs = sorted(sub["x"].unique())
         pos = np.arange(len(xs))
-        left = YLABEL_IN + ci * (panel_in + GUTTER_IN)
-        ax = fig.add_axes([left / w, XTICKS_IN / h, panel_in / w, BODY_IN / h])
+        left = YLABEL_IN + ci * (panel_in + GUTTER_IN) + (YTICKS_C_IN if sw in PANEL_YLIM else 0.0)
+        width_in = panel_in - (YTICKS_C_IN if sw in PANEL_YLIM else 0.0)
+        ax = fig.add_axes([left / w, XTICKS_IN / h, width_in / w, BODY_IN / h])
         for mi, m in enumerate(METHODS):
             if sub[m].isna().all():
                 continue   # (c) has no action-only arm; (a)/(b) no single-view arm
@@ -160,15 +169,15 @@ def main():
         ax.set_xticks(pos)
         ax.set_xticklabels([str(int(x)) for x in xs])
         ax.set_xlabel(SWEEP_XLABELS[sw], labelpad=1.5)
-        ax.set_ylim(*YLIM)
-        ax.set_yticks(YTICKS)
+        ax.set_ylim(*PANEL_YLIM.get(sw, YLIM))
+        ax.set_yticks(PANEL_YTICKS.get(sw, YTICKS))
         ax.set_axisbelow(True)
         ax.grid(axis="y")
         ax.minorticks_off()
         if ci == 0:
             ax.set_ylabel("Success Rate [%]", labelpad=2)
-        else:
-            ax.tick_params(axis="y", labelleft=False)
+        elif sw not in PANEL_YLIM:
+            ax.tick_params(axis="y", labelleft=False)   # shares (a)'s scale
 
     # Two legend rows, one per factor. The method row shows filled markers on a
     # solid line (the total's look); the split row is drawn in neutral ink so
