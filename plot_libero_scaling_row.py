@@ -7,9 +7,10 @@ success rate over all 40 tasks, their BOTTOM panel the two task splits as
 separate lines (in-distribution solid with filled markers, held-out dashed with
 hollow markers). Column (c), the cross-embodiment sweep, spans both rows: it
 draws the 40-task mean for the dual-view and the single-view (sideview-only
-teacher, ``sideview_sr``) arm, with a thin vertical tie at each x from the
-single-view point up to the dual-view point -- the gap is the point of the
-panel, and the ties show it is positive at every count. The mean is the 32/8
+teacher, ``sideview_sr``) arm, with a thin horizontal rule between the two
+curves -- halfway between the lowest dual-view and the highest single-view
+point, so it exists only while one arm is above the other everywhere, which is
+the point of the panel (the script fails if the curves cross). The mean is the 32/8
 task-weighted mean of the two stored splits, derived here rather than stored,
 the way libero_xemb_sweep's Total is. Run with no arguments:
 
@@ -39,9 +40,12 @@ cross-embodiments (dual-view) are one and the same run; and (c) is on its own
 zoomed y axis.
 
 TWO FACTORS, TWO CHANNELS (README.md). Method is colour plus marker shape; the
-split is line style plus marker fill, and each factor gets its own legend row.
-The mean row and the split row each share one y axis across (a) and (b),
-labelled once on the left; (c) carries its own tick labels. The x positions
+split is line style plus marker fill plus weight: the mean is the solid, opaque
+line, the splits are dotted (in-distribution, filled) and dashed (held-out,
+hollow) and drawn at SPLIT_ALPHA so the mean stays dominant without the colour
+changing. One legend row carries both factors. The mean row and the split row
+each share one y axis across (a) and (b), labelled once on the left with
+every second tick labelled; (c) carries its own tick labels. The x positions
 are categorical and evenly spaced -- the sweeps are not linear in their own
 units (1/5/10/20 episodes, 1/2/4 embodiments) and the table reads them as
 steps.
@@ -72,15 +76,17 @@ SWEEP_XLABELS = {
 SPLIT_COLS = ["budget", "play"]        # the two-row columns
 SPAN_COL = "xemb"                      # spans both rows, mean only
 
-# Split channel (bottom row): in-distribution solid / filled, held-out dashed /
-# hollow. The mean (top row and (c)) is solid / filled too -- it is the only
-# thing in its panels, so nothing competes with it.
+# Split channel (bottom row): in-distribution dotted / filled, held-out dashed /
+# hollow, both at SPLIT_ALPHA; only the mean (top row and (c)) is the plain
+# solid, opaque line.
 SPLITS = ["nonh", "h"]
-SPLIT_LINE = {"nonh": "-", "h": "--"}
+SPLIT_LINE = {"mean": "-", "nonh": (0, (1.2, 1.4)), "h": "--"}
 SPLIT_FILLED = {"nonh": True, "h": False}
+SPLIT_ALPHA = 0.55
 SPLIT_LABELS = {"nonh": "In-distribution tasks", "h": "Held-out tasks"}
 N_TASKS = {"nonh": 32, "h": 8}
 
+# Ticks every step, labels on every second one (set_yticks + a blank label).
 MEAN_YLIM, MEAN_YTICKS = (30, 80), [30, 40, 50, 60, 70, 80]
 SPLIT_YLIM, SPLIT_YTICKS = (0, 85), [0, 20, 40, 60, 80]
 # (c) is all in the 50s and 60s; on the split axis the dual-vs-single gap would
@@ -93,11 +99,11 @@ YTICKS_C_IN = 0.20    # (c)'s own tick labels, taken out of its slot
 GUTTER_IN = 0.22
 RIGHT_PAD_IN = 0.08
 LEGEND_ROW_IN = 0.13
-LEGEND_ROWS = 2       # one row per factor: methods, then splits
+LEGEND_ROWS = 1       # both factors in one row
 LEGEND_GAP_IN = 0.05
-ROW_GAP_IN = 0.10
+ROW_GAP_IN = 0.08
 XTICKS_IN = 0.34
-BODY_IN = 0.82        # one row's plotting height
+BODY_IN = 0.62        # one row's plotting height
 FIG_HEIGHT_IN = (LEGEND_ROWS * LEGEND_ROW_IN + LEGEND_GAP_IN
                  + 2 * BODY_IN + ROW_GAP_IN + XTICKS_IN)
 
@@ -150,16 +156,18 @@ def main():
     fig = plt.figure(figsize=(w, h))
 
     def line_kw(mi, sp):
-        return dict(color=style_for(mi), linestyle=SPLIT_LINE.get(sp, "-"),
+        return dict(color=style_for(mi), linestyle=SPLIT_LINE[sp],
                     marker=style.MARKERS[mi], markersize=3.4, markeredgewidth=0.6,
                     markerfacecolor=style_for(mi) if SPLIT_FILLED.get(sp, True) else "white",
-                    markeredgecolor=style_for(mi), linewidth=1.1)
+                    markeredgecolor=style_for(mi), linewidth=1.1,
+                    alpha=1.0 if sp == "mean" else SPLIT_ALPHA)
 
     def axis_common(ax, xs, ylim, yticks):
         ax.set_xlim(-0.35, len(xs) - 0.65)
         ax.set_xticks(np.arange(len(xs)))
         ax.set_ylim(*ylim)
         ax.set_yticks(yticks)
+        ax.set_yticklabels([str(t) if k % 2 == 0 else "" for k, t in enumerate(yticks)])
         ax.set_axisbelow(True)
         ax.grid(axis="y")
         ax.minorticks_off()
@@ -201,12 +209,17 @@ def main():
         if sub[m].isna().all():
             continue
         ys[m] = 100 * np.asarray(series(sub, m, "mean", xs), float)
-    # The ties: drawn first so the markers sit on top of them. Thin, muted and
-    # vertical, so they read as a measurement of the gap, not as a third series.
-    for k in range(len(xs)):
-        lo, hi = ys["sideview_sr"][k], ys["video_sr"][k]
-        ax.plot([pos[k], pos[k]], [lo, hi], color=style.INK_MUTED, linestyle="-",
-                linewidth=0.7, solid_capstyle="butt", zorder=2)   # explicit: the style's prop cycle would dash it
+    # The separator: a thin muted rule halfway between the lowest dual-view and
+    # the highest single-view mean. It only makes sense while the curves do not
+    # cross, so refuse to draw a lie if they ever do.
+    lo_dual, hi_single = ys["video_sr"].min(), ys["sideview_sr"].max()
+    if lo_dual <= hi_single:
+        raise SystemExit(f"(c): dual-view ({lo_dual:.1f}) no longer above single-view "
+                         f"({hi_single:.1f}) everywhere -- drop the separator rule")
+    ax.axhline((lo_dual + hi_single) / 2, color=style.INK_MUTED, linestyle="-",
+               linewidth=0.6, zorder=2)   # linestyle explicit: the style's prop cycle would dash it
+    print(f"    (c) separator rule at {(lo_dual + hi_single) / 2:.2f}% "
+          f"(dual-view min {lo_dual:.1f}, single-view max {hi_single:.1f})")
     for mi, m in enumerate(METHODS):
         if m in ys:
             ax.plot(pos, ys[m], zorder=3, **line_kw(mi, "mean"))
@@ -215,23 +228,20 @@ def main():
     ax.set_xlabel(SWEEP_XLABELS[SPAN_COL], labelpad=1.5)
     ax.set_ylabel("Mean SR [%]", labelpad=2)
 
-    # Two legend rows, one per factor; the split row in neutral ink so it reads
-    # as a style key, not a fourth method.
+    # One legend row, both factors: the three methods (as their mean line), then
+    # the two split styles in neutral ink so they read as a key, not as methods.
     method_handles = [Line2D([], [], label=METHOD_LABELS[m], **line_kw(mi, "mean"))
                       for mi, m in enumerate(METHODS)]
     split_handles = [Line2D([], [], color=style.INK_MUTED, linestyle=SPLIT_LINE[sp],
                             marker="o", markersize=3.4, markeredgewidth=0.6,
                             markerfacecolor=style.INK_MUTED if SPLIT_FILLED[sp] else "white",
-                            markeredgecolor=style.INK_MUTED, linewidth=1.1, label=SPLIT_LABELS[sp])
+                            markeredgecolor=style.INK_MUTED, linewidth=1.1, alpha=SPLIT_ALPHA,
+                            label=SPLIT_LABELS[sp])
                      for sp in SPLITS]
-    split_handles.append(Line2D([], [], color=style.INK_MUTED, linestyle="none",
-                                marker="|", markersize=7, markeredgewidth=0.7,
-                                label="Dual-view minus single-view gap (c)"))
-    kw = dict(loc="upper center", frameon=False, borderaxespad=0, borderpad=0,
-              handlelength=2.2, handletextpad=0.5, columnspacing=1.6)
-    fig.legend(handles=method_handles, bbox_to_anchor=(0.5, 1.0), ncol=len(method_handles), **kw)
-    fig.legend(handles=split_handles, bbox_to_anchor=(0.5, 1.0 - LEGEND_ROW_IN / h),
-               ncol=len(split_handles), **kw)
+    handles = method_handles + split_handles
+    fig.legend(handles=handles, loc="upper center", bbox_to_anchor=(0.5, 1.0), ncol=len(handles),
+               frameon=False, borderaxespad=0, borderpad=0, handlelength=2.2, handletextpad=0.5,
+               columnspacing=1.4)
 
     style.save(fig, OUT_NAME)
 
