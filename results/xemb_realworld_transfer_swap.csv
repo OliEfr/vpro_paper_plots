@@ -1,0 +1,1501 @@
+eA,tA,srcA,task,eB,tB,cos_raw,cos_centred,cos_control,mag_A
+1370,90,video_2cam,blue brick in blue bowl and yellow brick in blue bowl,324,245,0.6191,0.3107,0.8826,8.5
+1370,90,video_2cam,blue brick in blue bowl and yellow brick in blue bowl,322,18,0.87,0.5219,-0.7869,8.5
+1176,60,video_2cam,pink cup in basket,238,51,-0.7007,-0.9613,-0.3506,6.12
+1176,60,video_2cam,pink cup in basket,232,83,-0.6425,0.1093,0.9985,6.12
+19,180,robot_3cam,banana in basket,743,101,0.9175,0.5611,-0.9999,14.75
+19,180,robot_3cam,banana in basket,683,253,0.8054,-0.8815,0.8145,14.75
+505,90,robot_3cam,banana in cardboard box,790,233,0.3752,-0.9681,0.4205,3.34
+505,90,robot_3cam,banana in cardboard box,799,75,-0.2165,-0.5258,0.1286,3.34
+1212,70,video_2cam,pink cup on pink plate,258,39,0.9608,0.9795,0.9645,7.02
+1212,70,video_2cam,pink cup on pink plate,253,160,0.9983,0.9938,0.9836,7.02
+1021,90,video_2cam,red brick on pink plate and blue brick on pink plate,133,140,0.9201,0.7803,0.2996,33.66
+1021,90,video_2cam,red brick on pink plate and blue brick on pink plate,130,50,0.8108,0.8276,-0.9839,33.66
+1384,30,video_2cam,yellow brick in basket,338,124,0.2856,0.9881,0.2146,9.18
+1384,30,video_2cam,yellow brick in basket,334,172,0.9412,0.9931,-0.1055,9.18
+849,70,video_2cam,banana in black bowl,540,130,0.3821,0.9963,0.5288,14.16
+849,70,video_2cam,banana in black bowl,565,156,0.7009,0.9732,-0.0043,14.16
+185,120,robot_3cam,can on stove,1068,36,0.9467,-0.6328,0.8323,28.94
+185,120,robot_3cam,can on stove,1064,249,0.9931,-0.2757,1.0,28.94
+1136,110,video_2cam,grey cup on pan,211,110,0.9454,0.9974,0.1465,24.95
+1136,110,video_2cam,grey cup on pan,219,115,0.79,0.9871,-0.553,24.95
+961,80,video_2cam,blue brick in blue bowl,104,119,0.999,0.0457,0.9102,7.29
+961,80,video_2cam,blue brick in blue bowl,106,52,-0.8747,-0.9988,-0.9614,7.29
+64,80,robot_3cam,banana in orange bowl,892,25,0.6881,-0.7065,-1.0,15.91
+64,80,robot_3cam,banana in orange bowl,894,63,0.0748,0.0596,0.1332,15.91
+41,30,robot_3cam,banana in basket,689,140,0.9933,0.4409,0.7621,27.62
+41,30,robot_3cam,banana in basket,771,105,0.8544,0.9998,-0.811,27.62
+550,70,robot_3cam,banana in black bowl,852,79,0.5326,-0.4756,0.9066,23.08
+550,70,robot_3cam,banana in black bowl,864,60,0.7675,-0.8893,-0.8934,23.08
+656,110,robot_3cam,salt on pink plate,1691,99,-0.1616,0.16,0.3617,34.97
+656,110,robot_3cam,salt on pink plate,1695,24,0.765,0.1837,-0.4667,34.97
+329,180,robot_3cam,blue brick in blue bowl and yellow brick in blue bowl,1360,182,-0.4575,-0.3399,-0.7389,7.03
+329,180,robot_3cam,blue brick in blue bowl and yellow brick in blue bowl,1351,116,-0.9171,-0.8657,-0.8599,7.03
+133,50,robot_3cam,red brick on pink plate and blue brick on pink plate,1038,235,0.3597,0.1921,0.847,28.7
+133,50,robot_3cam,red brick on pink plate and blue brick on pink plate,1030,108,0.3143,0.893,0.8043,28.7
+386,200,robot_3cam,yellow brick on blue plate,1465,72,-0.8639,0.9992,-0.9846,4.7
+386,200,robot_3cam,yellow brick on blue plate,1492,30,-0.8187,-0.9675,0.3544,4.7
+556,190,robot_3cam,banana in black bowl,876,11,0.0764,-0.961,0.0962,9.41
+556,190,robot_3cam,banana in black bowl,856,24,0.1021,0.9777,-0.3593,9.41
+990,340,video_2cam,open drawer and blue brick in drawer and close drawer,118,12,-0.0867,-0.1368,0.727,26.53
+990,340,video_2cam,open drawer and blue brick in drawer and close drawer,114,131,0.0673,-0.1655,0.0413,26.53
+1258,120,video_2cam,push pink cup,278,164,0.7939,0.8522,0.9078,28.39
+1258,120,video_2cam,push pink cup,279,27,0.9904,0.6411,-0.3552,28.39
+794,90,video_2cam,banana in cardboard box,529,200,-0.1514,-0.4578,0.4527,3.46
+794,90,video_2cam,banana in cardboard box,518,212,0.9757,0.1867,0.9972,3.46
+1181,100,video_2cam,pink cup in basket,231,56,0.8411,0.6884,-0.8267,27.95
+1181,100,video_2cam,pink cup in basket,234,76,-0.4008,-0.2947,-0.4237,27.95
+937,110,video_2cam,blue brick between pink cup and basket,84,92,0.8192,0.9728,-0.7524,8.33
+937,110,video_2cam,blue brick between pink cup and basket,81,29,-0.1029,-0.1899,-0.6826,8.33
+701,230,video_2cam,banana in basket,44,115,1.0,0.9031,0.0758,22.64
+701,230,video_2cam,banana in basket,46,13,-0.0756,-0.9999,0.0059,22.64
+77,330,robot_3cam,blue bowl on pink plate and yellow brick in blue bowl,906,116,0.8612,0.9943,0.8566,9.79
+77,330,robot_3cam,blue bowl on pink plate and yellow brick in blue bowl,916,118,-0.6006,0.2927,-0.8719,9.79
+1160,140,video_2cam,open drawer,228,74,0.6776,0.9821,0.8113,6.28
+1160,140,video_2cam,open drawer,224,13,0.9909,0.3714,0.781,6.28
+611,70,robot_3cam,milk on pink plate,1621,193,-0.7443,-0.6651,0.1666,15.24
+611,70,robot_3cam,milk on pink plate,1623,45,-0.8713,0.441,0.2468,15.24
+1410,30,video_2cam,yellow brick in orange bowl,348,66,0.9487,0.9692,0.9623,34.8
+1410,30,video_2cam,yellow brick in orange bowl,349,103,0.3232,0.441,0.0564,34.8
+1189,150,video_2cam,pink cup in basket,236,54,-0.534,-0.5954,0.6041,26.24
+1189,150,video_2cam,pink cup in basket,238,84,-0.1404,0.0274,0.6261,26.24
+856,100,video_2cam,banana in black bowl,560,96,0.9765,0.957,0.0369,21.51
+856,100,video_2cam,banana in black bowl,564,267,0.9763,0.9999,-0.0672,21.51
+37,160,robot_3cam,banana in basket,770,86,0.6786,0.829,-0.9649,14.12
+37,160,robot_3cam,banana in basket,688,70,0.8452,0.471,1.0,14.12
+546,180,robot_3cam,banana in black bowl,837,101,0.917,0.7782,-0.389,11.55
+546,180,robot_3cam,banana in black bowl,833,82,0.8316,0.6188,0.7779,11.55
+856,150,video_2cam,banana in black bowl,554,115,-0.4805,-0.4555,-0.6188,7.56
+856,150,video_2cam,banana in black bowl,575,180,0.1396,-0.4584,0.8958,7.56
+495,10,robot_3cam,banana in cardboard box,825,118,0.8433,0.7659,0.9632,10.16
+495,10,robot_3cam,banana in cardboard box,826,137,-0.864,0.9241,0.724,10.16
+1364,170,video_2cam,blue brick in blue bowl and yellow brick in blue bowl,322,247,0.9307,-0.611,-0.9688,3.92
+1364,170,video_2cam,blue brick in blue bowl and yellow brick in blue bowl,323,53,0.1567,-0.4331,-0.9947,3.92
+371,90,robot_3cam,yellow brick on blue plate,1489,51,0.1635,0.8695,0.9943,4.17
+371,90,robot_3cam,yellow brick on blue plate,1460,193,0.9976,0.8652,0.6997,4.17
+1612,50,video_2cam,yellow cup next to stove,474,197,0.1376,0.6008,0.4558,14.63
+1612,50,video_2cam,yellow cup next to stove,475,193,0.8501,0.8112,0.5875,14.63
+1178,120,video_2cam,pink cup in basket,232,155,-0.4039,-0.8686,-0.2538,19.55
+1178,120,video_2cam,pink cup in basket,231,98,0.9995,0.4472,-0.9301,19.55
+530,180,robot_3cam,banana in cardboard box,797,139,0.6194,-0.6503,0.9938,29.83
+530,180,robot_3cam,banana in cardboard box,813,138,0.4367,0.2586,-0.909,29.83
+343,40,robot_3cam,yellow brick in orange bowl,1409,59,-0.9524,-0.9923,-0.9754,30.59
+343,40,robot_3cam,yellow brick in orange bowl,1396,43,0.9953,-0.3921,-0.6516,30.59
+126,170,robot_3cam,blue brick on red brick,1005,209,0.8228,0.8309,-0.0813,7.85
+126,170,robot_3cam,blue brick on red brick,1011,113,0.5168,0.455,-0.9763,7.85
+87,270,robot_3cam,blue brick between pink cup and basket,922,174,0.9255,0.5697,-0.9598,8.05
+87,270,robot_3cam,blue brick between pink cup and basket,939,157,0.6735,0.7492,-0.8527,8.05
+80,30,robot_3cam,blue brick between pink cup and basket,925,14,0.9114,0.1935,-0.7182,6.2
+80,30,robot_3cam,blue brick between pink cup and basket,930,187,0.8709,0.5225,1.0,6.2
+1387,70,video_2cam,yellow brick in basket,331,100,-0.991,-0.988,0.6375,26.19
+1387,70,video_2cam,yellow brick in basket,338,156,-0.997,-0.9718,-0.7658,26.19
+1013,120,video_2cam,blue brick on red brick,123,24,-0.8995,-0.6271,-0.7017,26.06
+1013,120,video_2cam,blue brick on red brick,129,33,-0.9317,-0.9886,0.2264,26.06
+1351,240,video_2cam,blue brick in blue bowl and yellow brick in blue bowl,327,196,0.9545,-0.1612,0.3459,6.26
+1351,240,video_2cam,blue brick in blue bowl and yellow brick in blue bowl,324,103,-0.6921,0.3738,0.3834,6.26
+1257,80,video_2cam,push pink cup,276,206,-0.6708,0.0815,0.9752,42.42
+1257,80,video_2cam,push pink cup,275,12,0.3628,0.9919,0.9524,42.42
+1094,60,video_2cam,can on stove,187,58,-0.5822,-0.1907,-0.0227,12.45
+1094,60,video_2cam,can on stove,154,211,0.9904,-0.9855,-0.5527,12.45
+1025,200,video_2cam,red brick on pink plate and blue brick on pink plate,139,112,0.9713,0.9969,0.8078,5.73
+1025,200,video_2cam,red brick on pink plate and blue brick on pink plate,133,147,0.5221,0.999,-0.5665,5.73
+16,160,robot_3cam,banana in basket,746,30,-0.3792,0.878,-0.9486,3.65
+16,160,robot_3cam,banana in basket,757,11,0.1639,0.0078,0.1765,3.65
+985,360,video_2cam,open drawer and blue brick in drawer and close drawer,110,238,0.8917,0.9779,0.4418,25.31
+985,360,video_2cam,open drawer and blue brick in drawer and close drawer,115,448,0.9999,0.92,0.857,25.31
+1146,30,video_2cam,grey cup on pan,220,116,0.1964,-0.7224,0.1631,17.79
+1146,30,video_2cam,grey cup on pan,211,192,0.6063,0.7442,0.8635,17.79
+1324,120,video_2cam,white cup on pan,301,158,0.5439,-0.965,0.9868,10.56
+1324,120,video_2cam,white cup on pan,307,55,-0.9416,-0.8072,-0.9826,10.56
+207,40,robot_3cam,grey cup on grey plate,1130,63,-0.8067,-0.1133,0.9606,17.18
+207,40,robot_3cam,grey cup on grey plate,1112,198,-0.1512,-0.8438,-0.202,17.18
+1266,10,video_2cam,push pink cup,273,267,0.9949,0.9672,0.8308,9.75
+1266,10,video_2cam,push pink cup,279,151,-0.8986,0.8558,0.854,9.75
+10,190,robot_3cam,banana in basket,767,125,-0.9867,-0.9959,0.2565,3.3
+10,190,robot_3cam,banana in basket,698,240,-0.9986,-0.0338,0.5843,3.3
+456,180,robot_3cam,yellow brick on pink plate,1575,107,0.932,0.866,0.6152,12.5
+456,180,robot_3cam,yellow brick on pink plate,1540,117,-0.3915,0.5378,0.1341,12.5
+488,20,robot_3cam,banana in cardboard box,822,70,-0.9967,-0.9428,0.929,6.19
+488,20,robot_3cam,banana in cardboard box,808,168,-0.5207,-0.997,-0.4542,6.19
+1505,160,video_2cam,yellow brick on blue plate,391,102,-0.6594,0.1604,0.5348,36.35
+1505,160,video_2cam,yellow brick on blue plate,396,249,0.4819,0.2186,0.6179,36.35
+728,10,video_2cam,banana in basket,5,37,0.2495,0.4848,0.7231,4.41
+728,10,video_2cam,banana in basket,26,13,0.6616,0.8975,-0.7075,4.41
+738,20,video_2cam,banana in basket,18,33,-0.3021,0.4895,-0.4197,10.67
+738,20,video_2cam,banana in basket,54,43,0.3205,-0.1321,0.7639,10.67
+1369,280,video_2cam,blue brick in blue bowl and yellow brick in blue bowl,326,391,-0.403,-0.4883,-0.6548,20.46
+1369,280,video_2cam,blue brick in blue bowl and yellow brick in blue bowl,330,67,0.0551,-0.9904,-0.1357,20.46
+615,20,robot_3cam,milk on pink plate,1670,10,-0.2604,0.3074,-0.7501,14.98
+615,20,robot_3cam,milk on pink plate,1664,126,0.9984,-0.6711,0.1276,14.98
+69,60,robot_3cam,banana in orange bowl,881,13,0.9157,0.9991,0.2118,7.64
+69,60,robot_3cam,banana in orange bowl,892,22,0.9829,0.8476,-0.0181,7.64
+179,50,robot_3cam,can on stove,1066,73,-0.0375,-0.0551,0.3049,19.62
+179,50,robot_3cam,can on stove,1099,181,0.9664,0.6405,0.7697,19.62
+1300,80,video_2cam,white cup on grey plate,297,198,-0.7369,-0.1607,0.3235,17.09
+1300,80,video_2cam,white cup on grey plate,299,172,-0.6406,-0.4478,-0.5362,17.09
+820,70,video_2cam,banana in cardboard box,525,138,0.8359,0.3398,-0.6419,5.93
+820,70,video_2cam,banana in cardboard box,505,27,-0.019,0.7855,-0.9583,5.93
+351,70,robot_3cam,yellow brick next to stove,1425,92,0.752,0.9619,-0.7718,10.03
+351,70,robot_3cam,yellow brick next to stove,1416,73,0.6352,-0.3169,-0.8315,10.03
+797,40,video_2cam,banana in cardboard box,525,75,0.3108,0.7101,-0.2672,7.04
+797,40,video_2cam,banana in cardboard box,490,231,-0.2766,-0.7733,-0.9007,7.04
+104,70,robot_3cam,blue brick in blue bowl,965,103,-0.9982,-0.9659,0.7725,9.73
+104,70,robot_3cam,blue brick in blue bowl,972,82,-0.8766,-0.9993,0.001,9.73
+136,90,robot_3cam,red brick on pink plate and blue brick on pink plate,1022,350,0.9835,0.6785,0.938,43.3
+136,90,robot_3cam,red brick on pink plate and blue brick on pink plate,1035,26,-0.856,-0.9446,0.7533,43.3
+907,40,video_2cam,blue bowl on pink plate and yellow brick in blue bowl,74,80,0.9201,-0.9763,-0.1011,23.58
+907,40,video_2cam,blue bowl on pink plate and yellow brick in blue bowl,73,400,-0.9735,-0.9804,0.996,23.58
+1208,40,video_2cam,pink cup next to drawer,249,104,0.0582,0.3991,-0.6627,12.79
+1208,40,video_2cam,pink cup next to drawer,241,241,0.5196,0.206,0.6383,12.79
+947,70,video_2cam,blue brick in basket,92,35,-0.0031,0.0686,-0.5441,7.77
+947,70,video_2cam,blue brick in basket,96,156,0.8117,-0.0271,-0.3669,7.77
+525,190,robot_3cam,banana in cardboard box,794,151,-0.2071,-0.9881,-0.3918,7.98
+525,190,robot_3cam,banana in cardboard box,795,144,-0.7286,-0.0627,0.912,7.98
+1444,30,video_2cam,yellow brick on blue brick,365,183,0.9911,0.9921,-0.4894,22.85
+1444,30,video_2cam,yellow brick on blue brick,364,216,0.7209,0.5915,0.8589,22.85
+165,70,robot_3cam,can on stove,1103,47,0.905,0.5678,0.8807,18.15
+165,70,robot_3cam,can on stove,1086,182,1.0,0.526,-0.9713,18.15
+248,10,robot_3cam,pink cup next to drawer,1210,40,-0.1687,0.1458,-0.2476,21.25
+248,10,robot_3cam,pink cup next to drawer,1199,84,-0.99,-0.8197,0.2545,21.25
+1288,50,video_2cam,red brick in green bowl and yellow brick in green bowl,287,46,0.5605,-0.5357,0.9178,14.1
+1288,50,video_2cam,red brick in green bowl and yellow brick in green bowl,286,73,0.5807,0.2736,0.1986,14.1
+648,160,robot_3cam,salt on pink plate,1686,122,-0.7569,-0.9304,0.3838,10.18
+648,160,robot_3cam,salt on pink plate,1698,58,-0.8398,-0.901,-0.9125,10.18
+323,350,robot_3cam,blue brick in blue bowl and yellow brick in blue bowl,1369,374,0.9386,-0.7543,-0.5642,16.48
+323,350,robot_3cam,blue brick in blue bowl and yellow brick in blue bowl,1356,22,0.3379,-0.606,-0.8627,16.48
+1348,70,video_2cam,wipe sponge on table,319,163,-0.4018,0.9932,-0.9578,16.82
+1348,70,video_2cam,wipe sponge on table,317,102,0.9986,0.9997,0.9938,16.82
+842,110,video_2cam,banana in black bowl,567,97,0.9907,0.8515,0.9617,15.46
+842,110,video_2cam,banana in black bowl,538,140,0.1199,0.7519,0.9999,15.46
+1434,150,video_2cam,yellow brick on blue brick,365,81,0.9927,0.9297,0.9018,21.81
+1434,150,video_2cam,yellow brick on blue brick,362,97,0.8529,0.427,0.3877,21.81
+522,160,robot_3cam,banana in cardboard box,810,109,0.9588,0.3262,-0.0401,26.06
+522,160,robot_3cam,banana in cardboard box,802,162,0.9811,-0.2858,0.9992,26.06
+82,300,robot_3cam,blue brick between pink cup and basket,935,88,-0.3989,0.8609,0.8988,7.0
+82,300,robot_3cam,blue brick between pink cup and basket,926,117,-0.8972,0.8219,-0.5511,7.0
+730,40,video_2cam,banana in basket,5,230,0.9959,-0.2362,0.9811,14.81
+730,40,video_2cam,banana in basket,22,101,-0.9057,0.6391,-0.9813,14.81
+441,170,robot_3cam,yellow brick on pink plate,1527,37,0.0508,-0.0327,0.7162,15.9
+441,170,robot_3cam,yellow brick on pink plate,1523,129,-0.4719,-0.7464,-0.8772,15.9
+805,80,video_2cam,banana in cardboard box,514,238,0.6732,0.0354,-0.9683,7.61
+805,80,video_2cam,banana in cardboard box,490,131,-0.1269,-0.2935,0.0769,7.61
+201,120,robot_3cam,grey cup on grey plate,1111,24,0.2396,-0.9873,0.7431,6.26
+201,120,robot_3cam,grey cup on grey plate,1126,62,-0.8536,-0.6935,-0.9881,6.26
+481,100,robot_3cam,banana in cardboard box,792,67,-0.0001,-0.8755,-0.2091,7.69
+481,100,robot_3cam,banana in cardboard box,828,60,0.5753,0.9942,0.9917,7.69
+864,10,video_2cam,banana in black bowl,563,154,-0.7263,0.2812,-0.9943,4.24
+864,10,video_2cam,banana in black bowl,562,132,-0.7053,0.6965,0.9952,4.24
+1579,50,video_2cam,yellow brick on pink plate,455,24,-0.8442,-0.9732,0.8596,12.04
+1579,50,video_2cam,yellow brick on pink plate,458,19,-0.4385,0.2414,0.9775,12.04
+223,40,robot_3cam,open drawer,1159,86,0.4411,-0.7811,0.8909,22.04
+223,40,robot_3cam,open drawer,1169,123,0.0909,-0.3145,-0.5157,22.04
+608,170,robot_3cam,milk on pink plate,1664,18,0.9933,0.6164,0.8158,18.18
+608,170,robot_3cam,milk on pink plate,1641,53,0.7026,0.7936,-0.5548,18.18
+1175,80,video_2cam,pink cup in basket,238,21,0.9614,0.9504,-0.8587,18.27
+1175,80,video_2cam,pink cup in basket,235,158,0.8043,0.9148,0.178,18.27
+1245,40,video_2cam,point to top drawer,268,116,0.3945,0.4773,0.9976,39.37
+1245,40,video_2cam,point to top drawer,265,72,0.1324,0.7471,0.2457,39.37
+1055,50,video_2cam,can on grey plate,140,66,0.9784,0.6934,-0.4164,13.24
+1055,50,video_2cam,can on grey plate,145,122,0.8752,0.773,-0.9969,13.24
+655,100,robot_3cam,salt on pink plate,1717,11,0.9419,0.9159,-0.6211,28.57
+655,100,robot_3cam,salt on pink plate,1673,136,0.9967,0.8524,0.92,28.57
+574,40,robot_3cam,banana in black bowl,845,161,0.4856,-0.9019,-0.0954,14.81
+574,40,robot_3cam,banana in black bowl,831,31,0.8632,0.9969,-0.4486,14.81
+638,200,robot_3cam,salt on pink plate,1720,79,-0.9978,0.93,0.9945,5.38
+638,200,robot_3cam,salt on pink plate,1696,98,-0.8503,0.3676,1.0,5.38
+511,20,robot_3cam,banana in cardboard box,790,111,-0.9937,-0.2107,-0.5703,16.01
+511,20,robot_3cam,banana in cardboard box,815,138,0.7067,0.8769,0.9714,16.01
+229,70,robot_3cam,open drawer,1160,84,0.9982,0.9989,-0.9836,12.38
+229,70,robot_3cam,open drawer,1155,108,0.9449,0.9864,-0.3815,12.38
+1468,180,video_2cam,yellow brick on blue plate,415,219,-0.6015,0.9895,-0.825,20.33
+1468,180,video_2cam,yellow brick on blue plate,428,12,0.9133,0.9918,-0.4961,20.33
+1642,30,video_2cam,milk on pink plate,597,71,0.1209,-0.8877,-0.2766,5.15
+1642,30,video_2cam,milk on pink plate,592,140,-0.3008,-0.6807,0.8052,5.15
+1187,10,video_2cam,pink cup in basket,236,53,-0.9769,-0.9885,0.8374,5.97
+1187,10,video_2cam,pink cup in basket,234,115,-0.9717,-0.8383,0.9952,5.97
+1586,110,video_2cam,yellow brick on top of drawer,462,53,0.9837,0.6281,0.9997,22.46
+1586,110,video_2cam,yellow brick on top of drawer,464,58,0.9348,0.8546,0.989,22.46
+1497,190,video_2cam,yellow brick on blue plate,381,174,0.8189,0.9957,-0.3447,25.17
+1497,190,video_2cam,yellow brick on blue plate,382,47,0.7028,0.7064,-0.9989,25.17
+1512,110,video_2cam,yellow brick on blue plate,413,257,0.9715,0.9226,0.9311,5.99
+1512,110,video_2cam,yellow brick on blue plate,411,23,0.9678,0.9935,0.334,5.99
+116,330,robot_3cam,open drawer and blue brick in drawer and close drawer,999,195,-0.7157,0.9999,-0.1491,8.47
+116,330,robot_3cam,open drawer and blue brick in drawer and close drawer,994,106,-0.8539,0.8771,-0.9901,8.47
+937,20,video_2cam,blue brick between pink cup and basket,81,289,0.9852,0.2457,0.9512,5.69
+937,20,video_2cam,blue brick between pink cup and basket,86,65,-0.4344,-0.306,0.3977,5.69
+72,90,robot_3cam,blue bowl on pink plate and yellow brick in blue bowl,918,114,0.9439,0.9581,0.2165,20.94
+72,90,robot_3cam,blue bowl on pink plate and yellow brick in blue bowl,907,169,0.9683,0.9583,0.5154,20.94
+1003,70,video_2cam,blue brick on red brick,128,176,0.7025,0.9648,-0.8191,10.26
+1003,70,video_2cam,blue brick on red brick,122,177,0.6718,0.867,-0.9951,10.26
+1720,20,video_2cam,salt on pink plate,632,152,0.8802,-0.7046,-0.1118,12.46
+1720,20,video_2cam,salt on pink plate,663,163,0.0666,0.0244,-0.4369,12.46
+911,430,video_2cam,blue bowl on pink plate and yellow brick in blue bowl,72,375,0.9738,0.927,0.3518,10.56
+911,430,video_2cam,blue bowl on pink plate and yellow brick in blue bowl,79,371,0.9385,0.7426,-0.1972,10.56
+187,140,robot_3cam,can on stove,1088,164,0.9221,0.8315,-0.293,17.69
+187,140,robot_3cam,can on stove,1076,109,0.376,0.6582,0.6385,17.69
+91,70,robot_3cam,blue brick in basket,945,263,0.9698,0.5696,0.1579,24.43
+91,70,robot_3cam,blue brick in basket,947,42,0.4744,0.9535,0.8231,24.43
+1341,90,video_2cam,wipe sponge on table,313,66,0.9971,0.8883,0.6598,23.45
+1341,90,video_2cam,wipe sponge on table,319,31,0.6383,0.7596,0.6624,23.45
+1476,70,video_2cam,yellow brick on blue plate,426,135,-0.999,-0.7008,-0.6211,33.75
+1476,70,video_2cam,yellow brick on blue plate,415,30,-0.6316,-0.8021,0.8756,33.75
+1030,40,video_2cam,red brick on pink plate and blue brick on pink plate,132,181,-0.8924,0.6074,0.93,11.67
+1030,40,video_2cam,red brick on pink plate and blue brick on pink plate,138,58,-0.4203,0.7971,0.408,11.67
+1494,160,video_2cam,yellow brick on blue plate,398,242,0.9886,0.9993,0.0503,16.48
+1494,160,video_2cam,yellow brick on blue plate,376,224,0.9966,0.987,-0.8737,16.48
+1548,80,video_2cam,yellow brick on pink plate,449,65,-0.9817,0.8533,-0.2775,3.26
+1548,80,video_2cam,yellow brick on pink plate,455,16,0.9931,0.9768,-0.8702,3.26
+470,110,robot_3cam,yellow brick on top of drawer,1591,154,0.9275,0.9955,-0.974,10.22
+470,110,robot_3cam,yellow brick on top of drawer,1585,182,0.9777,0.9192,0.7996,10.22
+1092,90,video_2cam,can on stove,165,128,-0.4444,0.1481,-0.1266,13.89
+1092,90,video_2cam,can on stove,159,143,0.4285,-0.5098,0.7186,13.89
+73,430,robot_3cam,blue bowl on pink plate and yellow brick in blue bowl,908,256,0.9401,0.8325,-0.9996,6.66
+73,430,robot_3cam,blue bowl on pink plate and yellow brick in blue bowl,915,324,0.0717,-0.6449,0.182,6.66
+559,110,robot_3cam,banana in black bowl,854,136,-0.6633,-0.2615,0.8364,7.92
+559,110,robot_3cam,banana in black bowl,848,48,-0.5611,-0.964,0.9649,7.92
+357,90,robot_3cam,yellow brick next to stove,1412,81,-0.7855,0.8851,-0.6701,15.1
+357,90,robot_3cam,yellow brick next to stove,1422,25,-0.7069,-0.016,0.7547,15.1
+313,120,robot_3cam,wipe sponge on table,1341,11,1.0,0.9963,-0.8922,6.53
+313,120,robot_3cam,wipe sponge on table,1342,158,0.9375,0.9796,0.7695,6.53
+306,230,robot_3cam,white cup on pan,1312,22,0.9647,0.9442,0.0586,22.97
+306,230,robot_3cam,white cup on pan,1322,210,0.8236,-0.9444,-0.3928,22.97
+1306,130,video_2cam,white cup on grey plate,298,121,0.9872,0.8275,0.8676,8.87
+1306,130,video_2cam,white cup on grey plate,294,182,0.9705,0.8706,0.0424,8.87
+44,210,robot_3cam,banana in basket,684,82,0.8277,-0.7293,-0.9388,8.49
+44,210,robot_3cam,banana in basket,725,144,0.4166,-0.1384,0.717,8.49
+1018,50,video_2cam,blue brick on red brick,126,94,-0.8484,0.9808,0.513,23.37
+1018,50,video_2cam,blue brick on red brick,121,193,-0.5402,0.9893,-0.9032,23.37
+521,100,robot_3cam,banana in cardboard box,787,183,-0.5414,0.0886,0.9998,14.83
+521,100,robot_3cam,banana in cardboard box,804,174,0.3062,0.5931,-0.0335,14.83
+1188,70,video_2cam,pink cup in basket,233,20,0.9995,0.9673,0.9965,22.85
+1188,70,video_2cam,pink cup in basket,236,96,0.9975,0.9984,-0.0958,22.85
+34,60,robot_3cam,banana in basket,759,15,0.9827,0.7609,-0.8482,15.88
+34,60,robot_3cam,banana in basket,739,112,0.6197,-0.998,-0.9222,15.88
+324,10,robot_3cam,blue brick in blue bowl and yellow brick in blue bowl,1366,78,0.066,0.1748,-0.291,18.42
+324,10,robot_3cam,blue brick in blue bowl and yellow brick in blue bowl,1360,34,0.7894,0.9501,0.492,18.42
+67,170,robot_3cam,banana in orange bowl,891,128,0.919,0.4907,-0.979,30.7
+67,170,robot_3cam,banana in orange bowl,881,58,-0.1584,-0.1808,-0.2511,30.7
+638,50,robot_3cam,salt on pink plate,1675,184,-0.9165,-0.9782,-0.8672,19.62
+638,50,robot_3cam,salt on pink plate,1695,185,-0.5091,0.0763,-0.9363,19.62
+990,120,video_2cam,open drawer and blue brick in drawer and close drawer,111,269,0.0084,-0.2249,-0.3863,8.14
+990,120,video_2cam,open drawer and blue brick in drawer and close drawer,119,401,0.9765,0.8918,0.9579,8.14
+315,160,robot_3cam,wipe sponge on table,1339,146,0.2946,0.9738,-0.9987,4.04
+315,160,robot_3cam,wipe sponge on table,1348,125,0.9106,0.9554,-0.6394,4.04
+986,40,video_2cam,open drawer and blue brick in drawer and close drawer,112,186,0.5684,-0.3701,0.5773,16.22
+986,40,video_2cam,open drawer and blue brick in drawer and close drawer,114,474,-0.466,-0.3507,-0.4589,16.22
+162,140,robot_3cam,can on stove,1104,64,-0.7547,0.5393,-0.9999,8.56
+162,140,robot_3cam,can on stove,1070,229,0.5106,-0.9218,0.2466,8.56
+1405,20,video_2cam,yellow brick in orange bowl,348,77,-0.0375,0.977,0.5096,5.51
+1405,20,video_2cam,yellow brick in orange bowl,342,41,-0.8876,-0.9508,-0.9121,5.51
+181,120,robot_3cam,can on stove,1099,207,0.5503,-0.0653,-0.6297,15.63
+181,120,robot_3cam,can on stove,1078,74,0.6387,-0.3236,0.8963,15.63
+989,350,video_2cam,open drawer and blue brick in drawer and close drawer,119,375,-0.9538,0.8831,-0.9977,32.92
+989,350,video_2cam,open drawer and blue brick in drawer and close drawer,115,462,0.9588,0.8919,-0.1245,32.92
+285,260,robot_3cam,red brick in green bowl and yellow brick in green bowl,1290,53,-0.999,0.3311,-0.6206,14.52
+285,260,robot_3cam,red brick in green bowl and yellow brick in green bowl,1285,116,-0.8751,0.7004,-0.9058,14.52
+990,290,video_2cam,open drawer and blue brick in drawer and close drawer,115,89,0.9997,0.9958,0.1152,30.54
+990,290,video_2cam,open drawer and blue brick in drawer and close drawer,118,470,0.9798,0.9798,0.9086,30.54
+102,50,robot_3cam,blue brick in blue bowl,965,66,0.9824,0.9978,-0.2173,18.0
+102,50,robot_3cam,blue brick in blue bowl,978,13,0.9448,-0.5283,-0.7991,18.0
+720,80,video_2cam,banana in basket,41,160,-0.7621,0.3633,0.503,6.68
+720,80,video_2cam,banana in basket,33,14,0.9074,0.9286,0.5045,6.68
+193,160,robot_3cam,can on stove,1083,34,0.972,0.919,0.7122,8.66
+193,160,robot_3cam,can on stove,1073,48,0.6799,0.6311,0.9813,8.66
+841,40,video_2cam,banana in black bowl,543,182,0.9796,0.8656,0.9992,9.12
+841,40,video_2cam,banana in black bowl,571,69,0.8558,-0.3363,-0.9423,9.12
+858,230,video_2cam,banana in black bowl,545,41,-0.6434,-0.4873,-0.7114,4.19
+858,230,video_2cam,banana in black bowl,573,39,-0.2395,-0.6179,-0.5733,4.19
+1485,20,video_2cam,yellow brick on blue plate,388,206,0.7227,-0.9989,0.3929,28.83
+1485,20,video_2cam,yellow brick on blue plate,418,233,-0.9545,-0.9606,0.1961,28.83
+1001,100,video_2cam,blue brick on red brick,129,71,0.1184,-0.9821,-0.2743,22.26
+1001,100,video_2cam,blue brick on red brick,124,237,0.9879,-0.8916,0.5238,22.26
+1624,30,video_2cam,milk on pink plate,610,67,0.469,1.0,0.4174,9.33
+1624,30,video_2cam,milk on pink plate,620,53,0.0638,1.0,-0.3306,9.33
+1173,90,video_2cam,pink cup in basket,240,68,0.0063,0.9926,-0.9998,24.22
+1173,90,video_2cam,pink cup in basket,235,152,0.6339,0.9927,-0.8725,24.22
+683,260,video_2cam,banana in basket,40,157,-0.1489,0.9626,-0.4234,9.5
+683,260,video_2cam,banana in basket,20,121,-0.0592,0.8463,0.3176,9.5
+523,70,robot_3cam,banana in cardboard box,811,73,1.0,0.8463,0.391,22.27
+523,70,robot_3cam,banana in cardboard box,825,248,0.7647,0.7029,0.7257,22.27
+308,60,robot_3cam,white cup on pan,1320,173,0.9719,0.9726,-0.5535,29.7
+308,60,robot_3cam,white cup on pan,1318,54,0.978,-0.4922,-0.4737,29.7
+373,140,robot_3cam,yellow brick on blue plate,1502,111,0.991,0.9095,0.3629,30.14
+373,140,robot_3cam,yellow brick on blue plate,1468,131,0.6486,-0.7449,-0.8652,30.14
+368,160,robot_3cam,yellow brick on blue brick,1441,263,-0.9089,-0.9606,0.9612,17.27
+368,160,robot_3cam,yellow brick on blue brick,1435,244,-0.8643,-0.9188,-0.8243,17.27
+1084,180,video_2cam,can on stove,192,198,-0.9504,0.7298,-0.9061,19.62
+1084,180,video_2cam,can on stove,191,198,-0.9882,0.5589,-0.9986,19.62
+675,10,robot_3cam,salt on pink plate,1684,156,0.9945,0.8232,-0.1974,29.3
+675,10,robot_3cam,salt on pink plate,1673,51,-0.9824,-0.8152,0.6762,29.3
+504,60,robot_3cam,banana in cardboard box,786,230,-0.9605,0.0291,0.6856,35.65
+504,60,robot_3cam,banana in cardboard box,794,164,-0.8919,-0.5453,-0.5919,35.65
+1304,140,video_2cam,white cup on grey plate,291,64,0.9573,0.9861,0.9726,26.28
+1304,140,video_2cam,white cup on grey plate,299,187,0.8779,0.9264,0.9324,26.28
+1670,80,video_2cam,milk on pink plate,607,64,0.9724,0.9028,0.8875,7.49
+1670,80,video_2cam,milk on pink plate,610,172,0.8297,0.9999,0.9365,7.49
+1049,30,video_2cam,can on grey plate,140,126,-0.0832,0.0029,0.9934,12.27
+1049,30,video_2cam,can on grey plate,148,145,0.6166,0.9795,0.9998,12.27
+1503,40,video_2cam,yellow brick on blue plate,381,176,0.6997,0.4287,-0.4961,3.71
+1503,40,video_2cam,yellow brick on blue plate,429,157,0.0803,-0.3098,0.3961,3.71
+281,140,robot_3cam,red brick in green bowl and yellow brick in green bowl,1290,103,-0.6774,-0.6699,0.8378,17.77
+281,140,robot_3cam,red brick in green bowl and yellow brick in green bowl,1280,54,0.4938,-0.9518,0.9814,17.77
+762,40,video_2cam,banana in basket,6,50,-0.9673,0.4625,-0.2538,3.14
+762,40,video_2cam,banana in basket,7,90,0.6122,0.5803,-0.6601,3.14
+767,50,video_2cam,banana in basket,44,72,-0.4996,-0.198,0.55,25.17
+767,50,video_2cam,banana in basket,41,189,0.2207,-0.9974,0.824,25.17
+990,90,video_2cam,open drawer and blue brick in drawer and close drawer,113,385,0.2967,0.5148,-0.289,32.46
+990,90,video_2cam,open drawer and blue brick in drawer and close drawer,110,459,0.9163,0.6025,0.6471,32.46
+1050,20,video_2cam,can on grey plate,148,170,0.9088,0.9502,0.924,6.75
+1050,20,video_2cam,can on grey plate,142,44,0.9632,0.9466,0.5974,6.75
+1122,160,video_2cam,grey cup on grey plate,204,28,-0.3487,-0.9533,-0.7695,18.3
+1122,160,video_2cam,grey cup on grey plate,205,186,-0.9991,-0.998,-0.9998,18.3
+1543,10,video_2cam,yellow brick on pink plate,459,28,0.7454,0.993,0.9337,20.0
+1543,10,video_2cam,yellow brick on pink plate,446,25,0.7433,-0.8297,-0.6955,20.0
+658,130,robot_3cam,salt on pink plate,1696,129,-0.2937,-0.5511,0.2824,10.86
+658,130,robot_3cam,salt on pink plate,1694,96,-0.6129,0.4124,0.3709,10.86
+183,40,robot_3cam,can on stove,1093,79,-0.2058,-0.5087,-0.6453,12.02
+183,40,robot_3cam,can on stove,1084,132,-0.283,0.3202,0.3338,12.02
+928,130,video_2cam,blue brick between pink cup and basket,81,265,0.1836,-0.0081,0.673,11.59
+928,130,video_2cam,blue brick between pink cup and basket,85,214,-0.2759,-0.4137,0.0758,11.59
+1038,130,video_2cam,red brick on pink plate and blue brick on pink plate,137,303,-0.657,0.1539,-0.9983,11.37
+1038,130,video_2cam,red brick on pink plate and blue brick on pink plate,132,186,-0.014,0.1914,0.9,11.37
+1679,50,video_2cam,salt on pink plate,665,62,0.2938,0.2151,0.5972,18.76
+1679,50,video_2cam,salt on pink plate,662,154,0.4078,0.3484,-0.9902,18.76
+1233,10,video_2cam,point to top drawer,265,18,-0.8148,-0.9984,0.9493,20.61
+1233,10,video_2cam,point to top drawer,263,40,0.8928,0.8858,0.9599,20.61
+224,140,robot_3cam,open drawer,1165,88,0.9527,0.8474,-0.813,10.94
+224,140,robot_3cam,open drawer,1166,52,0.9742,0.835,0.9825,10.94
+1545,10,video_2cam,yellow brick on pink plate,431,140,-0.2476,-0.6764,0.3222,6.17
+1545,10,video_2cam,yellow brick on pink plate,439,104,-0.8598,-0.1406,-0.1648,6.17
+571,80,robot_3cam,banana in black bowl,836,24,0.9872,-0.9381,1.0,20.45
+571,80,robot_3cam,banana in black bowl,835,141,0.9593,0.9686,-0.9003,20.45
+1163,30,video_2cam,open drawer,230,31,-0.8043,0.9363,0.6122,21.01
+1163,30,video_2cam,open drawer,221,246,0.9655,0.9806,-0.0012,21.01
+657,150,robot_3cam,salt on pink plate,1671,110,-0.8084,-0.9993,0.9713,20.98
+657,150,robot_3cam,salt on pink plate,1715,114,-0.9362,-0.6026,0.9768,20.98
+1150,60,video_2cam,grey cup on pan,215,164,0.7843,0.9996,0.5082,13.31
+1150,60,video_2cam,grey cup on pan,217,105,0.8766,0.3668,0.7505,13.31
+125,180,robot_3cam,blue brick on red brick,1016,154,0.8501,0.9257,-0.0406,14.84
+125,180,robot_3cam,blue brick on red brick,1003,62,0.9783,0.2337,0.6813,14.84
+834,100,video_2cam,banana in black bowl,559,34,-0.6755,-0.9118,-0.7731,13.22
+834,100,video_2cam,banana in black bowl,538,21,-0.9943,-0.4904,-0.9901,13.22
+441,100,robot_3cam,yellow brick on pink plate,1560,87,0.9372,0.4499,-0.1424,7.65
+441,100,robot_3cam,yellow brick on pink plate,1537,118,0.793,0.9764,-0.9097,7.65
+130,80,robot_3cam,red brick on pink plate and blue brick on pink plate,1021,133,0.732,0.9985,-0.308,29.34
+130,80,robot_3cam,red brick on pink plate and blue brick on pink plate,1025,27,-0.3396,0.9999,0.3471,29.34
+328,140,robot_3cam,blue brick in blue bowl and yellow brick in blue bowl,1366,95,0.036,0.3602,-0.5315,28.68
+328,140,robot_3cam,blue brick in blue bowl and yellow brick in blue bowl,1365,55,0.3525,0.7895,0.1989,28.68
+818,50,video_2cam,banana in cardboard box,495,33,0.5308,-0.0859,0.5317,14.67
+818,50,video_2cam,banana in cardboard box,483,11,-0.0683,-0.5117,0.2926,14.67
+14,140,robot_3cam,banana in basket,706,147,0.3356,0.9776,0.8197,16.18
+14,140,robot_3cam,banana in basket,710,44,-0.3474,0.8408,-0.7802,16.18
+1088,120,video_2cam,can on stove,186,210,-0.9993,-0.5985,0.9663,20.27
+1088,120,video_2cam,can on stove,151,200,-0.9924,-0.9096,0.8484,20.27
+1130,10,video_2cam,grey cup on grey plate,207,265,-0.0325,0.2153,0.4262,7.25
+1130,10,video_2cam,grey cup on grey plate,204,19,-0.4384,0.5962,0.4443,7.25
+211,110,robot_3cam,grey cup on pan,1145,25,0.9193,0.9227,0.6914,23.35
+211,110,robot_3cam,grey cup on pan,1148,99,0.9581,0.6868,-0.0781,23.35
+595,210,robot_3cam,milk on pink plate,1644,31,-0.3722,-0.8237,-0.9469,3.8
+595,210,robot_3cam,milk on pink plate,1665,137,-0.446,-0.8749,-0.7876,3.8
+912,170,video_2cam,blue bowl on pink plate and yellow brick in blue bowl,78,381,0.9464,0.8761,-0.6361,12.91
+912,170,video_2cam,blue bowl on pink plate and yellow brick in blue bowl,73,176,0.9972,0.9749,-0.8057,12.91
+1386,30,video_2cam,yellow brick in basket,337,88,0.0656,-0.4261,-0.6126,5.37
+1386,30,video_2cam,yellow brick in basket,339,88,-0.9,-0.5906,-0.6757,5.37
+903,60,video_2cam,blue bowl on pink plate and yellow brick in blue bowl,72,17,0.9794,0.4802,-0.4123,31.72
+903,60,video_2cam,blue bowl on pink plate and yellow brick in blue bowl,75,25,-0.4314,0.9968,0.8511,31.72
+253,200,robot_3cam,pink cup on pink plate,1228,96,0.952,-0.9908,-0.1561,9.69
+253,200,robot_3cam,pink cup on pink plate,1213,164,0.7863,0.0143,1.0,9.69
+994,60,video_2cam,open drawer and blue brick in drawer and close drawer,113,349,0.7259,0.3921,-0.736,26.4
+994,60,video_2cam,open drawer and blue brick in drawer and close drawer,117,526,-0.9957,0.9919,0.1332,26.4
+1545,120,video_2cam,yellow brick on pink plate,447,40,0.517,-0.2858,0.4393,9.94
+1545,120,video_2cam,yellow brick on pink plate,437,94,-0.9023,-0.9663,0.1942,9.94
+639,180,robot_3cam,salt on pink plate,1711,11,0.8458,-0.4554,-0.5858,17.77
+639,180,robot_3cam,salt on pink plate,1716,148,-0.6657,-0.3169,0.3295,17.77
+128,220,robot_3cam,blue brick on red brick,1020,52,0.5144,0.57,0.3718,6.24
+128,220,robot_3cam,blue brick on red brick,1015,15,-0.8703,-0.4707,-0.5268,6.24
+1713,60,video_2cam,salt on pink plate,662,92,0.733,0.9987,-0.8316,15.93
+1713,60,video_2cam,salt on pink plate,658,162,0.7832,0.9586,0.772,15.93
+688,10,video_2cam,banana in basket,43,10,-0.393,0.0028,0.5122,10.59
+688,10,video_2cam,banana in basket,41,154,-0.9965,-0.5075,-0.1285,10.59
+454,130,robot_3cam,yellow brick on pink plate,1525,129,-0.6756,-0.4057,0.9626,10.9
+454,130,robot_3cam,yellow brick on pink plate,1571,99,-0.4842,-0.967,-0.883,10.9
+1211,130,video_2cam,pink cup on pink plate,260,149,-0.8832,0.1985,0.3161,6.33
+1211,130,video_2cam,pink cup on pink plate,255,70,-0.865,0.2993,-0.7314,6.33
+226,20,robot_3cam,open drawer,1163,83,0.9942,0.2969,-0.3604,29.61
+226,20,robot_3cam,open drawer,1157,139,0.9255,0.2556,-0.8957,29.61
+1472,70,video_2cam,yellow brick on blue plate,408,241,0.2559,-0.363,-0.1814,17.75
+1472,70,video_2cam,yellow brick on blue plate,393,54,0.9907,0.8625,0.4397,17.75
+1069,20,video_2cam,can on stove,153,71,-0.9782,-0.9887,-0.8927,17.54
+1069,20,video_2cam,can on stove,188,101,0.2956,0.3588,-0.2722,17.54
+1681,90,video_2cam,salt on pink plate,660,219,0.4786,0.614,0.8983,4.47
+1681,90,video_2cam,salt on pink plate,659,33,0.9005,0.9937,-0.0991,4.47
+352,40,robot_3cam,yellow brick next to stove,1417,80,0.0879,0.8427,-0.7731,11.32
+352,40,robot_3cam,yellow brick next to stove,1429,78,-0.0492,0.2272,0.2488,11.32
+690,20,video_2cam,banana in basket,15,77,0.8171,-0.5793,0.6935,13.67
+690,20,video_2cam,banana in basket,58,140,-0.6775,0.2835,-0.829,13.67
+995,120,video_2cam,open drawer and blue brick in drawer and close drawer,112,175,0.4389,0.7652,-0.5638,17.59
+995,120,video_2cam,open drawer and blue brick in drawer and close drawer,114,17,0.9474,0.8978,-0.9961,17.59
+160,180,robot_3cam,can on stove,1072,157,0.9959,0.9786,-0.847,19.98
+160,180,robot_3cam,can on stove,1084,142,0.9879,0.9785,-0.2334,19.98
+1186,190,video_2cam,pink cup in basket,236,38,0.5478,-0.3941,-0.5329,18.73
+1186,190,video_2cam,pink cup in basket,239,164,-0.2024,0.9607,-0.836,18.73
+1287,20,video_2cam,red brick in green bowl and yellow brick in green bowl,283,80,0.8916,0.9998,-0.5752,4.28
+1287,20,video_2cam,red brick in green bowl and yellow brick in green bowl,286,104,0.8715,0.9848,-0.7342,4.28
+687,60,video_2cam,banana in basket,57,57,0.4888,-0.4654,0.9466,8.51
+687,60,video_2cam,banana in basket,7,78,-0.5585,-0.4925,-0.8487,8.51
+1273,20,video_2cam,red brick in green bowl and yellow brick in green bowl,285,11,0.1289,0.8894,0.7213,8.8
+1273,20,video_2cam,red brick in green bowl and yellow brick in green bowl,283,77,0.9924,-0.9999,-0.6472,8.8
+163,110,robot_3cam,can on stove,1106,153,0.0764,0.755,0.3682,15.1
+163,110,robot_3cam,can on stove,1097,178,-0.6573,0.7972,0.9815,15.1
+1433,30,video_2cam,yellow brick on blue brick,363,88,0.8114,-0.9855,-0.9324,11.78
+1433,30,video_2cam,yellow brick on blue brick,361,137,0.7069,-0.926,-0.3215,11.78
+1142,170,video_2cam,grey cup on pan,217,197,0.3111,0.3906,0.4989,22.59
+1142,170,video_2cam,grey cup on pan,216,184,-0.4411,-0.3394,0.9569,22.59
+240,180,robot_3cam,pink cup in basket,1173,223,0.2112,-0.6704,0.8104,29.84
+240,180,robot_3cam,pink cup in basket,1185,225,-0.908,0.0107,0.6104,29.84
+1110,80,video_2cam,can on stove,181,211,0.7473,0.7542,0.1208,20.14
+1110,80,video_2cam,can on stove,180,146,0.7971,0.9507,0.9501,20.14
+407,30,robot_3cam,yellow brick on blue plate,1476,150,0.8453,0.9984,-0.2988,14.61
+407,30,robot_3cam,yellow brick on blue plate,1511,108,0.2687,0.9983,0.9966,14.61
+982,360,video_2cam,open drawer and blue brick in drawer and close drawer,110,510,-0.2002,0.647,-0.319,23.81
+982,360,video_2cam,open drawer and blue brick in drawer and close drawer,119,218,-0.9924,-0.7281,-0.9249,23.81
+71,20,robot_3cam,blue bowl on pink plate and yellow brick in blue bowl,901,394,0.9084,-0.0513,0.8736,9.22
+71,20,robot_3cam,blue bowl on pink plate and yellow brick in blue bowl,913,151,0.9937,0.8622,0.2748,9.22
+1592,250,video_2cam,yellow brick on top of drawer,469,53,0.9018,0.2379,0.5403,16.72
+1592,250,video_2cam,yellow brick on top of drawer,464,254,-0.5079,-0.539,0.0166,16.72
+47,90,robot_3cam,banana in basket,718,106,0.4738,-0.1906,-0.9722,42.43
+47,90,robot_3cam,banana in basket,771,19,0.9993,0.997,0.1718,42.43
+1095,170,video_2cam,can on stove,191,241,0.4123,0.9521,-0.4825,15.02
+1095,170,video_2cam,can on stove,167,76,0.0433,0.3494,-0.993,15.02
+375,110,robot_3cam,yellow brick on blue plate,1459,109,0.7914,-0.9614,-0.9893,12.9
+375,110,robot_3cam,yellow brick on blue plate,1463,163,0.5589,-0.7777,-0.9508,12.9
+321,260,robot_3cam,blue brick in blue bowl and yellow brick in blue bowl,1355,126,0.8853,0.9985,-0.673,7.57
+321,260,robot_3cam,blue brick in blue bowl and yellow brick in blue bowl,1354,107,0.8136,0.9921,0.9974,7.57
+210,130,robot_3cam,grey cup on grey plate,1119,85,-0.2498,-0.2623,0.3664,9.83
+210,130,robot_3cam,grey cup on grey plate,1127,115,-0.1271,-0.9001,-0.3635,9.83
+123,90,robot_3cam,blue brick on red brick,1019,44,0.9105,0.9577,-0.5779,9.01
+123,90,robot_3cam,blue brick on red brick,1008,47,0.9819,0.9688,-0.3808,9.01
+968,30,video_2cam,blue brick in blue bowl,104,34,0.153,-0.9104,0.1611,3.47
+968,30,video_2cam,blue brick in blue bowl,101,205,-0.4878,-0.2576,-0.8417,3.47
+137,170,robot_3cam,red brick on pink plate and blue brick on pink plate,1026,334,0.4674,0.7199,0.9903,4.59
+137,170,robot_3cam,red brick on pink plate and blue brick on pink plate,1032,140,0.9914,-0.5016,-0.8338,4.59
+402,80,robot_3cam,yellow brick on blue plate,1520,128,0.9851,0.6088,0.7036,37.93
+402,80,robot_3cam,yellow brick on blue plate,1496,141,-0.2524,0.9742,-0.917,37.93
+1496,50,video_2cam,yellow brick on blue plate,425,189,-0.3558,-0.9289,-0.9907,20.94
+1496,50,video_2cam,yellow brick on blue plate,383,172,0.6645,-0.3967,-0.9428,20.94
+1289,120,video_2cam,red brick in green bowl and yellow brick in green bowl,288,247,0.9433,0.5475,-0.7082,13.36
+1289,120,video_2cam,red brick in green bowl and yellow brick in green bowl,290,140,-0.884,-0.1199,-0.9934,13.36
+854,150,video_2cam,banana in black bowl,531,272,0.9935,0.9994,0.889,6.24
+854,150,video_2cam,banana in black bowl,559,12,0.0186,0.9113,0.3802,6.24
+299,50,robot_3cam,white cup on grey plate,1308,130,-0.9646,0.6009,-0.161,14.84
+299,50,robot_3cam,white cup on grey plate,1293,21,-0.9911,-0.3354,-0.9616,14.84
+98,270,robot_3cam,blue brick in basket,947,171,-0.9628,-0.4341,-0.5854,8.02
+98,270,robot_3cam,blue brick in basket,957,125,-0.8745,0.5083,0.1493,8.02
+1022,130,video_2cam,red brick on pink plate and blue brick on pink plate,135,360,-0.6676,-0.6877,0.9996,24.87
+1022,130,video_2cam,red brick on pink plate and blue brick on pink plate,133,226,-0.7431,-0.5252,-0.9839,24.87
+1510,80,video_2cam,yellow brick on blue plate,430,130,0.8097,-0.7057,0.8588,15.5
+1510,80,video_2cam,yellow brick on blue plate,414,258,0.1591,-0.8887,-0.5875,15.5
+63,180,robot_3cam,banana in orange bowl,885,82,0.9271,0.4504,0.4718,18.24
+63,180,robot_3cam,banana in orange bowl,894,118,-0.4217,0.6066,0.082,18.24
+1292,140,video_2cam,white cup on grey plate,300,178,-0.972,0.3711,-0.9817,6.29
+1292,140,video_2cam,white cup on grey plate,298,149,-0.2179,0.2768,-0.9688,6.29
+12,20,robot_3cam,banana in basket,738,80,0.3159,0.7713,0.6673,30.08
+12,20,robot_3cam,banana in basket,762,123,-0.5442,-0.9503,0.349,30.08
+730,10,video_2cam,banana in basket,33,152,-0.2586,-0.7301,0.9068,6.12
+730,10,video_2cam,banana in basket,43,69,0.9839,-0.9813,-0.2191,6.12
+1431,190,video_2cam,yellow brick on blue brick,362,127,0.9987,0.9668,-0.3731,7.74
+1431,190,video_2cam,yellow brick on blue brick,370,25,-0.9896,-0.3046,-0.5701,7.74
+629,120,robot_3cam,milk on pink plate,1654,97,0.7026,0.2575,0.9645,30.01
+629,120,robot_3cam,milk on pink plate,1653,126,0.9903,-0.0394,0.0695,30.01
+1295,90,video_2cam,white cup on grey plate,294,51,-0.8122,-0.4331,0.6283,10.67
+1295,90,video_2cam,white cup on grey plate,300,118,-0.606,-0.1759,0.6423,10.67
+1040,190,video_2cam,red brick on pink plate and blue brick on pink plate,132,297,-0.7833,0.8973,-0.4241,9.61
+1040,190,video_2cam,red brick on pink plate and blue brick on pink plate,138,29,0.0583,0.8592,0.6579,9.61
+1253,70,video_2cam,push pink cup,278,84,-0.8835,-0.9996,0.8878,13.14
+1253,70,video_2cam,push pink cup,271,126,-0.9083,0.9947,-0.8882,13.14
+959,40,video_2cam,blue brick in basket,90,222,-0.5685,0.899,0.6833,17.19
+959,40,video_2cam,blue brick in basket,95,127,0.0531,-0.8623,-0.1847,17.19
+729,50,video_2cam,banana in basket,45,306,0.5447,0.1667,0.9747,9.83
+729,50,video_2cam,banana in basket,29,111,0.4808,0.8396,-0.9097,9.83
+491,80,robot_3cam,banana in cardboard box,823,125,0.9999,-0.6669,0.9847,9.85
+491,80,robot_3cam,banana in cardboard box,816,25,0.9566,-0.6656,0.9124,9.85
+210,50,robot_3cam,grey cup on grey plate,1121,59,-0.2756,0.7874,0.8173,13.25
+210,50,robot_3cam,grey cup on grey plate,1116,13,0.3902,-0.9834,0.1452,13.25
+328,390,robot_3cam,blue brick in blue bowl and yellow brick in blue bowl,1357,134,-0.5148,0.5745,-0.9632,4.34
+328,390,robot_3cam,blue brick in blue bowl and yellow brick in blue bowl,1367,107,0.8134,0.6313,-0.9757,4.34
+1066,20,video_2cam,can on stove,174,67,-0.9259,0.4384,-0.7476,16.92
+1066,20,video_2cam,can on stove,186,154,-0.8584,-0.4648,-0.5693,16.92
+272,120,robot_3cam,push pink cup,1269,174,0.9987,0.7476,-0.4224,25.07
+272,120,robot_3cam,push pink cup,1263,165,0.8655,0.8076,-0.4861,25.07
+1475,80,video_2cam,yellow brick on blue plate,389,47,0.7829,0.9784,0.9653,20.68
+1475,80,video_2cam,yellow brick on blue plate,408,151,0.5147,0.593,-0.9728,20.68
+1241,20,video_2cam,point to top drawer,270,63,-0.9949,-0.6602,0.9445,15.38
+1241,20,video_2cam,point to top drawer,266,96,-0.4553,-0.9609,-0.9622,15.38
+162,110,robot_3cam,can on stove,1066,117,0.819,0.8379,-0.2912,13.04
+162,110,robot_3cam,can on stove,1088,202,0.839,0.9033,0.8944,13.04
+223,210,robot_3cam,open drawer,1165,135,-0.4712,-0.6307,0.0853,31.05
+223,210,robot_3cam,open drawer,1161,118,-0.4396,-0.6423,0.5261,31.05
+1440,210,video_2cam,yellow brick on blue brick,364,83,-0.8206,-0.9192,-0.9713,9.11
+1440,210,video_2cam,yellow brick on blue brick,366,20,-0.6098,-0.9305,-0.5974,9.11
+91,100,robot_3cam,blue brick in basket,960,201,0.7994,1.0,-0.8168,6.41
+91,100,robot_3cam,blue brick in basket,943,102,0.8909,0.9901,-0.5036,6.41
+546,130,robot_3cam,banana in black bowl,837,100,-0.9973,-0.9843,-0.5215,18.11
+546,130,robot_3cam,banana in black bowl,855,30,-0.8977,-0.2216,-0.8127,18.11
+629,200,robot_3cam,milk on pink plate,1667,48,0.3039,0.335,0.7872,3.94
+629,200,robot_3cam,milk on pink plate,1636,20,0.9867,0.8884,0.9857,3.94
+730,80,video_2cam,banana in basket,53,180,0.9977,0.9398,-0.0297,16.01
+730,80,video_2cam,banana in basket,4,25,0.4944,-0.5973,-0.2917,16.01
+954,70,video_2cam,blue brick in basket,91,154,0.5008,0.6796,0.6449,41.87
+954,70,video_2cam,blue brick in basket,99,295,0.8517,0.1084,0.6777,41.87
+1680,140,video_2cam,salt on pink plate,679,165,-0.632,-0.5083,-0.9999,7.41
+1680,140,video_2cam,salt on pink plate,661,20,-0.9969,-0.3429,-0.9972,7.41
+1199,30,video_2cam,pink cup next to drawer,247,246,-0.5554,0.8701,-0.3637,7.46
+1199,30,video_2cam,pink cup next to drawer,246,188,0.7019,0.948,-0.8903,7.46
+1238,80,video_2cam,point to top drawer,261,46,0.6872,0.8503,0.9906,43.29
+1238,80,video_2cam,point to top drawer,264,53,0.992,0.8249,-0.7492,43.29
+1175,180,video_2cam,pink cup in basket,238,74,0.5529,0.963,-0.9632,3.27
+1175,180,video_2cam,pink cup in basket,231,173,0.9999,0.9239,0.8453,3.27
+1002,90,video_2cam,blue brick on red brick,120,202,-0.5606,-0.7795,-0.2353,27.0
+1002,90,video_2cam,blue brick on red brick,121,56,0.5704,-0.5614,-0.7191,27.0
+519,110,robot_3cam,banana in cardboard box,786,66,0.6296,0.8742,0.8873,16.61
+519,110,robot_3cam,banana in cardboard box,810,19,-0.9936,0.7231,-0.9991,16.61
+201,10,robot_3cam,grey cup on grey plate,1124,93,-0.1029,0.1019,-0.9765,12.69
+201,10,robot_3cam,grey cup on grey plate,1129,160,-0.5053,-0.826,-0.178,12.69
+415,200,robot_3cam,yellow brick on blue plate,1467,218,0.7131,0.956,0.425,9.53
+415,200,robot_3cam,yellow brick on blue plate,1463,69,0.1847,-0.0436,-0.3513,9.53
+258,110,robot_3cam,pink cup on pink plate,1227,83,0.6294,-0.2562,-0.76,13.51
+258,110,robot_3cam,pink cup on pink plate,1229,53,-0.3874,-0.57,0.0052,13.51
+211,140,robot_3cam,grey cup on pan,1145,116,0.6946,0.2315,0.2418,15.11
+211,140,robot_3cam,grey cup on pan,1147,157,0.8135,0.8964,0.3022,15.11
+285,40,robot_3cam,red brick in green bowl and yellow brick in green bowl,1288,86,1.0,0.8348,0.9996,21.65
+285,40,robot_3cam,red brick in green bowl and yellow brick in green bowl,1280,92,0.7427,0.8076,-0.9455,21.65
+509,10,robot_3cam,banana in cardboard box,827,190,0.2015,-0.4476,-0.7164,7.79
+509,10,robot_3cam,banana in cardboard box,809,157,-0.0739,-0.8764,0.9757,7.79
+119,370,robot_3cam,open drawer and blue brick in drawer and close drawer,986,156,0.8667,0.9902,0.8267,19.29
+119,370,robot_3cam,open drawer and blue brick in drawer and close drawer,995,169,0.733,0.9294,0.6778,19.29
+315,300,robot_3cam,wipe sponge on table,1339,22,-0.7727,-0.0301,-0.9732,21.41
+315,300,robot_3cam,wipe sponge on table,1335,39,-0.8035,0.996,-0.9156,21.41
+130,150,robot_3cam,red brick on pink plate and blue brick on pink plate,1036,37,-0.9823,0.0013,0.1908,11.24
+130,150,robot_3cam,red brick on pink plate and blue brick on pink plate,1031,153,-0.9936,-0.8544,-0.9205,11.24
+359,50,robot_3cam,yellow brick next to stove,1421,15,0.9489,0.7683,0.6951,4.99
+359,50,robot_3cam,yellow brick next to stove,1422,70,0.4242,0.9966,0.6998,4.99
+226,10,robot_3cam,open drawer,1158,65,0.9036,0.5222,0.4973,29.84
+226,10,robot_3cam,open drawer,1162,100,0.8116,0.5821,0.7111,29.84
+906,180,video_2cam,blue bowl on pink plate and yellow brick in blue bowl,71,87,-0.952,-0.9514,-0.7138,7.84
+906,180,video_2cam,blue bowl on pink plate and yellow brick in blue bowl,79,146,-0.9757,-0.9685,-0.8077,7.84
+1307,140,video_2cam,white cup on grey plate,299,144,-0.8268,-0.8314,-0.8714,10.28
+1307,140,video_2cam,white cup on grey plate,297,205,-0.855,-0.7963,0.9502,10.28
+981,440,video_2cam,open drawer and blue brick in drawer and close drawer,118,407,0.8942,0.9052,-0.7968,7.23
+981,440,video_2cam,open drawer and blue brick in drawer and close drawer,113,248,0.8596,0.9284,-0.1892,7.23
+375,120,robot_3cam,yellow brick on blue plate,1457,227,0.8395,-0.2322,0.9885,15.68
+375,120,robot_3cam,yellow brick on blue plate,1460,74,-0.6384,0.8477,0.4371,15.68
+1673,130,video_2cam,salt on pink plate,642,51,0.9993,0.861,-0.9681,14.78
+1673,130,video_2cam,salt on pink plate,668,52,-0.8188,0.9656,0.9756,14.78
+1370,420,video_2cam,blue brick in blue bowl and yellow brick in blue bowl,323,397,-0.3376,0.9962,0.9161,24.5
+1370,420,video_2cam,blue brick in blue bowl and yellow brick in blue bowl,322,404,0.8232,0.9969,0.9569,24.5
+78,90,robot_3cam,blue bowl on pink plate and yellow brick in blue bowl,917,207,0.9054,-0.9925,-0.9946,25.42
+78,90,robot_3cam,blue bowl on pink plate and yellow brick in blue bowl,908,87,0.9999,0.9862,0.8259,25.42
+20,90,robot_3cam,banana in basket,724,125,0.9177,0.8814,0.9686,25.15
+20,90,robot_3cam,banana in basket,745,88,-0.9973,-0.9932,0.4391,25.15
+4,200,robot_3cam,banana in basket,691,234,-0.3395,-0.9145,-0.9132,32.26
+4,200,robot_3cam,banana in basket,742,108,-0.9785,0.0593,0.9942,32.26
+622,190,robot_3cam,milk on pink plate,1669,139,-0.2698,-0.0939,0.395,7.48
+622,190,robot_3cam,milk on pink plate,1657,188,0.096,-0.5887,-0.8568,7.48
+121,200,robot_3cam,blue brick on red brick,1020,135,0.9781,0.9436,-0.7779,4.46
+121,200,robot_3cam,blue brick on red brick,1018,34,0.2258,0.697,-0.9996,4.46
+135,30,robot_3cam,red brick on pink plate and blue brick on pink plate,1023,63,-0.2994,-0.2745,-0.9666,7.63
+135,30,robot_3cam,red brick on pink plate and blue brick on pink plate,1027,42,0.9181,0.5313,-0.9383,7.63
+1087,230,video_2cam,can on stove,172,206,-0.5135,-0.926,0.8312,15.41
+1087,230,video_2cam,can on stove,163,136,0.9461,0.3026,-0.7659,15.41
+160,100,robot_3cam,can on stove,1100,113,0.34,0.4963,-0.5343,4.34
+160,100,robot_3cam,can on stove,1097,23,-0.4789,0.7789,0.9918,4.34
+1596,220,video_2cam,yellow brick on top of drawer,462,82,0.995,0.9466,0.5169,12.19
+1596,220,video_2cam,yellow brick on top of drawer,466,247,0.1811,0.9643,-0.9996,12.19
+527,140,robot_3cam,banana in cardboard box,809,139,0.6285,-0.6648,0.978,4.25
+527,140,robot_3cam,banana in cardboard box,823,139,-0.1272,0.1716,-0.8989,4.25
+319,50,robot_3cam,wipe sponge on table,1332,192,-0.3117,-0.7688,0.6829,32.69
+319,50,robot_3cam,wipe sponge on table,1349,78,0.5353,0.6415,-0.8655,32.69
+30,70,robot_3cam,banana in basket,722,108,0.568,-0.9999,0.616,10.7
+30,70,robot_3cam,banana in basket,775,22,0.0743,0.434,-0.9062,10.7
+1334,40,video_2cam,wipe sponge on table,313,281,0.4094,0.3197,0.9115,9.98
+1334,40,video_2cam,wipe sponge on table,312,210,0.8737,-0.2172,0.4082,9.98
+34,170,robot_3cam,banana in basket,779,99,0.968,0.8261,0.8071,9.62
+34,170,robot_3cam,banana in basket,691,16,0.8908,0.9996,-0.6192,9.62
+579,120,robot_3cam,banana in black bowl,844,175,-0.4163,0.9776,-0.9432,8.98
+579,120,robot_3cam,banana in black bowl,877,162,0.9332,0.8304,-0.0453,8.98
+626,100,robot_3cam,milk on pink plate,1623,102,0.1157,0.0584,-0.9979,6.35
+626,100,robot_3cam,milk on pink plate,1665,44,-0.9824,0.388,0.723,6.35
+1265,120,video_2cam,push pink cup,277,242,0.9957,0.9971,0.9686,12.99
+1265,120,video_2cam,push pink cup,274,214,0.7505,0.9028,0.5074,12.99
+63,190,robot_3cam,banana in orange bowl,898,19,0.3912,0.5499,-0.6728,8.46
+63,190,robot_3cam,banana in orange bowl,892,119,0.8038,0.0511,0.9422,8.46
+712,40,video_2cam,banana in basket,13,236,0.3429,0.5357,-0.8763,6.18
+712,40,video_2cam,banana in basket,15,107,-0.8692,-0.1342,0.4482,6.18
+1056,20,video_2cam,can on grey plate,144,50,0.1623,-0.6667,0.9415,13.86
+1056,20,video_2cam,can on grey plate,148,35,-0.071,-0.341,0.5382,13.86
+1295,140,video_2cam,white cup on grey plate,292,203,-0.9408,0.7777,0.9773,7.22
+1295,140,video_2cam,white cup on grey plate,297,188,0.8546,0.8268,-0.398,7.22
+163,150,robot_3cam,can on stove,1072,39,0.9993,0.9641,-1.0,28.96
+163,150,robot_3cam,can on stove,1091,40,0.9279,0.9299,0.0625,28.96
+506,60,robot_3cam,banana in cardboard box,781,137,0.9954,-0.7021,-0.5192,36.12
+506,60,robot_3cam,banana in cardboard box,792,173,-0.4232,-0.9957,-0.8022,36.12
+1407,10,video_2cam,yellow brick in orange bowl,348,31,0.9152,0.6732,0.4843,8.14
+1407,10,video_2cam,yellow brick in orange bowl,349,15,-0.9745,-0.6655,-0.828,8.14
+149,140,robot_3cam,can on grey plate,1042,49,-0.9992,-0.9915,-0.9922,12.62
+149,140,robot_3cam,can on grey plate,1057,96,-0.6035,-0.996,-0.2333,12.62
+458,20,robot_3cam,yellow brick on pink plate,1548,117,0.9976,0.8855,-0.8557,22.99
+458,20,robot_3cam,yellow brick on pink plate,1566,14,0.9423,-0.9417,0.983,22.99
+1666,40,video_2cam,milk on pink plate,619,129,-0.961,-0.1314,-0.2808,23.81
+1666,40,video_2cam,milk on pink plate,617,19,0.8193,0.8835,1.0,23.81
+465,160,robot_3cam,yellow brick on top of drawer,1583,67,0.0384,-0.881,0.7472,18.46
+465,160,robot_3cam,yellow brick on top of drawer,1588,175,0.6383,0.8861,0.9746,18.46
+288,240,robot_3cam,red brick in green bowl and yellow brick in green bowl,1281,145,0.4211,0.9859,-0.5293,14.09
+288,240,robot_3cam,red brick in green bowl and yellow brick in green bowl,1276,25,-0.5139,0.7424,-0.8756,14.09
+1310,110,video_2cam,white cup on grey plate,297,43,-0.6332,-0.9295,0.995,15.94
+1310,110,video_2cam,white cup on grey plate,299,242,-0.9983,-0.7958,-0.635,15.94
+84,80,robot_3cam,blue brick between pink cup and basket,932,129,0.9999,0.9643,-0.8878,30.43
+84,80,robot_3cam,blue brick between pink cup and basket,921,14,0.9517,0.977,0.6065,30.43
+1147,60,video_2cam,grey cup on pan,213,196,-0.9829,-0.0413,0.9805,7.43
+1147,60,video_2cam,grey cup on pan,217,186,-0.9961,-0.5368,-0.8883,7.43
+428,160,robot_3cam,yellow brick on blue plate,1520,66,-0.9548,-0.8266,-0.1676,8.04
+428,160,robot_3cam,yellow brick on blue plate,1498,217,-0.5299,0.5446,-0.802,8.04
+575,210,robot_3cam,banana in black bowl,876,67,-0.2315,-0.7283,0.0467,5.26
+575,210,robot_3cam,banana in black bowl,851,11,0.5807,-0.4699,-0.3469,5.26
+160,220,robot_3cam,can on stove,1083,98,-0.9929,-0.8595,0.937,26.32
+160,220,robot_3cam,can on stove,1090,95,0.1835,-0.5996,-0.9931,26.32
+1612,80,video_2cam,yellow cup next to stove,472,30,0.7344,-0.5851,-0.0778,4.31
+1612,80,video_2cam,yellow cup next to stove,477,19,0.3572,-0.0777,0.0802,4.31
+1288,80,video_2cam,red brick in green bowl and yellow brick in green bowl,290,264,-0.4965,0.9871,0.0476,20.57
+1288,80,video_2cam,red brick in green bowl and yellow brick in green bowl,286,236,-0.1225,0.9998,0.293,20.57
+157,140,robot_3cam,can on stove,1063,190,-0.4609,-0.5012,0.2406,9.04
+157,140,robot_3cam,can on stove,1093,190,0.4009,-0.0098,0.3435,9.04
+408,10,robot_3cam,yellow brick on blue plate,1476,148,-0.2645,-0.0663,-0.3644,20.0
+408,10,robot_3cam,yellow brick on blue plate,1512,134,-0.9723,-0.5134,-0.2366,20.0
+986,90,video_2cam,open drawer and blue brick in drawer and close drawer,114,474,0.9989,0.9658,0.0319,13.44
+986,90,video_2cam,open drawer and blue brick in drawer and close drawer,111,355,0.4498,0.6874,0.8914,13.44
+914,20,video_2cam,blue bowl on pink plate and yellow brick in blue bowl,72,436,0.8719,-0.7297,-0.2904,5.11
+914,20,video_2cam,blue bowl on pink plate and yellow brick in blue bowl,75,65,-0.5291,-0.8269,-0.4065,5.11
+439,60,robot_3cam,yellow brick on pink plate,1553,62,0.9956,0.9556,-0.5576,18.15
+439,60,robot_3cam,yellow brick on pink plate,1577,101,0.1172,0.8928,-0.0719,18.15
+1247,80,video_2cam,point to top drawer,267,19,0.927,-0.9759,-0.2627,7.96
+1247,80,video_2cam,point to top drawer,269,37,0.8745,0.4553,0.399,7.96
+173,70,robot_3cam,can on stove,1095,168,0.9467,0.5651,-0.4357,19.11
+173,70,robot_3cam,can on stove,1091,95,0.4331,0.7782,-0.6774,19.11
+309,70,robot_3cam,white cup on pan,1322,42,0.6013,0.4072,0.9482,19.35
+309,70,robot_3cam,white cup on pan,1321,162,0.5353,-0.0531,0.0727,19.35
+650,150,robot_3cam,salt on pink plate,1680,67,-0.8433,0.5225,0.5153,19.48
+650,150,robot_3cam,salt on pink plate,1689,137,-0.8829,-0.8003,-0.9859,19.48
+125,190,robot_3cam,blue brick on red brick,1018,123,0.356,0.9996,-0.444,9.43
+125,190,robot_3cam,blue brick on red brick,1011,145,0.6153,0.7455,-0.1151,9.43
+568,180,robot_3cam,banana in black bowl,841,130,-0.603,-0.8731,0.7388,10.97
+568,180,robot_3cam,banana in black bowl,861,119,-0.9642,0.6687,-0.2813,10.97
+409,140,robot_3cam,yellow brick on blue plate,1475,229,-0.9936,-0.7823,0.0219,16.28
+409,140,robot_3cam,yellow brick on blue plate,1476,78,0.4201,0.4949,-0.953,16.28
+739,40,video_2cam,banana in basket,42,13,0.9826,0.9916,-0.6246,12.62
+739,40,video_2cam,banana in basket,25,44,0.8723,0.7817,-0.2972,12.62
+1173,210,video_2cam,pink cup in basket,236,173,0.8641,0.9849,-0.1628,31.81
+1173,210,video_2cam,pink cup in basket,239,88,0.8586,0.952,0.9952,31.81
+449,60,robot_3cam,yellow brick on pink plate,1546,155,0.8884,0.9237,-0.9955,28.89
+449,60,robot_3cam,yellow brick on pink plate,1541,80,0.7394,0.999,-0.9981,28.89
+1621,60,video_2cam,milk on pink plate,587,116,0.38,0.3222,0.4181,4.81
+1621,60,video_2cam,milk on pink plate,593,86,-0.9992,-0.4397,-0.6903,4.81
+71,190,robot_3cam,blue bowl on pink plate and yellow brick in blue bowl,905,425,0.9979,0.9988,1.0,6.61
+71,190,robot_3cam,blue bowl on pink plate and yellow brick in blue bowl,910,181,0.3414,0.9042,0.6137,6.61
+1022,170,video_2cam,red brick on pink plate and blue brick on pink plate,130,147,1.0,0.9994,-0.6679,16.99
+1022,170,video_2cam,red brick on pink plate and blue brick on pink plate,134,32,-0.3626,0.9034,-0.6964,16.99
+138,200,robot_3cam,red brick on pink plate and blue brick on pink plate,1023,233,0.5811,0.3309,-0.9927,24.04
+138,200,robot_3cam,red brick on pink plate and blue brick on pink plate,1032,352,0.9155,0.9894,-0.9621,24.04
+38,170,robot_3cam,banana in basket,745,98,0.8853,0.9537,0.9993,17.7
+38,170,robot_3cam,banana in basket,768,32,0.901,0.8545,0.5057,17.7
+240,170,robot_3cam,pink cup in basket,1171,174,0.159,0.4022,-0.166,27.45
+240,170,robot_3cam,pink cup in basket,1185,89,-0.7122,-0.4488,-0.6282,27.45
+359,120,robot_3cam,yellow brick next to stove,1413,28,-0.6857,-0.3751,0.9815,5.7
+359,120,robot_3cam,yellow brick next to stove,1428,113,0.8303,0.3016,0.7804,5.7
+1032,190,video_2cam,red brick on pink plate and blue brick on pink plate,138,311,-0.963,0.99,0.1391,7.52
+1032,190,video_2cam,red brick on pink plate and blue brick on pink plate,136,140,-0.4839,0.9998,0.1187,7.52
+402,150,robot_3cam,yellow brick on blue plate,1461,39,0.9026,0.9834,0.885,34.65
+402,150,robot_3cam,yellow brick on blue plate,1510,76,0.5416,0.5587,-0.7134,34.65
+505,200,robot_3cam,banana in cardboard box,791,98,0.8425,0.744,-0.2555,9.65
+505,200,robot_3cam,banana in cardboard box,784,182,0.7883,-0.5699,-0.8023,9.65
+1130,130,video_2cam,grey cup on grey plate,206,264,-0.6575,-0.4316,0.8795,33.72
+1130,130,video_2cam,grey cup on grey plate,208,176,-0.6094,-0.4225,0.9391,33.72
+384,50,robot_3cam,yellow brick on blue plate,1482,124,0.776,-0.9059,0.1277,18.31
+384,50,robot_3cam,yellow brick on blue plate,1490,178,0.977,0.9724,0.4101,18.31
+1021,130,video_2cam,red brick on pink plate and blue brick on pink plate,135,362,0.5712,0.6595,0.8375,13.9
+1021,130,video_2cam,red brick on pink plate and blue brick on pink plate,137,193,0.2365,0.604,0.3469,13.9
+870,130,video_2cam,banana in black bowl,542,202,0.7484,0.6231,-0.948,18.96
+870,130,video_2cam,banana in black bowl,553,68,0.9762,0.9898,-0.9248,18.96
+1393,80,video_2cam,yellow brick in orange bowl,344,118,0.8245,0.6392,0.0346,29.74
+1393,80,video_2cam,yellow brick in orange bowl,349,135,0.9154,0.9745,-0.9987,29.74
+1359,310,video_2cam,blue brick in blue bowl and yellow brick in blue bowl,330,296,-0.1103,0.9142,0.0978,21.7
+1359,310,video_2cam,blue brick in blue bowl and yellow brick in blue bowl,322,395,0.9062,0.9161,0.0337,21.7
+1001,60,video_2cam,blue brick on red brick,123,112,0.813,0.7591,0.7783,9.43
+1001,60,video_2cam,blue brick on red brick,124,170,0.8142,0.9874,-0.062,9.43
+1499,110,video_2cam,yellow brick on blue plate,401,131,0.8265,0.5694,-0.2449,14.93
+1499,110,video_2cam,yellow brick on blue plate,380,249,0.3139,-0.9016,-0.9763,14.93
+1055,80,video_2cam,can on grey plate,149,45,-0.315,-0.9407,-0.7638,12.48
+1055,80,video_2cam,can on grey plate,148,80,0.9969,-0.3024,0.9978,12.48
+848,60,video_2cam,banana in black bowl,564,127,-0.7914,0.9283,-0.9983,4.38
+848,60,video_2cam,banana in black bowl,556,124,-0.1044,-0.6234,0.3685,4.38
+491,20,robot_3cam,banana in cardboard box,817,188,0.9893,0.9991,0.7878,9.12
+491,20,robot_3cam,banana in cardboard box,794,245,0.3923,0.6985,-0.8898,9.12
+1692,140,video_2cam,salt on pink plate,647,231,-0.7138,0.1558,0.4105,10.36
+1692,140,video_2cam,salt on pink plate,648,103,0.9479,0.1722,0.998,10.36
+146,80,robot_3cam,can on grey plate,1056,67,0.7808,-0.5484,0.4634,24.07
+146,80,robot_3cam,can on grey plate,1051,18,0.8539,0.9922,0.1361,24.07
+1498,90,video_2cam,yellow brick on blue plate,397,291,0.3217,0.4265,-0.9353,11.54
+1498,90,video_2cam,yellow brick on blue plate,416,243,0.4222,0.6434,-0.5478,11.54
+343,20,robot_3cam,yellow brick in orange bowl,1396,54,-0.4709,-0.8553,0.6885,35.77
+343,20,robot_3cam,yellow brick in orange bowl,1397,13,-0.7646,-0.9051,-0.328,35.77
+1150,180,video_2cam,grey cup on pan,215,135,-0.0226,0.1326,0.8557,6.25
+1150,180,video_2cam,grey cup on pan,220,196,0.2482,-0.1194,-0.0457,6.25
+937,230,video_2cam,blue brick between pink cup and basket,85,139,0.065,0.4392,-0.9993,6.87
+937,230,video_2cam,blue brick between pink cup and basket,83,13,-0.3693,0.0809,-0.0208,6.87
+623,30,robot_3cam,milk on pink plate,1642,52,-0.141,0.3566,0.2179,13.1
+623,30,robot_3cam,milk on pink plate,1658,143,-0.1151,0.0725,0.2798,13.1
+1703,60,video_2cam,salt on pink plate,666,248,-0.8327,-0.7846,-0.9848,3.74
+1703,60,video_2cam,salt on pink plate,676,139,0.069,-0.7165,0.2023,3.74
+665,190,robot_3cam,salt on pink plate,1688,152,0.2324,0.0411,-0.025,11.97
+665,190,robot_3cam,salt on pink plate,1702,72,-0.7572,-0.222,0.0606,11.97
+924,240,video_2cam,blue brick between pink cup and basket,86,23,0.8508,0.1776,-0.7678,6.88
+924,240,video_2cam,blue brick between pink cup and basket,89,198,0.0818,0.1705,-0.2021,6.88
+413,120,robot_3cam,yellow brick on blue plate,1515,29,0.8212,0.7364,-0.9645,6.42
+413,120,robot_3cam,yellow brick on blue plate,1462,76,0.752,0.8171,-0.992,6.42
+1407,90,video_2cam,yellow brick in orange bowl,344,76,0.5051,0.1133,-0.2739,58.89
+1407,90,video_2cam,yellow brick in orange bowl,343,31,-0.3318,0.1227,-0.5053,58.89
+584,60,robot_3cam,milk on pink plate,1628,159,0.1332,0.1472,0.0651,14.65
+584,60,robot_3cam,milk on pink plate,1633,158,-0.1414,0.2446,-0.9498,14.65
+813,150,video_2cam,banana in cardboard box,515,175,0.9975,0.8326,0.7503,10.68
+813,150,video_2cam,banana in cardboard box,486,164,0.9167,0.9872,0.2442,10.68
+511,70,robot_3cam,banana in cardboard box,787,105,0.8342,-0.8483,0.6157,10.71
+511,70,robot_3cam,banana in cardboard box,807,69,-0.379,-0.9667,0.8444,10.71
+1084,50,video_2cam,can on stove,170,92,-0.6871,0.9704,0.5363,5.01
+1084,50,video_2cam,can on stove,157,30,0.5715,-0.4809,0.4524,5.01
+858,140,video_2cam,banana in black bowl,545,35,0.5799,-0.9977,0.4546,11.72
+858,140,video_2cam,banana in black bowl,532,239,0.7846,0.9933,-0.5656,11.72
+113,30,robot_3cam,open drawer and blue brick in drawer and close drawer,999,320,0.9882,0.6671,-0.7346,10.65
+113,30,robot_3cam,open drawer and blue brick in drawer and close drawer,983,24,0.6748,-0.5698,0.9104,10.65
+1443,220,video_2cam,yellow brick on blue brick,362,14,-0.8142,-0.6678,0.7127,11.77
+1443,220,video_2cam,yellow brick on blue brick,369,169,0.1603,-0.987,0.7354,11.77
+1125,50,video_2cam,grey cup on grey plate,205,34,-0.623,-0.7942,-0.6314,4.12
+1125,50,video_2cam,grey cup on grey plate,203,83,0.756,0.8059,0.7283,4.12
+79,350,robot_3cam,blue bowl on pink plate and yellow brick in blue bowl,911,78,-0.96,-0.9618,-0.9903,17.89
+79,350,robot_3cam,blue bowl on pink plate and yellow brick in blue bowl,920,32,-0.784,-0.8552,-0.9684,17.89
+440,70,robot_3cam,yellow brick on pink plate,1553,149,0.9993,0.6995,-0.9187,11.71
+440,70,robot_3cam,yellow brick on pink plate,1521,12,0.7217,0.7352,-0.9244,11.71
+949,270,video_2cam,blue brick in basket,95,71,0.6749,0.856,-0.5708,7.49
+949,270,video_2cam,blue brick in basket,99,41,0.5088,0.2025,-0.9974,7.49
+52,80,robot_3cam,banana in basket,769,118,0.0343,0.5096,-0.9979,31.33
+52,80,robot_3cam,banana in basket,747,79,0.6836,-0.9402,-0.7907,31.33
+1327,120,video_2cam,white cup on pan,302,192,0.3655,0.853,0.9953,19.27
+1327,120,video_2cam,white cup on pan,304,87,0.9994,0.9935,0.9997,19.27
+1406,100,video_2cam,yellow brick in orange bowl,345,82,0.9975,0.7031,-0.6082,65.2
+1406,100,video_2cam,yellow brick in orange bowl,346,92,-0.6435,0.9006,-0.669,65.2
+346,20,robot_3cam,yellow brick in orange bowl,1408,145,-0.2147,0.9122,0.7409,14.02
+346,20,robot_3cam,yellow brick in orange bowl,1396,26,0.6091,0.7852,-0.6311,14.02
+1286,110,video_2cam,red brick in green bowl and yellow brick in green bowl,287,246,0.7618,0.7578,0.749,12.89
+1286,110,video_2cam,red brick in green bowl and yellow brick in green bowl,288,637,0.7998,0.9943,0.5218,12.89
+926,180,video_2cam,blue brick between pink cup and basket,89,227,0.9873,0.6813,0.8004,13.88
+926,180,video_2cam,blue brick between pink cup and basket,86,227,-0.1789,-0.0052,-0.181,13.88
+227,50,robot_3cam,open drawer,1163,99,0.8468,1.0,0.357,15.49
+227,50,robot_3cam,open drawer,1154,126,0.7637,0.9157,0.6584,15.49
+1003,40,video_2cam,blue brick on red brick,126,271,-0.1172,-0.2968,-0.6854,5.13
+1003,40,video_2cam,blue brick on red brick,127,64,-0.841,-0.5936,-0.6014,5.13
+1367,140,video_2cam,blue brick in blue bowl and yellow brick in blue bowl,323,59,0.9388,0.3733,0.9181,19.3
+1367,140,video_2cam,blue brick in blue bowl and yellow brick in blue bowl,326,319,0.6178,0.7942,-0.8568,19.3
+11,90,robot_3cam,banana in basket,768,49,-0.1666,0.1153,-0.8443,16.81
+11,90,robot_3cam,banana in basket,762,104,-0.4934,0.9459,-0.0833,16.81
+498,260,robot_3cam,banana in cardboard box,813,65,-0.6502,-0.4765,-0.9862,11.15
+498,260,robot_3cam,banana in cardboard box,818,248,0.9087,-0.9032,0.6224,11.15
+494,230,robot_3cam,banana in cardboard box,793,214,0.8376,-0.8512,0.2987,12.99
+494,230,robot_3cam,banana in cardboard box,805,70,-0.1393,0.0261,0.228,12.99
+1308,220,video_2cam,white cup on grey plate,294,126,0.1335,0.3791,0.926,7.08
+1308,220,video_2cam,white cup on grey plate,293,195,-0.9821,0.598,-0.0531,7.08
+43,20,robot_3cam,banana in basket,774,94,-0.7261,0.3344,0.9256,20.88
+43,20,robot_3cam,banana in basket,724,186,0.4859,-0.5717,-0.8982,20.88
+514,30,robot_3cam,banana in cardboard box,822,228,0.7064,0.2811,0.8486,5.66
+514,30,robot_3cam,banana in cardboard box,798,228,-0.1733,0.9664,0.4229,5.66
+199,170,robot_3cam,can on stove,1089,98,-0.9825,-0.4023,0.5968,16.93
+199,170,robot_3cam,can on stove,1105,99,0.6754,0.5166,0.1168,16.93
+1206,60,video_2cam,pink cup next to drawer,241,158,0.8924,0.9999,-0.0024,24.49
+1206,60,video_2cam,pink cup next to drawer,249,30,0.997,0.9638,-0.4381,24.49
+1336,170,video_2cam,wipe sponge on table,316,90,0.9914,-0.9735,0.9944,12.81
+1336,170,video_2cam,wipe sponge on table,317,81,0.9784,0.9676,0.3577,12.81
+519,220,robot_3cam,banana in cardboard box,815,100,0.5735,0.3607,-0.8505,16.79
+519,220,robot_3cam,banana in cardboard box,817,128,0.8586,-0.9878,-0.9903,16.79
+1132,190,video_2cam,grey cup on pan,216,202,0.999,0.9153,-0.759,9.07
+1132,190,video_2cam,grey cup on pan,217,143,0.9907,0.9899,0.968,9.07
+1073,160,video_2cam,can on stove,182,168,0.9998,0.9665,0.7773,11.22
+1073,160,video_2cam,can on stove,184,172,0.6015,0.7854,-0.6102,11.22
+1355,180,video_2cam,blue brick in blue bowl and yellow brick in blue bowl,323,365,0.0432,0.5209,0.816,13.5
+1355,180,video_2cam,blue brick in blue bowl and yellow brick in blue bowl,326,143,-0.0219,0.3575,-0.6341,13.5
+288,30,robot_3cam,red brick in green bowl and yellow brick in green bowl,1282,121,-0.9372,-0.4194,-0.9254,21.74
+288,30,robot_3cam,red brick in green bowl and yellow brick in green bowl,1284,13,0.9793,0.1263,-0.9981,21.74
+1269,70,video_2cam,push pink cup,277,62,-0.9544,0.7946,0.8513,6.04
+1269,70,video_2cam,push pink cup,273,49,0.2686,-0.9518,0.4913,6.04
+1000,170,video_2cam,open drawer and blue brick in drawer and close drawer,116,334,0.9397,1.0,-0.4147,22.49
+1000,170,video_2cam,open drawer and blue brick in drawer and close drawer,118,451,0.9781,0.9575,0.9494,22.49
+1152,150,video_2cam,open drawer,223,192,0.0283,0.9142,0.6044,9.99
+1152,150,video_2cam,open drawer,227,33,0.8473,0.8783,-0.1789,9.99
+0,30,robot_3cam,banana in basket,720,241,0.929,0.9428,0.9251,10.4
+0,30,robot_3cam,banana in basket,722,255,0.845,0.991,0.9987,10.4
+317,250,robot_3cam,wipe sponge on table,1331,226,-0.967,-0.6107,0.8784,22.06
+317,250,robot_3cam,wipe sponge on table,1349,193,0.1583,-0.207,0.9666,22.06
+499,220,robot_3cam,banana in cardboard box,821,50,-0.5016,-0.4461,0.9532,8.75
+499,220,robot_3cam,banana in cardboard box,791,208,0.742,0.0421,0.9687,8.75
+243,10,robot_3cam,pink cup next to drawer,1203,162,0.5105,-0.496,-0.9782,26.7
+243,10,robot_3cam,pink cup next to drawer,1193,12,0.1129,0.456,0.5898,26.7
+1646,20,video_2cam,milk on pink plate,586,86,-0.0062,0.9405,0.3431,13.71
+1646,20,video_2cam,milk on pink plate,590,56,0.7881,0.9492,-0.1014,13.71
+1437,40,video_2cam,yellow brick on blue brick,362,143,-0.9395,-0.9411,-0.9542,15.23
+1437,40,video_2cam,yellow brick on blue brick,366,43,0.6165,0.9936,0.0608,15.23
+1533,60,video_2cam,yellow brick on pink plate,445,95,0.0762,0.5501,0.0394,36.46
+1533,60,video_2cam,yellow brick on pink plate,435,64,0.9081,0.999,0.7828,36.46
+686,190,video_2cam,banana in basket,28,76,-0.8512,0.1541,-0.6259,4.83
+686,190,video_2cam,banana in basket,23,173,-0.9995,-0.1533,-0.7128,4.83
+1099,140,video_2cam,can on stove,171,144,-0.7652,-0.3348,-0.7356,7.34
+1099,140,video_2cam,can on stove,195,222,-0.7318,-0.5674,0.9982,7.34
+859,40,video_2cam,banana in black bowl,555,74,0.6791,0.9993,0.8792,9.73
+859,40,video_2cam,banana in black bowl,560,219,0.9861,0.9676,0.5448,9.73
+1036,110,video_2cam,red brick on pink plate and blue brick on pink plate,131,313,0.2189,0.1212,-0.1878,7.09
+1036,110,video_2cam,red brick on pink plate and blue brick on pink plate,138,63,0.7118,0.7884,0.9732,7.09
+573,200,robot_3cam,banana in black bowl,863,17,0.9399,0.7789,0.4425,7.41
+573,200,robot_3cam,banana in black bowl,879,81,0.8719,0.6805,-0.0844,7.41
+274,100,robot_3cam,push pink cup,1258,57,-0.7602,-0.4622,-0.1666,39.83
+274,100,robot_3cam,push pink cup,1270,114,0.2551,0.3795,0.2743,39.83
+542,150,robot_3cam,banana in black bowl,880,51,-0.2473,-0.8683,0.6267,13.47
+542,150,robot_3cam,banana in black bowl,849,152,-0.2138,-0.5151,-0.3219,13.47
+364,260,robot_3cam,yellow brick on blue brick,1434,256,-0.7183,-0.9885,0.0307,3.38
+364,260,robot_3cam,yellow brick on blue brick,1431,23,-0.2236,-0.7265,0.994,3.38
+166,190,robot_3cam,can on stove,1103,66,0.4842,-0.7858,-0.9942,6.8
+166,190,robot_3cam,can on stove,1097,99,-0.2884,-0.9907,-0.1657,6.8
+370,20,robot_3cam,yellow brick on blue brick,1431,233,0.9941,0.7622,0.9997,8.96
+370,20,robot_3cam,yellow brick on blue brick,1437,148,0.91,1.0,0.9675,8.96
+411,20,robot_3cam,yellow brick on blue plate,1512,135,-0.7485,-0.9704,0.9993,7.52
+411,20,robot_3cam,yellow brick on blue plate,1476,137,0.9119,-0.5967,0.9344,7.52
+23,30,robot_3cam,banana in basket,770,126,0.8896,0.9707,0.6749,13.55
+23,30,robot_3cam,banana in basket,769,44,-0.2966,0.6705,0.797,13.55
+101,200,robot_3cam,blue brick in blue bowl,961,38,-0.0003,-0.0007,-0.991,8.09
+101,200,robot_3cam,blue brick in blue bowl,980,34,-0.731,1.0,0.4341,8.09
+115,150,robot_3cam,open drawer and blue brick in drawer and close drawer,1000,100,0.2569,0.5828,-0.1258,17.99
+115,150,robot_3cam,open drawer and blue brick in drawer and close drawer,996,233,0.3095,-0.7098,-0.7948,17.99
+568,140,robot_3cam,banana in black bowl,874,63,0.4663,0.6793,0.2368,24.25
+568,140,robot_3cam,banana in black bowl,845,49,0.7602,0.9888,0.8941,24.25
+615,60,robot_3cam,milk on pink plate,1643,160,0.1225,-0.8477,-0.5265,19.89
+615,60,robot_3cam,milk on pink plate,1656,35,-0.488,0.9806,0.5735,19.89
+366,80,robot_3cam,yellow brick on blue brick,1440,207,-0.2876,-0.5301,-0.78,5.74
+366,80,robot_3cam,yellow brick on blue brick,1441,154,0.5306,-0.2828,-0.4731,5.74
+325,90,robot_3cam,blue brick in blue bowl and yellow brick in blue bowl,1356,189,0.9246,0.9044,0.8871,14.54
+325,90,robot_3cam,blue brick in blue bowl and yellow brick in blue bowl,1367,142,0.818,0.8747,0.5412,14.54
+1357,30,video_2cam,blue brick in blue bowl and yellow brick in blue bowl,329,51,-0.9883,-0.9346,-0.4466,16.87
+1357,30,video_2cam,blue brick in blue bowl and yellow brick in blue bowl,323,254,0.1127,0.1814,0.2293,16.87
+1327,60,video_2cam,white cup on pan,303,28,-0.1732,-0.1293,-0.7187,3.67
+1327,60,video_2cam,white cup on pan,306,205,-0.5368,-0.0278,0.9725,3.67
+837,10,video_2cam,banana in black bowl,570,26,0.8691,-0.142,-0.0647,9.77
+837,10,video_2cam,banana in black bowl,559,91,0.1169,0.9978,0.8873,9.77
+42,30,robot_3cam,banana in basket,749,13,0.4645,0.5208,0.1248,10.74
+42,30,robot_3cam,banana in basket,747,12,-0.7357,0.4839,0.9834,10.74
+541,200,robot_3cam,banana in black bowl,848,234,-0.9991,0.678,-0.4533,3.04
+541,200,robot_3cam,banana in black bowl,859,178,0.1615,0.058,-0.0553,3.04
+426,30,robot_3cam,yellow brick on blue plate,1488,27,0.4005,-0.2071,0.9896,10.52
+426,30,robot_3cam,yellow brick on blue plate,1484,157,-0.1659,-0.2979,0.505,10.52
+1287,10,video_2cam,red brick in green bowl and yellow brick in green bowl,283,21,0.0276,0.6075,0.7936,6.29
+1287,10,video_2cam,red brick in green bowl and yellow brick in green bowl,288,508,0.8794,0.6185,-0.2226,6.29
+1402,60,video_2cam,yellow brick in orange bowl,344,47,-0.4796,-0.4858,0.2998,15.11
+1402,60,video_2cam,yellow brick in orange bowl,345,135,0.5608,-0.1673,-0.4545,15.11
+1260,230,video_2cam,push pink cup,273,57,-0.8195,-0.3924,0.5113,12.91
+1260,230,video_2cam,push pink cup,274,171,-0.7115,-0.6879,-0.9959,12.91
+561,20,robot_3cam,banana in black bowl,869,130,0.9207,0.7317,-0.0906,14.61
+561,20,robot_3cam,banana in black bowl,867,88,-0.2685,-0.7626,0.8862,14.61
+181,140,robot_3cam,can on stove,1063,254,0.8285,0.8378,0.5245,11.26
+181,140,robot_3cam,can on stove,1099,155,0.9983,0.3292,-0.6922,11.26
+1465,80,video_2cam,yellow brick on blue plate,425,102,0.9718,0.9089,-0.2569,12.23
+1465,80,video_2cam,yellow brick on blue plate,401,102,0.9946,0.8849,0.9894,12.23
+656,180,robot_3cam,salt on pink plate,1694,72,-0.5182,-0.9788,0.9869,6.65
+656,180,robot_3cam,salt on pink plate,1700,111,0.3414,0.1906,-0.9285,6.65
+673,50,robot_3cam,salt on pink plate,1691,81,-0.4453,0.7155,0.9545,28.01
+673,50,robot_3cam,salt on pink plate,1689,149,-0.9151,-0.5824,0.7125,28.01
+152,200,robot_3cam,can on stove,1082,147,0.9834,0.857,0.1801,16.39
+152,200,robot_3cam,can on stove,1061,188,0.6107,0.4523,0.8391,16.39
+931,30,video_2cam,blue brick between pink cup and basket,84,88,0.558,-0.9587,-0.9866,17.23
+931,30,video_2cam,blue brick between pink cup and basket,81,137,-0.4967,-0.1258,-0.7446,17.23
+599,10,robot_3cam,milk on pink plate,1659,73,-0.84,0.5488,-0.3364,7.8
+599,10,robot_3cam,milk on pink plate,1642,122,0.9878,0.9942,0.9908,7.8
+580,60,robot_3cam,banana in black bowl,853,195,-0.9937,-0.2758,0.8351,13.09
+580,60,robot_3cam,banana in black bowl,851,10,-0.4836,0.5481,-0.6006,13.09
+40,10,robot_3cam,banana in basket,733,109,-0.9675,0.8233,-0.7191,9.32
+40,10,robot_3cam,banana in basket,709,91,-0.1679,-0.8952,0.2972,9.32
+24,210,robot_3cam,banana in basket,704,198,0.9601,-0.884,0.8984,10.96
+24,210,robot_3cam,banana in basket,706,72,-0.8426,0.9758,0.9854,10.96
+78,110,robot_3cam,blue bowl on pink plate and yellow brick in blue bowl,901,114,0.9928,0.8226,-0.6752,13.31
+78,110,robot_3cam,blue bowl on pink plate and yellow brick in blue bowl,903,26,0.9846,0.9591,-0.5639,13.31
+1198,10,video_2cam,pink cup next to drawer,244,62,0.887,0.9779,0.9634,12.2
+1198,10,video_2cam,pink cup next to drawer,242,93,0.9343,0.7478,0.6598,12.2
+1498,220,video_2cam,yellow brick on blue plate,373,101,0.1362,0.6879,0.7854,27.02
+1498,220,video_2cam,yellow brick on blue plate,417,168,0.5878,0.8734,0.3014,27.02
+483,200,robot_3cam,banana in cardboard box,793,141,0.509,0.0676,-0.3928,6.28
+483,200,robot_3cam,banana in cardboard box,820,93,0.9886,-0.0043,-0.4831,6.28
+881,70,video_2cam,banana in orange bowl,64,199,0.9314,-0.1709,-0.9972,3.97
+881,70,video_2cam,banana in orange bowl,65,60,0.1855,-0.3494,-0.9989,3.97
+1312,130,video_2cam,white cup on pan,308,108,0.9594,0.9608,-0.9947,9.79
+1312,130,video_2cam,white cup on pan,307,99,0.7634,0.7758,0.9317,9.79
+770,40,video_2cam,banana in basket,7,79,-0.0858,0.9636,-0.1263,22.37
+770,40,video_2cam,banana in basket,54,113,0.8617,0.9916,-0.3395,22.37
+342,150,robot_3cam,yellow brick in orange bowl,1393,93,-0.0923,0.8986,0.3449,16.0
+342,150,robot_3cam,yellow brick in orange bowl,1398,112,0.5328,0.9907,0.7911,16.0
+522,120,robot_3cam,banana in cardboard box,803,122,-0.0621,0.0024,0.9729,14.97
+522,120,robot_3cam,banana in cardboard box,802,177,0.2952,0.353,-0.9646,14.97
+796,110,video_2cam,banana in cardboard box,489,131,0.9676,0.9883,0.9949,9.29
+796,110,video_2cam,banana in cardboard box,486,173,0.4424,0.9854,0.5269,9.29
+922,70,video_2cam,blue brick between pink cup and basket,80,17,0.9315,0.8813,-0.5101,10.64
+922,70,video_2cam,blue brick between pink cup and basket,89,12,0.6978,0.7255,0.9811,10.64
+184,160,robot_3cam,can on stove,1085,100,-0.974,-0.703,0.2182,14.89
+184,160,robot_3cam,can on stove,1097,157,-0.6323,-0.6486,0.9089,14.89
+24,80,robot_3cam,banana in basket,696,97,0.9984,0.0091,0.8338,25.17
+24,80,robot_3cam,banana in basket,686,53,0.6018,0.3955,0.3073,25.17
+1275,70,video_2cam,red brick in green bowl and yellow brick in green bowl,284,244,0.9962,0.9484,-0.3291,16.23
+1275,70,video_2cam,red brick in green bowl and yellow brick in green bowl,281,24,0.9675,0.9966,0.9772,16.23
+809,220,video_2cam,banana in cardboard box,504,28,0.5567,0.9739,0.1446,10.17
+809,220,video_2cam,banana in cardboard box,488,169,-0.2421,-0.7863,0.8133,10.17
+803,100,video_2cam,banana in cardboard box,495,179,-0.9635,0.0498,-0.9532,16.18
+803,100,video_2cam,banana in cardboard box,488,167,-0.8072,0.9506,0.8368,16.18
+512,80,robot_3cam,banana in cardboard box,794,123,0.5055,0.9896,-0.494,7.45
+512,80,robot_3cam,banana in cardboard box,823,92,0.9945,-0.9474,0.2823,7.45
+653,40,robot_3cam,salt on pink plate,1715,197,0.9345,-0.976,-0.7744,16.16
+653,40,robot_3cam,salt on pink plate,1706,173,-0.9719,-0.9956,-0.0393,16.16
+297,60,robot_3cam,white cup on grey plate,1310,142,0.9513,-0.2215,0.9714,19.21
+297,60,robot_3cam,white cup on grey plate,1301,48,0.9422,-0.9939,0.9854,19.21
+119,50,robot_3cam,open drawer and blue brick in drawer and close drawer,995,213,0.9471,-0.3505,-0.7632,29.9
+119,50,robot_3cam,open drawer and blue brick in drawer and close drawer,986,29,0.9988,0.9938,0.7165,29.9
+1116,50,video_2cam,grey cup on grey plate,201,194,0.6627,-0.9238,-0.9978,20.16
+1116,50,video_2cam,grey cup on grey plate,202,151,-0.6298,0.2745,-0.9777,20.16
+379,70,robot_3cam,yellow brick on blue plate,1501,156,0.2979,-0.9662,-0.9277,15.07
+379,70,robot_3cam,yellow brick on blue plate,1471,24,0.9124,-0.8437,-0.5562,15.07
+937,210,video_2cam,blue brick between pink cup and basket,87,43,-0.9401,-0.6929,-0.8019,26.61
+937,210,video_2cam,blue brick between pink cup and basket,83,262,-0.9943,-0.6848,-0.072,26.61
+782,70,video_2cam,banana in cardboard box,520,155,0.9666,0.9344,-0.3333,19.97
+782,70,video_2cam,banana in cardboard box,501,266,-0.95,0.8644,-0.7142,19.97
+922,180,video_2cam,blue brick between pink cup and basket,82,219,0.9866,0.7224,-0.7129,28.65
+922,180,video_2cam,blue brick between pink cup and basket,85,206,0.982,0.9096,-0.1711,28.65
+740,30,video_2cam,banana in basket,16,205,-0.3699,0.9984,-0.2911,10.76
+740,30,video_2cam,banana in basket,2,82,0.7432,0.9245,-0.2869,10.76
+1363,120,video_2cam,blue brick in blue bowl and yellow brick in blue bowl,330,269,0.8359,0.3079,-0.956,22.69
+1363,120,video_2cam,blue brick in blue bowl and yellow brick in blue bowl,327,169,0.3122,0.306,0.3151,22.69
+678,10,robot_3cam,salt on pink plate,1697,186,-0.8812,-0.8478,-0.9797,12.16
+678,10,robot_3cam,salt on pink plate,1715,179,-0.9342,-0.3336,-0.9092,12.16
+827,110,video_2cam,banana in cardboard box,511,146,0.0575,-0.8164,0.1585,12.81
+827,110,video_2cam,banana in cardboard box,501,186,0.7568,0.8565,-0.6532,12.81
+54,70,robot_3cam,banana in basket,761,40,0.6314,0.6311,-0.2216,5.14
+54,70,robot_3cam,banana in basket,685,44,0.3479,0.1287,0.8833,5.14
+990,60,video_2cam,open drawer and blue brick in drawer and close drawer,110,470,0.9633,0.9921,0.8876,9.11
+990,60,video_2cam,open drawer and blue brick in drawer and close drawer,115,65,0.864,0.9024,0.2601,9.11
+315,280,robot_3cam,wipe sponge on table,1348,139,-0.4879,-0.5842,0.6465,22.4
+315,280,robot_3cam,wipe sponge on table,1350,119,0.9946,-0.2052,-0.9618,22.4
+292,130,robot_3cam,white cup on grey plate,1305,133,0.7772,0.671,0.9828,12.21
+292,130,robot_3cam,white cup on grey plate,1304,114,0.0441,0.646,0.2575,12.21
+1687,100,video_2cam,salt on pink plate,672,145,-0.827,-0.4479,0.9049,13.51
+1687,100,video_2cam,salt on pink plate,639,59,-0.2085,-0.4727,0.8369,13.51
+422,90,robot_3cam,yellow brick on blue plate,1519,119,0.6485,0.9905,-0.9013,7.86
+422,90,robot_3cam,yellow brick on blue plate,1499,150,1.0,0.9998,-0.8174,7.86
+600,140,robot_3cam,milk on pink plate,1663,69,-0.2717,0.5625,0.5488,11.03
+600,140,robot_3cam,milk on pink plate,1670,16,-0.9995,-0.8711,-0.7286,11.03
+1406,40,video_2cam,yellow brick in orange bowl,346,42,-0.2919,-0.9497,0.361,6.2
+1406,40,video_2cam,yellow brick in orange bowl,343,68,-0.9885,-0.9475,0.2127,6.2
+1640,110,video_2cam,milk on pink plate,600,189,-0.6543,-0.7785,-0.7303,6.01
+1640,110,video_2cam,milk on pink plate,606,65,-0.7816,-0.7725,0.4705,6.01
+604,140,robot_3cam,milk on pink plate,1664,55,0.809,0.229,-0.9305,12.91
+604,140,robot_3cam,milk on pink plate,1632,100,0.177,-0.1756,-0.6967,12.91
+656,150,robot_3cam,salt on pink plate,1671,40,-0.1689,-0.6961,-0.521,9.41
+656,150,robot_3cam,salt on pink plate,1709,146,-0.9971,-0.239,-0.6557,9.41
+1112,180,video_2cam,grey cup on grey plate,209,95,0.1293,-0.4305,0.9759,3.71
+1112,180,video_2cam,grey cup on grey plate,208,79,0.8284,-0.2992,0.7349,3.71
+95,250,robot_3cam,blue brick in basket,954,267,0.9881,0.7349,-0.758,6.77
+95,250,robot_3cam,blue brick in basket,941,173,-0.1863,0.8217,0.8333,6.77
+971,70,video_2cam,blue brick in blue bowl,101,44,-0.5978,-0.6262,0.4099,10.78
+971,70,video_2cam,blue brick in blue bowl,106,139,0.8087,0.6285,-0.79,10.78
+655,150,robot_3cam,salt on pink plate,1706,76,0.2263,-0.8455,-0.9471,8.09
+655,150,robot_3cam,salt on pink plate,1705,119,-0.0552,-0.7018,0.937,8.09
+1314,60,video_2cam,white cup on pan,308,57,0.9392,0.9375,0.0811,15.11
+1314,60,video_2cam,white cup on pan,301,43,-0.8768,0.8734,0.9756,15.11
+653,150,robot_3cam,salt on pink plate,1694,78,-0.2601,-0.6194,0.0236,6.11
+653,150,robot_3cam,salt on pink plate,1718,40,-0.9347,-0.9985,-0.3245,6.11
+516,40,robot_3cam,banana in cardboard box,821,133,-0.6236,-0.5273,-0.0542,10.09
+516,40,robot_3cam,banana in cardboard box,795,148,-0.7814,0.3629,-0.5093,10.09
+1003,20,video_2cam,blue brick on red brick,124,154,0.4953,-0.9491,-0.6268,15.9
+1003,20,video_2cam,blue brick on red brick,123,174,-0.7987,-0.1598,0.1791,15.9
+1491,140,video_2cam,yellow brick on blue plate,419,32,0.7675,0.9841,0.9632,29.88
+1491,140,video_2cam,yellow brick on blue plate,418,283,-0.7178,0.8975,-0.9061,29.88
+12,80,robot_3cam,banana in basket,686,215,0.8412,0.7736,0.9954,27.55
+12,80,robot_3cam,banana in basket,721,201,0.4864,0.7271,0.4523,27.55
+506,30,robot_3cam,banana in cardboard box,824,16,-0.2219,0.8654,0.9808,22.14
+506,30,robot_3cam,banana in cardboard box,818,16,0.9977,0.2223,0.9834,22.14
+1329,120,video_2cam,white cup on pan,304,126,-0.1247,0.37,-0.9675,9.03
+1329,120,video_2cam,white cup on pan,302,227,0.4385,0.6066,-0.4379,9.03
+1629,130,video_2cam,milk on pink plate,607,45,0.3824,0.7182,-0.9524,7.99
+1629,130,video_2cam,milk on pink plate,617,124,0.6031,0.6402,0.9761,7.99
+1159,80,video_2cam,open drawer,229,137,0.9172,0.9174,0.8176,19.71
+1159,80,video_2cam,open drawer,222,23,0.9932,0.7826,-0.9796,19.71
+902,120,video_2cam,blue bowl on pink plate and yellow brick in blue bowl,70,415,-0.8575,-0.9654,0.1471,13.07
+902,120,video_2cam,blue bowl on pink plate and yellow brick in blue bowl,78,397,-0.8776,-0.8521,0.889,13.07
+905,140,video_2cam,blue bowl on pink plate and yellow brick in blue bowl,77,206,0.8899,0.8063,-0.9979,19.95
+905,140,video_2cam,blue bowl on pink plate and yellow brick in blue bowl,70,165,0.8026,0.941,-0.0003,19.95
+807,70,video_2cam,banana in cardboard box,510,199,0.6077,0.9932,0.855,8.23
+807,70,video_2cam,banana in cardboard box,497,234,0.9477,0.9769,-0.4466,8.23
+314,150,robot_3cam,wipe sponge on table,1335,184,0.9992,0.9135,0.9966,36.3
+314,150,robot_3cam,wipe sponge on table,1350,20,0.9814,-0.833,-0.9481,36.3
+1505,70,video_2cam,yellow brick on blue plate,405,110,-0.4187,0.985,0.0979,8.47
+1505,70,video_2cam,yellow brick on blue plate,413,212,0.0593,0.6997,-0.9904,8.47
+1668,90,video_2cam,milk on pink plate,582,178,-0.0805,0.8081,0.619,9.77
+1668,90,video_2cam,milk on pink plate,626,200,0.1829,-0.1759,-0.9377,9.77
+851,60,video_2cam,banana in black bowl,579,90,-0.5948,-0.8703,-0.9658,7.98
+851,60,video_2cam,banana in black bowl,576,34,-0.4428,-0.5749,0.8883,7.98
+220,140,robot_3cam,grey cup on pan,1134,130,0.5615,0.0489,-0.6851,24.45
+220,140,robot_3cam,grey cup on pan,1145,190,0.1002,0.0204,0.1095,24.45
+1710,110,video_2cam,salt on pink plate,667,142,0.7775,-0.5176,-0.774,6.13
+1710,110,video_2cam,salt on pink plate,660,143,0.9691,-0.9767,-0.5994,6.13
+809,210,video_2cam,banana in cardboard box,494,114,-0.999,-1.0,0.969,16.04
+809,210,video_2cam,banana in cardboard box,506,150,-0.3147,-0.9685,0.6073,16.04
+1475,30,video_2cam,yellow brick on blue plate,389,117,0.9099,0.9662,-0.9944,8.5
+1475,30,video_2cam,yellow brick on blue plate,386,196,-0.9892,-0.1871,-0.8951,8.5
+23,180,robot_3cam,banana in basket,733,59,0.6125,-0.1175,-0.6457,6.95
+23,180,robot_3cam,banana in basket,718,205,0.9983,-0.748,-0.2851,6.95
+1369,270,video_2cam,blue brick in blue bowl and yellow brick in blue bowl,329,161,0.5439,-0.6706,-0.3845,18.44
+1369,270,video_2cam,blue brick in blue bowl and yellow brick in blue bowl,323,336,0.0515,-0.054,-0.9937,18.44
+1143,130,video_2cam,grey cup on pan,213,183,0.9587,0.9248,-0.2937,14.41
+1143,130,video_2cam,grey cup on pan,215,188,0.9806,0.8952,-0.026,14.41
+543,80,robot_3cam,banana in black bowl,854,80,-0.4921,-0.6953,-0.5764,4.22
+543,80,robot_3cam,banana in black bowl,872,59,-0.1345,0.6693,0.7378,4.22
+1710,180,video_2cam,salt on pink plate,632,19,0.9732,-0.4666,-0.8273,8.28
+1710,180,video_2cam,salt on pink plate,657,66,-0.9784,-0.9675,0.3962,8.28
+1222,130,video_2cam,pink cup on pink plate,258,222,0.4708,0.5823,-0.143,8.92
+1222,130,video_2cam,pink cup on pink plate,252,116,0.8507,0.803,-0.8585,8.92
+170,70,robot_3cam,can on stove,1064,190,0.1726,0.045,0.8154,9.68
+170,70,robot_3cam,can on stove,1107,46,-0.6612,0.7382,0.9089,9.68
+512,120,robot_3cam,banana in cardboard box,795,56,-0.4015,-0.9669,0.9979,9.89
+512,120,robot_3cam,banana in cardboard box,800,110,-0.4237,-0.66,0.8727,9.89
+139,30,robot_3cam,red brick on pink plate and blue brick on pink plate,1031,162,0.8527,-0.5442,0.1877,10.16
+139,30,robot_3cam,red brick on pink plate and blue brick on pink plate,1023,143,0.9856,0.9849,0.4568,10.16
+263,100,robot_3cam,point to top drawer,1248,97,-0.14,-0.9348,-0.5471,18.35
+263,100,robot_3cam,point to top drawer,1240,24,0.478,-0.9785,-0.6626,18.35
+862,140,video_2cam,banana in black bowl,542,35,-0.0065,0.3646,-0.6099,6.46
+862,140,video_2cam,banana in black bowl,552,11,0.8907,-0.1585,0.8919,6.46
+455,120,robot_3cam,yellow brick on pink plate,1574,78,0.8767,0.5759,0.958,19.75
+455,120,robot_3cam,yellow brick on pink plate,1533,98,0.9058,0.8861,-0.4758,19.75
+477,10,robot_3cam,yellow cup next to stove,1609,117,-0.9471,0.8704,0.9541,15.51
+477,10,robot_3cam,yellow cup next to stove,1612,132,0.181,-0.1462,-0.6244,15.51
+1516,120,video_2cam,yellow brick on blue plate,401,118,0.9949,0.9351,0.7642,19.39
+1516,120,video_2cam,yellow brick on blue plate,390,32,0.9316,0.6078,0.9997,19.39
+794,70,video_2cam,banana in cardboard box,497,26,-0.5715,0.633,0.7083,4.44
+794,70,video_2cam,banana in cardboard box,494,33,-0.6683,-0.18,0.8512,4.44
+502,100,robot_3cam,banana in cardboard box,811,27,0.706,0.6974,0.2472,27.33
+502,100,robot_3cam,banana in cardboard box,819,237,0.6175,0.3975,0.9142,27.33
+1364,50,video_2cam,blue brick in blue bowl and yellow brick in blue bowl,325,197,0.366,-0.3771,0.9447,4.58
+1364,50,video_2cam,blue brick in blue bowl and yellow brick in blue bowl,328,288,0.0015,-0.7516,-0.3604,4.58
+751,40,video_2cam,banana in basket,12,64,0.7378,0.9504,0.9155,17.24
+751,40,video_2cam,banana in basket,7,43,0.645,0.9727,-0.5819,17.24
+244,40,robot_3cam,pink cup next to drawer,1208,30,0.9274,1.0,0.1914,21.77
+244,40,robot_3cam,pink cup next to drawer,1205,173,0.9187,-0.0636,0.0234,21.77
+1567,30,video_2cam,yellow brick on pink plate,453,150,-0.9066,0.6256,0.9727,10.92
+1567,30,video_2cam,yellow brick on pink plate,456,97,0.3252,0.4749,0.7478,10.92
+473,190,robot_3cam,yellow cup next to stove,1607,24,0.9993,0.9647,-0.7075,11.49
+473,190,robot_3cam,yellow cup next to stove,1604,93,0.4553,0.9637,0.5129,11.49
+298,120,robot_3cam,white cup on grey plate,1292,171,0.3703,-0.7702,0.8106,16.21
+298,120,robot_3cam,white cup on grey plate,1299,56,-0.4328,-0.6663,0.9908,16.21
+530,90,robot_3cam,banana in cardboard box,796,131,-0.0377,0.3707,-0.0502,20.26
+530,90,robot_3cam,banana in cardboard box,830,178,0.9749,-0.3135,-0.8936,20.26
+1362,230,video_2cam,blue brick in blue bowl and yellow brick in blue bowl,330,400,0.2224,0.127,-0.9093,10.82
+1362,230,video_2cam,blue brick in blue bowl and yellow brick in blue bowl,327,343,-0.1217,-0.2163,0.2376,10.82
+1590,110,video_2cam,yellow brick on top of drawer,470,10,0.8025,0.6829,0.8412,4.49
+1590,110,video_2cam,yellow brick on top of drawer,462,50,0.9483,0.7256,-0.6585,4.49
+1360,230,video_2cam,blue brick in blue bowl and yellow brick in blue bowl,330,223,0.4079,0.9944,-0.9901,4.35
+1360,230,video_2cam,blue brick in blue bowl and yellow brick in blue bowl,326,391,0.6287,0.3967,0.9784,4.35
+83,60,robot_3cam,blue brick between pink cup and basket,936,67,0.6327,0.5657,0.738,14.64
+83,60,robot_3cam,blue brick between pink cup and basket,923,184,0.4835,0.2879,0.4762,14.64
+828,120,video_2cam,banana in cardboard box,501,107,0.1002,0.9942,0.9874,19.41
+828,120,video_2cam,banana in cardboard box,498,288,0.7404,0.8631,0.2186,19.41
+1015,80,video_2cam,blue brick on red brick,129,27,0.0501,-0.2046,-0.0509,6.88
+1015,80,video_2cam,blue brick on red brick,124,191,0.0567,0.0161,0.2617,6.88
+237,20,robot_3cam,pink cup in basket,1188,68,-0.9515,0.8683,-0.3001,9.27
+237,20,robot_3cam,pink cup in basket,1189,167,0.9677,-0.1777,-0.9865,9.27
+492,100,robot_3cam,banana in cardboard box,820,184,0.4061,-0.6702,-0.9898,32.73
+492,100,robot_3cam,banana in cardboard box,782,173,0.5075,0.8822,-0.7786,32.73
+1013,100,video_2cam,blue brick on red brick,125,129,0.9166,0.6065,-0.8986,23.09
+1013,100,video_2cam,blue brick on red brick,123,229,0.7205,0.5356,-0.9719,23.09
+1270,180,video_2cam,push pink cup,279,192,-0.9747,-0.793,-0.9254,4.49
+1270,180,video_2cam,push pink cup,277,241,-0.5033,-1.0,0.9593,4.49
+1021,70,video_2cam,red brick on pink plate and blue brick on pink plate,138,199,0.9939,0.8035,0.7576,9.0
+1021,70,video_2cam,red brick on pink plate and blue brick on pink plate,136,50,0.8703,0.8108,-0.8716,9.0
+702,70,video_2cam,banana in basket,35,160,0.9993,0.9492,-0.9695,20.26
+702,70,video_2cam,banana in basket,16,55,0.8801,0.9557,0.8717,20.26
+1352,140,video_2cam,blue brick in blue bowl and yellow brick in blue bowl,329,386,-0.8676,0.5193,-0.3378,19.52
+1352,140,video_2cam,blue brick in blue bowl and yellow brick in blue bowl,327,139,0.6434,0.6059,0.3842,19.52
+288,670,robot_3cam,red brick in green bowl and yellow brick in green bowl,1280,24,0.9918,0.9648,0.9386,10.18
+288,670,robot_3cam,red brick in green bowl and yellow brick in green bowl,1273,74,0.7794,0.9937,0.7369,10.18
+414,170,robot_3cam,yellow brick on blue plate,1504,95,-0.482,0.6435,-0.693,33.24
+414,170,robot_3cam,yellow brick on blue plate,1460,84,-0.7734,0.7778,0.7237,33.24
+1354,130,video_2cam,blue brick in blue bowl and yellow brick in blue bowl,324,358,-0.9917,0.5526,0.4688,14.18
+1354,130,video_2cam,blue brick in blue bowl and yellow brick in blue bowl,325,205,0.466,0.0383,0.3768,14.18
+1587,140,video_2cam,yellow brick on top of drawer,470,80,0.5732,0.8755,0.8924,24.56
+1587,140,video_2cam,yellow brick on top of drawer,463,251,0.9249,-0.681,0.8463,24.56
+1271,60,video_2cam,red brick in green bowl and yellow brick in green bowl,289,91,0.7936,0.9051,0.9937,9.06
+1271,60,video_2cam,red brick in green bowl and yellow brick in green bowl,286,216,0.9935,0.9758,0.8855,9.06
+356,20,robot_3cam,yellow brick next to stove,1416,53,-0.7523,0.3719,-0.9998,10.58
+356,20,robot_3cam,yellow brick next to stove,1420,48,0.8662,0.7663,-0.8831,10.58
+959,10,video_2cam,blue brick in basket,93,156,-0.9819,0.8929,0.9775,13.17
+959,10,video_2cam,blue brick in basket,90,334,0.994,-0.9522,-0.9733,13.17
+948,210,video_2cam,blue brick in basket,95,222,-0.6301,0.6144,-0.5495,9.37
+948,210,video_2cam,blue brick in basket,90,137,0.9783,0.5638,-0.9627,9.37
+1391,90,video_2cam,yellow brick in orange bowl,345,61,-0.8937,0.1099,-0.6604,7.79
+1391,90,video_2cam,yellow brick in orange bowl,343,74,0.6078,0.1554,0.0135,7.79
+593,130,robot_3cam,milk on pink plate,1667,134,-0.9469,-0.8193,-0.3761,30.26
+593,130,robot_3cam,milk on pink plate,1637,101,-0.785,-0.6772,0.7166,30.26
+683,190,video_2cam,banana in basket,43,78,-0.629,-0.0781,-0.9833,9.1
+683,190,video_2cam,banana in basket,7,12,0.7976,0.5805,0.5373,9.1
+628,100,robot_3cam,milk on pink plate,1644,136,0.0209,-0.9149,0.9634,13.26
+628,100,robot_3cam,milk on pink plate,1625,130,-0.4189,-0.4398,0.4979,13.26
+383,100,robot_3cam,yellow brick on blue plate,1470,219,0.9399,0.9955,0.9368,9.31
+383,100,robot_3cam,yellow brick on blue plate,1484,187,0.9937,0.9998,1.0,9.31
+175,10,robot_3cam,can on stove,1094,142,-0.448,0.8582,-0.2752,4.01
+175,10,robot_3cam,can on stove,1105,69,-0.1478,0.8518,-0.6089,4.01
+1147,190,video_2cam,grey cup on pan,216,146,-0.056,0.8677,-0.3317,11.19
+1147,190,video_2cam,grey cup on pan,213,16,0.9357,0.8115,0.6302,11.19
+1241,110,video_2cam,point to top drawer,263,73,0.2751,-0.182,0.5774,18.91
+1241,110,video_2cam,point to top drawer,265,29,-0.0095,-0.5326,0.8475,18.91
+1634,90,video_2cam,milk on pink plate,612,49,0.889,0.9722,0.9819,9.52
+1634,90,video_2cam,milk on pink plate,593,87,-0.9769,0.6634,0.3981,9.52
+1035,30,video_2cam,red brick on pink plate and blue brick on pink plate,136,195,0.0473,0.4571,-0.4844,12.93
+1035,30,video_2cam,red brick on pink plate and blue brick on pink plate,134,50,-0.7287,-0.9995,-0.1369,12.93
+522,10,robot_3cam,banana in cardboard box,781,173,0.936,0.076,-0.7908,29.49
+522,10,robot_3cam,banana in cardboard box,811,77,0.9207,0.9611,0.6494,29.49
+553,170,robot_3cam,banana in black bowl,840,198,0.8947,0.9997,0.7426,10.85
+553,170,robot_3cam,banana in black bowl,843,150,0.8417,-0.8097,-0.88,10.85
+371,70,robot_3cam,yellow brick on blue plate,1474,139,0.4746,0.8833,0.5492,8.35
+371,70,robot_3cam,yellow brick on blue plate,1484,174,0.9618,0.9969,0.5399,8.35
+275,200,robot_3cam,push pink cup,1262,124,0.9985,0.023,0.887,21.28
+275,200,robot_3cam,push pink cup,1260,115,0.9698,-0.9968,0.6588,21.28
+1452,50,video_2cam,yellow brick on blue plate,423,195,0.6902,0.3686,0.0251,22.72
+1452,50,video_2cam,yellow brick on blue plate,375,66,0.8302,0.2392,0.4658,22.72
+788,150,video_2cam,banana in cardboard box,497,208,0.5835,-0.9867,0.5198,3.28
+788,150,video_2cam,banana in cardboard box,496,171,-0.983,-0.9889,-0.4829,3.28
+1038,140,video_2cam,red brick on pink plate and blue brick on pink plate,139,261,0.9931,0.8852,0.3499,9.44
+1038,140,video_2cam,red brick on pink plate and blue brick on pink plate,135,165,0.7056,0.8402,-0.4217,9.44
+666,200,robot_3cam,salt on pink plate,1699,109,0.3118,-0.8408,0.3451,6.13
+666,200,robot_3cam,salt on pink plate,1702,89,-0.5984,-0.8765,-0.2,6.13
+732,50,video_2cam,banana in basket,49,120,-0.5001,0.7468,0.6083,10.5
+732,50,video_2cam,banana in basket,58,52,-0.4376,-0.7657,0.9688,10.5
+1337,180,video_2cam,wipe sponge on table,316,88,0.9417,0.9826,0.9122,14.28
+1337,180,video_2cam,wipe sponge on table,314,254,0.7558,0.4567,0.8387,14.28
+916,10,video_2cam,blue bowl on pink plate and yellow brick in blue bowl,78,243,0.9881,-0.998,0.7446,15.28
+916,10,video_2cam,blue bowl on pink plate and yellow brick in blue bowl,70,48,0.9844,0.9647,-0.6509,15.28
+232,140,robot_3cam,pink cup in basket,1180,140,0.9677,-0.1317,-0.0828,27.74
+232,140,robot_3cam,pink cup in basket,1189,137,0.6318,0.919,0.6682,27.74
+113,70,robot_3cam,open drawer and blue brick in drawer and close drawer,983,442,0.9181,0.6349,-0.7635,4.56
+113,70,robot_3cam,open drawer and blue brick in drawer and close drawer,985,220,0.6679,0.7031,-0.5892,4.56
+84,130,robot_3cam,blue brick between pink cup and basket,939,177,0.5593,0.3885,-0.8138,24.89
+84,130,robot_3cam,blue brick between pink cup and basket,925,121,0.478,0.6256,-0.8303,24.89
+642,20,robot_3cam,salt on pink plate,1681,32,0.0521,0.128,0.3412,16.11
+642,20,robot_3cam,salt on pink plate,1679,117,-0.7559,0.6084,0.9973,16.11
+1314,150,video_2cam,white cup on pan,308,21,0.7767,0.8289,0.7511,8.41
+1314,150,video_2cam,white cup on pan,301,187,-0.9751,-0.2952,0.874,8.41
+1180,20,video_2cam,pink cup in basket,238,179,-0.0404,-0.0879,0.9198,3.7
+1180,20,video_2cam,pink cup in basket,236,84,-0.2893,0.6308,-0.8828,3.7
+83,170,robot_3cam,blue brick between pink cup and basket,928,65,0.6273,0.549,-0.1123,33.17
+83,170,robot_3cam,blue brick between pink cup and basket,926,197,0.5999,0.8273,0.9553,33.17
+1457,110,video_2cam,yellow brick on blue plate,405,99,-0.9939,-0.9269,0.3502,12.23
+1457,110,video_2cam,yellow brick on blue plate,396,131,0.9994,-0.9393,-0.7074,12.23
+31,30,robot_3cam,banana in basket,769,66,0.2501,-0.4176,-0.6437,15.06
+31,30,robot_3cam,banana in basket,685,233,0.9867,0.4387,0.9924,15.06
+99,210,robot_3cam,blue brick in basket,944,187,-0.5805,-0.9831,-0.5175,5.35
+99,210,robot_3cam,blue brick in basket,942,108,-0.2048,-0.9168,-0.991,5.35
+973,50,video_2cam,blue brick in blue bowl,108,24,-0.7871,0.847,-0.7703,4.66
+973,50,video_2cam,blue brick in blue bowl,104,92,0.9896,-0.7919,0.9673,4.66
+304,50,robot_3cam,white cup on pan,1317,110,0.4513,0.3455,0.9933,8.64
+304,50,robot_3cam,white cup on pan,1324,30,0.7588,0.8142,-0.964,8.64
+1,20,robot_3cam,banana in basket,755,78,0.8117,0.639,-0.5245,24.19
+1,20,robot_3cam,banana in basket,700,33,0.5706,0.7819,0.6599,24.19
+273,90,robot_3cam,push pink cup,1255,256,-0.806,0.7619,0.9997,5.91
+273,90,robot_3cam,push pink cup,1254,207,-0.9735,0.9947,-0.8663,5.91
+920,200,video_2cam,blue bowl on pink plate and yellow brick in blue bowl,73,82,0.5209,0.3845,-0.7057,4.85
+920,200,video_2cam,blue bowl on pink plate and yellow brick in blue bowl,76,459,0.3982,0.8615,-0.1571,4.85
+1283,40,video_2cam,red brick in green bowl and yellow brick in green bowl,281,307,-0.9271,0.1787,0.7544,6.42
+1283,40,video_2cam,red brick in green bowl and yellow brick in green bowl,286,186,0.2089,-0.9672,0.5156,6.42
+191,30,robot_3cam,can on stove,1071,124,-0.4086,0.8397,0.8192,16.81
+191,30,robot_3cam,can on stove,1080,43,-0.045,0.9725,-0.9756,16.81
+851,20,video_2cam,banana in black bowl,561,117,0.9422,0.3577,0.6543,5.28
+851,20,video_2cam,banana in black bowl,536,65,-0.9818,-0.2129,0.9679,5.28
+139,230,robot_3cam,red brick on pink plate and blue brick on pink plate,1027,124,0.9917,0.8672,-0.4325,9.94
+139,230,robot_3cam,red brick on pink plate and blue brick on pink plate,1031,237,0.9187,0.5829,-0.9993,9.94
+1090,150,video_2cam,can on stove,167,29,0.2373,0.4993,-0.7697,16.54
+1090,150,video_2cam,can on stove,176,75,0.8547,-0.272,0.6457,16.54
+993,90,video_2cam,open drawer and blue brick in drawer and close drawer,114,48,0.8961,0.9342,0.9835,15.54
+993,90,video_2cam,open drawer and blue brick in drawer and close drawer,116,32,0.6393,0.7656,0.6457,15.54
+703,60,video_2cam,banana in basket,32,101,-0.3363,0.42,-0.4898,25.12
+703,60,video_2cam,banana in basket,56,104,0.6896,0.4344,-0.2769,25.12
+480,40,robot_3cam,yellow cup next to stove,1620,86,0.537,0.9184,-0.1977,6.95
+480,40,robot_3cam,yellow cup next to stove,1607,53,0.7191,0.8774,0.5963,6.95
+262,80,robot_3cam,point to top drawer,1233,112,-0.9946,-0.5534,-0.9943,22.36
+262,80,robot_3cam,point to top drawer,1234,33,0.9621,-0.5254,-0.1007,22.36
+1163,90,video_2cam,open drawer,228,120,0.9723,0.9011,0.9145,5.91
+1163,90,video_2cam,open drawer,226,179,0.6357,0.4857,0.0585,5.91
+423,130,robot_3cam,yellow brick on blue plate,1503,49,0.9547,0.7955,0.7422,11.99
+423,130,robot_3cam,yellow brick on blue plate,1455,70,0.6605,0.7142,0.9633,11.99
+1586,20,video_2cam,yellow brick on top of drawer,468,25,0.3585,-0.4136,-0.3564,20.16
+1586,20,video_2cam,yellow brick on top of drawer,466,34,0.549,0.0336,0.0501,20.16
+999,210,video_2cam,open drawer and blue brick in drawer and close drawer,115,228,0.5528,0.9157,-0.8592,36.03
+999,210,video_2cam,open drawer and blue brick in drawer and close drawer,116,48,0.3611,0.9529,0.7968,36.03
+1419,100,video_2cam,yellow brick next to stove,358,13,0.2883,0.3416,0.4777,13.31
+1419,100,video_2cam,yellow brick next to stove,354,75,0.9379,0.6281,-0.5902,13.31
+1537,80,video_2cam,yellow brick on pink plate,431,94,0.9877,0.9967,-0.5636,7.21
+1537,80,video_2cam,yellow brick on pink plate,435,134,-0.9458,-0.9647,0.5554,7.21
+960,140,video_2cam,blue brick in basket,93,13,0.9062,-0.8655,0.0275,7.97
+960,140,video_2cam,blue brick in basket,92,240,-0.7465,-0.7774,-0.7289,7.97
+1625,100,video_2cam,milk on pink plate,602,142,0.7754,-0.9676,0.3341,25.25
+1625,100,video_2cam,milk on pink plate,626,25,-0.8727,-0.5589,0.9911,25.25
+983,250,video_2cam,open drawer and blue brick in drawer and close drawer,119,11,-0.7987,-0.8764,-0.0008,9.56
+983,250,video_2cam,open drawer and blue brick in drawer and close drawer,118,26,-0.9881,-0.9719,-0.6423,9.56
+1554,70,video_2cam,yellow brick on pink plate,432,88,0.6071,0.6654,-0.9641,5.86
+1554,70,video_2cam,yellow brick on pink plate,447,46,0.9943,0.9556,-0.7134,5.86
+1360,180,video_2cam,blue brick in blue bowl and yellow brick in blue bowl,323,254,-0.0996,-0.0245,0.2248,29.81
+1360,180,video_2cam,blue brick in blue bowl and yellow brick in blue bowl,324,334,0.2482,-0.306,0.804,29.81
+1027,100,video_2cam,red brick on pink plate and blue brick on pink plate,139,69,-0.633,0.9739,0.4026,4.61
+1027,100,video_2cam,red brick on pink plate and blue brick on pink plate,137,93,-0.9834,-0.9826,0.8973,4.61
+393,60,robot_3cam,yellow brick on blue plate,1479,31,0.319,0.1461,0.316,16.83
+393,60,robot_3cam,yellow brick on blue plate,1464,202,0.2044,-0.2254,0.1407,16.83
+668,20,robot_3cam,salt on pink plate,1680,29,0.9991,-0.5873,0.0195,16.37
+668,20,robot_3cam,salt on pink plate,1697,137,0.8801,0.8147,0.8434,16.37
+1351,100,video_2cam,blue brick in blue bowl and yellow brick in blue bowl,321,146,0.2266,0.4197,-0.6571,11.6
+1351,100,video_2cam,blue brick in blue bowl and yellow brick in blue bowl,330,155,0.121,0.467,-0.8292,11.6
+1695,140,video_2cam,salt on pink plate,645,143,0.2666,0.8182,0.5253,5.97
+1695,140,video_2cam,salt on pink plate,652,183,-0.5337,0.3739,-0.428,5.97
+712,140,video_2cam,banana in basket,38,222,0.3359,0.7297,-0.5383,5.04
+712,140,video_2cam,banana in basket,19,18,-0.9946,0.3907,-0.4552,5.04
+1429,50,video_2cam,yellow brick next to stove,356,134,0.6059,0.9996,0.9773,25.78
+1429,50,video_2cam,yellow brick next to stove,353,192,0.9901,0.9975,0.5436,25.78
+641,60,robot_3cam,salt on pink plate,1711,20,-0.5534,0.8929,0.5044,17.24
+641,60,robot_3cam,salt on pink plate,1695,103,-0.6646,-0.8577,0.9388,17.24
+917,380,video_2cam,blue bowl on pink plate and yellow brick in blue bowl,74,551,0.9181,-0.662,-0.8097,16.4
+917,380,video_2cam,blue bowl on pink plate and yellow brick in blue bowl,72,315,-0.4926,-0.6654,-0.3662,16.4
+867,40,video_2cam,banana in black bowl,544,106,-0.9946,-0.9999,-0.9027,7.02
+867,40,video_2cam,banana in black bowl,537,223,-0.9905,0.7782,0.6857,7.02
+981,200,video_2cam,open drawer and blue brick in drawer and close drawer,114,411,-0.8237,0.5839,0.5966,7.55
+981,200,video_2cam,open drawer and blue brick in drawer and close drawer,117,315,-0.4447,-0.0714,-0.6694,7.55
+1411,30,video_2cam,yellow brick next to stove,351,155,0.8891,0.9794,0.9476,8.82
+1411,30,video_2cam,yellow brick next to stove,356,116,0.8185,0.8967,0.553,8.82
+100,70,robot_3cam,blue brick in blue bowl,966,10,0.7694,0.6589,-0.7173,8.33
+100,70,robot_3cam,blue brick in blue bowl,963,38,0.9949,0.9532,-0.8235,8.33
+1010,70,video_2cam,blue brick on red brick,129,206,-0.2596,-0.3634,0.9901,45.18
+1010,70,video_2cam,blue brick on red brick,128,212,-0.1316,-0.373,0.7726,45.18
+600,20,robot_3cam,milk on pink plate,1659,96,-0.2898,-0.9935,0.9882,6.27
+600,20,robot_3cam,milk on pink plate,1647,149,-0.2876,-0.7956,-0.2712,6.27
+1040,180,video_2cam,red brick on pink plate and blue brick on pink plate,135,12,0.9864,0.555,-0.929,35.32
+1040,180,video_2cam,red brick on pink plate and blue brick on pink plate,133,248,0.2688,-0.2208,-0.0556,35.32
+115,290,robot_3cam,open drawer and blue brick in drawer and close drawer,984,210,0.9975,0.9998,0.9395,23.74
+115,290,robot_3cam,open drawer and blue brick in drawer and close drawer,981,510,0.676,0.8734,-0.7046,23.74
+457,30,robot_3cam,yellow brick on pink plate,1541,10,-0.7182,0.9478,-0.4348,8.82
+457,30,robot_3cam,yellow brick on pink plate,1564,83,-0.9277,0.9985,0.9956,8.82
+1435,150,video_2cam,yellow brick on blue brick,369,225,-0.9891,-0.8882,0.9684,7.87
+1435,150,video_2cam,yellow brick on blue brick,361,91,-0.9755,-0.4419,0.2007,7.87
+276,20,robot_3cam,push pink cup,1258,283,0.8321,-0.9025,-0.9291,7.03
+276,20,robot_3cam,push pink cup,1265,66,-0.7414,-0.8405,-0.8322,7.03
+110,200,robot_3cam,open drawer and blue brick in drawer and close drawer,994,275,0.0212,0.8482,0.8968,9.12
+110,200,robot_3cam,open drawer and blue brick in drawer and close drawer,983,160,0.8202,-0.7355,0.6727,9.12
+1104,210,video_2cam,can on stove,194,118,0.1696,-0.1384,0.3805,9.23
+1104,210,video_2cam,can on stove,180,164,-0.5071,-0.2173,-0.833,9.23
+71,130,robot_3cam,blue bowl on pink plate and yellow brick in blue bowl,920,248,0.4823,-0.9895,-0.3283,19.43
+71,130,robot_3cam,blue bowl on pink plate and yellow brick in blue bowl,918,267,0.8972,0.9955,-0.8102,19.43
+609,210,robot_3cam,milk on pink plate,1640,28,0.7372,0.2829,0.7912,5.78
+609,210,robot_3cam,milk on pink plate,1647,77,0.9538,0.9986,0.7633,5.78
+611,30,robot_3cam,milk on pink plate,1636,32,0.8407,-0.6683,0.243,8.43
+611,30,robot_3cam,milk on pink plate,1654,53,0.1831,-0.3042,0.9792,8.43
+1415,60,video_2cam,yellow brick next to stove,357,18,0.9979,0.5856,0.9485,11.77
+1415,60,video_2cam,yellow brick next to stove,354,119,0.0254,0.1704,-0.0523,11.77
+1023,310,video_2cam,red brick on pink plate and blue brick on pink plate,131,298,-0.9897,-0.9574,0.123,13.85
+1023,310,video_2cam,red brick on pink plate and blue brick on pink plate,136,122,0.2856,0.2977,-0.6811,13.85
+714,110,video_2cam,banana in basket,29,229,0.8039,0.7668,-0.9112,28.58
+714,110,video_2cam,banana in basket,59,38,-0.3014,0.531,0.9732,28.58
+1275,300,video_2cam,red brick in green bowl and yellow brick in green bowl,290,119,0.5773,0.8884,-0.2156,16.38
+1275,300,video_2cam,red brick in green bowl and yellow brick in green bowl,287,155,0.9785,0.0284,0.6974,16.38
+1239,140,video_2cam,point to top drawer,268,109,0.8748,0.9763,0.9168,24.53
+1239,140,video_2cam,point to top drawer,261,67,0.9863,0.9833,0.8805,24.53
+303,210,robot_3cam,white cup on pan,1311,25,-0.5675,-0.4713,-0.3982,12.27
+303,210,robot_3cam,white cup on pan,1315,92,-0.694,-0.5559,0.196,12.27
+1370,320,video_2cam,blue brick in blue bowl and yellow brick in blue bowl,326,353,0.4513,0.5457,0.2679,41.35
+1370,320,video_2cam,blue brick in blue bowl and yellow brick in blue bowl,324,336,0.6716,0.7013,0.0314,41.35
+1570,50,video_2cam,yellow brick on pink plate,451,24,-0.1289,0.9172,0.3048,6.4
+1570,50,video_2cam,yellow brick on pink plate,460,140,-0.9998,0.8599,-0.0045,6.4
+1708,60,video_2cam,salt on pink plate,648,126,0.9475,0.8676,-0.6985,31.62
+1708,60,video_2cam,salt on pink plate,657,49,0.8329,0.8816,0.142,31.62
+1654,20,video_2cam,milk on pink plate,615,126,-0.4666,-0.9081,-0.8015,9.34
+1654,20,video_2cam,milk on pink plate,597,168,-0.5289,-0.8111,-0.9997,9.34
+887,40,video_2cam,banana in orange bowl,61,202,-0.9629,-0.6808,-0.4279,9.73
+887,40,video_2cam,banana in orange bowl,65,26,-0.3601,0.3035,-0.9596,9.73
+274,140,robot_3cam,push pink cup,1254,218,0.3915,-0.8517,-0.9982,12.43
+274,140,robot_3cam,push pink cup,1258,90,0.2462,0.9886,0.9846,12.43
+287,50,robot_3cam,red brick in green bowl and yellow brick in green bowl,1276,85,0.8125,0.9514,0.5531,22.09
+287,50,robot_3cam,red brick in green bowl and yellow brick in green bowl,1280,137,0.7855,0.7805,0.686,22.09
+319,210,robot_3cam,wipe sponge on table,1346,82,0.8854,0.8659,-0.9056,13.21
+319,210,robot_3cam,wipe sponge on table,1332,74,0.7655,0.7446,-0.67,13.21
+1122,60,video_2cam,grey cup on grey plate,201,143,-0.7468,0.9995,0.7112,22.33
+1122,60,video_2cam,grey cup on grey plate,210,15,0.9761,0.3779,0.12,22.33
+138,190,robot_3cam,red brick on pink plate and blue brick on pink plate,1035,236,0.5897,0.4583,0.0536,6.79
+138,190,robot_3cam,red brick on pink plate and blue brick on pink plate,1024,183,0.0965,0.9817,-0.001,6.79
+1638,130,video_2cam,milk on pink plate,596,29,-0.9959,-0.1817,0.1445,13.57
+1638,130,video_2cam,milk on pink plate,599,51,-0.9969,-0.4439,0.3721,13.57
+124,20,robot_3cam,blue brick on red brick,1017,64,0.1261,-0.1372,0.0817,16.61
+124,20,robot_3cam,blue brick on red brick,1009,29,0.302,0.8656,-0.9655,16.61
+716,70,video_2cam,banana in basket,22,109,0.5264,0.1894,0.6877,15.77
+716,70,video_2cam,banana in basket,8,101,-0.9242,0.1852,-0.9924,15.77
+1166,70,video_2cam,open drawer,223,15,0.982,0.9993,0.7655,7.53
+1166,70,video_2cam,open drawer,225,117,0.9717,0.9983,-0.8263,7.53
+1030,160,video_2cam,red brick on pink plate and blue brick on pink plate,132,219,0.588,-0.842,0.344,5.19
+1030,160,video_2cam,red brick on pink plate and blue brick on pink plate,138,386,0.8376,0.9879,0.3337,5.19
+1585,40,video_2cam,yellow brick on top of drawer,468,166,0.4387,0.6239,0.3744,13.33
+1585,40,video_2cam,yellow brick on top of drawer,470,113,0.7398,-0.8214,-0.338,13.33
+449,130,robot_3cam,yellow brick on pink plate,1548,106,0.8702,0.8722,0.9884,15.47
+449,130,robot_3cam,yellow brick on pink plate,1536,97,-0.8183,0.6963,-0.2353,15.47
+322,390,robot_3cam,blue brick in blue bowl and yellow brick in blue bowl,1358,94,0.4382,-0.0124,-0.5638,9.12
+322,390,robot_3cam,blue brick in blue bowl and yellow brick in blue bowl,1357,216,0.9558,0.9864,-0.3679,9.12
+87,80,robot_3cam,blue brick between pink cup and basket,938,194,-0.1012,-0.9411,0.3947,24.71
+87,80,robot_3cam,blue brick between pink cup and basket,921,89,-0.2772,-0.2636,0.8217,24.71
+995,280,video_2cam,open drawer and blue brick in drawer and close drawer,113,269,0.9998,0.9756,-0.744,14.24
+995,280,video_2cam,open drawer and blue brick in drawer and close drawer,118,552,0.999,0.976,0.8914,14.24
+151,200,robot_3cam,can on stove,1103,122,-0.2536,0.0789,-0.8755,16.49
+151,200,robot_3cam,can on stove,1098,38,-0.2779,0.5347,-0.993,16.49
+1170,20,video_2cam,open drawer,221,135,0.9723,0.7638,-0.9998,36.25
+1170,20,video_2cam,open drawer,230,146,0.5956,0.8456,0.6285,36.25
+24,70,robot_3cam,banana in basket,706,185,0.714,0.9283,0.9279,22.25
+24,70,robot_3cam,banana in basket,769,85,0.8138,-0.8148,-0.9528,22.25
+1328,20,video_2cam,white cup on pan,309,205,0.741,0.1393,-0.9951,29.07
+1328,20,video_2cam,white cup on pan,302,83,-0.6703,-0.9997,-0.8104,29.07
+872,120,video_2cam,banana in black bowl,557,202,0.395,-0.1303,0.6287,15.03
+872,120,video_2cam,banana in black bowl,548,181,0.0594,-0.322,-0.3524,15.03
+1223,180,video_2cam,pink cup on pink plate,257,95,0.7432,0.2933,-0.989,4.55
+1223,180,video_2cam,pink cup on pink plate,260,77,0.6836,0.0996,0.9995,4.55
+1668,150,video_2cam,milk on pink plate,609,242,-0.3178,0.0004,-0.8657,7.81
+1668,150,video_2cam,milk on pink plate,624,15,-0.2757,0.2156,0.2616,7.81
+863,160,video_2cam,banana in black bowl,556,37,-0.686,-0.4791,-0.2241,14.18
+863,160,video_2cam,banana in black bowl,543,195,-0.6698,-0.5894,0.0496,14.18
+204,230,robot_3cam,grey cup on grey plate,1130,108,0.116,0.1415,0.5055,15.12
+204,230,robot_3cam,grey cup on grey plate,1118,77,-0.9962,-0.1751,0.9997,15.12
+461,270,robot_3cam,yellow brick on top of drawer,1589,38,0.4337,0.5658,-0.9423,23.27
+461,270,robot_3cam,yellow brick on top of drawer,1598,233,-0.9846,-0.5624,-0.9422,23.27
+485,220,robot_3cam,banana in cardboard box,813,37,0.3485,-0.8768,-0.8363,3.92
+485,220,robot_3cam,banana in cardboard box,784,190,0.695,-0.1468,-0.6125,3.92
+1554,90,video_2cam,yellow brick on pink plate,440,87,0.825,0.9289,-0.9844,11.03
+1554,90,video_2cam,yellow brick on pink plate,460,90,0.8303,0.8944,-0.6188,11.03
+838,120,video_2cam,banana in black bowl,572,213,0.9845,0.9722,0.9853,23.92
+838,120,video_2cam,banana in black bowl,562,47,0.9907,0.8342,0.9999,23.92
+646,60,robot_3cam,salt on pink plate,1682,164,0.3303,0.9108,0.6684,15.34
+646,60,robot_3cam,salt on pink plate,1720,200,0.6344,0.3644,0.9797,15.34
+326,20,robot_3cam,blue brick in blue bowl and yellow brick in blue bowl,1359,141,0.8891,0.1251,-0.9903,20.86
+326,20,robot_3cam,blue brick in blue bowl and yellow brick in blue bowl,1368,376,-0.9554,-0.2124,0.734,20.86
+1485,140,video_2cam,yellow brick on blue plate,422,19,-0.9955,-0.5398,0.6716,10.1
+1485,140,video_2cam,yellow brick on blue plate,389,136,0.0355,-0.0192,0.808,10.1
+1148,40,video_2cam,grey cup on pan,220,186,-0.8204,-0.7714,0.7914,16.38
+1148,40,video_2cam,grey cup on pan,216,170,-1.0,-0.6743,0.9993,16.38
+853,80,video_2cam,banana in black bowl,569,34,-0.9999,-0.9823,0.1703,7.11
+853,80,video_2cam,banana in black bowl,563,93,-0.5063,-0.5337,0.9939,7.11
+1424,20,video_2cam,yellow brick next to stove,357,154,-0.9999,-0.3916,-0.7313,8.23
+1424,20,video_2cam,yellow brick next to stove,351,17,0.2884,-0.1199,-0.8452,8.23
+1717,70,video_2cam,salt on pink plate,674,169,-0.3741,-0.959,0.7343,10.43
+1717,70,video_2cam,salt on pink plate,655,96,0.3557,-0.4533,0.8559,10.43
+1590,180,video_2cam,yellow brick on top of drawer,465,221,-0.0502,0.2049,0.1015,15.3
+1590,180,video_2cam,yellow brick on top of drawer,461,264,0.8747,-0.3858,-0.1028,15.3
+1362,80,video_2cam,blue brick in blue bowl and yellow brick in blue bowl,329,294,0.8622,0.9842,-0.0685,19.23
+1362,80,video_2cam,blue brick in blue bowl and yellow brick in blue bowl,324,368,0.431,0.7363,-0.9248,19.23
+1004,180,video_2cam,blue brick on red brick,123,191,0.3706,0.788,-0.0318,17.15
+1004,180,video_2cam,blue brick on red brick,124,82,0.165,0.759,0.7717,17.15
+467,20,robot_3cam,yellow brick on top of drawer,1594,209,0.9808,0.9665,-0.7366,16.76
+467,20,robot_3cam,yellow brick on top of drawer,1600,173,0.2068,0.1927,0.7074,16.76
+465,40,robot_3cam,yellow brick on top of drawer,1597,55,0.9956,0.9499,0.766,23.71
+465,40,robot_3cam,yellow brick on top of drawer,1595,239,0.9531,-0.8035,-0.9914,23.71
+1694,10,video_2cam,salt on pink plate,634,171,0.2283,0.0061,0.4353,14.24
+1694,10,video_2cam,salt on pink plate,642,180,-0.9978,0.3278,-0.9224,14.24
+1088,100,video_2cam,can on stove,163,30,0.1194,0.7615,0.0239,9.4
+1088,100,video_2cam,can on stove,190,216,0.9923,-0.5087,0.9916,9.4
+1446,180,video_2cam,yellow brick on blue brick,362,172,0.958,0.9854,-0.934,3.53
+1446,180,video_2cam,yellow brick on blue brick,361,110,0.0962,0.983,-0.963,3.53
+585,220,robot_3cam,milk on pink plate,1649,55,-0.9884,-0.9783,0.181,7.51
+585,220,robot_3cam,milk on pink plate,1665,93,0.6121,0.566,0.4196,7.51
+1181,70,video_2cam,pink cup in basket,240,99,0.1301,0.6015,0.7709,8.23
+1181,70,video_2cam,pink cup in basket,232,84,-0.8344,0.4107,0.9419,8.23
+955,130,video_2cam,blue brick in basket,97,217,-0.5642,-0.6941,0.2209,17.71
+955,130,video_2cam,blue brick in basket,96,240,0.9532,-0.5363,0.8156,17.71
+601,170,robot_3cam,milk on pink plate,1670,35,0.924,0.9287,0.8188,5.98
+601,170,robot_3cam,milk on pink plate,1650,135,0.3012,0.8468,0.2932,5.98
+509,120,robot_3cam,banana in cardboard box,795,61,0.9659,0.6364,0.7881,11.34
+509,120,robot_3cam,banana in cardboard box,827,235,0.9934,0.8617,0.1766,11.34
+530,20,robot_3cam,banana in cardboard box,810,107,-0.6274,0.6935,0.0844,12.53
+530,20,robot_3cam,banana in cardboard box,801,148,-0.8866,0.8442,0.0365,12.53
+692,190,video_2cam,banana in basket,53,23,0.9356,0.9539,-0.0147,8.86
+692,190,video_2cam,banana in basket,32,83,0.9411,1.0,0.9974,8.86
+1541,40,video_2cam,yellow brick on pink plate,437,131,-0.1829,0.0835,-0.8116,10.3
+1541,40,video_2cam,yellow brick on pink plate,457,192,-0.9949,0.8488,-0.3844,10.3
+611,50,robot_3cam,milk on pink plate,1628,50,0.9037,-0.6115,0.9154,27.84
+611,50,robot_3cam,milk on pink plate,1634,121,-0.885,-0.6832,-0.4304,27.84
+446,40,robot_3cam,yellow brick on pink plate,1562,27,0.9718,0.5212,-0.7728,7.63
+446,40,robot_3cam,yellow brick on pink plate,1564,30,1.0,0.0243,-0.4401,7.63
+216,120,robot_3cam,grey cup on pan,1136,227,-0.3722,-0.152,-0.1295,12.95
+216,120,robot_3cam,grey cup on pan,1150,31,0.9217,0.717,0.486,12.95
+1147,20,video_2cam,grey cup on pan,217,44,0.9639,0.3597,-0.0657,15.27
+1147,20,video_2cam,grey cup on pan,212,225,-0.572,-0.7685,-0.7785,15.27
+614,170,robot_3cam,milk on pink plate,1648,57,-0.9965,-0.7812,0.3678,14.52
+614,170,robot_3cam,milk on pink plate,1665,181,-0.9942,-0.8626,0.5978,14.52
+103,100,robot_3cam,blue brick in blue bowl,976,24,0.2992,-0.5912,0.5283,14.31
+103,100,robot_3cam,blue brick in blue bowl,980,74,0.9162,0.1086,0.81,14.31
+1152,90,video_2cam,open drawer,221,202,0.9021,0.9889,0.9839,10.87
+1152,90,video_2cam,open drawer,230,62,0.9401,0.9899,-0.6366,10.87
+1273,70,video_2cam,red brick in green bowl and yellow brick in green bowl,283,211,0.2877,0.2478,0.9893,20.51
+1273,70,video_2cam,red brick in green bowl and yellow brick in green bowl,287,213,-0.8328,-0.3181,-0.317,20.51
+1497,180,video_2cam,yellow brick on blue plate,374,193,0.3448,0.8274,-1.0,29.12
+1497,180,video_2cam,yellow brick on blue plate,371,239,0.7919,0.7986,0.3322,29.12
+834,70,video_2cam,banana in black bowl,545,235,0.9116,0.7668,0.8081,13.47
+834,70,video_2cam,banana in black bowl,574,202,-0.4233,0.2353,0.1554,13.47
+1389,90,video_2cam,yellow brick in basket,336,73,-0.3905,0.0637,0.9212,45.96
+1389,90,video_2cam,yellow brick in basket,340,15,0.5704,-0.6046,-0.8217,45.96
+298,60,robot_3cam,white cup on grey plate,1307,46,0.9524,0.8728,-0.8583,26.39
+298,60,robot_3cam,white cup on grey plate,1309,134,0.945,0.9611,-0.1631,26.39
+620,20,robot_3cam,milk on pink plate,1661,28,0.6112,0.5862,-0.3911,26.32
+620,20,robot_3cam,milk on pink plate,1638,136,-0.6264,0.6894,-0.9076,26.32
+17,130,robot_3cam,banana in basket,771,66,-0.9734,0.8664,0.9944,8.38
+17,130,robot_3cam,banana in basket,726,214,-0.9981,-0.991,-0.7648,8.38
+1093,190,video_2cam,can on stove,198,101,-0.977,-0.298,0.9682,12.04
+1093,190,video_2cam,can on stove,170,60,0.9967,0.9895,-0.9953,12.04
+982,20,video_2cam,open drawer and blue brick in drawer and close drawer,118,500,-0.1913,-0.3827,-0.0084,11.75
+982,20,video_2cam,open drawer and blue brick in drawer and close drawer,114,428,0.3054,0.2495,-0.9688,11.75
+1425,20,video_2cam,yellow brick next to stove,358,129,0.6984,0.5739,-0.6964,14.91
+1425,20,video_2cam,yellow brick next to stove,355,82,-0.8566,0.4072,-0.117,14.91
+1489,40,video_2cam,yellow brick on blue plate,426,47,-0.9908,0.8789,0.7558,26.08
+1489,40,video_2cam,yellow brick on blue plate,378,192,0.91,-0.9639,-0.5478,26.08
+1305,160,video_2cam,white cup on grey plate,297,193,-0.9728,-1.0,1.0,9.83
+1305,160,video_2cam,white cup on grey plate,293,206,-0.5921,-0.9094,-0.3505,9.83
+630,50,robot_3cam,milk on pink plate,1669,103,0.9558,-0.8432,-0.0459,12.36
+630,50,robot_3cam,milk on pink plate,1665,87,0.9572,0.983,-0.6008,12.36
+1483,170,video_2cam,yellow brick on blue plate,385,88,0.5253,0.1698,0.6562,17.33
+1483,170,video_2cam,yellow brick on blue plate,371,160,-0.5873,-0.2495,-0.4066,17.33
+1434,100,video_2cam,yellow brick on blue brick,361,79,0.622,-0.0267,0.6763,13.8
+1434,100,video_2cam,yellow brick on blue brick,369,16,0.6822,-0.1857,0.0824,13.8
+439,140,robot_3cam,yellow brick on pink plate,1554,139,-0.354,-0.8419,-0.7328,11.46
+439,140,robot_3cam,yellow brick on pink plate,1535,48,0.4603,-0.7807,-0.5162,11.46
+190,170,robot_3cam,can on stove,1063,201,-0.563,-0.9064,0.9995,4.53
+190,170,robot_3cam,can on stove,1101,205,-0.7212,-0.0196,-0.4405,4.53
+541,80,robot_3cam,banana in black bowl,868,59,0.0855,-0.3008,-0.3964,29.33
+541,80,robot_3cam,banana in black bowl,842,90,0.9072,0.687,0.7488,29.33
+754,10,video_2cam,banana in basket,44,76,0.1754,-0.9999,0.971,11.54
+754,10,video_2cam,banana in basket,2,65,0.4297,-0.7249,-0.7345,11.54
+896,60,video_2cam,banana in orange bowl,60,162,-0.7642,-0.1293,-0.908,5.01
+896,60,video_2cam,banana in orange bowl,65,134,0.9601,-0.9994,0.861,5.01
+123,20,robot_3cam,blue brick on red brick,1008,162,0.9992,-0.7484,0.5267,18.68
+123,20,robot_3cam,blue brick on red brick,1003,208,0.7779,-0.2151,-0.9741,18.68
+720,130,video_2cam,banana in basket,14,111,0.9905,-0.9949,-0.4279,19.36
+720,130,video_2cam,banana in basket,43,63,0.8625,-0.7037,-0.9032,19.36
+260,70,robot_3cam,pink cup on pink plate,1214,110,0.6057,0.3246,0.3832,26.55
+260,70,robot_3cam,pink cup on pink plate,1230,16,0.9718,0.9994,0.5351,26.55
+1505,60,video_2cam,yellow brick on blue plate,395,14,0.9739,0.9866,0.9713,14.05
+1505,60,video_2cam,yellow brick on blue plate,385,55,0.8468,0.9233,0.0782,14.05
+883,90,video_2cam,banana in orange bowl,67,169,0.6702,0.4116,-0.9858,23.73
+883,90,video_2cam,banana in orange bowl,68,116,0.3753,0.9124,0.8889,23.73
+1531,50,video_2cam,yellow brick on pink plate,453,78,-0.9169,0.3651,-0.8809,8.85
+1531,50,video_2cam,yellow brick on pink plate,460,177,0.6274,0.5099,-0.6496,8.85
+1514,100,video_2cam,yellow brick on blue plate,428,35,-0.0028,-0.9695,0.6105,3.99
+1514,100,video_2cam,yellow brick on blue plate,401,211,0.6488,-0.8753,-0.659,3.99

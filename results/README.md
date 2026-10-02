@@ -17,6 +17,7 @@ the fix belongs in the experiment that wrote the CSV, not in the plot script.
     umap_decodability.csv     how decodable robot/source is, per checkpoint
     tsne_teachers.csv         LIBERO latent t-SNE, coloured by robot
     tsne_hardware.csv         DK1 latent t-SNE, coloured by data source
+    xemb_realworld_transfer*.csv  DK1 human <-> robot latent transfer (same latent, same movement)
 
 A file's stem names the figure it builds, so `realworld_scaling.csv` becomes
 `figures/realworld_scaling.pdf`. Renaming one means renaming both.
@@ -562,3 +563,43 @@ file header.
 | `action_only_sr` | pure action-only policy; empty for `xemb` (no such arm, the table's N/A) |
 | `video_sr`       | + LAM (ours), dual-view teacher                                 |
 | `sideview_sr`    | + LAM with the single-view teacher; `xemb` rows only (from `libero_xemb_sweep.csv`) |
+
+## `xemb_realworld_transfer*.csv`
+
+Human <-> robot latent transfer on real-world DK1 data, multi-view LAM sharedlam2
+(43524549, ckpt 30k), raw 8-D latents (idx1 = +5 frames). Written by
+`experiments/extract_xemb_realworld_transfer.py`; the figure reads only the first two
+files plus the key frames in `frames_xemb_realworld/` (`<pair>_<role>_k{0,1,2}.jpg`,
+front camera at 0 / 0.5 / 1 s, 320x240).
+
+`xemb_realworld_transfer.csv` -- the latent sequences of the hand-picked pairs, one row
+per frame:
+
+| column | meaning |
+|---|---|
+| `pair` | `close_drawer` (same task) or `push_away` (robot closes drawer, human pushes bowl away) |
+| `role` | `robot` or `human` |
+| `episode`, `frame` | episode / frame index in `dk1-postprocessed-full-3cam-placeholder-20260719` |
+| `step` | 0..29, frame within the 1 s window |
+| `task` | task string of that episode |
+| `z0`..`z7` | the exported continuous latent |
+
+`xemb_realworld_transfer_arrows.csv` -- arrows in fractions of frame width / height:
+`panel` (`close_drawer`, `push_away`, `traverse`), `role`, `kind` (`window` = front-camera
+optical flow over the 1 s clip, top-3 % magnitude pixels; `edit_y` / `edit_z` = flow
+between the decodings of mean latent -/+ 6 cm along the robot-ridge direction for
+end-effector +y / +z), centroid `cx, cy`, vector `u, v`.
+
+No figure, numbers for the text:
+
+- `xemb_realworld_transfer_candidates.csv` -- the retrieval search: `kind` = `nearest`
+  (top-300 robot -> nearest human 1 s windows, raw-latent L2), `same_task` (best 8 per
+  task) or `random` (300 random robot/human pairs); `cos` = cosine of the two windows'
+  front-camera flow vectors, `mag_r` / `mag_h` their lengths in px at 256x256.
+- `xemb_realworld_transfer_swap.csv` -- latent swap through the LAM decoder: a start
+  frame of one embodiment rolled out 1 s under the latents of the other's clip (`raw`, or
+  `centred` = minus own-source mean plus target-source mean), vs a random clip's latents
+  (`control`); `cos_*` = cosine of the rendered motion with the source clip's true motion.
+- `xemb_realworld_transfer_stats.csv` -- `metric,value`: the aggregates of both, the
+  latent-edit agreement over 50 random frames per source, and the latent correlation /
+  L2 per frame of each picked pair.

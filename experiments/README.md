@@ -35,3 +35,21 @@ shows one robot or one source more densely than another.
 
 One UMAP is fitted per model, jointly across that model's checkpoints — never
 across models, whose latent spaces are trained separately and share no basis.
+
+## `extract_xemb_realworld_transfer.py`
+
+Writes the `results/xemb_realworld_transfer*` dumps and `results/frames_xemb_realworld/`
+behind `plot_xemb_realworld_transfer.py` (human <-> robot latent transfer, DK1). Needs a
+GPU, torchcodec/opencv/einops and the LAM package; on st-07 the `mg-latent` env:
+
+    P=~/miniconda3/envs/mg-latent/bin/python
+    $P experiments/extract_xemb_realworld_transfer.py search --stage <stage>   # ~3 min
+    $P experiments/extract_xemb_realworld_transfer.py swap   --stage <stage>   # ~10 min
+    $P experiments/extract_xemb_realworld_transfer.py dump   --stage <stage>   # ~1 min
+
+`<stage>` holds `exports/sharedlam2/` (the full-dataset latent export).
+`--dataset-root` (canonical DK1 front+side videos + meta) and `--ckpt` (sharedlam2
+`pretrained_model`, copied from MN5) default to the st-07 copies. The LAM code is
+`lerobot_policy_lam_plain_dino`, md5-identical to the p19 training snapshot; a
+re-extraction of exported latents matches them at cos 0.994-1.000. The pairs in
+`SELECTED` were picked by eye from the `search` output.
