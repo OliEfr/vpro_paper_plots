@@ -1,42 +1,31 @@
-r"""Same latent, same movement: human <-> robot latent transfer on real-world DK1 data.
+r"""Same movement, same latent -- different movement, different latent: human <-> robot on DK1.
 
-Reads the dumps written by ``experiments/extract_xemb_realworld_transfer.py``:
-``results/xemb_realworld_transfer.csv`` (the 30x8 latent sequences),
-``results/xemb_realworld_transfer_arrows.csv`` (motion arrows) and the key frames in
+Reads the dumps written by ``experiments/extract_xemb_realworld_transfer.py dump``:
+``results/xemb_realworld_transfer.csv`` (latent sequences), ``..._arrows.csv`` (motion
+arrows), ``..._similarity.csv`` (clip-by-clip latent similarity) and the key frames in
 ``results/frames_xemb_realworld/``. Emits ``figures/xemb_realworld_transfer[_science].{pdf,png}``.
 
-What is shown. Multi-view LAM (front + side, the paper's teacher), raw 8-D latents, no
-normalisation of any kind.
-
-  (a) A 1 s ROBOT clip (top) and the HUMAN clip whose latent sequence is its nearest
-      neighbour among all human windows (bottom), same task "close drawer": three front
-      key frames each (start, 0.5 s, 1 s), the image motion of the hand / gripper over the
-      clip as an arrow (optical flow, top-3 % magnitude pixels), and the two latent
-      sequences as heatmaps on one colour scale (rows = latent dims, columns = frames).
-  (b) The same for a cross-task pair: the robot closing a drawer and a human pushing a
-      bowl away -- different object and task, same latent, same pushing movement.
-  Arrows are drawn at 2x their measured length (ARROW_GAIN).
-  (c) The latent as a cause rather than a correlate: one latent edit (the direction a
-      ridge probe fitted on ROBOT data reads as end-effector +y / +z) is added to the
-      mean latent and decoded by the LAM's own pixel decoder on a robot frame and on a
-      human frame; arrows = image motion between the -6 cm and +6 cm decodings. The same
-      edit moves the gripper and the hand the same way.
-
-The examples are cherry-picked by design (the question is whether a clear example
-exists); the stats csv carries how often matched pairs agree vs random pairs.
+What is shown. Real-world DK1, the paper's multi-view LAM. Four different movements (rows).
+For each, a ROBOT clip and the HUMAN clip whose latent sequence is its nearest neighbour,
+1 s each: first and last front-camera frame, the image motion of gripper / hand as an arrow
+(optical flow, drawn at 2x length), and the two latent sequences as heatmaps (8 latent dims
+x 30 frames). The heatmaps show each latent minus its embodiment's average latent: robot
+and human latents differ by a constant offset, which says "robot" or "human" and nothing
+about the movement; removing it leaves the movement. Right: correlation of these latent
+sequences between all eight clips -- high within a movement (robot and human agree),
+low across movements (the latents are different for different movements).
 
 LaTeX:
 
     \begin{figure*}[t]
       \centering
       \includegraphics[width=\textwidth]{figures/xemb_realworld_transfer.pdf}
-      \caption{Same latent, same movement across embodiments (real world, multi-view
-        LAM, raw latents). (a)~A robot clip and the human clip with the nearest latent
-        sequence both push the drawer shut; arrows: image motion over 1\,s; heatmaps:
-        the two 8-D latent sequences on one colour scale; arrows drawn at $2\times$ length. (b)~Across tasks: the robot
-        closing a drawer and a human pushing a bowl away share the latent and the
-        movement. (c)~Decoding one latent edit (robot-probe $+y$, $+z$) on a robot and a
-        human frame moves gripper and hand alike.}
+      \caption{Same movement, same latent across embodiments (real world, multi-view LAM).
+        Left: four movements, each a robot clip and the human clip with the nearest latent
+        sequence (1\,s, first and last frame; arrows: image motion, $2\times$); heatmaps:
+        their latent sequences, each minus its embodiment's average latent. Right:
+        correlation of the latent sequences of all eight clips -- high within a movement,
+        low across movements.}
       \label{fig:xemb_realworld_transfer}
     \end{figure*}
 
@@ -54,22 +43,17 @@ import style
 HERE = Path(__file__).resolve().parent
 LAT = HERE / "results" / "xemb_realworld_transfer.csv"
 ARR = HERE / "results" / "xemb_realworld_transfer_arrows.csv"
+SIM = HERE / "results" / "xemb_realworld_transfer_similarity.csv"
 FRAMES = HERE / "results" / "frames_xemb_realworld"
-PAIRS = [("close_drawer", "(a) same task: close drawer"),
-         ("push_away", "(b) across tasks: close drawer / push bowl away")]
+MOVES = [("right", "right"), ("up_right", "up-right"), ("away", "away"), ("down_right", "down-right")]
 ROLES = [("robot", "Robot"), ("human", "Human")]
-KEY_TITLES = ["0 s", "0.5 s", "1 s"]
-CROP_FRAC = 0.58          # crop side, fraction of frame width / height, centred on the moving hand / gripper
+CROP_FRAC = 0.58          # crop side, fraction of frame width / height, centred on the moving gripper / hand
 ARROW_GAIN = 2.0          # arrows drawn at 2x their measured length, for legibility at print size
-EDITS = [("edit_y", r"latent edit: robot-probe $+y$"), ("edit_z", r"latent edit: robot-probe $+z$")]
 
 
 def crop_box(cx, cy):
-    """Crop (fractions) centred on the arrow, clipped to the frame."""
     h = CROP_FRAC / 2
-    x0 = float(np.clip(cx - h, 0, 1 - CROP_FRAC))
-    y0 = float(np.clip(cy - h, 0, 1 - CROP_FRAC))
-    return x0, y0
+    return float(np.clip(cx - h, 0, 1 - CROP_FRAC)), float(np.clip(cy - h, 0, 1 - CROP_FRAC))
 
 
 def show(ax, img, box):
@@ -82,15 +66,15 @@ def show(ax, img, box):
         s.set_visible(False)
 
 
-def arrow(ax, r, color, ls="-", plt=None):
+def arrow(ax, r, color):
     import matplotlib.patheffects as pe
     u, v = ARROW_GAIN * r.u, ARROW_GAIN * r.v
     x, y = r.cx - u / 2, r.cy - v / 2
     a = ax.annotate("", xy=(x + u, y + v), xytext=(x, y),
                     arrowprops=dict(arrowstyle="-|>,head_length=0.45,head_width=0.25", color=color,
-                                    linewidth=1.4, linestyle=ls, shrinkA=0, shrinkB=0))
+                                    linewidth=1.4, shrinkA=0, shrinkB=0))
     a.arrow_patch.set_path_effects([pe.Stroke(linewidth=3.0, foreground="white"), pe.Normal()])
-    a.arrow_patch.set_clip_path(ax.patch)   # keep the arrow inside its tile
+    a.arrow_patch.set_clip_path(ax.patch)
 
 
 def main():
@@ -104,85 +88,78 @@ def main():
     style.apply_style()
     import matplotlib.pyplot as plt
     from matplotlib.image import imread
-    from matplotlib.lines import Line2D
+    from matplotlib.patches import Rectangle
 
-    lat = pd.read_csv(LAT)
-    arr = pd.read_csv(ARR)
-    zc = [f"z{k}" for k in range(8)]
+    lat, arr = pd.read_csv(LAT), pd.read_csv(ARR)
+    sim = pd.read_csv(SIM, index_col=0)
+    zc = [f"zc{k}" for k in range(8)]
+    vmax = np.abs(lat[zc].values).max()
+    fs = plt.rcParams["font.size"]
 
     w = style.TEXT_WIDTH
-    tile_w = 0.70                     # inch; crop is CROP_FRAC of a 4:3 frame -> tile aspect 4:3
+    tile_w = 0.66
     tile_h = tile_w * 3 / 4
-    heat_w = 0.80
-    gap_pair = 0.32
-    top, bottom, row_gap, block_gap = 0.30, 0.10, 0.04, 0.34
-    h = top + 2 * tile_h + row_gap + block_gap + tile_h + 0.12 + bottom
+    label_w, gap_t, gap_emb, heat_gap, heat_w = 0.66, 0.02, 0.10, 0.10, 0.78
+    top, bottom, row_gap = 0.32, 0.20, 0.09
+    h = top + len(MOVES) * tile_h + (len(MOVES) - 1) * row_gap + bottom
     fig = plt.figure(figsize=(w, h))
     X = lambda inch: inch / w
-    Y = lambda inch: 1 - inch / h     # from the top
+    Yb = lambda inch_from_top, height: 1 - (inch_from_top + height) / h   # bottom of an axes, from top offset
 
-    left0 = 0.30
-    cmap = plt.get_cmap("RdBu_r")
-    print(f"{'pair':14s} {'role':6s} episode frame  task")
-    for pi, (pair, ptitle) in enumerate(PAIRS):
-        x_start = left0 + pi * (3 * tile_w + 0.17 + heat_w + gap_pair)
-        sub = lat[lat.pair == pair]
-        vmax = np.abs(sub[zc].values).max()
-        fig.text(X(x_start), Y(0.10), ptitle, ha="left", va="top", fontsize=plt.rcParams["font.size"])
+    def x_tile(role_i, k):
+        return label_w + role_i * (2 * tile_w + gap_t + gap_emb) + k * (tile_w + gap_t)
+
+    x_heat = x_tile(1, 1) + tile_w + heat_gap
+    for ri, (role, rlabel) in enumerate(ROLES):
+        fig.text(X(x_tile(ri, 0) + tile_w + gap_t / 2), 1 - (top - 0.06) / h, f"{rlabel}: start  /  after 1 s",
+                 ha="center", va="bottom", fontsize=fs)
+    fig.text(X(x_heat + heat_w / 2), 1 - (top - 0.06) / h, "latent over 1 s", ha="center", va="bottom", fontsize=fs)
+
+    print(f"{'movement':11s} {'role':6s} episode frame  task")
+    for mi, (mv, mlabel) in enumerate(MOVES):
+        y_top = top + mi * (tile_h + row_gap)
+        fig.text(X(label_w - 0.06), Yb(y_top, tile_h / 2), mlabel, ha="right", va="center", fontsize=fs)
         for ri, (role, rlabel) in enumerate(ROLES):
-            y_top = top + ri * (tile_h + row_gap)
-            r_arr = arr[(arr.panel == pair) & (arr.role == role) & (arr.kind == "window")].iloc[0]
+            r_arr = arr[(arr.panel == mv) & (arr.role == role)].iloc[0]
             box = crop_box(r_arr.cx, r_arr.cy)
-            for j in range(3):
-                ax = fig.add_axes([X(x_start + j * tile_w), Y(y_top + tile_h), X(tile_w - 0.02), tile_h / h])
-                show(ax, imread(FRAMES / f"{pair}_{role}_k{j}.jpg"), box)
-                if j == 2:
+            for k, kf in enumerate((0, 2)):
+                ax = fig.add_axes([X(x_tile(ri, k)), Yb(y_top, tile_h), X(tile_w), tile_h / h])
+                show(ax, imread(FRAMES / f"{mv}_{role}_k{kf}.jpg"), box)
+                if k == 1:
                     arrow(ax, r_arr, style.INK)
-                if ri == 0:
-                    ax.set_title(KEY_TITLES[j], pad=1.5, fontsize=plt.rcParams["font.size"] - 1)
-                if j == 0 and pi == 0:
-                    ax.set_ylabel(rlabel, labelpad=2)
-            zz = sub[sub.role == role].sort_values("step")
-            axh = fig.add_axes([X(x_start + 3 * tile_w + 0.17), Y(y_top + tile_h), X(heat_w), tile_h / h])
-            im = axh.imshow(zz[zc].values.T, aspect="auto", cmap=cmap, vmin=-vmax, vmax=vmax, interpolation="nearest")
-            axh.set_yticks([0, 7]); axh.set_yticklabels(["$z_1$", "$z_8$"])
+            zz = lat[(lat.pair == mv) & (lat.role == role)].sort_values("step")
+            hh = (tile_h - 0.03) / 2
+            axh = fig.add_axes([X(x_heat), Yb(y_top + ri * (hh + 0.03), hh), X(heat_w), hh / h])
+            axh.imshow(zz[zc].values.T, aspect="auto", cmap="RdBu_r", vmin=-vmax, vmax=vmax, interpolation="nearest")
+            axh.set_xticks([]); axh.set_yticks([])
             axh.minorticks_off()
-            axh.tick_params(which="both", length=1.5, pad=1, top=False, right=False)
-            if ri == 0:
-                axh.set_xticks([]); axh.set_title("latent (8-D) over 1 s", pad=1.5, fontsize=plt.rcParams["font.size"] - 1)
-            else:
-                axh.set_xticks([0, 29]); axh.set_xticklabels(["0 s", "1 s"])
             for s in axh.spines.values():
                 s.set_visible(False)
+            axh.text(-0.04, 0.5, rlabel[0], transform=axh.transAxes, ha="right", va="center", fontsize=fs - 1)
             e0 = zz.iloc[0]
-            print(f"{pair:14s} {role:6s} {int(e0.episode):7d} {int(e0.frame):5d}  {e0.task}")
+            print(f"{mv:11s} {role:6s} {int(e0.episode):7d} {int(e0.frame):5d}  {e0.task}")
 
-    # (c) traversal
-    y_top = top + 2 * tile_h + row_gap + block_gap
-    fig.text(X(left0), Y(y_top - 0.06), "(c) one latent edit, decoded on a robot and a human frame",
-             ha="left", va="bottom", fontsize=plt.rcParams["font.size"])
-    colors = {"edit_y": style.PALETTE[0], "edit_z": style.PALETTE[2]}
-    dashes = {"edit_y": "-", "edit_z": (0, (2.2, 1.2))}
-    for ri, (role, rlabel) in enumerate(ROLES):
-        win = arr[(arr.panel == "close_drawer") & (arr.role == role) & (arr.kind == "window")].iloc[0]
-        box = crop_box(win.cx, win.cy)
-        ax = fig.add_axes([X(left0 + ri * (tile_w + 0.06)), Y(y_top + tile_h), X(tile_w - 0.02), tile_h / h])
-        show(ax, imread(FRAMES / f"close_drawer_{role}_k0.jpg"), box)
-        ax.set_xlabel(rlabel, labelpad=1.5)
-        for kind, _ in EDITS:
-            r = arr[(arr.panel == "traverse") & (arr.role == role) & (arr.kind == kind)].iloc[0]
-            arrow(ax, r, colors[kind], dashes[kind])
-    handles = [Line2D([0], [0], color=colors[k], linestyle=dashes[k], linewidth=1.4, label=l) for k, l in EDITS]
-    handles.append(Line2D([0], [0], color=style.INK, linewidth=1.4, label="image motion of the clip, (a)/(b)"))
-    fig.legend(handles=handles, loc="center left", bbox_to_anchor=(X(left0 + 2 * tile_w + 0.25), Y(y_top + tile_h / 2)),
-               frameon=False, handlelength=2.2)
-    cax = fig.add_axes([X(w - 1.55), Y(y_top + tile_h * 0.62), X(1.2), 0.07 / h])
-    cb = fig.colorbar(im, cax=cax, orientation="horizontal")
-    cb.set_ticks([]); cb.outline.set_visible(False)
-    cax.set_title("latent value: $-$  0  $+$ (one scale per pair)", pad=1.5, fontsize=plt.rcParams["font.size"] - 1)
+    # similarity matrix
+    names = list(sim.index)
+    m_left = x_heat + heat_w + 0.80
+    m_size = min(w - m_left - 0.08, len(MOVES) * (tile_h + row_gap) - row_gap)
+    axm = fig.add_axes([X(m_left), Yb(top, m_size), X(m_size), m_size / h])
+    axm.imshow(sim.values, cmap="RdBu_r", vmin=-1, vmax=1, interpolation="nearest")
+    short = {mv: lab for mv, lab in MOVES}
+    labels = [f"{short[n.split(':')[0]]} ({n.split(':')[1][0].upper()})" for n in names]
+    axm.set_xticks(range(len(names))); axm.set_yticks(range(len(names)))
+    axm.set_xticklabels([n.split(':')[1][0].upper() for n in names], fontsize=fs - 1.5)   # R / H; rows carry the names
+    axm.set_yticklabels(labels, fontsize=fs - 1.5)
+    axm.minorticks_off()
+    axm.tick_params(which="both", length=0, pad=1.5, top=False, right=False)
+    for s in axm.spines.values():
+        s.set_visible(False)
+    for i in range(0, len(names), 2):
+        axm.add_patch(Rectangle((i - 0.5, i - 0.5), 2, 2, fill=False, edgecolor=style.INK, linewidth=0.9))
+    axm.set_title("latent similarity between clips", pad=3, fontsize=fs)
 
-    print("\narrows (fractions of frame):")
-    print(arr.to_string(index=False))
+    print("\nlatent similarity (correlation of the centred sequences):")
+    print(sim.round(2).to_string())
     suffix = "_science" if a.style == "science" else ""
     style.save(fig, f"xemb_realworld_transfer{suffix}")
 

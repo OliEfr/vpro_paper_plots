@@ -1,0 +1,11 @@
+kind,index,role,episode,frame,task,label
+row,0,robot,403,150,yellow brick on blue plate,
+row,1,robot,121,32,blue brick on red brick,
+row,2,human,1151,183,open drawer,
+row,3,human,1594,212,yellow brick on top of drawer,
+col,1,robot,276,190,push pink cup,right
+col,2,human,1129,96,grey cup on grey plate,up-right
+col,3,human,989,345,open drawer and blue brick in drawer and close drawer,away
+col,4,human,1602,66,yellow cup next to stove,up-left
+col,5,robot,425,51,yellow brick on blue plate,left
+col,6,robot,538,95,banana in black bowl,down-left

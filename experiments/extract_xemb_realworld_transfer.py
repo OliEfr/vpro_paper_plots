@@ -20,12 +20,12 @@ Three modes, run in this order (the figure needs only ``dump``):
            clip of embodiment A, vs a static rollout under B's mean latent; the rendered
            motion is compared with A's true image motion. Controls: a random clip's latents.
            -> results/xemb_realworld_transfer_swap.csv
-  dump     The figure inputs for the hand-picked pairs in SELECTED: front key frames,
-           per-window flow arrows, the two 30x8 latent sequences, and the latent-edit
-           (traversal) arrows: a latent offset along the robot-fitted ridge direction for
-           +y / +z end-effector motion, added to each source's mean latent and decoded on a
-           real robot and a real human frame; arrows = flow between the -6 cm and +6 cm
-           renders. Also the aggregate numbers (stats csv) quoted in the caption.
+  dump     The figure inputs for the hand-picked pairs in SELECTED (four different movements):
+           front key frames, per-clip flow arrows, the 30x8 latent sequences (raw `z*` and
+           `zc*` = minus that embodiment's average latent, which removes the constant
+           robot-vs-human offset), and the clip-by-clip similarity of the `zc` sequences
+           (same movement -> similar, different movement -> different). Also the aggregate
+           numbers (stats csv).
 
 The pairs in SELECTED were picked by eye from the search output (cherry-picked by design:
 the question is whether a clear example exists, the rates in the stats csv say how often).
@@ -61,15 +61,14 @@ FRAME_DIR = RES / "frames_xemb_realworld"
 FPS, W, SUB, STRIDE = 30, 30, 3, 5
 OFFS = [0, 1, 5, 9]          # LAM frame offsets; latent idx1 = +5 frames
 
-# (name, robot episode, robot start frame, human episode, human start frame) -- picked by eye.
+# (movement, robot episode, robot start frame, human episode, human start frame) -- picked by eye
+# from the search: robot in view, real image motion of both clips agrees, four different movements.
 SELECTED = [
-    ("close_drawer", 112, 435, 997, 275),   # same task: both push the drawer shut
-    ("push_away", 113, 435, 917, 95),       # cross task: robot closes drawer, human pushes a bowl away
+    ("right", 272, 140, 1258, 195),      # push pink cup: both push the cup to the right
+    ("up_right", 486, 115, 790, 95),     # banana in cardboard box: both lift the banana up-right over the box
+    ("away", 112, 435, 997, 275),        # close drawer: both push the drawer shut, away from the camera
+    ("down_right", 200, 140, 1645, 105), # robot (can on stove) and human (milk on plate) move down-right
 ]
-# Traversal frames = the first frames of the same-task pair.
-TRAVERSE = [("robot", 112, 435), ("human", 997, 275)]
-TRAVERSE_DIRS = {"y": 1, "z": 2}
-TRAVERSE_CM = 6.0
 
 
 # ----------------------------------------------------------------------------- data
@@ -318,17 +317,22 @@ def mode_swap(a):
 def mode_dump(a):
     d, Z, st = load_latents(a.stage)
     fr = Frames(a.dataset_root)
-    pol = load_policy(a.ckpt, a.lam_src)
-    U, mu = ridge_dirs(d, Z, st)
+    _, mu = ridge_dirs(d, Z, st)          # mu = per-embodiment average latent [robot, human]
+    MU = {"robot": mu[0], "human": mu[1]}
     key = pd.Series(np.arange(len(d)), index=pd.MultiIndex.from_arrays([d.episode_index.values, d.frame_index.values]))
     FRAME_DIR.mkdir(parents=True, exist_ok=True)
-    lat, arrows = [], []
+    for f in FRAME_DIR.glob("*.jpg"):
+        f.unlink()
+    lat, arrows, seqs = [], [], {}
     for name, er, tr, eh, th in SELECTED:
         for role, e, t in (("robot", er, tr), ("human", eh, th)):
             z = Z[[key[(e, t + i)] for i in range(W)]]
+            zc = z - MU[role]               # minus that embodiment's average latent
+            seqs[f"{name}:{role}"] = zc
             for i in range(W):
                 lat.append(dict(pair=name, role=role, episode=e, frame=t + i, step=i, task=d.task[key[(e, t)]],
-                                **{f"z{k}": round(float(z[i, k]), 4) for k in range(8)}))
+                                **{f"z{k}": round(float(z[i, k]), 4) for k in range(8)},
+                                **{f"zc{k}": round(float(zc[i, k]), 4) for k in range(8)}))
             for j, fi in enumerate(range(t, t + W + 1, W // 2)):   # start, middle, end
                 img = fr.get(e, [fi])[0].permute(1, 2, 0).numpy()
                 cv2.imwrite(str(FRAME_DIR / f"{name}_{role}_k{j}.jpg"),
@@ -336,42 +340,13 @@ def mode_dump(a):
             v, c = window_flow(fr, e, t)    # 256x256 coords -> stored as fractions of width/height
             arrows.append(dict(panel=name, role=role, kind="window", cx=c[0] / 256, cy=c[1] / 256,
                                u=v[0] / 256, v=v[1] / 256))
-    alphas = TRAVERSE_CM / 100.0
-    for role, e, t in TRAVERSE:
-        s = 0 if role == "robot" else 1
-        x = to256(fr.get(e, [t]))[0:1, None]
-        for dn, k in TRAVERSE_DIRS.items():
-            lo = decode(pol, x, torch.tensor(mu[s] - U[:, k] * alphas, dtype=torch.float32).cuda()[None])[0, 0]
-            hi = decode(pol, x, torch.tensor(mu[s] + U[:, k] * alphas, dtype=torch.float32).cuda()[None])[0, 0]
-            f = flow(u8(lo), u8(hi))
-            vm, cm = moving_flow(f)
-            arrows.append(dict(panel="traverse", role=role, kind=f"edit_{dn}", cx=cm[0] / 256, cy=cm[1] / 256,
-                               u=vm[0] / 256, v=vm[1] / 256))
     pd.DataFrame(lat).to_csv(RES / "xemb_realworld_transfer.csv", index=False)
     pd.DataFrame(arrows).round(4).to_csv(RES / "xemb_realworld_transfer_arrows.csv", index=False)
+    names = list(seqs)
+    sim = np.array([[np.corrcoef(seqs[x].ravel(), seqs[y].ravel())[0, 1] for y in names] for x in names])
+    pd.DataFrame(sim, index=names, columns=names).round(3).to_csv(RES / "xemb_realworld_transfer_similarity.csv")
 
-    # traversal agreement over many random frames (stats only)
-    rng = np.random.default_rng(1)
-    src = d.groupby("episode_index").source_kind.first()
-    tv = []
-    for s, sk in enumerate(["robot_3cam", "video_2cam"]):
-        for e in rng.choice(src.index[src == sk], a.ntrav, replace=False):
-            t = int(fr.length(e) * rng.uniform(0.2, 0.6))
-            x = to256(fr.get(e, [t]))[0:1, None]
-            for dn, k in TRAVERSE_DIRS.items():
-                lo = decode(pol, x, torch.tensor(mu[s] - U[:, k] * 0.04, dtype=torch.float32).cuda()[None])[0, 0]
-                hi = decode(pol, x, torch.tensor(mu[s] + U[:, k] * 0.04, dtype=torch.float32).cuda()[None])[0, 0]
-                vm, _ = moving_flow(flow(u8(lo), u8(hi)))
-                tv.append(dict(src=sk, dir=dn, fx=vm[0], fy=vm[1]))
-    tv = pd.DataFrame(tv)
     stats = []
-    for dn in TRAVERSE_DIRS:
-        mr = tv[(tv.src == "robot_3cam") & (tv.dir == dn)][["fx", "fy"]].values
-        mh = tv[(tv.src == "video_2cam") & (tv.dir == dn)][["fx", "fy"]].values
-        ref = mr.mean(0)
-        stats += [dict(metric=f"traverse_{dn}_mean_cos_robot_mean_vs_human_mean", value=cos(ref, mh.mean(0))),
-                  dict(metric=f"traverse_{dn}_frac_human_frames_within_45deg_of_robot_mean",
-                       value=float(np.mean([cos(ref, v) > np.cos(np.pi / 4) for v in mh])))]
     for fn, tag in ((RES / "xemb_realworld_transfer_candidates.csv", "search"),
                     (RES / "xemb_realworld_transfer_swap.csv", "swap")):
         if not fn.exists():
@@ -386,15 +361,17 @@ def mode_dump(a):
             for k, g in c.groupby("srcA"):
                 for col in ("cos_raw", "cos_centred", "cos_control"):
                     stats.append(dict(metric=f"swap_from_{k}_{col}_mean", value=g[col].mean()))
-    for name, er, tr, eh, th in SELECTED:
-        zr = Z[[key[(er, tr + i)] for i in range(W)]]
-        zh = Z[[key[(eh, th + i)] for i in range(W)]]
-        stats += [dict(metric=f"pair_{name}_latent_corr", value=np.corrcoef(zr.ravel(), zh.ravel())[0, 1]),
-                  dict(metric=f"pair_{name}_latent_l2_per_frame", value=np.linalg.norm(zr - zh, axis=1).mean())]
+    same = [sim[i, j] for i in range(len(names)) for j in range(len(names))
+            if i < j and names[i].split(":")[0] == names[j].split(":")[0]]
+    diff = [sim[i, j] for i in range(len(names)) for j in range(len(names))
+            if i < j and names[i].split(":")[0] != names[j].split(":")[0]]
+    stats += [dict(metric="similarity_same_movement_mean", value=float(np.mean(same))),
+              dict(metric="similarity_different_movement_mean", value=float(np.mean(diff)))]
     s = pd.DataFrame(stats)
     s["value"] = s.value.round(4)
     s.to_csv(RES / "xemb_realworld_transfer_stats.csv", index=False)
     print(s.to_string())
+    print(pd.DataFrame(sim, index=names, columns=names).round(2).to_string())
 
 
 def main():
@@ -406,7 +383,6 @@ def main():
     ap.add_argument("--lam-src", default="/home/admin_07/project_repos/lerobot_policy_lam_plain_dino/src")
     ap.add_argument("--top", type=int, default=300)
     ap.add_argument("--nclip", type=int, default=1500)
-    ap.add_argument("--ntrav", type=int, default=50)
     a = ap.parse_args()
     {"search": mode_search, "swap": mode_swap, "dump": mode_dump}[a.mode](a)
 

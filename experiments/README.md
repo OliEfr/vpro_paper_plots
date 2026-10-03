@@ -53,3 +53,31 @@ GPU, torchcodec/opencv/einops and the LAM package; on st-07 the `mg-latent` env:
 `lerobot_policy_lam_plain_dino`, md5-identical to the p19 training snapshot; a
 re-extraction of exported latents matches them at cos 0.994-1.000. The pairs in
 `SELECTED` were picked by eye from the `search` output.
+
+## `extract_xemb_latent_grid.py`
+
+Writes the `results/xemb_latent_grid*` dumps and `results/frames_xemb_latent_grid/`
+behind `plot_xemb_latent_grid.py` (one latent applied to robot and human frames). Same
+machine, env and inputs as `extract_xemb_realworld_transfer.py`, whose loaders it imports:
+
+    P=~/miniconda3/envs/mg-latent/bin/python
+    $P experiments/extract_xemb_latent_grid.py search   # ~4 min, candidate scores
+    $P experiments/extract_xemb_latent_grid.py stats    # ~1 min, the selected latents
+    $P experiments/extract_xemb_latent_grid.py render   # ~1 min, the figure cells
+
+`SELECTED` (one latent per direction) and `ROWS` (start frames with the gripper / hand in
+view) were picked by eye from the top of the search.
+
+## `make_xemb_videos.py`
+
+Videos of both transfer results, from the same selections as the two figures
+(`plot_xemb_realworld_transfer.py`, `plot_xemb_latent_grid.py`); all at half speed:
+
+    ~/miniconda3/envs/mg-latent/bin/python experiments/make_xemb_videos.py   # ~1 min, GPU
+
+- `figures/xemb_transfer_video.mp4` -- the one to show: title cards, the four robot /
+  human pairs (real footage, latents filling in), then the latent-action grid.
+- `figures/xemb_realworld_transfer.mp4`, `figures/xemb_latent_grid.mp4` -- the two parts.
+- `figures/xemb_headline_{away,up_left,left}.mp4` -- one latent from a real demo (left)
+  driving a robot frame and a human frame (LAM decoder output); `xemb_headline_pair_banana.mp4`
+  -- one real robot / human pair with the nearest latent.

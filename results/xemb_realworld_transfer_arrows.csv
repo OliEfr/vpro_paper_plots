@@ -1,9 +1,9 @@
 panel,role,kind,cx,cy,u,v
-close_drawer,robot,window,0.934,0.7737,-0.0111,-0.0942
-close_drawer,human,window,0.7768,0.8885,-0.0247,-0.156
-push_away,robot,window,0.9273,0.799,-0.0085,-0.1004
-push_away,human,window,0.8277,0.8976,0.0009,-0.1378
-traverse,robot,edit_y,0.9053,0.6201,-0.1348,0.005
-traverse,robot,edit_z,0.862,0.7243,0.042,-0.1059
-traverse,human,edit_y,0.8559,0.8791,-0.1238,-0.0454
-traverse,human,edit_z,0.7557,0.8779,0.0525,-0.0642
+right,robot,window,0.596,0.4531,0.0571,-0.0154
+right,human,window,0.687,0.6167,0.111,-0.0381
+up_right,robot,window,0.4664,0.5562,0.0554,-0.0826
+up_right,human,window,0.691,0.7891,0.0301,-0.0308
+away,robot,window,0.934,0.7737,-0.0111,-0.0942
+away,human,window,0.7768,0.8885,-0.0247,-0.156
+down_right,robot,window,0.7584,0.1583,0.0837,0.0796
+down_right,human,window,0.8427,0.8578,0.0461,0.0231

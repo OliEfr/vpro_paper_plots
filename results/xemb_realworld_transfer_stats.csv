@@ -1,8 +1,4 @@
 metric,value
-traverse_y_mean_cos_robot_mean_vs_human_mean,0.9978
-traverse_y_frac_human_frames_within_45deg_of_robot_mean,0.82
-traverse_z_mean_cos_robot_mean_vs_human_mean,0.849
-traverse_z_frac_human_frames_within_45deg_of_robot_mean,0.6
 search_nearest_mean_cos,0.4158
 search_nearest_frac_agree,0.2067
 search_random_mean_cos,-0.0616
@@ -15,7 +11,5 @@ swap_from_robot_3cam_cos_control_mean,0.0208
 swap_from_video_2cam_cos_raw_mean,0.1878
 swap_from_video_2cam_cos_centred_mean,0.2235
 swap_from_video_2cam_cos_control_mean,0.0468
-pair_close_drawer_latent_corr,0.9555
-pair_close_drawer_latent_l2_per_frame,0.4603
-pair_push_away_latent_corr,0.9615
-pair_push_away_latent_l2_per_frame,0.3926
+similarity_same_movement_mean,0.8169
+similarity_different_movement_mean,0.1081
