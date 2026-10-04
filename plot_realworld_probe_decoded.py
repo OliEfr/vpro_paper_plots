@@ -44,6 +44,16 @@ CROP = (0.17, 1.0, 0.10, 1.0)  # x0, x1, y0, y1
 CROP_ASPECT = ((CROP[1] - CROP[0]) * 4) / ((CROP[3] - CROP[2]) * 3)  # width / height of the cropped tile
 BAR_W, GAP_MEAN = 0.36, 0.35
 LEGEND = [("ours_single", "Ours (single-view)"), ("ours_multi", "Ours (multi-view)")]  # short, as in plot_probe_tsne_combo.py
+# 2026-10-03 (user): every trace in the right block starts at 0 at t=0, i.e. each smoothed curve
+# (ground truth and both decodings) is shifted by its own first value. Presentation only; the
+# CSV traces are untouched.
+ZERO_START = True
+
+
+def trace(v):
+    """Smoothed trace in cm; with ZERO_START the curve is offset so that it starts at 0."""
+    y = 100 * smooth(v)
+    return y - y[0] if ZERO_START else y
 
 
 def probe_panel(ax, r2):
@@ -155,9 +165,9 @@ def main():
         for c, (dk, dlabel) in enumerate(DIMS["delta"]):
             ax = fig.add_axes([x_traces + c * (trace_w + TRACE_GAP), y0, trace_w, row_h])
             if kind == "robot_3cam":
-                ax.plot(t, 100 * smooth(sub[f"gt_{dk}"]), color=style.INK, linewidth=0.9)
+                ax.plot(t, trace(sub[f"gt_{dk}"]), color=style.INK, linewidth=0.9)
             for lk, _ in LAMS:
-                ax.plot(t, 100 * smooth(sub[f"{lk}_{a.probe}_{dk}"]), color=colors[lk], linewidth=0.9)
+                ax.plot(t, trace(sub[f"{lk}_{a.probe}_{dk}"]), color=colors[lk], linewidth=0.9)
             ax.axhline(0, color=style.INK_MUTED, linewidth=0.4, zorder=0)
             ax.grid(color=style.GRID, linewidth=0.4)
             ax.set_xlim(t[0], t[-1])

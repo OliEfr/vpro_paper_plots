@@ -214,7 +214,10 @@ def main():
     # The separator: a thin muted rule halfway between the lowest dual-view and
     # the highest single-view mean. It only makes sense while the curves do not
     # cross, so refuse to draw a lie if they ever do.
-    lo_dual, hi_single = ys["video_sr"].min(), ys["sideview_sr"].max()
+    # An x whose cell is still empty for one arm (NaN in the CSV, e.g. the 3-embodiment
+    # dual-view policy while it is still being evaluated, 2026-10-03) is skipped for that
+    # arm only: the line joins its finite points and the other arm keeps its point there.
+    lo_dual, hi_single = np.nanmin(ys["video_sr"]), np.nanmax(ys["sideview_sr"])
     if lo_dual <= hi_single:
         raise SystemExit(f"(c): dual-view ({lo_dual:.1f}) no longer above single-view "
                          f"({hi_single:.1f}) everywhere -- drop the separator rule")
@@ -224,7 +227,8 @@ def main():
           f"(dual-view min {lo_dual:.1f}, single-view max {hi_single:.1f})")
     for mi, m in enumerate(METHODS):
         if m in ys:
-            ax.plot(pos, ys[m], zorder=3, **line_kw(mi, "mean"))
+            ok = np.isfinite(ys[m])
+            ax.plot(pos[ok], ys[m][ok], zorder=3, **line_kw(mi, "mean"))
     axis_common(ax, xs, SPAN_YLIM, SPAN_YTICKS)
     ax.set_xticklabels([str(int(x)) for x in xs])
     ax.set_xlabel(SWEEP_XLABELS[SPAN_COL], labelpad=1.5)

@@ -19,6 +19,9 @@
 # sideview_sr (xemb rows only, added 2026-10-02): + LAM with the single-view (sideview-only) teacher,
 #   the numbers of results/libero_xemb_sweep.csv's sideview_sr column at the table's 1-decimal
 #   precision (MN5 45408565 (2), LEONARDO 58841760 (1), 58841915 (4)); empty for the other sweeps.
+# xemb x=3 (added 2026-10-03): iiwa + kinova3 + sawyer teachers (MN5 t2b, dual LAM 46895514 seed 1000,
+#   sideview LAM 46896028 seed 1003); sideview policy 46931979 evaluated 2026-10-03 (in-dist 61.59 /
+#   held-out 41.50); dual policy 46952687 evaluated 2026-10-03 (in-dist 66.38 / held-out 51.88).
 sweep,x,split,action_only_sr,video_sr,sideview_sr
 budget,1,nonh,0.439,0.558,
 budget,5,nonh,0.648,0.668,
@@ -42,3 +45,5 @@ xemb,4,nonh,,0.697,0.634
 xemb,1,h,,0.583,0.286
 xemb,2,h,,0.430,0.354
 xemb,4,h,,0.589,0.486
+xemb,3,nonh,,0.664,0.616
+xemb,3,h,,0.519,0.415
