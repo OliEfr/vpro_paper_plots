@@ -1,0 +1,11 @@
+kind,index,role,episode,frame,task,label
+row,0,robot,501,63,banana in cardboard box,
+row,1,robot,498,153,banana in cardboard box,
+row,2,human,1673,76,salt on pink plate,
+row,3,human,854,101,banana in black bowl,
+col,1,robot,10009,101,push milk to the right,right
+col,2,human,11049,62,push milk to the right,up-right
+col,3,human,1687,20,salt on pink plate,away
+col,4,robot,495,48,banana in cardboard box,up-left
+col,5,robot,607,40,milk on pink plate,left
+col,6,human,871,166,banana in black bowl,down-left

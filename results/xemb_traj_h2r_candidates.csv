@@ -1,0 +1,103 @@
+split,gh,th,gr,tr,task_h,task_r,cos_vs_human,cos_vs_robot_real,min_cos_human,motion_px,score
+train,1179,65,44,0,pink cup in basket,banana in basket,0.9745,-0.0502,0.9458,8.6379,0.0
+train,1188,55,420,5,pink cup in basket,yellow brick on blue plate,0.9493,-0.1071,0.8884,9.7295,0.0
+train,1225,70,390,10,pink cup on pink plate,yellow brick on blue plate,0.707,-0.0003,-0.0899,12.5229,0.0
+train,923,65,83,5,blue brick between pink cup and basket,blue brick between pink cup and basket,0.9748,-0.0237,0.9555,12.0311,0.0
+train,1022,260,134,5,red brick on pink plate and blue brick on pink plate,red brick on pink plate and blue brick on pink plate,0.6544,0.5784,0.0071,10.869,0.3429
+train,1455,5,463,10,yellow brick on blue plate,yellow brick on top of drawer,0.5394,0.2347,-0.2286,9.2216,0.0973
+train,1190,125,79,390,pink cup in basket,blue bowl on pink plate and yellow brick in blue bowl,0.5744,0.6864,-0.5585,14.4329,0.3943
+train,1209,65,329,125,pink cup next to drawer,blue brick in blue bowl and yellow brick in blue bowl,0.8495,0.9276,0.7588,17.242,0.788
+train,1220,60,90,165,pink cup on pink plate,blue brick in basket,0.9037,0.4711,0.7626,13.552,0.4257
+train,1063,90,264,0,can on stove,point to top drawer,0.7095,0.3749,0.12,7.0052,0.1553
+train,1131,0,124,10,grey cup on pan,blue brick on red brick,0.8768,0.1118,0.6826,9.7541,0.0797
+train,1198,135,461,95,pink cup next to drawer,yellow brick on top of drawer,0.766,0.9778,0.086,19.0822,0.7491
+train,1326,175,306,230,white cup on pan,white cup on pan,0.4486,0.9269,-0.777,21.7945,0.4158
+train,1501,45,364,15,yellow brick on blue plate,yellow brick on blue brick,0.529,0.6491,-0.3554,8.8431,0.253
+train,1172,60,289,75,pink cup in basket,red brick in green bowl and yellow brick in green bowl,0.9705,0.4401,0.8901,5.551,0.1976
+train,1142,65,345,125,grey cup on pan,yellow brick in orange bowl,0.9296,0.8874,0.8011,13.554,0.8249
+train,917,95,115,425,blue bowl on pink plate and yellow brick in blue bowl,open drawer and blue brick in drawer and close drawer,0.9864,0.5792,0.9688,17.6237,0.5713
+train,1184,85,84,210,pink cup in basket,blue brick between pink cup and basket,0.5666,0.9598,-0.7194,4.6293,0.2098
+train,1351,205,262,110,blue brick in blue bowl and yellow brick in blue bowl,point to top drawer,-0.2374,-0.518,-0.8596,3.6556,0.0
+train,1588,210,159,60,yellow brick on top of drawer,can on stove,0.9759,0.886,0.917,9.2619,0.6673
+train,1032,170,39,240,red brick on pink plate and blue brick on pink plate,banana in basket,0.2296,0.4903,-0.9946,27.2711,0.1126
+train,998,280,114,430,open drawer and blue brick in drawer and close drawer,open drawer and blue brick in drawer and close drawer,0.9442,0.9725,0.9078,16.2811,0.9182
+train,1377,85,366,280,yellow brick in basket,yellow brick on blue brick,0.0075,0.2849,-0.9558,23.4164,0.0021
+train,1078,155,324,300,can on stove,blue brick in blue bowl and yellow brick in blue bowl,0.3266,0.4713,-0.1669,17.1985,0.1539
+train,1584,155,318,125,yellow brick on top of drawer,wipe sponge on table,0.9809,0.5227,0.9469,7.498,0.3203
+train,1108,145,187,80,can on stove,can on stove,0.9117,0.9965,0.8588,17.0773,0.9085
+train,1195,15,74,485,pink cup next to drawer,blue bowl on pink plate and yellow brick in blue bowl,0.8902,0.4496,0.7786,1.8465,0.0616
+train,1181,80,363,120,pink cup in basket,yellow brick on blue brick,0.8643,0.9262,0.73,6.5499,0.437
+train,1134,80,125,125,grey cup on pan,blue brick on red brick,0.9323,0.7858,0.8383,11.491,0.7015
+train,1061,135,167,65,can on stove,can on stove,0.8242,0.951,0.7212,10.1401,0.6624
+train,1258,195,272,155,push pink cup,push pink cup,0.9752,0.9831,0.9295,23.1456,0.9587
+train,1145,45,212,240,grey cup on pan,grey cup on pan,-0.391,0.0264,-0.9816,24.2952,0.0
+train,1144,145,292,65,grey cup on pan,white cup on grey plate,0.9222,0.7815,0.8403,17.1682,0.7207
+train,914,145,28,105,blue bowl on pink plate and yellow brick in blue bowl,banana in basket,0.8903,0.9835,0.8279,32.1362,0.8756
+train,1096,150,346,30,can on stove,yellow brick in orange bowl,0.9573,0.9779,0.8784,18.8987,0.9361
+train,1037,160,158,135,red brick on pink plate and blue brick on pink plate,can on stove,0.9755,0.9929,0.9557,20.0589,0.9686
+train,700,90,53,0,banana in basket,banana in basket,-0.5007,-0.0255,-0.984,10.308,0.0
+train,1269,95,280,125,push pink cup,push pink cup,0.7159,0.7415,-0.0353,12.4123,0.5308
+train,922,195,294,65,blue brick between pink cup and basket,white cup on grey plate,0.6777,0.9317,0.3098,17.3556,0.6314
+train,1361,335,468,100,blue brick in blue bowl and yellow brick in blue bowl,yellow brick on top of drawer,0.7547,0.9418,0.6455,15.4051,0.7108
+train,1257,165,276,195,push pink cup,push pink cup,0.979,0.9921,0.9664,26.1864,0.9713
+train,1353,210,451,50,blue brick in blue bowl and yellow brick in blue bowl,yellow brick on pink plate,0.7811,0.1649,0.6877,14.725,0.1288
+train,1025,295,80,180,red brick on pink plate and blue brick on pink plate,blue brick between pink cup and basket,0.9661,0.9507,0.8947,14.9993,0.9185
+train,1059,35,288,505,can on grey plate,red brick in green bowl and yellow brick in green bowl,0.0246,0.1698,-0.6569,10.9525,0.0038
+train,1064,20,75,400,can on stove,blue bowl on pink plate and yellow brick in blue bowl,0.0689,0.1369,-0.2775,7.1835,0.0056
+train,1135,185,311,145,grey cup on pan,wipe sponge on table,0.9703,0.9644,0.8937,14.151,0.9358
+train,1212,90,432,100,pink cup on pink plate,yellow brick on pink plate,0.8525,0.9653,0.4241,20.0863,0.8229
+train,1481,5,269,0,yellow brick on blue plate,point to top drawer,0.8156,0.4947,0.5238,4.9248,0.1656
+train,933,90,94,50,blue brick between pink cup and basket,blue brick in basket,0.926,0.8574,0.7249,11.2448,0.744
+train,924,100,418,145,blue brick between pink cup and basket,yellow brick on blue plate,0.4903,0.2983,-0.9382,10.846,0.1322
+train,1171,120,399,175,pink cup in basket,yellow brick on blue plate,0.809,0.9798,0.6613,19.4284,0.7927
+train,1204,120,413,170,pink cup next to drawer,yellow brick on blue plate,0.3103,-0.3462,-0.9252,17.1606,0.0
+train,906,35,118,15,blue bowl on pink plate and yellow brick in blue bowl,open drawer and blue brick in drawer and close drawer,0.0723,-0.092,-0.7151,31.769,0.0
+train,1254,110,78,85,push pink cup,blue bowl on pink plate and yellow brick in blue bowl,0.5336,0.9178,0.3,30.8906,0.4897
+train,1076,140,174,130,can on stove,can on stove,0.9554,0.9963,0.8734,21.4589,0.9518
+train,1230,180,409,85,pink cup on pink plate,yellow brick on blue plate,0.8041,0.935,0.5988,16.9663,0.7519
+train,1150,75,203,95,grey cup on pan,grey cup on grey plate,0.8958,0.8988,0.7879,10.3102,0.6918
+train,1313,140,304,75,white cup on pan,white cup on pan,0.9898,0.9178,0.9786,22.1435,0.9084
+train,1199,5,266,0,pink cup next to drawer,point to top drawer,-0.4792,0.3697,-0.8809,2.8014,0.0
+train,901,315,12,75,blue bowl on pink plate and yellow brick in blue bowl,banana in basket,0.9939,0.9037,0.9869,26.4733,0.8982
+train,1038,305,412,55,red brick on pink plate and blue brick on pink plate,yellow brick on blue plate,-0.1345,0.3588,-0.7475,19.1152,0.0
+train,1173,95,70,120,pink cup in basket,blue bowl on pink plate and yellow brick in blue bowl,0.99,0.8821,0.9696,15.5657,0.8733
+train,1443,75,472,165,yellow brick on blue brick,yellow cup next to stove,0.799,0.9344,0.4064,14.431,0.7466
+train,1488,155,320,150,yellow brick on blue plate,wipe sponge on table,0.2827,0.9098,-0.9295,17.0764,0.2572
+train,1296,120,150,65,white cup on grey plate,can on grey plate,0.7683,0.8633,0.629,12.2759,0.6632
+train,1593,150,430,85,yellow brick on top of drawer,yellow brick on blue plate,0.9731,0.8986,0.9316,20.2852,0.8744
+train,1148,70,216,100,grey cup on pan,grey cup on pan,0.8499,0.4503,0.6875,13.0893,0.3827
+train,1358,155,131,150,blue brick in blue bowl and yellow brick in blue bowl,red brick on pink plate and blue brick on pink plate,0.6995,0.2365,-0.1678,24.3551,0.1654
+train,1129,40,403,210,grey cup on grey plate,yellow brick on blue plate,0.602,0.4173,-0.1824,24.4023,0.2512
+train,1317,140,104,40,white cup on pan,blue brick in blue bowl,0.5808,0.5858,0.2085,7.6125,0.2158
+eval,13001,75,12007,70,banana in black bowl (new background),banana in black bowl (new background),0.9327,0.6545,0.8395,6.9843,0.3553
+eval,13023,50,650,120,banana in black bowl (new background),salt on pink plate,0.4259,0.2941,-0.9201,3.1895,0.0333
+eval,13040,50,12006,75,banana in black bowl (new background),banana in black bowl (new background),0.5049,0.9616,-0.8024,11.9602,0.4839
+eval,858,165,598,80,banana in black bowl,milk on pink plate,0.8746,0.9771,0.7085,17.2494,0.8545
+eval,852,10,523,195,banana in black bowl,banana in cardboard box,0.1953,0.5231,-0.6161,4.683,0.0399
+eval,851,5,607,0,banana in black bowl,milk on pink plate,0.3967,0.2485,-0.9993,6.618,0.0544
+eval,848,170,639,85,banana in black bowl,salt on pink plate,0.7905,0.9348,0.6096,10.2704,0.6324
+eval,11009,85,10001,125,push milk to the right,push milk to the right,0.9447,0.8139,0.7821,8.2032,0.5256
+eval,1625,70,578,95,milk on pink plate,banana in black bowl,0.9445,0.8291,0.8352,11.9981,0.783
+eval,11017,45,10003,50,push milk to the right,push milk to the right,0.4664,0.8108,0.0618,8.4579,0.2665
+eval,1663,120,646,145,milk on pink plate,salt on pink plate,0.9438,0.9105,0.8426,17.7602,0.8593
+eval,11006,50,537,80,push milk to the right,banana in black bowl,0.7878,0.6971,0.4188,12.335,0.5491
+eval,1633,105,658,80,milk on pink plate,salt on pink plate,0.9766,0.8963,0.9655,9.364,0.683
+eval,11012,55,10009,60,push milk to the right,push milk to the right,0.8309,0.545,0.6892,9.1663,0.3459
+eval,11007,5,506,45,push milk to the right,banana in cardboard box,-0.2274,-0.3359,-0.961,12.5027,0.0
+eval,790,95,488,120,banana in cardboard box,banana in cardboard box,0.7474,0.2844,0.4238,12.044,0.2125
+eval,807,70,487,110,banana in cardboard box,banana in cardboard box,0.8153,0.9925,0.4364,12.0636,0.8092
+eval,13030,35,12002,75,banana in black bowl (new background),banana in black bowl (new background),0.6639,0.3891,0.2587,7.7071,0.1659
+eval,13009,15,12008,20,banana in black bowl (new background),banana in black bowl (new background),0.072,-0.0759,-0.6562,16.5945,0.0
+eval,13002,70,534,100,banana in black bowl (new background),banana in black bowl,0.7586,0.3668,0.162,11.3734,0.2637
+eval,1661,125,504,95,milk on pink plate,banana in cardboard box,0.812,0.9878,0.662,20.5685,0.8021
+eval,1645,100,583,145,milk on pink plate,milk on pink plate,0.9088,0.9655,0.7377,34.588,0.8774
+eval,13028,0,572,45,banana in black bowl (new background),banana in black bowl,0.2527,0.7737,-0.1924,20.6138,0.1955
+eval,816,145,481,70,banana in cardboard box,banana in cardboard box,0.6441,0.6132,0.4898,19.2897,0.3949
+eval,11026,80,577,135,push milk to the right,banana in black bowl,0.9401,0.4495,0.8406,22.431,0.4226
+eval,1642,60,541,110,milk on pink plate,banana in black bowl,0.899,0.2179,0.7477,9.4693,0.1546
+eval,13019,55,538,150,banana in black bowl (new background),banana in black bowl,-0.2868,0.3059,-0.9982,22.2271,0.0
+eval,11011,20,10005,15,push milk to the right,push milk to the right,-0.501,0.4316,-0.9544,16.9239,0.0
+eval,11037,10,652,30,push milk to the right,salt on pink plate,-0.2371,0.2715,-0.8787,18.7071,0.0
+eval,868,55,587,60,banana in black bowl,milk on pink plate,-0.2549,-0.1368,-0.9903,21.6574,0.0
+eval,1622,45,542,40,milk on pink plate,banana in black bowl,0.6469,0.3065,-0.1138,8.1577,0.1348
+eval,13014,80,579,135,banana in black bowl (new background),banana in black bowl,0.0149,0.4084,-0.6089,14.1418,0.0061

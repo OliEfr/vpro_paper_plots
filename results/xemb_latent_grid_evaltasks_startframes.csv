@@ -1,0 +1,31 @@
+role,gid,frame,task,mean_agree,min_mag,mean_mag
+robot,665,156,salt on pink plate,0.997,3.53,14.067
+robot,574,73,banana in black bowl,0.995,1.311,7.635
+robot,552,123,banana in black bowl,0.993,0.705,5.646
+robot,616,108,milk on pink plate,0.986,0.57,4.759
+robot,650,83,salt on pink plate,0.998,0.691,6.388
+robot,539,50,banana in black bowl,0.992,4.854,19.416
+robot,489,185,banana in cardboard box,0.994,0.922,8.091
+robot,605,83,milk on pink plate,0.995,1.54,10.636
+robot,530,104,banana in cardboard box,0.993,1.069,7.132
+robot,519,159,banana in cardboard box,0.994,1.546,10.072
+robot,498,153,banana in cardboard box,0.997,1.689,10.361
+robot,648,99,salt on pink plate,0.996,1.068,6.604
+robot,585,134,milk on pink plate,0.993,0.823,5.512
+robot,501,63,banana in cardboard box,0.996,3.646,13.365
+robot,518,142,banana in cardboard box,0.994,2.371,13.119
+human,855,84,banana in black bowl,0.989,1.029,5.948
+human,1670,120,milk on pink plate,0.961,0.653,4.672
+human,807,132,banana in cardboard box,0.953,1.368,5.88
+human,13044,34,banana in black bowl (new background),0.988,0.646,7.622
+human,11011,88,push milk to the right,0.947,0.666,5.403
+human,1701,81,salt on pink plate,0.969,0.962,6.959
+human,1698,68,salt on pink plate,0.979,0.898,6.826
+human,1713,48,salt on pink plate,0.991,1.015,9.648
+human,1708,97,salt on pink plate,0.992,1.907,8.45
+human,1628,62,milk on pink plate,0.991,0.805,5.664
+human,870,139,banana in black bowl,0.992,1.251,8.155
+human,13023,48,banana in black bowl (new background),0.978,0.828,7.752
+human,854,101,banana in black bowl,0.992,0.955,8.091
+human,842,89,banana in black bowl,0.978,0.858,5.49
+human,1673,76,salt on pink plate,0.985,1.045,8.096

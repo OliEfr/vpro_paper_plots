@@ -1,0 +1,9 @@
+gr,tr,gh,th,task_r,task_h,direction,ang,cos_vs_source,cos_vs_target_real,min_cos_source,mean_motion_px,score
+12000,65,13023,50,banana in black bowl (new background),banana in black bowl (new background),human_to_robot,44.4462,0.927,0.5637,0.8416,4.7074,0.5226
+12000,65,13023,50,banana in black bowl (new background),banana in black bowl (new background),robot_to_human,44.4462,0.6941,0.5198,0.0662,5.9444,0.3608
+12008,10,13001,20,banana in black bowl (new background),banana in black bowl (new background),human_to_robot,179.4388,0.8556,0.1308,0.5979,19.5782,0.1119
+12008,10,13001,20,banana in black bowl (new background),banana in black bowl (new background),robot_to_human,179.4388,-0.235,-0.5468,-0.9718,12.9601,0.0
+10001,35,13015,20,push milk to the right,banana in black bowl (new background),human_to_robot,15.8598,-0.1326,-0.2998,-0.8253,26.7178,0.0
+10001,35,13015,20,push milk to the right,banana in black bowl (new background),robot_to_human,15.8598,0.7508,0.4314,0.6073,18.6374,0.3239
+12002,75,13030,40,banana in black bowl (new background),banana in black bowl (new background),human_to_robot,69.0738,0.4172,0.5344,-0.9571,8.1001,0.223
+12002,75,13030,40,banana in black bowl (new background),banana in black bowl (new background),robot_to_human,69.0738,0.4893,0.504,-0.6444,14.9165,0.2466

@@ -1,0 +1,9 @@
+panel,role,kind,cx,cy,u,v
+right,robot,window,0.6877,0.6071,0.0881,-0.0002
+right,human,window,0.7199,0.8479,0.1454,0.0034
+up_right,robot,window,0.7313,0.7349,0.0369,-0.1076
+up_right,human,window,0.8693,0.8553,0.0388,-0.1079
+left,robot,window,0.6835,0.436,-0.1055,-0.0026
+left,human,window,0.8779,0.7809,-0.0371,0.006
+down,robot,window,0.6597,0.6631,0.0216,0.0538
+down,human,window,0.7879,0.6762,1e-04,0.0661

@@ -1,0 +1,11 @@
+kind,index,role,episode,frame,task,label
+row,0,robot,12009,37,banana in black bowl (new background),
+row,1,robot,12001,99,banana in black bowl (new background),
+row,2,human,11029,74,push milk to the right,
+row,3,human,13037,39,banana in black bowl (new background),
+col,1,robot,10004,78,push milk to the right,right
+col,2,human,11045,80,push milk to the right,up-right
+col,3,robot,12003,71,banana in black bowl (new background),away
+col,4,human,11028,50,push milk to the right,left
+col,5,human,13041,45,banana in black bowl (new background),down-left
+col,6,robot,10008,73,push milk to the right,down

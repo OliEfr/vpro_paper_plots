@@ -1,0 +1,511 @@
+kind,gr,tr,gh,th,task_r,task_h,dist,cos,mag_r,mag_h,rx,corr,ang
+nearest,10000,5,11026,15,push milk to the right,push milk to the right,4.7013,-0.6874,14.5853,9.3262,198.5191,0.8138,-17.0194
+nearest,10000,30,13001,40,push milk to the right,banana in black bowl (new background),5.2413,0.9647,14.2241,9.4072,171.8454,0.8334,-18.9972
+nearest,10000,35,13023,30,push milk to the right,banana in black bowl (new background),4.9542,0.989,10.8667,8.5705,185.5297,0.8086,103.8527
+nearest,10000,40,13023,35,push milk to the right,banana in black bowl (new background),4.4189,0.9638,10.7132,8.2009,155.8993,0.8118,104.8654
+nearest,10000,45,13001,60,push milk to the right,banana in black bowl (new background),3.9349,0.9758,44.124,14.8638,120.4154,0.8202,-159.4517
+nearest,10000,50,13001,65,push milk to the right,banana in black bowl (new background),3.4888,0.8438,28.1169,9.9452,147.5348,0.8282,-147.6553
+nearest,10000,55,13001,65,push milk to the right,banana in black bowl (new background),3.302,0.494,20.0373,9.9452,134.7041,0.8203,-130.5099
+nearest,10000,60,13023,95,push milk to the right,banana in black bowl (new background),3.082,-0.6615,19.744,4.7515,146.2816,0.7773,-78.8576
+nearest,10000,65,13023,95,push milk to the right,banana in black bowl (new background),2.9229,-0.3847,18.4765,4.7515,146.4006,0.7991,-57.4253
+nearest,10000,70,13023,95,push milk to the right,banana in black bowl (new background),2.8804,-0.1416,17.1421,4.7515,139.1383,0.8191,-41.7618
+nearest,10000,75,13023,95,push milk to the right,banana in black bowl (new background),2.9061,0.1628,17.3681,4.7515,136.5785,0.8142,-25.7012
+nearest,10000,80,13023,95,push milk to the right,banana in black bowl (new background),2.9234,0.5964,16.2548,4.7515,130.7316,0.7936,-1.6479
+nearest,10000,85,13023,100,push milk to the right,banana in black bowl (new background),2.9737,-0.1579,17.5493,0.4711,128.3676,0.7818,1.0598
+nearest,10000,90,13023,95,push milk to the right,banana in black bowl (new background),3.112,0.7984,19.3565,4.7515,134.15,0.7257,10.4661
+nearest,10000,95,13039,85,push milk to the right,banana in black bowl (new background),3.1237,0.9807,23.2167,2.5141,146.1337,0.7394,5.5745
+nearest,10000,115,13023,95,push milk to the right,banana in black bowl (new background),3.2279,0.7949,33.9165,4.7515,163.4499,0.768,7.4582
+nearest,10000,120,13023,90,push milk to the right,banana in black bowl (new background),3.2978,-0.909,36.9267,1.5869,183.4413,0.7666,8.4777
+nearest,10000,135,13039,80,push milk to the right,banana in black bowl (new background),3.0511,-0.5321,22.4369,2.0659,200.3854,0.769,-0.8252
+nearest,10000,140,13023,100,push milk to the right,banana in black bowl (new background),2.8745,-0.4094,16.116,0.4711,181.0798,0.7883,16.1218
+nearest,10000,145,13023,105,push milk to the right,banana in black bowl (new background),2.7942,-0.9998,12.5992,1.6817,188.8241,0.7759,58.0818
+nearest,10000,150,13039,85,push milk to the right,banana in black bowl (new background),2.8803,0.5357,26.2678,2.5141,203.9512,0.744,68.9596
+nearest,10001,15,13015,0,push milk to the right,banana in black bowl (new background),5.0784,0.0544,9.1376,10.4307,204.9344,0.815,45.4942
+nearest,10001,35,13015,20,push milk to the right,banana in black bowl (new background),5.3102,0.9306,21.0063,22.9936,202.5557,0.8395,15.8598
+nearest,10001,40,13023,30,push milk to the right,banana in black bowl (new background),5.0879,0.2025,16.2944,8.5705,172.6294,0.8137,55.2596
+nearest,10001,45,13023,30,push milk to the right,banana in black bowl (new background),4.7149,0.7514,8.0193,8.5705,172.2623,0.8231,128.5397
+nearest,10001,55,13023,35,push milk to the right,banana in black bowl (new background),3.8629,0.7644,23.8562,8.2009,185.5902,0.7974,143.8285
+nearest,10001,60,13023,95,push milk to the right,banana in black bowl (new background),3.6539,-0.8861,33.1928,4.7515,165.6472,0.7905,-107.6
+nearest,10001,65,13023,95,push milk to the right,banana in black bowl (new background),3.5544,0.2293,28.5249,4.7515,132.4037,0.7927,-27.4275
+nearest,10001,70,13023,95,push milk to the right,banana in black bowl (new background),3.4614,0.3766,25.3027,4.7515,143.24,0.7961,-18.2064
+nearest,10001,75,13023,95,push milk to the right,banana in black bowl (new background),3.3947,0.6279,30.0454,4.7515,147.634,0.8175,-4.2722
+nearest,10001,80,13023,95,push milk to the right,banana in black bowl (new background),3.438,0.667,36.6588,4.7515,157.0788,0.8243,-2.6458
+nearest,10001,85,13023,95,push milk to the right,banana in black bowl (new background),3.5795,0.7585,40.009,4.7515,152.423,0.7917,3.8324
+nearest,10001,90,13023,90,push milk to the right,banana in black bowl (new background),3.6046,-0.9016,39.7517,1.5869,160.5486,0.7533,9.4232
+nearest,10001,105,13023,90,push milk to the right,banana in black bowl (new background),3.3064,-0.9285,30.929,1.5869,168.2649,0.7889,5.7098
+nearest,10001,125,13039,85,push milk to the right,banana in black bowl (new background),2.9867,0.9182,8.2065,2.5141,195.5597,0.7984,-2.1814
+nearest,10001,145,13011,130,push milk to the right,banana in black bowl (new background),3.9019,-0.2483,21.0844,7.6228,195.6675,0.802,0.2127
+nearest,10001,155,13010,125,push milk to the right,banana in black bowl (new background),4.1143,0.7673,11.0314,1.0174,195.6665,0.7946,33.2367
+nearest,10002,20,11026,20,push milk to the right,push milk to the right,5.4127,-0.2437,25.5885,18.0782,199.6701,0.764,23.844
+nearest,10002,30,13015,20,push milk to the right,banana in black bowl (new background),5.4268,0.5324,10.7761,22.9936,201.544,0.8265,-11.9997
+nearest,10002,35,13000,30,push milk to the right,banana in black bowl (new background),5.2734,-0.4272,17.3088,27.0864,164.4616,0.7517,-20.9971
+nearest,10002,40,13039,30,push milk to the right,banana in black bowl (new background),4.8338,-0.7632,16.3152,3.5031,169.485,0.8316,-80.1608
+nearest,10002,45,13023,40,push milk to the right,banana in black bowl (new background),4.4509,0.5456,14.0861,8.0589,203.5775,0.7688,-150.4795
+nearest,10002,55,13023,100,push milk to the right,banana in black bowl (new background),3.6338,0.8459,23.9943,0.4711,195.1759,0.7859,-128.1419
+nearest,10002,60,13023,95,push milk to the right,banana in black bowl (new background),3.3459,-0.8743,21.0118,4.7515,190.0178,0.7523,-102.7291
+nearest,10002,65,13023,90,push milk to the right,banana in black bowl (new background),3.1873,-0.8123,18.2288,1.5869,159.6985,0.7762,-56.0361
+nearest,10002,70,13023,95,push milk to the right,banana in black bowl (new background),3.1015,0.1467,20.8868,4.7515,152.1261,0.8115,-28.8406
+nearest,10002,75,13023,95,push milk to the right,banana in black bowl (new background),3.0987,0.3061,23.4951,4.7515,158.5582,0.8087,-21.4575
+nearest,10002,80,13023,95,push milk to the right,banana in black bowl (new background),3.17,0.5649,15.4378,4.7515,177.3813,0.7936,-2.9547
+nearest,10002,125,13023,100,push milk to the right,banana in black bowl (new background),2.8214,-0.9047,17.0053,0.4711,197.4326,0.7582,57.5918
+nearest,10003,25,13004,40,push milk to the right,banana in black bowl (new background),5.4519,0.4656,22.3545,16.7229,201.6004,0.7828,29.3186
+nearest,10003,40,13023,35,push milk to the right,banana in black bowl (new background),4.0753,0.734,10.0829,8.2009,195.7499,0.8239,89.9363
+nearest,10003,45,13023,40,push milk to the right,banana in black bowl (new background),3.7875,-0.4875,14.837,8.0589,168.881,0.8356,-100.987
+nearest,10003,50,13023,95,push milk to the right,banana in black bowl (new background),3.6498,0.3128,18.4217,4.7515,194.3915,0.8098,-18.5564
+nearest,10003,55,13023,95,push milk to the right,banana in black bowl (new background),3.6864,0.5581,21.4628,4.7515,180.7412,0.8187,-6.3511
+nearest,10003,60,13023,95,push milk to the right,banana in black bowl (new background),3.7024,0.4525,12.4786,4.7515,191.3391,0.8057,-6.501
+nearest,10003,65,13023,95,push milk to the right,banana in black bowl (new background),3.7522,-0.6496,8.8648,4.7515,172.3147,0.7835,138.9374
+nearest,10003,90,13023,90,push milk to the right,banana in black bowl (new background),3.3324,-0.7359,8.9933,1.5869,194.7021,0.7804,33.2043
+nearest,10003,105,13023,100,push milk to the right,banana in black bowl (new background),3.0722,-0.0852,17.3441,0.4711,203.3472,0.7329,-3.1639
+nearest,10003,110,13023,105,push milk to the right,banana in black bowl (new background),3.09,-0.5216,19.6553,1.6817,200.939,0.7149,-6.2416
+nearest,10003,120,13023,115,push milk to the right,banana in black bowl (new background),3.6796,-0.9805,11.5888,3.1894,200.1434,0.6719,-9.7403
+nearest,10003,125,13023,80,push milk to the right,banana in black bowl (new background),3.8267,-0.6169,17.6958,4.26,203.7987,0.6549,74.0791
+nearest,10004,5,13001,15,push milk to the right,banana in black bowl (new background),5.2359,0.0651,15.2172,12.9594,202.8343,0.8183,107.285
+nearest,10004,40,13023,35,push milk to the right,banana in black bowl (new background),4.13,-0.8487,23.9757,8.2009,151.8181,0.8029,-112.5909
+nearest,10004,45,13023,95,push milk to the right,banana in black bowl (new background),3.5805,-0.7321,19.8858,4.7515,160.6858,0.815,-85.4641
+nearest,10004,55,13023,95,push milk to the right,banana in black bowl (new background),3.2038,-0.6159,20.0445,4.7515,169.7621,0.8574,-75.2403
+nearest,10004,60,13023,95,push milk to the right,banana in black bowl (new background),3.2066,0.2359,23.2087,4.7515,161.0473,0.8399,-25.1667
+nearest,10004,65,13023,95,push milk to the right,banana in black bowl (new background),3.2388,0.6334,29.4444,4.7515,163.5506,0.8275,-3.7943
+nearest,10004,70,13023,95,push milk to the right,banana in black bowl (new background),3.3378,0.6989,31.9953,4.7515,159.7834,0.8082,0.2791
+nearest,10004,75,13023,90,push milk to the right,banana in black bowl (new background),3.3893,-0.9708,31.6536,1.5869,159.1983,0.7992,-2.6302
+nearest,10004,80,13023,90,push milk to the right,banana in black bowl (new background),3.4361,-0.9313,10.408,1.5869,159.3721,0.8117,7.8345
+nearest,10004,85,13023,90,push milk to the right,banana in black bowl (new background),3.335,-0.9926,12.0933,1.5869,186.3869,0.8043,-25.2503
+nearest,10004,110,13023,100,push milk to the right,banana in black bowl (new background),3.0992,-0.8688,22.484,0.4711,183.4169,0.7361,53.2156
+nearest,10005,15,13001,25,push milk to the right,banana in black bowl (new background),6.0346,-0.8835,13.7342,25.5471,178.9151,0.8736,21.2631
+nearest,10005,20,13004,35,push milk to the right,banana in black bowl (new background),6.1713,-0.6704,7.8341,5.1288,179.2491,0.779,30.7271
+nearest,10005,25,13004,40,push milk to the right,banana in black bowl (new background),5.9923,0.3944,7.2213,16.7229,192.999,0.7846,11.9512
+nearest,10005,35,13004,50,push milk to the right,banana in black bowl (new background),5.2001,-0.1921,10.7132,35.6907,190.3986,0.8039,-8.7786
+nearest,10005,40,13023,35,push milk to the right,banana in black bowl (new background),4.65,-0.9797,18.2059,8.2009,165.0193,0.8402,-87.1105
+nearest,10005,45,13023,40,push milk to the right,banana in black bowl (new background),4.2541,0.69,29.3359,8.0589,191.0127,0.8422,-150.4601
+nearest,10005,50,13023,40,push milk to the right,banana in black bowl (new background),3.9723,0.8304,17.6859,8.0589,199.1617,0.8218,-163.9173
+nearest,10005,55,13023,45,push milk to the right,banana in black bowl (new background),3.8465,-0.5336,8.8205,2.9051,177.336,0.8135,-100.4849
+nearest,10005,60,13023,95,push milk to the right,banana in black bowl (new background),3.7742,0.3717,19.2476,4.7515,131.8602,0.7665,-15.8806
+nearest,10005,65,13023,95,push milk to the right,banana in black bowl (new background),3.7964,0.6823,29.0428,4.7515,126.7311,0.7668,-0.3966
+nearest,10005,70,13023,90,push milk to the right,banana in black bowl (new background),3.764,-0.9799,41.4029,1.5869,169.1317,0.7889,-5.2666
+nearest,10005,80,13023,90,push milk to the right,banana in black bowl (new background),3.5436,-0.9862,30.0462,1.5869,143.4809,0.796,-7.1648
+nearest,10005,85,13023,90,push milk to the right,banana in black bowl (new background),3.5543,-0.9666,29.4027,1.5869,180.273,0.8011,-1.5447
+nearest,10005,95,13023,95,push milk to the right,banana in black bowl (new background),3.1816,0.673,36.8864,4.7515,201.8653,0.8178,-2.2521
+nearest,10005,125,13011,135,push milk to the right,banana in black bowl (new background),3.9576,0.314,8.4745,5.8869,192.0503,0.7757,-0.8489
+nearest,10006,35,13023,35,push milk to the right,banana in black bowl (new background),4.9278,-0.9669,10.8375,8.2009,190.4662,0.8244,-15.8393
+nearest,10006,40,13023,35,push milk to the right,banana in black bowl (new background),4.3565,-0.0918,16.6631,8.2009,197.7951,0.8019,-178.2673
+nearest,10006,45,13023,95,push milk to the right,banana in black bowl (new background),4.1605,-0.9862,12.3204,4.7515,180.2257,0.802,-154.9635
+nearest,10006,50,13023,95,push milk to the right,banana in black bowl (new background),3.9694,-0.9932,9.2856,4.7515,186.6482,0.8023,-153.1073
+nearest,10006,55,13023,95,push milk to the right,banana in black bowl (new background),3.8109,0.5458,7.7384,4.7515,174.0524,0.8033,4.5927
+nearest,10006,60,13023,95,push milk to the right,banana in black bowl (new background),3.7243,0.4441,16.6979,4.7515,162.092,0.8136,-10.4409
+nearest,10006,65,13023,95,push milk to the right,banana in black bowl (new background),3.6683,0.7275,23.6332,4.7515,161.9853,0.8178,3.9792
+nearest,10006,70,13023,95,push milk to the right,banana in black bowl (new background),3.7106,0.8171,19.1909,4.7515,173.2003,0.8236,12.0049
+nearest,10006,75,13023,95,push milk to the right,banana in black bowl (new background),3.8143,0.7519,24.3916,4.7515,177.8587,0.8152,5.5847
+nearest,10006,105,13038,80,push milk to the right,banana in black bowl (new background),3.7293,-0.7458,15.5772,11.6301,184.7112,0.7757,56.3368
+nearest,10007,40,13023,35,push milk to the right,banana in black bowl (new background),5.0795,-0.6288,10.9547,8.2009,171.6828,0.7871,-165.1272
+nearest,10007,45,13001,60,push milk to the right,banana in black bowl (new background),4.4354,0.8615,17.7625,14.8638,171.3081,0.8,174.4367
+nearest,10007,50,13023,95,push milk to the right,banana in black bowl (new background),4.0143,0.1578,17.5926,4.7515,169.1988,0.7801,107.0161
+nearest,10007,55,13023,95,push milk to the right,banana in black bowl (new background),3.5634,0.6233,16.9793,4.7515,200.2339,0.7996,81.3275
+nearest,10007,60,13023,95,push milk to the right,banana in black bowl (new background),3.4207,-0.8719,22.0691,4.7515,204.5857,0.7996,-102.8435
+nearest,10007,65,13023,95,push milk to the right,banana in black bowl (new background),3.3887,0.2199,17.8335,4.7515,184.9492,0.7786,-23.0585
+nearest,10007,70,13023,95,push milk to the right,banana in black bowl (new background),3.4244,0.5895,20.4884,4.7515,155.3045,0.7559,-4.078
+nearest,10007,80,11004,85,push milk to the right,push milk to the right,3.5688,0.8842,7.5985,26.1746,178.4652,0.7066,28.1984
+nearest,10007,85,11004,85,push milk to the right,push milk to the right,3.5658,-0.7763,11.0026,26.1746,188.9456,0.7113,43.5116
+nearest,10008,30,13004,50,push milk to the right,banana in black bowl (new background),5.3358,0.9457,19.8059,35.6907,197.3874,0.7875,1.8364
+nearest,10008,35,13004,55,push milk to the right,banana in black bowl (new background),4.8666,0.8352,19.2325,12.4927,191.5109,0.7793,-19.7363
+nearest,10008,40,13001,60,push milk to the right,banana in black bowl (new background),4.4295,0.7767,13.6118,14.8638,185.0173,0.805,-150.292
+nearest,10008,65,11006,50,push milk to the right,push milk to the right,3.8196,0.9287,26.8718,16.929,179.6609,0.7822,-103.3088
+nearest,10008,70,13023,95,push milk to the right,banana in black bowl (new background),4.0065,-0.5019,18.5595,4.7515,150.7341,0.7818,-65.4299
+nearest,10008,75,13001,80,push milk to the right,banana in black bowl (new background),4.1394,0.7393,15.4008,13.6906,134.4118,0.833,2.46
+nearest,10008,80,13001,80,push milk to the right,banana in black bowl (new background),4.0714,0.9955,21.3273,13.6906,122.1896,0.7954,28.2331
+nearest,10008,85,11045,65,push milk to the right,push milk to the right,4.1959,0.8749,24.5419,40.336,156.2115,0.6936,78.0841
+nearest,10008,100,13023,95,push milk to the right,banana in black bowl (new background),4.0111,-0.9372,7.8045,4.7515,184.152,0.7248,173.7065
+nearest,10008,105,13023,95,push milk to the right,banana in black bowl (new background),3.9687,-0.956,9.5542,4.7515,177.0046,0.723,-106.9594
+nearest,10008,110,13023,95,push milk to the right,banana in black bowl (new background),3.9659,-0.9956,7.0384,4.7515,180.2755,0.7272,-123.2289
+nearest,10008,125,13023,90,push milk to the right,banana in black bowl (new background),3.729,-0.8211,19.8999,1.5869,189.9919,0.7679,20.368
+nearest,10008,130,13023,90,push milk to the right,banana in black bowl (new background),3.5522,-0.8659,29.7362,1.5869,185.8968,0.767,14.3918
+nearest,10008,150,13023,105,push milk to the right,banana in black bowl (new background),3.5202,-0.7913,8.7697,1.6817,197.7753,0.738,102.2437
+nearest,10009,10,13001,20,push milk to the right,banana in black bowl (new background),5.6457,-0.9628,22.3277,19.7062,204.2949,0.846,-78.5737
+nearest,10009,35,13023,35,push milk to the right,banana in black bowl (new background),5.001,-0.976,12.2905,8.2009,193.4169,0.8267,-31.193
+nearest,10009,40,13023,40,push milk to the right,banana in black bowl (new background),4.5166,0.7197,12.3224,8.0589,186.548,0.8449,-160.5263
+nearest,10009,45,13023,95,push milk to the right,banana in black bowl (new background),4.1737,-0.9861,14.8367,4.7515,194.8312,0.8317,-125.5466
+nearest,10009,50,13023,95,push milk to the right,banana in black bowl (new background),4.0474,0.323,14.5231,4.7515,147.0808,0.8387,-15.0694
+nearest,10009,55,13023,95,push milk to the right,banana in black bowl (new background),4.0808,0.6954,19.1015,4.7515,148.4637,0.8152,3.1677
+nearest,10009,60,13023,95,push milk to the right,banana in black bowl (new background),4.0345,0.7626,22.5464,4.7515,176.0473,0.8178,6.8329
+nearest,10009,70,13023,90,push milk to the right,banana in black bowl (new background),3.8785,0.2708,6.4175,1.5869,195.1454,0.8323,-135.5149
+nearest,10009,85,13023,95,push milk to the right,banana in black bowl (new background),3.3134,0.7941,6.8609,4.7515,186.484,0.8276,62.6753
+nearest,10009,90,13023,95,push milk to the right,banana in black bowl (new background),3.2917,0.5915,13.6134,4.7515,200.9059,0.8013,81.045
+nearest,10009,95,13023,105,push milk to the right,banana in black bowl (new background),3.3227,-0.9703,10.4473,1.6817,196.366,0.805,40.0498
+nearest,12000,20,13004,35,banana in black bowl (new background),banana in black bowl (new background),4.2983,0.4463,9.2981,5.1288,181.9075,0.8071,-18.6076
+nearest,12000,30,13000,25,banana in black bowl (new background),banana in black bowl (new background),3.8344,-0.5563,15.9004,14.3716,198.4347,0.8673,-43.7624
+nearest,12000,40,13000,35,banana in black bowl (new background),banana in black bowl (new background),2.8468,0.8133,26.6765,15.8204,156.1693,0.8605,-145.2069
+nearest,12000,45,13000,40,banana in black bowl (new background),banana in black bowl (new background),2.359,0.9383,17.0694,5.6054,188.5796,0.8605,-146.8932
+nearest,12000,50,13001,145,banana in black bowl (new background),banana in black bowl (new background),2.0618,0.9902,15.0428,4.8044,172.698,0.9038,-146.347
+nearest,12000,60,13001,75,banana in black bowl (new background),banana in black bowl (new background),1.8363,0.8284,14.5156,9.2388,189.7799,0.8966,25.2867
+nearest,12000,65,13023,50,banana in black bowl (new background),banana in black bowl (new background),2.1225,0.9669,24.5752,17.1934,164.9476,0.8862,44.4462
+nearest,12000,70,13012,60,banana in black bowl (new background),banana in black bowl (new background),2.4421,-0.6567,14.9588,7.1958,198.2908,0.8824,-45.6645
+nearest,12000,95,13023,80,banana in black bowl (new background),banana in black bowl (new background),2.5987,-0.0407,6.3047,4.26,193.3116,0.9142,-99.0285
+nearest,12001,15,13004,30,banana in black bowl (new background),banana in black bowl (new background),4.65,-0.9864,19.307,6.3186,176.2552,0.8072,34.542
+nearest,12001,20,13004,35,banana in black bowl (new background),banana in black bowl (new background),4.6259,0.201,17.3373,5.1288,169.4825,0.8063,2.6154
+nearest,12001,35,13000,35,banana in black bowl (new background),banana in black bowl (new background),3.3812,0.6813,14.4764,15.8204,167.7544,0.8732,169.8977
+nearest,12001,40,13000,40,banana in black bowl (new background),banana in black bowl (new background),2.8222,0.084,11.0223,5.6054,171.1769,0.8782,138.5766
+nearest,12001,45,13000,40,banana in black bowl (new background),banana in black bowl (new background),2.3743,0.821,30.4696,5.6054,164.6553,0.8642,-132.5604
+nearest,12001,50,13000,45,banana in black bowl (new background),banana in black bowl (new background),2.2278,0.8942,21.2794,14.903,165.5465,0.8629,-136.6419
+nearest,12001,65,13003,70,banana in black bowl (new background),banana in black bowl (new background),2.628,0.7477,26.9408,19.8092,161.3665,0.8047,43.2511
+nearest,12001,75,13030,50,banana in black bowl (new background),banana in black bowl (new background),3.6507,-0.9973,11.356,9.4409,188.6995,0.7937,137.1207
+nearest,12001,110,13023,90,banana in black bowl (new background),banana in black bowl (new background),2.6529,-0.8773,19.1936,1.5869,190.3147,0.931,-48.3632
+nearest,12002,15,13032,5,banana in black bowl (new background),banana in black bowl (new background),4.1475,0.383,15.2554,6.6569,192.0569,0.8282,126.1128
+nearest,12002,20,13032,5,banana in black bowl (new background),banana in black bowl (new background),4.6353,0.3481,17.2357,6.6569,184.4377,0.8709,129.6143
+nearest,12002,25,13032,10,banana in black bowl (new background),banana in black bowl (new background),4.9087,1.0,19.7103,4.0056,195.7824,0.8732,158.7642
+nearest,12002,40,13023,30,banana in black bowl (new background),banana in black bowl (new background),4.569,0.1394,16.4937,8.5705,202.7351,0.8423,164.9694
+nearest,12002,50,13023,35,banana in black bowl (new background),banana in black bowl (new background),3.5123,-0.1597,18.2095,8.2009,201.543,0.8471,-172.7717
+nearest,12002,55,13023,35,banana in black bowl (new background),banana in black bowl (new background),3.063,-0.6348,31.3657,8.2009,173.241,0.8325,-130.5741
+nearest,12002,60,13023,100,banana in black bowl (new background),banana in black bowl (new background),2.6801,0.895,37.369,0.4711,184.395,0.8578,-122.6665
+nearest,12002,75,13030,40,banana in black bowl (new background),banana in black bowl (new background),2.6596,0.9991,24.8095,29.3526,170.1891,0.8231,69.0738
+nearest,12002,80,13030,45,banana in black bowl (new background),banana in black bowl (new background),3.2909,-0.6456,28.2305,11.5809,158.3787,0.8221,25.4958
+nearest,12002,100,13030,60,banana in black bowl (new background),banana in black bowl (new background),4.4696,-0.5898,21.1243,9.4069,160.18,0.7985,0.7041
+nearest,12002,115,13023,85,banana in black bowl (new background),banana in black bowl (new background),2.8319,-0.23,12.6406,8.6881,199.1332,0.8593,-54.5578
+nearest,12003,10,13004,25,banana in black bowl (new background),banana in black bowl (new background),4.3475,-0.1768,24.0197,7.7812,196.7666,0.7985,128.1492
+nearest,12003,15,13004,30,banana in black bowl (new background),banana in black bowl (new background),4.6671,-0.9627,16.3888,6.3186,169.1495,0.8002,-4.5997
+nearest,12003,20,13000,20,banana in black bowl (new background),banana in black bowl (new background),4.5774,0.8333,12.5114,12.0862,167.5999,0.8271,21.2717
+nearest,12003,30,13000,30,banana in black bowl (new background),banana in black bowl (new background),3.9114,0.0903,13.3151,27.0864,200.7697,0.8509,-7.6371
+nearest,12003,35,13000,35,banana in black bowl (new background),banana in black bowl (new background),3.3826,-0.1604,15.939,15.8204,161.1556,0.8388,-117.8129
+nearest,12003,40,13023,40,banana in black bowl (new background),banana in black bowl (new background),2.9812,-0.4613,19.478,8.0589,159.9893,0.8445,-94.2743
+nearest,12003,45,13023,40,banana in black bowl (new background),banana in black bowl (new background),2.4648,0.8859,21.7218,8.0589,190.6192,0.8341,-167.0808
+nearest,12003,50,13001,75,banana in black bowl (new background),banana in black bowl (new background),2.5422,0.6846,16.5582,9.2388,173.3315,0.8415,76.61
+nearest,12003,80,13023,75,banana in black bowl (new background),banana in black bowl (new background),3.4472,-0.9667,18.0964,3.9042,198.7382,0.9072,-127.8379
+nearest,12003,85,13023,80,banana in black bowl (new background),banana in black bowl (new background),3.0926,-0.9817,21.1099,4.26,193.2308,0.9114,124.8074
+nearest,12004,20,13032,15,banana in black bowl (new background),banana in black bowl (new background),4.8474,-0.0908,26.8253,17.7213,203.6787,0.8519,-83.5648
+nearest,12004,25,13000,20,banana in black bowl (new background),banana in black bowl (new background),4.7247,0.9868,21.3648,12.0862,174.9812,0.8002,32.3906
+nearest,12004,30,13000,25,banana in black bowl (new background),banana in black bowl (new background),4.3921,0.9756,19.713,14.3716,185.1261,0.8311,16.1988
+nearest,12004,40,13000,30,banana in black bowl (new background),banana in black bowl (new background),3.4801,0.1493,10.3839,27.0864,171.5831,0.8537,-2.2468
+nearest,12004,50,13023,40,banana in black bowl (new background),banana in black bowl (new background),2.5899,0.6673,36.6729,8.0589,198.3427,0.8721,-147.3201
+nearest,12004,55,13023,45,banana in black bowl (new background),banana in black bowl (new background),2.4275,-0.8905,10.3822,2.9051,195.3986,0.8795,-140.2135
+nearest,12004,60,13023,50,banana in black bowl (new background),banana in black bowl (new background),2.5644,0.9999,21.5314,17.1934,164.8582,0.8733,52.8089
+nearest,12004,70,13012,60,banana in black bowl (new background),banana in black bowl (new background),3.0149,-0.7036,11.9388,7.1958,196.5231,0.8695,155.5317
+nearest,12004,90,13023,80,banana in black bowl (new background),banana in black bowl (new background),3.2211,-0.987,21.2052,4.26,198.8246,0.893,150.0714
+nearest,12004,95,13023,80,banana in black bowl (new background),banana in black bowl (new background),2.8595,-0.9505,9.5081,4.26,194.1002,0.8992,106.8171
+nearest,12005,25,13023,30,banana in black bowl (new background),banana in black bowl (new background),3.9067,0.3009,20.7425,8.5705,203.2089,0.8433,161.7891
+nearest,12005,45,13023,100,banana in black bowl (new background),banana in black bowl (new background),2.6271,0.8317,8.805,0.4711,199.5811,0.8788,-128.5974
+nearest,12005,65,13023,50,banana in black bowl (new background),banana in black bowl (new background),2.5497,0.9704,32.7978,17.1934,180.3427,0.8057,62.3201
+nearest,12005,90,13023,70,banana in black bowl (new background),banana in black bowl (new background),3.9223,0.2031,9.476,11.0062,196.8622,0.8348,22.8674
+nearest,12006,55,13023,35,banana in black bowl (new background),banana in black bowl (new background),3.4873,-0.9778,17.8479,8.2009,186.6985,0.8522,-44.33
+nearest,12006,60,13023,35,banana in black bowl (new background),banana in black bowl (new background),2.9326,-0.3471,23.1074,8.2009,170.9044,0.8437,-156.8428
+nearest,12006,75,13023,50,banana in black bowl (new background),banana in black bowl (new background),2.6267,0.9586,27.8734,17.1934,173.2217,0.8508,42.9045
+nearest,12006,80,13023,55,banana in black bowl (new background),banana in black bowl (new background),2.5924,-0.8532,24.6338,8.7497,181.2801,0.8578,110.6106
+nearest,12006,90,13023,65,banana in black bowl (new background),banana in black bowl (new background),3.1014,-0.9005,15.4338,11.4198,172.3971,0.8709,58.7896
+nearest,12006,105,13023,80,banana in black bowl (new background),banana in black bowl (new background),2.8369,0.9749,24.6187,4.26,177.3467,0.882,-30.4891
+nearest,12006,110,13023,80,banana in black bowl (new background),banana in black bowl (new background),2.5586,0.922,10.4675,4.26,191.0239,0.8843,-25.2197
+nearest,12007,50,13000,35,banana in black bowl (new background),banana in black bowl (new background),3.2782,0.984,27.5236,15.8204,182.1129,0.8181,-161.1619
+nearest,12007,55,13023,35,banana in black bowl (new background),banana in black bowl (new background),3.0493,0.3482,19.8874,8.2009,178.1185,0.8297,164.5793
+nearest,12007,70,13023,50,banana in black bowl (new background),banana in black bowl (new background),2.3821,0.988,23.1076,17.1934,201.1063,0.8559,58.2436
+nearest,12007,95,13013,80,banana in black bowl (new background),banana in black bowl (new background),3.5098,-0.9365,25.9901,3.2348,154.6106,0.8444,6.2347
+nearest,12008,10,13001,20,banana in black bowl (new background),banana in black bowl (new background),3.575,0.9773,11.6263,19.7062,188.4814,0.8765,179.4388
+nearest,12008,15,13001,25,banana in black bowl (new background),banana in black bowl (new background),3.704,-0.9983,23.4361,25.5471,167.1535,0.8793,-36.5318
+nearest,12008,20,13000,25,banana in black bowl (new background),banana in black bowl (new background),3.8144,-0.9067,27.0099,14.3716,174.9878,0.8138,155.1515
+nearest,12008,25,13000,25,banana in black bowl (new background),banana in black bowl (new background),3.6485,0.4127,17.1185,14.3716,203.1647,0.8426,-12.4925
+nearest,12008,30,13000,30,banana in black bowl (new background),banana in black bowl (new background),3.4433,0.2261,15.4715,27.0864,200.3157,0.8553,-8.7544
+nearest,12008,35,13000,30,banana in black bowl (new background),banana in black bowl (new background),3.2395,0.0149,18.7498,27.0864,164.5669,0.854,-16.9363
+nearest,12008,40,13000,35,banana in black bowl (new background),banana in black bowl (new background),2.9643,0.9699,25.4964,15.8204,173.5663,0.8443,-158.9731
+nearest,12008,45,13000,40,banana in black bowl (new background),banana in black bowl (new background),2.6914,0.9999,21.375,5.6054,187.5165,0.8419,-161.5645
+nearest,12008,50,13000,45,banana in black bowl (new background),banana in black bowl (new background),2.5216,0.9895,18.8682,14.903,182.9949,0.8404,-156.9634
+nearest,12008,60,13023,50,banana in black bowl (new background),banana in black bowl (new background),2.7253,0.9997,32.0123,17.1934,148.1068,0.8527,52.2889
+nearest,12009,40,13000,30,banana in black bowl (new background),banana in black bowl (new background),3.6901,0.2721,11.5347,27.0864,167.9415,0.8251,-2.6861
+nearest,12009,45,13023,40,banana in black bowl (new background),banana in black bowl (new background),2.9656,0.6102,23.4518,8.0589,183.3035,0.8586,-147.6256
+nearest,12009,50,13023,100,banana in black bowl (new background),banana in black bowl (new background),2.5911,0.7368,22.4139,0.4711,186.0219,0.8671,-138.2365
+nearest,12009,55,13023,100,banana in black bowl (new background),banana in black bowl (new background),2.302,0.7736,12.6049,0.4711,179.8922,0.8649,-134.4991
+nearest,12009,65,13001,75,banana in black bowl (new background),banana in black bowl (new background),2.4806,0.9999,27.6195,9.2388,161.1373,0.8118,45.5018
+random,12006,135,13011,75,banana in black bowl (new background),banana in black bowl (new background),,0.4849,8.4563,11.6853,,,
+random,12000,50,11028,25,banana in black bowl (new background),push milk to the right,,0.6885,15.0428,16.5777,,,
+random,10005,120,11003,100,push milk to the right,push milk to the right,,0.9181,11.7538,27.2362,,,
+random,10001,40,11001,75,push milk to the right,push milk to the right,,-0.8035,16.2944,19.2584,,,
+random,10003,10,13029,45,push milk to the right,banana in black bowl (new background),,0.9738,14.2154,13.8653,,,
+random,12002,160,13041,0,banana in black bowl (new background),banana in black bowl (new background),,-0.8052,3.3793,1.2243,,,
+random,12000,30,13008,120,banana in black bowl (new background),banana in black bowl (new background),,-0.6116,15.9004,2.1165,,,
+random,12009,50,13020,80,banana in black bowl (new background),banana in black bowl (new background),,0.3573,22.4139,10.4413,,,
+random,12002,105,13003,110,banana in black bowl (new background),banana in black bowl (new background),,-0.3807,19.2381,6.4903,,,
+random,12001,40,13043,45,banana in black bowl (new background),banana in black bowl (new background),,-0.3517,11.0223,3.5801,,,
+random,10005,30,13029,75,push milk to the right,banana in black bowl (new background),,0.6108,7.6712,1.8975,,,
+random,12003,40,11000,30,banana in black bowl (new background),push milk to the right,,-0.8739,19.478,16.8587,,,
+random,10007,120,13034,65,push milk to the right,banana in black bowl (new background),,-0.9914,19.9341,9.2828,,,
+random,12001,25,11003,10,banana in black bowl (new background),push milk to the right,,0.7399,19.2104,27.1227,,,
+random,12005,10,13020,85,banana in black bowl (new background),banana in black bowl (new background),,-0.5795,17.2829,5.3241,,,
+random,12006,120,11017,75,banana in black bowl (new background),push milk to the right,,0.0817,13.3801,25.7341,,,
+random,10001,80,13035,35,push milk to the right,banana in black bowl (new background),,0.8687,36.6588,17.9923,,,
+random,10000,65,13003,85,push milk to the right,banana in black bowl (new background),,0.0252,18.4765,17.278,,,
+random,10001,55,11031,30,push milk to the right,push milk to the right,,-0.3564,23.8562,21.9201,,,
+random,10009,80,11043,85,push milk to the right,push milk to the right,,-0.312,5.8528,20.8827,,,
+random,10008,20,11002,85,push milk to the right,push milk to the right,,0.1207,15.9762,20.2111,,,
+random,10000,15,11011,105,push milk to the right,push milk to the right,,0.7262,11.7828,18.1755,,,
+random,10000,20,13014,75,push milk to the right,banana in black bowl (new background),,-0.5418,12.7237,6.3061,,,
+random,12000,100,13012,55,banana in black bowl (new background),banana in black bowl (new background),,-0.9413,13.9038,5.8118,,,
+random,10004,105,13009,100,push milk to the right,banana in black bowl (new background),,0.8584,36.3449,3.6723,,,
+random,12005,10,11039,100,banana in black bowl (new background),push milk to the right,,-0.3521,17.2829,14.638,,,
+random,10009,20,13049,90,push milk to the right,banana in black bowl (new background),,-0.5087,17.8429,28.2685,,,
+random,12005,140,13048,25,banana in black bowl (new background),banana in black bowl (new background),,-0.8976,8.0105,6.3164,,,
+random,10007,75,13015,110,push milk to the right,banana in black bowl (new background),,-0.9337,27.6793,4.1951,,,
+random,12008,135,13012,95,banana in black bowl (new background),banana in black bowl (new background),,0.9664,9.7765,12.0478,,,
+random,12006,100,13016,30,banana in black bowl (new background),banana in black bowl (new background),,-0.1017,13.3012,25.9513,,,
+random,12003,140,11040,30,banana in black bowl (new background),push milk to the right,,0.6444,3.7683,27.7675,,,
+random,12007,50,11012,105,banana in black bowl (new background),push milk to the right,,0.7548,27.5236,4.5569,,,
+random,12001,105,13019,80,banana in black bowl (new background),banana in black bowl (new background),,-0.126,22.7169,6.615,,,
+random,12006,115,13002,55,banana in black bowl (new background),banana in black bowl (new background),,0.2021,26.6061,15.639,,,
+random,10007,65,11032,30,push milk to the right,push milk to the right,,0.5473,17.8335,13.2596,,,
+random,10008,80,11049,25,push milk to the right,push milk to the right,,0.9174,21.3273,21.7807,,,
+random,12004,35,13038,50,banana in black bowl (new background),banana in black bowl (new background),,-0.3983,6.9829,12.3318,,,
+random,10001,35,13043,30,push milk to the right,banana in black bowl (new background),,0.7638,21.0063,13.602,,,
+random,12000,115,11037,5,banana in black bowl (new background),push milk to the right,,-0.9401,10.2041,13.598,,,
+random,12003,45,13005,125,banana in black bowl (new background),banana in black bowl (new background),,-0.991,21.7218,10.3741,,,
+random,10004,95,11033,55,push milk to the right,push milk to the right,,-0.9921,7.8629,19.0123,,,
+random,12004,35,13007,115,banana in black bowl (new background),banana in black bowl (new background),,0.9863,6.9829,2.0435,,,
+random,12000,30,11034,115,banana in black bowl (new background),push milk to the right,,-0.6773,15.9004,4.9588,,,
+random,12005,0,11040,65,banana in black bowl (new background),push milk to the right,,0.9741,6.0274,28.6163,,,
+random,10006,50,13038,55,push milk to the right,banana in black bowl (new background),,0.4926,9.2856,2.6859,,,
+random,10004,125,11023,95,push milk to the right,push milk to the right,,-0.3833,5.1289,9.0582,,,
+random,12004,20,13010,40,banana in black bowl (new background),banana in black bowl (new background),,0.1626,26.8253,21.4532,,,
+random,10000,140,11007,110,push milk to the right,push milk to the right,,0.9244,16.116,22.4955,,,
+random,10007,70,13031,55,push milk to the right,banana in black bowl (new background),,0.1573,20.4884,20.6902,,,
+random,10008,15,13026,80,push milk to the right,banana in black bowl (new background),,-0.9326,19.9809,9.7222,,,
+random,10006,15,11025,5,push milk to the right,push milk to the right,,-0.2365,8.8022,10.8066,,,
+random,12005,100,13036,85,banana in black bowl (new background),banana in black bowl (new background),,0.1328,1.7989,8.631,,,
+random,10001,50,11005,45,push milk to the right,push milk to the right,,0.5944,18.1839,25.8568,,,
+random,12003,40,11034,95,banana in black bowl (new background),push milk to the right,,0.8569,19.478,10.3707,,,
+random,12001,90,11014,70,banana in black bowl (new background),push milk to the right,,-0.9942,21.9476,25.2921,,,
+random,12007,5,11046,20,banana in black bowl (new background),push milk to the right,,0.9886,19.8761,25.8677,,,
+random,12007,110,13027,80,banana in black bowl (new background),banana in black bowl (new background),,0.7293,8.0764,5.7776,,,
+random,12003,145,11024,25,banana in black bowl (new background),push milk to the right,,-0.6918,1.059,19.8505,,,
+random,12005,20,11004,95,banana in black bowl (new background),push milk to the right,,-0.993,20.6599,25.108,,,
+random,12001,80,11041,100,banana in black bowl (new background),push milk to the right,,0.3531,12.5505,21.9103,,,
+random,12009,140,11020,75,banana in black bowl (new background),push milk to the right,,0.2281,12.5631,29.0206,,,
+random,12008,125,11008,55,banana in black bowl (new background),push milk to the right,,-0.5422,12.2248,22.152,,,
+random,12002,75,13006,90,banana in black bowl (new background),banana in black bowl (new background),,-0.8676,24.8095,20.7126,,,
+random,12007,130,11031,15,banana in black bowl (new background),push milk to the right,,-0.9961,11.3831,13.9672,,,
+random,12007,140,13014,90,banana in black bowl (new background),banana in black bowl (new background),,0.9244,10.8796,22.3194,,,
+random,12007,100,11020,85,banana in black bowl (new background),push milk to the right,,-0.4494,20.4326,26.827,,,
+random,12004,155,13044,15,banana in black bowl (new background),banana in black bowl (new background),,-0.8489,5.6137,5.3918,,,
+random,10000,140,11037,95,push milk to the right,push milk to the right,,0.9617,16.116,13.5853,,,
+random,12002,115,11010,15,banana in black bowl (new background),push milk to the right,,0.9388,12.6406,19.662,,,
+random,12000,45,13010,110,banana in black bowl (new background),banana in black bowl (new background),,-0.964,17.0694,1.1675,,,
+random,12005,10,13042,55,banana in black bowl (new background),banana in black bowl (new background),,0.162,17.2829,15.4574,,,
+random,10008,40,11045,40,push milk to the right,push milk to the right,,-0.9962,13.6118,22.0689,,,
+random,10009,60,13045,60,push milk to the right,banana in black bowl (new background),,-0.8519,22.5464,13.8592,,,
+random,10003,70,13000,75,push milk to the right,banana in black bowl (new background),,0.9803,25.5905,6.9473,,,
+random,10000,145,11043,115,push milk to the right,push milk to the right,,0.5478,12.5992,4.4102,,,
+random,12008,120,13010,5,banana in black bowl (new background),banana in black bowl (new background),,0.8815,17.7939,30.172,,,
+random,10006,110,13049,65,push milk to the right,banana in black bowl (new background),,-0.3189,11.6632,11.9353,,,
+random,12002,15,13044,95,banana in black bowl (new background),banana in black bowl (new background),,0.5889,15.2554,11.0942,,,
+random,10000,45,11047,0,push milk to the right,push milk to the right,,-0.9074,44.124,9.5259,,,
+random,12006,85,13023,85,banana in black bowl (new background),banana in black bowl (new background),,-0.9869,25.4239,8.6881,,,
+random,10008,35,13000,45,push milk to the right,banana in black bowl (new background),,-0.8254,19.2325,14.903,,,
+random,10008,70,13002,100,push milk to the right,banana in black bowl (new background),,-0.0663,18.5595,21.8617,,,
+random,10004,25,13026,65,push milk to the right,banana in black bowl (new background),,-0.5028,11.8861,24.5753,,,
+random,10001,50,11042,95,push milk to the right,push milk to the right,,0.9445,18.1839,14.3054,,,
+random,10005,40,13021,30,push milk to the right,banana in black bowl (new background),,0.5297,18.2059,19.6696,,,
+random,12004,130,13018,65,banana in black bowl (new background),banana in black bowl (new background),,-0.7047,6.9957,17.7077,,,
+random,12008,60,13043,5,banana in black bowl (new background),banana in black bowl (new background),,-0.9294,32.0123,11.595,,,
+random,10003,40,11010,125,push milk to the right,push milk to the right,,0.8569,10.0829,1.8069,,,
+random,10002,45,13020,75,push milk to the right,banana in black bowl (new background),,-0.7571,14.0861,13.2617,,,
+random,12009,50,13042,55,banana in black bowl (new background),banana in black bowl (new background),,0.9599,22.4139,15.4574,,,
+random,12003,30,13047,10,banana in black bowl (new background),banana in black bowl (new background),,0.4747,13.3151,15.922,,,
+random,12007,35,11001,50,banana in black bowl (new background),push milk to the right,,0.9382,33.091,19.4735,,,
+random,10002,5,13035,40,push milk to the right,banana in black bowl (new background),,-0.0808,12.9537,10.7442,,,
+random,10001,60,13048,30,push milk to the right,banana in black bowl (new background),,-0.8208,33.1928,5.7949,,,
+random,12006,55,13045,90,banana in black bowl (new background),banana in black bowl (new background),,0.9999,17.8479,6.5456,,,
+random,10007,20,11014,50,push milk to the right,push milk to the right,,-0.4833,14.7674,28.0404,,,
+random,12000,70,13047,70,banana in black bowl (new background),banana in black bowl (new background),,0.1969,14.9588,26.359,,,
+random,10007,40,13038,55,push milk to the right,banana in black bowl (new background),,0.8511,10.9547,2.6859,,,
+random,10007,90,13030,45,push milk to the right,banana in black bowl (new background),,-0.6636,10.3428,11.5809,,,
+random,10004,20,11048,115,push milk to the right,push milk to the right,,-0.9772,3.9923,18.3848,,,
+random,10006,45,11024,45,push milk to the right,push milk to the right,,0.9833,12.3204,16.2587,,,
+random,12007,105,13028,15,banana in black bowl (new background),banana in black bowl (new background),,-1.0,17.8515,15.3629,,,
+random,10002,65,13042,10,push milk to the right,banana in black bowl (new background),,-0.3376,18.2288,10.7865,,,
+random,12009,50,11027,100,banana in black bowl (new background),push milk to the right,,-0.9354,22.4139,7.9638,,,
+random,10008,90,13003,55,push milk to the right,banana in black bowl (new background),,0.1386,12.3827,11.6629,,,
+random,12002,180,11045,70,banana in black bowl (new background),push milk to the right,,-0.6883,3.1856,40.3399,,,
+random,10002,95,13042,100,push milk to the right,banana in black bowl (new background),,-0.397,25.1592,4.2421,,,
+random,12003,100,11003,95,banana in black bowl (new background),push milk to the right,,0.9743,13.8386,35.4044,,,
+random,12006,20,13021,0,banana in black bowl (new background),banana in black bowl (new background),,-0.6134,23.6591,13.9858,,,
+random,10003,35,13009,90,push milk to the right,banana in black bowl (new background),,-0.6706,15.1995,25.1165,,,
+random,12000,20,11002,85,banana in black bowl (new background),push milk to the right,,0.6064,9.2981,20.2111,,,
+random,12008,70,13019,55,banana in black bowl (new background),banana in black bowl (new background),,0.2917,12.1366,21.0474,,,
+random,10005,125,11001,65,push milk to the right,push milk to the right,,0.2455,8.4745,21.7153,,,
+random,10001,90,13023,90,push milk to the right,banana in black bowl (new background),,-0.9016,39.7517,1.5869,,,
+random,10002,95,13001,85,push milk to the right,banana in black bowl (new background),,-0.9251,25.1592,10.4958,,,
+random,12007,130,13042,75,banana in black bowl (new background),banana in black bowl (new background),,0.9782,11.3831,20.9012,,,
+random,10005,0,11006,30,push milk to the right,push milk to the right,,-0.9217,9.4369,7.7293,,,
+random,12000,0,13032,55,banana in black bowl (new background),banana in black bowl (new background),,-0.6523,7.2963,11.6473,,,
+random,12002,80,11006,40,banana in black bowl (new background),push milk to the right,,0.9971,28.2305,15.9054,,,
+random,12002,160,11035,60,banana in black bowl (new background),push milk to the right,,-0.3066,3.3793,33.943,,,
+random,10004,10,11044,50,push milk to the right,push milk to the right,,-0.6122,18.1277,14.8609,,,
+random,12007,40,13046,100,banana in black bowl (new background),banana in black bowl (new background),,-0.4775,33.862,2.81,,,
+random,10002,70,13005,15,push milk to the right,banana in black bowl (new background),,-0.7212,20.8868,25.9477,,,
+random,12005,0,11027,15,banana in black bowl (new background),push milk to the right,,-0.5144,6.0274,14.8865,,,
+random,10005,15,11025,30,push milk to the right,push milk to the right,,-0.728,13.7342,40.4869,,,
+random,10003,115,13038,30,push milk to the right,banana in black bowl (new background),,0.9315,14.3783,3.3986,,,
+random,10003,140,11023,80,push milk to the right,push milk to the right,,-0.3865,16.8805,26.6053,,,
+random,10002,25,11011,110,push milk to the right,push milk to the right,,0.9943,20.7186,19.6651,,,
+random,12005,50,11030,15,banana in black bowl (new background),push milk to the right,,-0.9999,19.7263,13.2876,,,
+random,12005,130,13007,20,banana in black bowl (new background),banana in black bowl (new background),,-0.389,14.2451,19.2544,,,
+random,12006,160,13004,90,banana in black bowl (new background),banana in black bowl (new background),,-0.9776,2.2017,13.8673,,,
+random,12005,10,13029,5,banana in black bowl (new background),banana in black bowl (new background),,1.0,17.2829,7.9116,,,
+random,10001,0,13004,165,push milk to the right,banana in black bowl (new background),,-0.6609,8.0949,1.4347,,,
+random,10009,5,11030,15,push milk to the right,push milk to the right,,0.9267,13.9784,13.2876,,,
+random,10008,165,11042,75,push milk to the right,push milk to the right,,0.0375,20.4761,30.6474,,,
+random,10009,115,13029,100,push milk to the right,banana in black bowl (new background),,-0.9416,12.5754,6.3441,,,
+random,12006,50,13010,80,banana in black bowl (new background),banana in black bowl (new background),,-0.036,20.7425,23.2842,,,
+random,12004,10,13046,20,banana in black bowl (new background),banana in black bowl (new background),,0.3487,18.6365,3.6013,,,
+random,12002,120,11038,35,banana in black bowl (new background),push milk to the right,,-0.5473,25.7726,8.3427,,,
+random,10001,60,13004,70,push milk to the right,banana in black bowl (new background),,-0.8198,33.1928,4.2,,,
+random,10004,30,13007,110,push milk to the right,banana in black bowl (new background),,0.912,13.865,4.3792,,,
+random,10000,75,13033,40,push milk to the right,banana in black bowl (new background),,0.299,17.3681,13.6135,,,
+random,12008,120,11014,10,banana in black bowl (new background),push milk to the right,,0.9721,17.7939,14.0828,,,
+random,12006,30,11042,0,banana in black bowl (new background),push milk to the right,,0.7256,19.2917,18.5522,,,
+random,10000,120,13040,75,push milk to the right,banana in black bowl (new background),,-0.872,36.9267,4.7446,,,
+random,12008,110,11003,125,banana in black bowl (new background),push milk to the right,,-0.7409,15.7692,2.7193,,,
+random,12001,155,13030,45,banana in black bowl (new background),banana in black bowl (new background),,0.6701,6.0905,11.5809,,,
+random,12005,95,11043,0,banana in black bowl (new background),push milk to the right,,0.5993,18.6976,17.7386,,,
+random,12007,5,13031,20,banana in black bowl (new background),banana in black bowl (new background),,-0.5363,19.8761,11.9251,,,
+random,10001,155,11000,115,push milk to the right,push milk to the right,,-0.1549,11.0314,17.8924,,,
+random,10001,120,11037,95,push milk to the right,push milk to the right,,0.8951,15.157,13.5853,,,
+random,10001,140,11007,45,push milk to the right,push milk to the right,,0.8937,13.4504,30.9882,,,
+random,10004,110,13012,120,push milk to the right,banana in black bowl (new background),,-0.8056,22.484,5.848,,,
+random,12000,95,11028,75,banana in black bowl (new background),push milk to the right,,0.8487,6.3047,28.847,,,
+random,12008,135,13017,75,banana in black bowl (new background),banana in black bowl (new background),,-0.0733,9.7765,17.8314,,,
+random,12002,110,13044,35,banana in black bowl (new background),banana in black bowl (new background),,0.2535,10.1717,5.9128,,,
+random,12005,85,11012,5,banana in black bowl (new background),push milk to the right,,0.9985,17.5775,16.9017,,,
+random,10000,105,13035,55,push milk to the right,banana in black bowl (new background),,-0.9118,35.2812,17.0693,,,
+random,10008,35,11005,55,push milk to the right,push milk to the right,,-0.5543,19.2325,29.1235,,,
+random,10009,70,11039,65,push milk to the right,push milk to the right,,0.7426,6.4175,7.1573,,,
+random,10008,105,11044,45,push milk to the right,push milk to the right,,0.352,9.5542,32.7338,,,
+random,10006,5,11049,60,push milk to the right,push milk to the right,,-0.846,12.8126,37.0545,,,
+random,10009,110,13047,115,push milk to the right,banana in black bowl (new background),,-0.5,2.7879,7.09,,,
+random,12003,105,13025,60,banana in black bowl (new background),banana in black bowl (new background),,0.1555,5.6759,10.4753,,,
+random,10000,20,11032,10,push milk to the right,push milk to the right,,0.9837,12.7237,17.9984,,,
+random,12009,95,11028,25,banana in black bowl (new background),push milk to the right,,0.5082,21.3289,16.5777,,,
+random,12000,45,13035,35,banana in black bowl (new background),banana in black bowl (new background),,-0.9608,17.0694,17.9923,,,
+random,12002,125,13037,40,banana in black bowl (new background),banana in black bowl (new background),,0.1899,15.6953,14.2188,,,
+random,10002,140,13001,60,push milk to the right,banana in black bowl (new background),,-0.7781,5.6855,14.8638,,,
+random,12002,115,11035,55,banana in black bowl (new background),push milk to the right,,0.9807,12.6406,42.0588,,,
+random,12001,90,13049,60,banana in black bowl (new background),banana in black bowl (new background),,-0.8726,21.9476,21.1858,,,
+random,12004,90,11032,95,banana in black bowl (new background),push milk to the right,,-0.6034,21.2052,11.2888,,,
+random,10001,5,11018,65,push milk to the right,push milk to the right,,-0.5576,18.5112,22.7873,,,
+random,10005,15,13037,25,push milk to the right,banana in black bowl (new background),,0.0249,13.7342,7.6288,,,
+random,10005,10,13029,35,push milk to the right,banana in black bowl (new background),,-0.7968,14.0533,6.4907,,,
+random,10005,20,13014,40,push milk to the right,banana in black bowl (new background),,0.7099,7.8341,12.0513,,,
+random,12000,100,13046,10,banana in black bowl (new background),banana in black bowl (new background),,0.9977,13.9038,5.1934,,,
+random,12001,70,13042,35,banana in black bowl (new background),banana in black bowl (new background),,0.7008,21.2144,5.3064,,,
+random,12009,25,13022,80,banana in black bowl (new background),banana in black bowl (new background),,0.9346,7.3644,8.7247,,,
+random,12002,90,13035,5,banana in black bowl (new background),banana in black bowl (new background),,0.8136,28.6376,5.7312,,,
+random,12009,135,11025,95,banana in black bowl (new background),push milk to the right,,-0.4023,12.7169,21.1059,,,
+random,12001,50,11013,65,banana in black bowl (new background),push milk to the right,,-0.7896,21.2794,22.2694,,,
+random,10001,130,13014,70,push milk to the right,banana in black bowl (new background),,-0.9975,12.7568,8.2382,,,
+random,10000,140,13019,0,push milk to the right,banana in black bowl (new background),,0.7071,16.116,2.3465,,,
+random,12006,35,11016,65,banana in black bowl (new background),push milk to the right,,-0.5623,27.1979,31.3202,,,
+random,12003,65,11040,110,banana in black bowl (new background),push milk to the right,,-0.9573,28.1389,15.54,,,
+random,12007,105,13040,80,banana in black bowl (new background),banana in black bowl (new background),,0.9141,17.8515,6.42,,,
+random,12001,100,13005,5,banana in black bowl (new background),banana in black bowl (new background),,-0.7605,28.0949,6.7069,,,
+random,12004,10,13006,65,banana in black bowl (new background),banana in black bowl (new background),,0.1057,18.6365,23.8981,,,
+random,12004,115,11020,25,banana in black bowl (new background),push milk to the right,,0.2686,16.1131,12.6944,,,
+random,12005,75,13002,60,banana in black bowl (new background),banana in black bowl (new background),,0.2446,26.9407,16.3724,,,
+random,12004,140,13002,30,banana in black bowl (new background),banana in black bowl (new background),,-0.2741,5.2496,14.3185,,,
+random,10005,115,11008,30,push milk to the right,push milk to the right,,-0.6808,0.6637,58.194,,,
+random,12000,100,13048,40,banana in black bowl (new background),banana in black bowl (new background),,-0.5683,13.9038,16.9871,,,
+random,10000,105,13005,125,push milk to the right,banana in black bowl (new background),,0.9458,35.2812,10.3741,,,
+random,10008,150,11000,75,push milk to the right,push milk to the right,,0.3271,8.7697,23.4881,,,
+random,12000,150,13025,25,banana in black bowl (new background),banana in black bowl (new background),,0.7763,9.6082,15.9592,,,
+random,12004,100,13047,135,banana in black bowl (new background),banana in black bowl (new background),,0.294,3.6474,8.6206,,,
+random,12000,110,13007,60,banana in black bowl (new background),banana in black bowl (new background),,-0.1076,1.9252,6.7344,,,
+random,12009,35,11033,30,banana in black bowl (new background),push milk to the right,,-0.0751,9.9373,19.9373,,,
+random,12005,120,11019,35,banana in black bowl (new background),push milk to the right,,0.9902,19.3233,28.056,,,
+random,10007,25,13014,95,push milk to the right,banana in black bowl (new background),,-0.4354,18.3581,15.1993,,,
+random,12001,110,11020,35,banana in black bowl (new background),push milk to the right,,0.5812,19.1936,14.0564,,,
+random,12003,5,13006,60,banana in black bowl (new background),banana in black bowl (new background),,-0.98,13.8098,13.7205,,,
+random,12008,40,13008,70,banana in black bowl (new background),banana in black bowl (new background),,0.9999,25.4964,8.5669,,,
+random,12007,80,13046,55,banana in black bowl (new background),banana in black bowl (new background),,0.48,19.4078,11.2133,,,
+random,10001,75,11006,105,push milk to the right,push milk to the right,,0.6424,30.0454,13.9442,,,
+random,12000,25,13000,75,banana in black bowl (new background),banana in black bowl (new background),,-0.5412,13.2358,6.9473,,,
+random,12001,25,13022,30,banana in black bowl (new background),banana in black bowl (new background),,-0.7259,19.2104,14.961,,,
+random,10006,10,11018,0,push milk to the right,push milk to the right,,-0.8327,7.068,26.793,,,
+random,12003,65,11040,20,banana in black bowl (new background),push milk to the right,,-0.8429,28.1389,26.8791,,,
+random,12008,75,11005,100,banana in black bowl (new background),push milk to the right,,-0.9046,27.9624,4.5112,,,
+random,12004,5,13020,40,banana in black bowl (new background),banana in black bowl (new background),,0.9085,10.9953,7.6239,,,
+random,10005,10,11008,20,push milk to the right,push milk to the right,,-0.5779,14.0533,46.0207,,,
+random,10006,20,11040,105,push milk to the right,push milk to the right,,0.9431,8.1147,24.3757,,,
+random,12009,80,13036,50,banana in black bowl (new background),banana in black bowl (new background),,-0.9706,13.9889,6.8999,,,
+random,10004,25,11048,25,push milk to the right,push milk to the right,,0.716,11.8861,20.9251,,,
+random,12002,5,13040,105,banana in black bowl (new background),banana in black bowl (new background),,-0.2511,7.677,7.8825,,,
+random,10002,50,13024,65,push milk to the right,banana in black bowl (new background),,0.6939,15.8118,4.4555,,,
+random,12008,60,13041,30,banana in black bowl (new background),banana in black bowl (new background),,0.9206,32.0123,13.3865,,,
+random,10005,30,11012,10,push milk to the right,push milk to the right,,0.9232,7.6712,24.0384,,,
+random,12001,155,11006,120,banana in black bowl (new background),push milk to the right,,0.6835,6.0905,2.6738,,,
+random,10002,35,11006,80,push milk to the right,push milk to the right,,-0.9488,17.3088,13.2362,,,
+random,10003,115,13035,105,push milk to the right,banana in black bowl (new background),,-0.5314,14.3783,7.4872,,,
+random,12003,45,13011,40,banana in black bowl (new background),banana in black bowl (new background),,-0.9905,21.7218,25.3706,,,
+random,12009,100,13000,35,banana in black bowl (new background),banana in black bowl (new background),,0.9638,19.4232,15.8204,,,
+random,10000,115,11016,25,push milk to the right,push milk to the right,,-0.1818,33.9165,37.5616,,,
+random,10004,115,13014,110,push milk to the right,banana in black bowl (new background),,-0.5554,23.6199,11.8993,,,
+random,10007,10,11033,10,push milk to the right,push milk to the right,,-0.2691,13.1431,5.5466,,,
+random,10001,150,13018,60,push milk to the right,banana in black bowl (new background),,-0.9326,21.607,12.8975,,,
+random,10000,70,11047,5,push milk to the right,push milk to the right,,-0.8024,17.1421,9.958,,,
+random,12004,110,13001,20,banana in black bowl (new background),banana in black bowl (new background),,-0.9083,6.154,19.7062,,,
+random,12003,85,13027,0,banana in black bowl (new background),banana in black bowl (new background),,0.9222,21.1099,5.5184,,,
+random,10004,10,11008,75,push milk to the right,push milk to the right,,0.8326,18.1277,32.8462,,,
+random,10000,165,13006,70,push milk to the right,banana in black bowl (new background),,0.9459,7.5163,10.8961,,,
+random,10004,125,11020,60,push milk to the right,push milk to the right,,-0.1104,5.1289,29.3141,,,
+random,12004,85,13028,90,banana in black bowl (new background),banana in black bowl (new background),,-0.0107,18.516,3.8975,,,
+random,12009,5,11049,60,banana in black bowl (new background),push milk to the right,,0.0234,33.5063,37.0545,,,
+random,12000,90,13048,120,banana in black bowl (new background),banana in black bowl (new background),,0.9776,12.1879,3.3449,,,
+random,12000,30,11018,65,banana in black bowl (new background),push milk to the right,,-0.841,15.9004,22.7873,,,
+random,10004,100,13046,65,push milk to the right,banana in black bowl (new background),,0.9579,13.9891,15.2154,,,
+random,10000,125,13028,5,push milk to the right,banana in black bowl (new background),,-0.9336,32.2598,6.521,,,
+random,12002,155,11048,130,banana in black bowl (new background),push milk to the right,,-0.9492,1.8623,10.043,,,
+random,12006,80,13029,50,banana in black bowl (new background),banana in black bowl (new background),,-0.8712,24.6338,14.633,,,
+random,10008,130,13008,75,push milk to the right,banana in black bowl (new background),,-0.9774,29.7362,11.7844,,,
+random,12005,10,13013,20,banana in black bowl (new background),banana in black bowl (new background),,-0.9527,17.2829,7.9942,,,
+random,10009,95,13041,10,push milk to the right,banana in black bowl (new background),,0.9957,10.4473,15.7583,,,
+random,12007,75,11006,20,banana in black bowl (new background),push milk to the right,,0.1844,27.059,3.3718,,,
+random,12001,0,13031,80,banana in black bowl (new background),banana in black bowl (new background),,0.3779,25.7166,6.7658,,,
+random,10001,65,11039,75,push milk to the right,push milk to the right,,0.7817,28.5249,23.7843,,,
+random,12000,45,11033,100,banana in black bowl (new background),push milk to the right,,-0.9605,17.0694,4.7696,,,
+random,12003,115,13049,50,banana in black bowl (new background),banana in black bowl (new background),,0.4311,10.7575,18.6442,,,
+random,10007,30,13026,10,push milk to the right,banana in black bowl (new background),,-0.1547,5.1082,4.2178,,,
+random,10002,0,11049,20,push milk to the right,push milk to the right,,0.0635,24.6255,17.0883,,,
+random,10000,15,11043,85,push milk to the right,push milk to the right,,0.007,11.7828,20.8827,,,
+random,10000,40,13036,95,push milk to the right,banana in black bowl (new background),,-0.3089,10.7132,0.8605,,,
+random,12009,45,11008,5,banana in black bowl (new background),push milk to the right,,-0.9411,23.4518,10.8959,,,
+random,12006,30,13018,30,banana in black bowl (new background),banana in black bowl (new background),,-0.7993,19.2917,17.9363,,,
+random,10005,100,13026,105,push milk to the right,banana in black bowl (new background),,0.932,39.4763,0.4692,,,
+random,12009,25,13027,115,banana in black bowl (new background),banana in black bowl (new background),,-0.3908,7.3644,5.4016,,,
+random,12003,100,11033,60,banana in black bowl (new background),push milk to the right,,0.9076,13.8386,25.3157,,,
+random,12002,25,13027,85,banana in black bowl (new background),banana in black bowl (new background),,-0.5007,19.7103,9.4153,,,
+random,12004,25,11023,75,banana in black bowl (new background),push milk to the right,,-0.601,21.3648,30.8873,,,
+random,10008,45,11037,60,push milk to the right,push milk to the right,,-0.5392,28.1512,24.9352,,,
+random,12003,115,11043,25,banana in black bowl (new background),push milk to the right,,0.4887,10.7575,26.9176,,,
+random,10008,70,13003,85,push milk to the right,banana in black bowl (new background),,0.1555,18.5595,17.278,,,
+random,12001,105,11010,95,banana in black bowl (new background),push milk to the right,,0.3124,22.7169,20.164,,,
+random,12008,60,11042,5,banana in black bowl (new background),push milk to the right,,0.8455,32.0123,23.1773,,,
+random,10003,10,11000,0,push milk to the right,push milk to the right,,0.8708,14.2154,3.1184,,,
+random,10008,115,13022,35,push milk to the right,banana in black bowl (new background),,0.4043,2.4747,6.0532,,,
+random,10005,85,13033,80,push milk to the right,banana in black bowl (new background),,0.1352,29.4027,8.044,,,
+random,10003,85,11013,40,push milk to the right,push milk to the right,,-0.7841,10.4751,9.0583,,,
+random,10007,110,13017,85,push milk to the right,banana in black bowl (new background),,-0.9756,28.3864,5.1137,,,
+random,10005,95,13030,30,push milk to the right,banana in black bowl (new background),,-0.2085,36.8864,19.7781,,,
+random,10000,60,13048,35,push milk to the right,banana in black bowl (new background),,-0.0589,19.744,5.6955,,,
+random,10000,135,13032,85,push milk to the right,banana in black bowl (new background),,-0.6937,22.4369,5.4494,,,
+random,10000,10,11043,105,push milk to the right,push milk to the right,,-0.1543,17.2962,13.5281,,,
+random,10005,125,13048,10,push milk to the right,banana in black bowl (new background),,0.177,8.4745,16.0918,,,
+random,12002,175,13047,85,banana in black bowl (new background),banana in black bowl (new background),,-0.4003,15.5849,13.9766,,,
+random,10008,55,13000,120,push milk to the right,banana in black bowl (new background),,-0.8389,18.9295,10.9153,,,
+random,12000,25,13023,35,banana in black bowl (new background),banana in black bowl (new background),,-0.8834,13.2358,8.2009,,,
+random,12000,45,13041,10,banana in black bowl (new background),banana in black bowl (new background),,-0.9999,17.0694,15.7583,,,
+random,10003,60,11048,70,push milk to the right,push milk to the right,,0.9924,12.4786,16.1476,,,
+random,10004,75,13035,45,push milk to the right,banana in black bowl (new background),,-0.3706,31.6536,9.3004,,,
+random,10002,60,13017,60,push milk to the right,banana in black bowl (new background),,0.545,21.0118,10.2878,,,
+random,12008,15,11030,80,banana in black bowl (new background),push milk to the right,,0.0355,23.4361,32.1695,,,
+random,10005,35,13024,85,push milk to the right,banana in black bowl (new background),,-0.9324,10.7132,5.8217,,,
+random,12001,150,13005,115,banana in black bowl (new background),banana in black bowl (new background),,0.8842,6.2878,5.1076,,,
+random,12007,80,11008,90,banana in black bowl (new background),push milk to the right,,-0.9074,19.4078,17.0148,,,
+random,10005,15,11040,60,push milk to the right,push milk to the right,,-0.1381,13.7342,17.9941,,,
+random,12008,35,11006,120,banana in black bowl (new background),push milk to the right,,0.9879,18.7498,2.6738,,,
+random,10008,165,11048,70,push milk to the right,push milk to the right,,0.9796,20.4761,16.1476,,,
+random,10000,40,11044,30,push milk to the right,push milk to the right,,-0.137,10.7132,32.3704,,,
+random,12002,160,11043,100,banana in black bowl (new background),push milk to the right,,-0.8746,3.3793,18.2786,,,
+random,10005,110,13007,20,push milk to the right,banana in black bowl (new background),,0.9411,14.3953,19.2544,,,
+random,12009,85,11011,85,banana in black bowl (new background),push milk to the right,,-0.35,19.4048,40.4944,,,
+random,10005,55,13043,30,push milk to the right,banana in black bowl (new background),,-0.9937,8.8205,13.602,,,
+random,10005,85,13015,95,push milk to the right,banana in black bowl (new background),,0.5222,29.4027,0.8016,,,
+random,10006,120,13030,60,push milk to the right,banana in black bowl (new background),,-0.1826,11.575,9.4069,,,

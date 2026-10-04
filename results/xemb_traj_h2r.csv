@@ -1,0 +1,9 @@
+example,split,task_human,task_robot,human_episode,human_frame,robot_episode,robot_frame,cos_vs_human,cos_vs_robot_real
+0,train,push pink cup,push pink cup,1257,165,276,195,0.979,0.9921
+1,train,can on stove,can on stove,1076,140,174,130,0.9554,0.9963
+2,train,white cup on pan,white cup on pan,1313,140,304,75,0.9898,0.9178
+3,train,open drawer and blue brick in drawer and close drawer,open drawer and blue brick in drawer and close drawer,998,280,114,430,0.9442,0.9725
+4,eval,milk on pink plate,milk on pink plate,1645,100,583,145,0.9088,0.9655
+5,eval,banana in cardboard box,banana in cardboard box,807,70,487,110,0.8153,0.9925
+6,eval,push milk to the right,push milk to the right,11009,85,10001,125,0.9447,0.8139
+7,eval,milk on pink plate,salt on pink plate,1633,105,658,80,0.9766,0.8963

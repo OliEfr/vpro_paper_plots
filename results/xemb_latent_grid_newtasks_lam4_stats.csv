@@ -1,0 +1,7 @@
+latent,src_gid,src_frame,src,consistency_robot_frames,consistency_human_frames,cos_robot_vs_human,frac_frames_within_45deg,angle_robot_deg,angle_human_deg
+right,10004,78,robot_3cam,0.986,0.957,1.0,1.0,29.447,29.189
+up-right,11045,80,video_2cam,0.987,0.947,0.996,1.0,33.3,28.228
+away,12003,71,robot_3cam,0.995,0.936,0.935,1.0,71.671,50.902
+left,11028,50,video_2cam,0.973,0.97,0.976,0.967,-159.739,-147.269
+down-left,13041,45,video_2cam,0.995,0.965,0.998,1.0,-129.334,-133.309
+down,10008,73,robot_3cam,0.993,0.957,0.987,1.0,-106.897,-116.017

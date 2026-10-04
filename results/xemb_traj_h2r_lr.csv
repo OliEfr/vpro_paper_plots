@@ -1,0 +1,9 @@
+example,task_human,task_robot,human_episode,human_frame,robot_episode,robot_frame,cos_vs_human,cos_vs_robot_real,human_cx,human_cy,human_u,human_v,robot_model_cx,robot_model_cy,robot_model_u,robot_model_v,robot_real_cx,robot_real_cy,robot_real_u,robot_real_v,direction
+0,milk on pink plate,milk on pink plate,1626,100,597,130,0.9978,0.9775,0.782,0.805,0.0636,0.0142,0.6697,0.3879,0.0974,0.0174,0.8405,0.6574,0.113,0.0459,right
+1,banana in cardboard box,banana in cardboard box,803,110,503,140,0.9852,0.9842,0.8627,0.8865,0.0865,-0.0091,0.6801,0.5554,0.0525,-0.0104,0.6386,0.576,0.083,-0.0016,right
+2,banana in black bowl,banana in black bowl,847,110,551,100,0.9949,0.8933,0.9076,0.6428,0.0742,0.0234,0.834,0.59,0.0509,0.0152,0.7903,0.5258,0.0957,0.0185,right
+3,banana in cardboard box,banana in cardboard box,828,120,505,160,0.9675,0.9663,0.6479,0.5197,0.072,0.0101,0.5727,0.3629,0.0701,0.0153,0.6318,0.4412,0.0619,0.021,right
+4,milk on pink plate,milk on pink plate,1636,70,609,160,0.9358,0.9005,0.7916,0.8972,0.0879,-0.0384,0.5381,0.5307,0.1168,-0.0142,0.5993,0.6895,0.1217,-0.0125,right
+5,banana in black bowl,banana in black bowl,836,120,545,120,0.993,0.8898,0.585,0.4646,0.0587,0.0041,0.7246,0.3715,0.0389,0.0094,0.6503,0.4492,0.094,0.0239,right
+6,banana in cardboard box,banana in cardboard box,825,130,492,130,0.9714,0.9419,0.7598,0.4879,0.072,0.0106,0.8374,0.2295,0.1057,0.0246,0.7037,0.4257,0.0742,0.0255,right
+7,milk on pink plate,milk on pink plate,1661,120,605,90,0.9708,0.9378,0.8613,0.7322,-0.0917,0.0253,0.7843,0.5183,-0.0687,0.0116,0.72,0.5051,-0.0473,0.0293,left

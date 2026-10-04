@@ -1,0 +1,7 @@
+metric,value
+search_nearest_mean_cos,0.174
+search_nearest_frac_agree,0.1598
+search_random_mean_cos,0.0149
+search_random_frac_agree,0.0967
+similarity_same_movement_mean,0.8063
+similarity_different_movement_mean,0.0493
