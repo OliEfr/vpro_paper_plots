@@ -101,9 +101,9 @@ class Clip:
         self.placeholder = None
 
     @classmethod
-    def from_file(cls, path, speed=1.0, label=None, t0=None, t1=None, hold=0.0, crop=None, loop=False):
-        frames, fps = read_frames(path, t0, t1)
-        return cls(frames, fps, speed, label, hold, crop, loop)
+    def from_file(cls, path, speed=1.0, label=None, t0=None, t1=None, hold=0.0, crop=None, loop=False, fps=None):
+        frames, src_fps = read_frames(path, t0, t1)
+        return cls(frames, fps or src_fps, speed, label, hold, crop, loop)
 
     @classmethod
     def sequence(cls, clips, gap=0.5, loop=True):

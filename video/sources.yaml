@@ -21,7 +21,7 @@ datasets:
   #     /gpfs/projects/ehpc637/felix_minzenmay2/runs_root/runs_lerobot/outputs/eval_split/2026-07-21_rollout_sqsh_43582857_rlfvxemb_withvideo_lam1_policy5_nact10_ep100_bs25_async_osmesa_render5_ckpt070000/
   #     per-episode successes: libero-stage-probe-20260904/out/recorded_successes.json (libero_goal|1: first 5 episodes all successful)
   #     fetch with ./fetch_libero_franka.sh once MN5 storage is back
-  libero_franka_rollouts: MN5 eval_split group above (unreachable 2026-10-05, BSC power outage)
+  libero_franka_rollouts: MN5 eval_split group above, run dir 43613157_..._libero_goal_t1_sqsh_render5/videos/libero_goal_1/eval_episode_{0..3}.mp4 (fetched 2026-10-05 via transfer1)
   # --- MimicGen cross-embodiment demos (st-07): vpro_mimicgen_eval/datasets/lerobot_frontside/demo_src_stack_task_D0_robot_<R>_*, frontview, 256x256 @ 20 fps
   # --- MimicGen Panda deployment (st-07): vpro_mimicgen_eval/results/eval_videos/eval_43344870_mgxemb_run4_fullft_80k/ (Table I "ours" row; agentview render, success/fail in filename)
   # --- transfer slides: vpro_paper_plots/figures/xemb_*.mp4 (experiments/make_xemb_videos.py and siblings); panels are cropped out and re-laid-out here
@@ -45,10 +45,10 @@ slides:
       - subtitle: Deployment on Franka Panda
         caption: Franka Panda
         clips:
-          - {placeholder: "Franka rollout, libero_goal task 1, ep 0 (MN5)"}
-          - {placeholder: "Franka rollout, libero_goal task 1, ep 1 (MN5)"}
-          - {placeholder: "Franka rollout, libero_goal task 1, ep 2 (MN5)"}
-          - {placeholder: "Franka rollout, libero_goal task 1, ep 3 (MN5)"}
+          - {clip: video/clips/libero/franka/goal_t1_ep0.mp4, fps: 20}   # MN5 render5 clip, container says 80 fps but the env runs at 20
+          - {clip: video/clips/libero/franka/goal_t1_ep1.mp4, fps: 20}   # MN5 render5 clip, container says 80 fps but the env runs at 20
+          - {clip: video/clips/libero/franka/goal_t1_ep2.mp4, fps: 20}   # MN5 render5 clip, container says 80 fps but the env runs at 20
+          - {clip: video/clips/libero/franka/goal_t1_ep3.mp4, fps: 20}   # MN5 render5 clip, container says 80 fps but the env runs at 20
   2:
     slug: sim_mimicgen
     kind: sim

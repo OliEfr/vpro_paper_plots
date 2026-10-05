@@ -68,15 +68,12 @@ is the hardest call (20 % SR in the paper); episodes 2, 13 and 23 end with the c
 plate. Failures were chosen to be visually unambiguous (object dropped beside the target, wrong
 target, missed grasp). These are cherry-picked illustrations, not a statistic.
 
-## Open item: LIBERO Franka deployment (slide 1, bottom row)
+## LIBERO Franka deployment (slide 1, bottom row)
 
-The rollout harness renders 5 mp4s per task (`render5`) into
-`/gpfs/projects/ehpc637/felix_minzenmay2/runs_root/runs_lerobot/outputs/eval_split/2026-07-21_rollout_sqsh_43582857_rlfvxemb_withvideo_lam1_policy5_nact10_ep100_bs25_async_osmesa_render5_ckpt070000/`
-on MN5 (the paper's dual-view "ours" arm, ckpt 070000). MN5 was down on 2026-10-05 (BSC power
-outage), so the row is a placeholder. Per-episode successes are already local in
-`libero-stage-probe-20260904/out/recorded_successes.json`: for `libero_goal|1` ("put the bowl on
-the stove") the first five rendered episodes are all successes. To finish, once a login or
-transfer node has GPFS again (BSC said the transfer machines come back first):
-`./fetch_libero_franka.sh [host]` pulls the four task-1 mp4s into `clips/libero/franka/`; then
-replace the `placeholder:` entries in `sources.yaml` slide 1 with `clip:` entries and run
-`python compose.py 1`.
+Filled on 2026-10-05 evening once BSC's transfer node had GPFS back (compute was still down).
+`fetch_libero_franka.sh transfer1.bsc.es` pulled episodes 0-3 of
+`43613157_rollout_43582857_withvideo_lam1_policy5_nact10_libero_goal_t1_sqsh_render5/videos/libero_goal_1/`
+from the render5 group of the paper's dual-view "ours" arm (policy 43582857, ckpt 070000) into
+`clips/libero/franka/`. `recorded_successes.json` in `libero-stage-probe-20260904/out` marks those
+episodes as successes. The mp4 containers claim 80 fps while the LIBERO env runs at 20, so
+`sources.yaml` pins `fps: 20` for them.

@@ -39,7 +39,8 @@ def clip(entry, speed=1.0, size=(256, 256), loop=False):
         return V.Clip.placeholder_clip(entry["placeholder"], size=size, label=entry.get("label"))
     return V.Clip.from_file(resolve(entry["clip"]), speed=entry.get("speed", speed), label=entry.get("label"),
                             t0=entry.get("t0"), t1=entry.get("t1"), hold=entry.get("hold", 0.0),
-                            crop=tuple(entry["crop"]) if entry.get("crop") else None, loop=entry.get("loop", loop))
+                            crop=tuple(entry["crop"]) if entry.get("crop") else None, loop=entry.get("loop", loop),
+                            fps=entry.get("fps"))
 
 
 def card(w, s):
