@@ -112,21 +112,22 @@ slides:
     kind: transfer
     title: Human-Robot Transfer
     parts:
+      # The source clips contain three passes of the motion; t1 keeps the first two.
       # All "arrow" parts share one layout: source demo -> arrow (Transfer / Latent) -> model outputs [+ reference].
       # Panels are cropped out of the existing xemb clips (coordinates in source pixels).
       - subtitle: Human latent transfer to robot motions
         kind: arrow   # xemb_headline_trajectory_*.mp4, 1264x368: panels x 10-316 (source), 326-632 (model output), 958-1264 (reference); y 92-322
         clips:
-          - {clip: figures/xemb_headline_trajectory_evaltasks_milk_on_plate_human_to_robot.mp4, panel_y: [92, 322], src: [10, 316],
+          - {clip: figures/xemb_headline_trajectory_evaltasks_milk_on_plate_human_to_robot.mp4, t1: 7.867, panel_y: [92, 322], src: [10, 316],
              outputs: [[326, 632], [958, 1264]], src_label: Human Demo, out_labels: [Motion transfer to robot, Robot reference], note: "0.5x speed"}
-          - {clip: figures/xemb_headline_trajectory_newtasks_lam4_push_milk_down_human_to_robot.mp4, panel_y: [92, 322], src: [10, 316],
+          - {clip: figures/xemb_headline_trajectory_newtasks_lam4_push_milk_down_human_to_robot.mp4, t1: 7.867, panel_y: [92, 322], src: [10, 316],
              outputs: [[326, 632], [958, 1264]], src_label: Human Demo, out_labels: [Motion transfer to robot, Robot reference], note: "0.5x speed"}
       - subtitle: Same latent actions yield similar motions across scenes and embodiments
         kind: arrow   # xemb_headline_{up_left,left,evaltasks_away}.mp4, 1176x504: panels x 16-377 (source), 422-784 (robot), 799-1160 (human); y 96-458
         clips:
-          - {clip: figures/xemb_headline_up_left.mp4, panel_y: [96, 458], src: [16, 377], outputs: [[422, 784], [799, 1160]],
+          - {clip: figures/xemb_headline_up_left.mp4, t1: 6.667, panel_y: [96, 458], src: [16, 377], outputs: [[422, 784], [799, 1160]],
              src_label: Human Demo, out_labels: [Motion transfer to robot, Motion transfer to human], note: "0.5x speed"}
-          - {clip: figures/xemb_headline_left.mp4, panel_y: [96, 458], src: [16, 377], outputs: [[422, 784], [799, 1160]],
+          - {clip: figures/xemb_headline_left.mp4, t1: 6.667, panel_y: [96, 458], src: [16, 377], outputs: [[422, 784], [799, 1160]],
              src_label: Robot Demo, out_labels: [Motion transfer to robot, Motion transfer to human], note: "0.5x speed"}
       - subtitle: Same movements produce same latents across embodiments
         kind: pairlat   # xemb_realworld_transfer_evaltasks.mp4 (832x568): video panels inset past the blue frame and burnt-in titles; heatmap rows without their burnt-in caption
