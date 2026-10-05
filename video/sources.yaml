@@ -84,7 +84,7 @@ slides:
           - {clip: video/clips/hw/rollout_eval-milk-pink-plate-43535703-withvideo-frozen-25eps_20260721_190611/ep023.mp4}
       - task: "Salt on plate"
         clips:
-          - {clip: video/clips/hw/rollout_eval-salt-pink-plate-43535703-withvideo-frozen-25eps_20260723_115245/ep000.mp4}
+          - {clip: video/clips/hw/rollout_eval-salt-pink-plate-43535703-withvideo-frozen-25eps_20260723_115245/ep012.mp4}
           - {clip: video/clips/hw/rollout_eval-salt-pink-plate-43535703-withvideo-frozen-25eps_20260723_115245/ep001.mp4}
           - {clip: video/clips/hw/rollout_eval-salt-pink-plate-43535703-withvideo-frozen-25eps_20260723_115245/ep004.mp4}
       - task: "Banana in box"
@@ -94,14 +94,14 @@ slides:
           - {clip: video/clips/hw/rollout_eval-banana-cardboard-43535703-withvideo-frozen-25eps_20260721_131408/ep013.mp4, t1: 12.0}
       - task: "Banana in bowl"
         clips:
-          - {clip: video/clips/hw/rollout_eval-banana-black-bowl-43535703-withvideo-frozen-25eps_20260723_175055/ep005.mp4}
+          - {clip: video/clips/hw/rollout_eval-banana-black-bowl-43535703-withvideo-frozen-25eps_20260723_175055/ep015.mp4}
           - {clip: video/clips/hw/rollout_eval-banana-black-bowl-43535703-withvideo-frozen-25eps_20260723_175055/ep006.mp4}
           - {clip: video/clips/hw/rollout_eval-banana-black-bowl-43535703-withvideo-frozen-25eps_20260723_175055/ep020.mp4}
       - task: "Push milk right"
         clips:
-          - {clip: video/clips/hw/rollout_eval-push-milk-right-44227729-nt-budget05-withvideo-frozen-25eps_20260821_133754/ep006.mp4}
-          - {clip: video/clips/hw/rollout_eval-push-milk-right-44227729-nt-budget05-withvideo-frozen-25eps_20260821_133754/ep013.mp4}
-          - {clip: video/clips/hw/rollout_eval-push-milk-right-44227729-nt-budget05-withvideo-frozen-25eps_20260821_133754/ep017.mp4}
+          - {clip: video/clips/hw/rollout_eval-push-milk-right-44227729-nt-budget05-withvideo-frozen-25eps_20260821_133754/ep001.mp4}
+          - {clip: video/clips/hw/rollout_eval-push-milk-right-44227729-nt-budget05-withvideo-frozen-25eps_20260821_133754/ep002.mp4}
+          - {clip: video/clips/hw/rollout_eval-push-milk-right-44227729-nt-budget05-withvideo-frozen-25eps_20260821_133754/ep004.mp4}
       - task: "New background"
         clips:
           - {clip: video/clips/hw/rollout_eval-banana-black-bowl-44227729-nt-budget05-withvideo-frozen-25eps_20260824_202623/ep007.mp4}
@@ -149,16 +149,17 @@ slides:
     slug: failure_cases
     kind: grid
     title: Failure cases
+    extra_seconds: 3
     cells:   # one failed rollout per task, picked by eye (see README)
-      - {task: "Milk on plate: never grasps the milk",
+      - {task: "Failed grasp",
          clips: [{clip: video/clips/hw/rollout_eval-milk-pink-plate-43535703-withvideo-frozen-25eps_20260721_190611/ep015.mp4}]}
-      - {task: "Salt on plate: carries salt to the box",
-         clips: [{clip: video/clips/hw/rollout_eval-salt-pink-plate-43535703-withvideo-frozen-25eps_20260723_115245/ep017.mp4}]}
-      - {task: "Banana in box: dropped beside the box",
+      - {task: "Failed grasp",
+         clips: [{clip: video/clips/hw/rollout_eval-salt-pink-plate-43535703-withvideo-frozen-25eps_20260723_115245/ep009.mp4}]}
+      - {task: "Failed grasp",
          clips: [{clip: video/clips/hw/rollout_eval-banana-cardboard-43535703-withvideo-frozen-25eps_20260721_131408/ep012.mp4}]}
-      - {task: "Banana in bowl: dropped beside the bowl",
+      - {task: "Wrong placement",
          clips: [{clip: video/clips/hw/rollout_eval-banana-black-bowl-43535703-withvideo-frozen-25eps_20260723_175055/ep002.mp4}]}
-      - {task: "Push milk right: misses the carton",
+      - {task: "Missing precision",
          clips: [{clip: video/clips/hw/rollout_eval-push-milk-right-44227729-nt-budget05-withvideo-frozen-25eps_20260821_133754/ep010.mp4}]}
-      - {task: "New background: dropped beside the bowl",
+      - {task: "Wrong placement",
          clips: [{clip: video/clips/hw/rollout_eval-banana-black-bowl-44227729-nt-budget05-withvideo-frozen-25eps_20260824_202623/ep005.mp4}]}

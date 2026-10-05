@@ -71,7 +71,7 @@ def slide_grid(w, s):
         seq = V.Clip.sequence([clip(e) for e in c["clips"]], gap=0.5, loop=True)
         seq.label = c["task"]
         tiles.append(seq)
-    seconds = s.get("seconds") or max(t.duration for t in tiles)
+    seconds = (s.get("seconds") or max(t.duration for t in tiles)) + s.get("extra_seconds", 0)
     rows = [{"subtitle": None, "clips": tiles[:3]}, {"subtitle": None, "clips": tiles[3:6]}]
     V.render_rows(w, s["title"], rows, note=V.speed_tag(1.0), seconds=seconds, label_size=28, label_above=True)
 
