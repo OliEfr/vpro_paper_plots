@@ -72,17 +72,18 @@ TRANSFER_CSV = HERE / "results" / "xemb_traj_h2r_lr.csv"
 TRANSFER_FRAMES = HERE / "results" / "frames_xemb_traj_h2r_lr"
 TRANSFER_EX = 0          # milk on pink plate, moving right
 FRAME_B = 4              # second frame index; frames are 0.3 s apart -> FRAME_B * 0.3 s
-ARROW_GAIN = 3.0         # image arrows = the human hand's measured motion over the interval, drawn at 3x
-# the same arrow (vector and position) is drawn in both "after" frames, so it reads as one movement shown on two
-# embodiments. Position picked by eye on the free floor just BELOW the hand / gripper of example 0 (hand with
-# milk at x 0.68-0.82, y 0.55-0.72; decoded gripper at x 0.72-0.95, y 0.37-0.75), so it overlaps neither.
-ARROW_AT = (0.62, 0.86)   # (x, y) image fractions, y down
+ARROW_GAIN = 2.5         # image arrows = the human hand's measured motion over the interval, drawn at 2.5x
+# the same arrow (vector and TIP position) is drawn in both "after" frames, so it reads as one movement shown on
+# two embodiments. The arrow comes in from the left and its head stops at the tip of the hand / end effector:
+# in example 0 the human's fingertips on the milk carton and the left edge of the decoded gripper both sit at
+# about x 0.69-0.70, y 0.60 (read off a coordinate grid over the two frames).
+ARROW_TIP = (0.695, 0.60)   # (x, y) image fractions, y down: where the arrowhead ends
 
 
-def movement_arrow(ax, cx, cy, u, v):
-    """Arrow of image-fraction vector (u, v) centred at (cx, cy) (image coordinates, y down)."""
+def movement_arrow(ax, tx, ty, u, v):
+    """Arrow of image-fraction vector (u, v) whose HEAD ends at (tx, ty) (image coordinates, y down)."""
     import matplotlib.patheffects as pe
-    a = ax.annotate("", xy=(cx + u / 2, 1 - (cy + v / 2)), xytext=(cx - u / 2, 1 - (cy - v / 2)),
+    a = ax.annotate("", xy=(tx, 1 - ty), xytext=(tx - u, 1 - (ty - v)),
                     xycoords="axes fraction", arrowprops=dict(arrowstyle="-|>,head_length=0.32,head_width=0.18",
                                                               color=style.INK, linewidth=1.1, shrinkA=0, shrinkB=0))
     a.arrow_patch.set_path_effects([pe.Stroke(linewidth=2.4, foreground="white"), pe.Normal()])
@@ -96,7 +97,7 @@ def transfer_panel(fig, x0, width, T, row_h, ROW_GAP, w, h, plt, imread):
     gap = width - 2 * tile_w                   # room for the time arrow between the two frames
     assert gap > 0.02, f"transfer panel too narrow ({gap:.3f})"
     rows = [("human", "human", "Human"), ("robot_model", "robot_model", "Robot")]
-    arrow_c = ARROW_AT
+    arrow_c = ARROW_TIP
     fs = plt.rcParams["font.size"]
     for ri, (tag0, tagb, label) in enumerate(rows):
         y0 = T - (ri + 1) * row_h - ri * ROW_GAP

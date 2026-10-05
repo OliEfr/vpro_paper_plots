@@ -55,7 +55,7 @@ def main():
     ax.set_ylim(0, 1.0)
     ax.set_yticks([0, 0.5, 1.0])
     ax.tick_params(axis="y", which="minor", left=False, right=False)
-    ax.set_ylabel("$R^2$", labelpad=1)
+    ax.set_ylabel(r"MLP $R^2$ $\uparrow$", labelpad=1)   # same name as Fig. 3; arrow: higher is better
     ax.tick_params(axis="x", labelsize=fs - 1.5, pad=1.5)
     ax.tick_params(axis="y", labelsize=fs - 1.5, pad=1.5)
     handles = [Patch(facecolor=combo.COLORS[m], edgecolor=style.MARKER_EDGE, linewidth=0.5, label=LEGEND_LABELS[m])

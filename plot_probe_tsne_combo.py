@@ -156,7 +156,7 @@ def make_figure(probe, style, name):
     axs = fig.add_subplot(left[1])
     combo.draw_bars(axb, bars, pkey, style)
     # second line kept shorter than the axes are tall (the page is low)
-    axb.set_ylabel(rf"{plabel.split()[0]} $R^2$" + "\n(benchmark mean)")
+    axb.set_ylabel(rf"{plabel.split()[0]} $R^2$ $\uparrow$" + "\n(benchmark mean)")   # arrow: higher is better
     axb.set_xlabel("Action Dimension", labelpad=1.5)
     srm.OURS = combo.OURS
     # villa-X is a scatter-only baseline; without it the panel is the six bar
@@ -165,7 +165,7 @@ def make_figure(probe, style, name):
     methods = [(k, LABEL_OVERRIDES.get(k, lab)) for k, lab in srm.METHODS if k not in DROP_METHODS]
     srm.draw(axs, pts, rcol, style, "absolute", "none", note_loc="none",
              colors=combo.COLORS, edge_ours=style.MARKER_EDGE)
-    axs.set_xlabel(rf"{plabel.split()[0]} $R^2$", labelpad=1.5)
+    axs.set_xlabel(rf"{plabel.split()[0]} $R^2$ $\uparrow$", labelpad=1.5)
     axs.xaxis.set_major_locator(MultipleLocator(0.1))
     axs.set_ylabel("Policy SR [%]")
 
