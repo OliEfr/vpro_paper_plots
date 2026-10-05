@@ -1,0 +1,164 @@
+# Every clip in the companion video, with where it came from. Read by compose.py.
+# Paths are relative to the vpro_paper_plots repo root unless absolute.
+# clips/… are per-episode H.264 cuts made by cut.py from the datasets listed under `datasets:`.
+# `placeholder:` entries render a grey box; they mark material that could not be fetched yet.
+
+datasets:
+  # --- hardware (DK1), HF LearningFromVideo, front camera only (observation.images.front), 640x480 @ 30 fps
+  hw_milk:        LearningFromVideo/rollout_eval-milk-pink-plate-43535703-withvideo-frozen-25eps_20260721_190611
+  hw_salt:        LearningFromVideo/rollout_eval-salt-pink-plate-43535703-withvideo-frozen-25eps_20260723_115245
+  hw_banana_box:  LearningFromVideo/rollout_eval-banana-cardboard-43535703-withvideo-frozen-25eps_20260721_131408
+  hw_banana_bowl: LearningFromVideo/rollout_eval-banana-black-bowl-43535703-withvideo-frozen-25eps_20260723_175055
+  hw_push_milk:   LearningFromVideo/rollout_eval-push-milk-right-44227729-nt-budget05-withvideo-frozen-25eps_20260821_133754
+  hw_banana_bowl_newbg: LearningFromVideo/rollout_eval-banana-black-bowl-44227729-nt-budget05-withvideo-frozen-25eps_20260824_202623
+  # (human-demo repos were downloaded for a human/robot pair slide that was dropped on 2026-10-05; raw/ still has them)
+  # --- LIBERO cross-embodiment demos, HF OliverHausdoerfer, frontview camera, 256x256 @ 20 fps; task "put the bowl on the stove" (libero_goal task 1)
+  libero_ur5e:    OliverHausdoerfer/libero_goal_ur5e_additionalCams
+  libero_kinova3: OliverHausdoerfer/libero_goal_kinova3_additionalCams
+  libero_iiwa:    OliverHausdoerfer/libero_goal_iiwa_additionalCams
+  libero_sawyer:  OliverHausdoerfer/libero_goal_sawyer_additionalCams
+  # --- LIBERO Franka deployment: render5 mp4s of the paper's dual-view arm (policy 43582857, ckpt 070000), MN5
+  #     /gpfs/projects/ehpc637/felix_minzenmay2/runs_root/runs_lerobot/outputs/eval_split/2026-07-21_rollout_sqsh_43582857_rlfvxemb_withvideo_lam1_policy5_nact10_ep100_bs25_async_osmesa_render5_ckpt070000/
+  #     per-episode successes: libero-stage-probe-20260904/out/recorded_successes.json (libero_goal|1: first 5 episodes all successful)
+  #     fetch with ./fetch_libero_franka.sh once MN5 storage is back
+  libero_franka_rollouts: MN5 eval_split group above (unreachable 2026-10-05, BSC power outage)
+  # --- MimicGen cross-embodiment demos (st-07): vpro_mimicgen_eval/datasets/lerobot_frontside/demo_src_stack_task_D0_robot_<R>_*, frontview, 256x256 @ 20 fps
+  # --- MimicGen Panda deployment (st-07): vpro_mimicgen_eval/results/eval_videos/eval_43344870_mgxemb_run4_fullft_80k/ (Table I "ours" row; agentview render, success/fail in filename)
+  # --- transfer slides: vpro_paper_plots/figures/xemb_*.mp4 (experiments/make_xemb_videos.py and siblings); panels are cropped out and re-laid-out here
+
+slides:
+  1:
+    slug: sim_libero
+    kind: sim
+    title: "Simulation results: LIBERO"
+    card: true                      # title card without subheading
+    card_title: Simulation results
+    speed: 2
+    seconds: 10
+    rows:
+      - subtitle: Cross-embodiment video demonstrations
+        clips:
+          - {clip: video/clips/libero/bowl_stove/ur5e_ep102.mp4, label: UR5e}
+          - {clip: video/clips/libero/bowl_stove/kinova3_ep120.mp4, label: Kinova3}
+          - {clip: video/clips/libero/bowl_stove/iiwa_ep125.mp4, label: KUKA iiwa}
+          - {clip: video/clips/libero/bowl_stove/sawyer_ep036.mp4, label: Sawyer}
+      - subtitle: Deployment on Franka Panda
+        caption: Franka Panda
+        clips:
+          - {placeholder: "Franka rollout, libero_goal task 1, ep 0 (MN5)"}
+          - {placeholder: "Franka rollout, libero_goal task 1, ep 1 (MN5)"}
+          - {placeholder: "Franka rollout, libero_goal task 1, ep 2 (MN5)"}
+          - {placeholder: "Franka rollout, libero_goal task 1, ep 3 (MN5)"}
+  2:
+    slug: sim_mimicgen
+    kind: sim
+    title: "Simulation results: MimicGen"
+    card: false                     # runs straight on from slide 1
+    speed: 2
+    seconds: 10
+    rows:
+      - subtitle: Cross-embodiment video demonstrations
+        clips:
+          - {clip: video/clips/mimicgen/stack_d0/ur5e_ep000.mp4, label: UR5e}
+          - {clip: video/clips/mimicgen/stack_d0/kinova3_ep000.mp4, label: Kinova3}
+          - {clip: video/clips/mimicgen/stack_d0/iiwa_ep000.mp4, label: KUKA iiwa}
+          - {clip: video/clips/mimicgen/stack_d0/sawyer_ep000.mp4, label: Sawyer}
+      - subtitle: Deployment on Franka Panda
+        caption: Franka Panda
+        clips:
+          - {clip: /home/admin_07/project_repos/vpro_mimicgen_eval/results/eval_videos/eval_43344870_mgxemb_run4_fullft_80k/Stack_D0-Panda_ep1_success.mp4}
+          - {clip: /home/admin_07/project_repos/vpro_mimicgen_eval/results/eval_videos/eval_43344870_mgxemb_run4_fullft_80k/Stack_D0-Panda_ep3_success.mp4}
+          - {clip: /home/admin_07/project_repos/vpro_mimicgen_eval/results/eval_videos/eval_43344870_mgxemb_run4_fullft_80k/Stack_D0-Panda_ep4_success.mp4}
+          - {clip: /home/admin_07/project_repos/vpro_mimicgen_eval/results/eval_videos/eval_43344870_mgxemb_run4_fullft_80k/Square_D0-Panda_ep1_success.mp4}
+  4:
+    slug: hardware_results
+    kind: grid
+    title: Hardware Results
+    card_subtitle: Six evaluation tasks, 850 rollouts.
+    seconds: 20
+    cells:   # order = tasks.py task1..task6; successful rollouts picked by eye from the front camera (see README)
+      - task: "Milk on plate"
+        clips:
+          - {clip: video/clips/hw/rollout_eval-milk-pink-plate-43535703-withvideo-frozen-25eps_20260721_190611/ep002.mp4}
+          - {clip: video/clips/hw/rollout_eval-milk-pink-plate-43535703-withvideo-frozen-25eps_20260721_190611/ep013.mp4}
+          - {clip: video/clips/hw/rollout_eval-milk-pink-plate-43535703-withvideo-frozen-25eps_20260721_190611/ep023.mp4}
+      - task: "Salt on plate"
+        clips:
+          - {clip: video/clips/hw/rollout_eval-salt-pink-plate-43535703-withvideo-frozen-25eps_20260723_115245/ep000.mp4}
+          - {clip: video/clips/hw/rollout_eval-salt-pink-plate-43535703-withvideo-frozen-25eps_20260723_115245/ep001.mp4}
+          - {clip: video/clips/hw/rollout_eval-salt-pink-plate-43535703-withvideo-frozen-25eps_20260723_115245/ep004.mp4}
+      - task: "Banana in box"
+        clips:
+          - {clip: video/clips/hw/rollout_eval-banana-cardboard-43535703-withvideo-frozen-25eps_20260721_131408/ep022.mp4}
+          - {clip: video/clips/hw/rollout_eval-banana-cardboard-43535703-withvideo-frozen-25eps_20260721_131408/ep019.mp4}
+          - {clip: video/clips/hw/rollout_eval-banana-cardboard-43535703-withvideo-frozen-25eps_20260721_131408/ep013.mp4, t1: 12.0}
+      - task: "Banana in bowl"
+        clips:
+          - {clip: video/clips/hw/rollout_eval-banana-black-bowl-43535703-withvideo-frozen-25eps_20260723_175055/ep005.mp4}
+          - {clip: video/clips/hw/rollout_eval-banana-black-bowl-43535703-withvideo-frozen-25eps_20260723_175055/ep006.mp4}
+          - {clip: video/clips/hw/rollout_eval-banana-black-bowl-43535703-withvideo-frozen-25eps_20260723_175055/ep020.mp4}
+      - task: "Push milk right"
+        clips:
+          - {clip: video/clips/hw/rollout_eval-push-milk-right-44227729-nt-budget05-withvideo-frozen-25eps_20260821_133754/ep006.mp4}
+          - {clip: video/clips/hw/rollout_eval-push-milk-right-44227729-nt-budget05-withvideo-frozen-25eps_20260821_133754/ep013.mp4}
+          - {clip: video/clips/hw/rollout_eval-push-milk-right-44227729-nt-budget05-withvideo-frozen-25eps_20260821_133754/ep017.mp4}
+      - task: "New background"
+        clips:
+          - {clip: video/clips/hw/rollout_eval-banana-black-bowl-44227729-nt-budget05-withvideo-frozen-25eps_20260824_202623/ep007.mp4}
+          - {clip: video/clips/hw/rollout_eval-banana-black-bowl-44227729-nt-budget05-withvideo-frozen-25eps_20260824_202623/ep011.mp4}
+          - {clip: video/clips/hw/rollout_eval-banana-black-bowl-44227729-nt-budget05-withvideo-frozen-25eps_20260824_202623/ep015.mp4}
+  5:
+    slug: human_robot_transfer
+    kind: transfer
+    title: Human-Robot Transfer
+    parts:
+      # All "arrow" parts share one layout: source demo -> arrow (Transfer / Latent) -> model outputs [+ reference].
+      # Panels are cropped out of the existing xemb clips (coordinates in source pixels).
+      - subtitle: Human latent transfer to robot motions
+        kind: arrow   # xemb_headline_trajectory_*.mp4, 1264x368: panels x 10-316 (source), 326-632 (model output), 958-1264 (reference); y 92-322
+        clips:
+          - {clip: figures/xemb_headline_trajectory_evaltasks_milk_on_plate_human_to_robot.mp4, panel_y: [92, 322], src: [10, 316],
+             outputs: [[326, 632], [958, 1264]], src_label: Human Demo, out_labels: [Motion transfer to robot, Robot reference], note: "0.5x speed"}
+          - {clip: figures/xemb_headline_trajectory_newtasks_lam4_push_milk_down_human_to_robot.mp4, panel_y: [92, 322], src: [10, 316],
+             outputs: [[326, 632], [958, 1264]], src_label: Human Demo, out_labels: [Motion transfer to robot, Robot reference], note: "0.5x speed"}
+      - subtitle: Same latent actions yield similar motions across scenes and embodiments
+        kind: arrow   # xemb_headline_{up_left,left,evaltasks_away}.mp4, 1176x504: panels x 16-377 (source), 422-784 (robot), 799-1160 (human); y 96-458
+        clips:
+          - {clip: figures/xemb_headline_up_left.mp4, panel_y: [96, 458], src: [16, 377], outputs: [[422, 784], [799, 1160]],
+             src_label: Human Demo, out_labels: [Motion transfer to robot, Motion transfer to human], note: "0.5x speed"}
+          - {clip: figures/xemb_headline_left.mp4, panel_y: [96, 458], src: [16, 377], outputs: [[422, 784], [799, 1160]],
+             src_label: Robot Demo, out_labels: [Motion transfer to robot, Motion transfer to human], note: "0.5x speed"}
+      - subtitle: Same movements produce same latents across embodiments
+        kind: pairlat   # xemb_realworld_transfer_evaltasks.mp4 (832x568): video panels inset past the blue frame and burnt-in titles; heatmap rows without their burnt-in caption
+        clips:
+          - {clip: figures/xemb_realworld_transfer_evaltasks.mp4, t0: 0.0, t1: 5.0,
+             robot_x: [16, 404], human_x: [427, 815], video_y: [92, 353], heat_x: [0, 832], heat_y: [392, 526], repeat: 2,
+             task: Push milk to right,
+             heat_label: Latent dimensions over the movement, note: "0.5x speed"}
+          - {clip: figures/xemb_realworld_transfer_evaltasks.mp4, t0: 5.0, t1: 10.0,
+             robot_x: [16, 404], human_x: [427, 815], video_y: [92, 353], heat_x: [0, 832], heat_y: [392, 526], repeat: 2,
+             task: Banana in bowl,
+             heat_label: Latent dimensions over the movement, note: "0.5x speed"}
+      - subtitle: Different latent motions across embodiments and scenes
+        kind: gridtiles  # tiles cropped out of xemb_latent_grid_evaltasks.mp4 (1512x1152): 7 columns x 5 rows of 200 px, row 0 = source demos, column 0 = start frames
+        clips:
+          - {clip: figures/xemb_latent_grid_evaltasks.mp4, cols_x: [70, 276, 482, 688, 894, 1100, 1306], rows_y: [70, 294, 500, 706, 912], tile_px: 200,
+             directions: [right, up-right, away, up-left, down-left, down], swap_source: [[1, 2]], tile: 150, repeat: 3, note: "0.5x speed",
+             text: ["Latents are separated by motion, and transfer across scenes and embodiments"]}
+  6:
+    slug: failure_cases
+    kind: grid
+    title: Failure cases
+    cells:   # one failed rollout per task, picked by eye (see README)
+      - {task: "Milk on plate: never grasps the milk",
+         clips: [{clip: video/clips/hw/rollout_eval-milk-pink-plate-43535703-withvideo-frozen-25eps_20260721_190611/ep015.mp4}]}
+      - {task: "Salt on plate: carries salt to the box",
+         clips: [{clip: video/clips/hw/rollout_eval-salt-pink-plate-43535703-withvideo-frozen-25eps_20260723_115245/ep017.mp4}]}
+      - {task: "Banana in box: dropped beside the box",
+         clips: [{clip: video/clips/hw/rollout_eval-banana-cardboard-43535703-withvideo-frozen-25eps_20260721_131408/ep012.mp4}]}
+      - {task: "Banana in bowl: dropped beside the bowl",
+         clips: [{clip: video/clips/hw/rollout_eval-banana-black-bowl-43535703-withvideo-frozen-25eps_20260723_175055/ep002.mp4}]}
+      - {task: "Push milk right: misses the carton",
+         clips: [{clip: video/clips/hw/rollout_eval-push-milk-right-44227729-nt-budget05-withvideo-frozen-25eps_20260821_133754/ep010.mp4}]}
+      - {task: "New background: dropped beside the bowl",
+         clips: [{clip: video/clips/hw/rollout_eval-banana-black-bowl-44227729-nt-budget05-withvideo-frozen-25eps_20260824_202623/ep005.mp4}]}
