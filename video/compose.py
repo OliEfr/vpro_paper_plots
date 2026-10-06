@@ -103,7 +103,15 @@ def arrow_slide(w, title, subtitle, e):
     Every panel is cropped out of an existing xemb clip; labels are redrawn in the video's style."""
     base = clip(e)
     y0, y1 = e["panel_y"]
-    panels = [V.Clip([f[y0:y1, x0:x1] for f in base.frames], base.fps) for x0, x1 in [e["src"]] + [tuple(o) for o in e["outputs"]]]
+    aspect = e.get("aspect")                        # source clips that squashed the 4:3 camera into squares get it back
+
+    def crop(f, x0, x1):
+        p = f[y0:y1, x0:x1]
+        if aspect:
+            p = cv2.resize(p, (int(round(p.shape[0] * aspect)), p.shape[0]), interpolation=cv2.INTER_CUBIC)
+        return p
+
+    panels = [V.Clip([crop(f, x0, x1) for f in base.frames], base.fps) for x0, x1 in [e["src"]] + [tuple(o) for o in e["outputs"]]]
     labels = [e["src_label"]] + list(e["out_labels"])
     n_out = len(panels) - 1
     gap, arrow_w = 40, 120
@@ -167,53 +175,56 @@ def pairlat(w, title, subtitle, e):
 def gridtiles(w, title, subtitle, e):
     """Latent-action grid rebuilt from the individual tiles of xemb_latent_grid_evaltasks.mp4
     (7 columns x 5 rows of 200 px tiles): row 0 = source demos (blue frame, 'Source motion'),
-    column 0 = start frames (orange frame, 'Reference'), the rest = LAM roll-outs. Movement-direction
-    labels on top, a 'Transfer latent' arrow on the right, explanatory text on the left."""
+    column 0 = start frames (orange frame, 'Scene'), the rest = LAM roll-outs. Movement-direction
+    labels on top, a 'Transfer latent' arrow on the right, explanatory text on the left. The source
+    tiles are the 4:3 camera squashed to squares; `aspect` stretches them back."""
     base = clip(e)
     cols, rows, ts = e["cols_x"], e["rows_y"], e["tile_px"]
+    aspect = e.get("aspect", 1.0)
+    TW = e.get("tile", 150)
+    TH = int(round(TW / aspect))
     tiles = {}
     for r, yy in enumerate(rows):
         for c, xx in enumerate(cols):
             if r == 0 and c == 0:
                 continue
-            tiles[(r, c)] = V.Clip([f[yy:yy + ts, xx:xx + ts] for f in base.frames], base.fps, loop=True)
+            tiles[(r, c)] = V.Clip([cv2.resize(f[yy:yy + ts, xx:xx + ts], (TW, TH), interpolation=cv2.INTER_AREA) for f in base.frames], base.fps, loop=True)
     for a, b in e.get("swap_source", []):           # source-row tiles whose columns are exchanged
         tiles[(0, a)], tiles[(0, b)] = tiles[(0, b)], tiles[(0, a)]
     reps = e.get("repeat", 1)
-    T, g = e.get("tile", 150), 10                    # canvas tile size and gap
+    g = 10
     frame_pad = 7
     top, bottom = 150, V.H - 70
-    grid_h = 5 * T + 4 * g
+    grid_h = 5 * TH + 4 * g
+    grid_w = 7 * TW + 6 * g
     label_h = 90                                     # axis label + direction labels
     gy = top + label_h + (bottom - top - label_h - grid_h) // 2
-    grid_w = 7 * T + 6 * g
-    gx = V.W - 60 - 130 - grid_w                     # 130 px for the arrow column on the right
+    gx = V.W - 60 - 110 - grid_w                     # room for the arrow column on the right
     BLUE, ORANGE = (0, 90, 181), (230, 120, 0)
-    text_w = gx - 60 - 60 - 40                       # leave room for the vertical 'Source motion' label
+    text_w = gx - 60 - 60 - 40
 
     def paint(img, t):
         for (r, c), cl in tiles.items():
-            f, nw, nh = V.fit(cl.frame_at(t), T, T)
-            V.paste(img, f, gx + c * (T + g), gy + r * (T + g))
-        # blue frame around the source row (columns 1..6) + vertical label
-        x0, y0 = gx + (T + g) - frame_pad, gy - frame_pad
-        x1, y1 = gx + grid_w + frame_pad, gy + T + frame_pad
+            V.paste(img, cl.frame_at(t), gx + c * (TW + g), gy + r * (TH + g))
+        # blue frame around the source row (columns 1..6) + vertical two-line label to its left
+        x0, y0 = gx + (TW + g) - frame_pad, gy - frame_pad
+        x1, y1 = gx + grid_w + frame_pad, gy + TH + frame_pad
         cv2.rectangle(img, (x0, y0), (x1, y1), BLUE, 2)
-        V.draw_vertical_text(img, "Source", x0 - 44, gy + T // 2, size=22, color=BLUE)
-        V.draw_vertical_text(img, "motion", x0 - 18, gy + T // 2, size=22, color=BLUE)
-        # orange frame around the reference column (rows 1..4) + label above
-        x0, y0 = gx - frame_pad, gy + (T + g) - frame_pad
-        x1, y1 = gx + T + frame_pad, gy + grid_h + frame_pad
+        V.draw_vertical_text(img, "Source", x0 - 44, gy + TH // 2, size=22, color=BLUE)
+        V.draw_vertical_text(img, "motion", x0 - 18, gy + TH // 2, size=22, color=BLUE)
+        # orange frame around the scene column (rows 1..4) + label above
+        x0, y0 = gx - frame_pad, gy + (TH + g) - frame_pad
+        x1, y1 = gx + TW + frame_pad, gy + grid_h + frame_pad
         cv2.rectangle(img, (x0, y0), (x1, y1), ORANGE, 2)
-        V.draw_text(img, "Start frame", (gx + T // 2, gy + (T + g) - frame_pad - 32), size=22, color=ORANGE, anchor="ma")
+        V.draw_text(img, e.get("scene_label", "Scene"), (gx + TW // 2, gy + (TH + g) - frame_pad - 32), size=22, color=ORANGE, anchor="ma")
         # direction labels + axis label on top
         for c, lab in enumerate(e["directions"], start=1):
-            V.draw_text(img, lab, (gx + c * (T + g) + T // 2, gy - frame_pad - 44), size=26, color=V.INK, anchor="ma")
-        V.draw_text(img, "Movement direction", (gx + (T + g) + (grid_w - (T + g)) // 2, gy - frame_pad - 84), size=26, color=V.INK, bold=True, anchor="ma")
+            V.draw_text(img, lab, (gx + c * (TW + g) + TW // 2, gy - frame_pad - 44), size=26, color=V.INK, anchor="ma")
+        V.draw_text(img, "Movement direction", (gx + (TW + g) + (grid_w - (TW + g)) // 2, gy - frame_pad - 84), size=26, color=V.INK, bold=True, anchor="ma")
         # transfer arrow on the right
         ax = gx + grid_w + 34
-        V.draw_down_arrow(img, ax, gy + (T + g), gy + grid_h)
-        V.draw_vertical_text(img, "Transfer latent", ax + 30, gy + (T + g) + (grid_h - (T + g)) // 2, size=26, color=V.INK, up=False)
+        V.draw_down_arrow(img, ax, gy + (TH + g), gy + grid_h)
+        V.draw_vertical_text(img, "Transfer latent", ax + 30, gy + (TH + g) + (grid_h - (TH + g)) // 2, size=26, color=V.INK, up=False)
         # text column
         yy = top + 40
         yy = V.draw_text(img, subtitle, (60, yy), size=40, bold=True, max_width=text_w) + 24
