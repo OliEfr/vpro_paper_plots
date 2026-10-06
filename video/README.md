@@ -8,6 +8,14 @@ Output: `slides/paper_video.mp4` (1920x1080, 30 fps, H.264, ~3 min) and one `sli
 per slide. Everything shown is listed in `sources.yaml`; this file says where each piece came from
 and how the clips were chosen.
 
+## Submission version
+
+`./make_submission.sh [target_MB]` re-encodes `slides/paper_video.mp4` as a two-pass H.264 file
+sized to the target (default 9.5 MB) at the same 1920x1080 / 30 fps, written to
+`slides/paper_video_submission.mp4`. The committed one was built with a 9.0 MB target and is
+9.54 MB on disk (under 10,000,000 bytes); the white canvas costs nothing, so the tiles keep
+their detail at the resulting ~570 kbit/s.
+
 ## Pipeline
 
 ```
