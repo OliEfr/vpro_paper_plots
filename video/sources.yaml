@@ -133,11 +133,11 @@ slides:
         kind: pairlat   # xemb_realworld_transfer_evaltasks.mp4 (832x568): video panels inset past the blue frame and burnt-in titles; heatmap rows without their burnt-in caption
         clips:
           - {clip: figures/xemb_realworld_transfer_evaltasks.mp4, t0: 0.0, t1: 5.0,
-             robot_x: [16, 404], human_x: [427, 815], video_y: [92, 353], heat_x: [0, 832], heat_y: [392, 526], repeat: 2,
+             robot_x: [16, 404], human_x: [427, 815], video_y: [92, 353], heat_x: [30, 812], heat_y: [392, 526], repeat: 2,
              task: Push milk to right,
              heat_label: Latent dimensions over the movement, note: "0.5x speed"}
           - {clip: figures/xemb_realworld_transfer_evaltasks.mp4, t0: 5.0, t1: 10.0,
-             robot_x: [16, 404], human_x: [427, 815], video_y: [92, 353], heat_x: [0, 832], heat_y: [392, 526], repeat: 2,
+             robot_x: [16, 404], human_x: [427, 815], video_y: [92, 353], heat_x: [30, 812], heat_y: [392, 526], repeat: 2,
              task: Banana in bowl,
              heat_label: Latent dimensions over the movement, note: "0.5x speed"}
       - subtitle: Different latent motions across embodiments and scenes

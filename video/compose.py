@@ -143,7 +143,8 @@ def pairlat(w, title, subtitle, e):
     """Robot and human clip of the same movement (front camera), one task caption centred under both,
     and below that the latent sequences the LAM produces for both (8 dims over the 1 s window,
     embodiment mean removed) with its caption above. Panels are cropped from the existing
-    realworld-transfer clip, inset to drop its blue frame and burnt-in titles."""
+    realworld-transfer clip, inset to drop its blue frame, burnt-in titles and the R/H row
+    labels, which are redrawn as Robot / Human."""
     base = clip(e)
     (vx0, vx1), (vx2, vx3), (vy0, vy1) = e["robot_x"], e["human_x"], e["video_y"]
     (hx0, hx1), (hy0, hy1) = e["heat_x"], e["heat_y"]
@@ -167,7 +168,10 @@ def pairlat(w, title, subtitle, e):
         V.draw_text(img, e["task"], (V.W // 2, y_cap), size=26, color=V.INK, anchor="ma")
         V.draw_text(img, e.get("heat_label", "Latent dimensions over the movement"), (V.W // 2, y_heat_lab), size=26, color=V.INK, anchor="ma")
         f, nw, nh = V.fit(heat.frame_at(t), 2 * tile_w + gap, V.H - 70 - y_heat)
-        V.paste(img, f, (V.W - nw) // 2, y_heat)
+        hx = (V.W - nw) // 2
+        V.paste(img, f, hx, y_heat)
+        for lab, frac in zip(e.get("heat_rows", ["Robot", "Human"]), e.get("heat_row_frac", [0.23, 0.73])):
+            V.draw_text(img, lab, (hx - 16, y_heat + int(frac * nh)), size=26, color=V.INK, anchor="rm")
 
     V.render_canvas(w, title, base.duration * reps, paint, note=e.get("note"), subtitle=subtitle)
 
