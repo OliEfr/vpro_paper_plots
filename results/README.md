@@ -628,3 +628,49 @@ No figure, numbers for the text:
 - `xemb_latent_grid_latent_cos.csv` -- pairwise cosine of the six motion latents.
 - `xemb_latent_grid_candidates.csv` -- the search: 300 + 300 candidate latents (moving
   moments of each embodiment) scored the same way (`score` = R_robot * R_human * cos).
+
+
+## LAPA hardware comparisons (science style only)
+
+`realworld_multiview_lapa_alltasks.csv` is the six-task, five-demo success-rate
+comparison read by `plot_realworld_multiview_lapa_alltasks.py`. Its exact schema
+is `task,multiview_sr,side_only_sr,lapa_init_sr,n_rollouts`: fractions in [0, 1],
+25 rollouts per method/task, task IDs and labels from `tasks.py`. Only LAPA init
+is included in this SR comparison. The original four tasks' Multi-View and
+Single-view values match `realworld_multiview_vs_side.csv`; all six Multi-View
+values match the five-demo `video_sr` rows of `realworld_alltasks.csv`. Mean is
+computed from the six tasks, weighted by rollout count (42%, 22%, 30.666667%).
+
+`probe_realworld_lapa_local.csv` is the measured output of
+`experiments/fit_decode_realworld_lapa.py`, retained in full, including its
+absolute-target and ridge rows. Its schema is
+`method,target,probe,action_dim,r2,n_train,n_test`; methods are `lapa_scratch` and
+`lapa_init`, targets `abs` and `delta_h5`, probes `ridge` and `mlp`, and
+`action_dim` is 0..6 (x, y, z, theta_x, theta_y, theta_z, grip) or -1 (Mean).
+The experiment accepts `--init-root`, `--scratch-root`, and `--output` paths to
+existing labeled exports; the plotting scripts do not read those exports or
+recompute labels, probes, or rollouts.
+
+`plot_realworld_probe_all4.py` reads only the LAPA MLP/`delta_h5` rows and the
+original `ours_single`/`ours_multi` MLP/`state_delta_h5` rows from the unchanged
+`probe_perdim_realworld.csv`. Both targets mean
+`observation.state[t+5] - observation.state[t]`. All four methods use
+137152 train / 35881 test samples; Mean averages seven dimension R² values,
+including the gripper. The resulting probe figure compares single-view,
+multi-view, LAPA scratch and LAPA init in one panel.
+
+Both scripts require `style_science.py` and write only
+`figures/realworld_multiview_lapa_alltasks_science.{pdf,png}` and
+`figures/realworld_probe_all4_science.{pdf,png}` respectively. On Leonardo,
+use the existing read-only RLFV container with the isolated
+`$RLFV_WORK/vpro_plot_pydeps` directory containing `SciencePlots==2.2.2`:
+
+```sh
+source /leonardo_work/EUHPC_B38_106/rlfv/repo/leonardo/env.sh
+cd "$RLFV_WORK/vpro_paper_plots"
+for script in plot_realworld_multiview_lapa_alltasks.py plot_realworld_probe_all4.py; do
+  singularity exec -B "$RLFV_BINDS" \
+    --env PYTHONPATH="$RLFV_WORK/vpro_plot_pydeps",MPLBACKEND=Agg \
+    "$IMAGE" /bin/python "$script"
+done
+```
